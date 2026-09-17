@@ -3,28 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CALISTHENIX - Treino de Peso Corporal</title>
+    <title>CALISTHENIX PRO - Bodyweight Training</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Teko:wght@600;700&family=Inter:wght@400;600;800&display=swap');
+
         :root {
-            --bg-color: #0a0a0c;
-            --card-bg: #16161a;
-            --accent-green: #2cb67d;
-            --accent-orange: #ff6e40;
-            --accent-purple: #7f5af0;
-            --text-color: #fffffe;
-            --text-dim: #94a1b2;
+            --bg: #050508;
+            --card-bg: rgba(20, 20, 28, 0.75);
+            --neon-green: #00ff88;
+            --neon-orange: #ff5500;
+            --neon-purple: #9d4edd;
+            --text: #ffffff;
+            --text-dim: #a0a0b0;
+            --border: rgba(255, 255, 255, 0.08);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', sans-serif;
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            background-color: var(--bg);
+            background-image: 
+                radial-gradient(circle at 10% 10%, rgba(157, 78, 221, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 90%, rgba(0, 255, 136, 0.1) 0%, transparent 40%);
+            color: var(--text);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -38,33 +44,45 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 25px;
+            padding: 20px 30px;
             background: var(--card-bg);
-            border-radius: 16px;
-            margin-bottom: 25px;
-            border: 1px solid #242629;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            margin-bottom: 30px;
+            border: 1px solid var(--border);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: 900;
-            letter-spacing: 2px;
-            color: var(--accent-green);
+            font-family: 'Teko', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            background: linear-gradient(135deg, var(--neon-green), #00b8ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             text-transform: uppercase;
         }
 
         .streak-badge {
             display: flex;
             align-items: center;
-            gap: 8px;
-            background: rgba(255, 110, 64, 0.15);
-            color: var(--accent-orange);
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-weight: bold;
-            border: 1px solid var(--accent-orange);
-            font-size: 1.1rem;
+            gap: 10px;
+            background: rgba(255, 85, 0, 0.1);
+            color: var(--neon-orange);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 800;
+            border: 1px solid var(--neon-orange);
+            box-shadow: 0 0 15px rgba(255, 85, 0, 0.2);
+            font-size: 1.2rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 10px rgba(255, 85, 0, 0.2); }
+            50% { box-shadow: 0 0 25px rgba(255, 85, 0, 0.5); }
+            100% { box-shadow: 0 0 10px rgba(255, 85, 0, 0.2); }
         }
 
         .container {
@@ -77,18 +95,22 @@
 
         .card {
             background: var(--card-bg);
-            padding: 25px;
-            border-radius: 16px;
-            border: 1px solid #242629;
+            backdrop-filter: blur(12px);
+            padding: 30px;
+            border-radius: 24px;
+            border: 1px solid var(--border);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
 
         h2 {
-            margin-bottom: 15px;
-            font-size: 1.3rem;
-            color: var(--accent-green);
+            font-family: 'Teko', sans-serif;
+            font-size: 2rem;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            color: var(--neon-green);
+            text-transform: uppercase;
         }
 
-        /* Formulario de Perfil */
         .user-form {
             display: grid;
             grid-template-columns: 1fr 1fr auto;
@@ -99,116 +121,137 @@
         .input-group {
             display: flex;
             flex-direction: column;
-            gap: 5px;
+            gap: 8px;
         }
 
         .input-group label {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             color: var(--text-dim);
+            font-weight: 600;
         }
 
         .input-group input {
-            background: #010101;
-            border: 1px solid #242629;
-            padding: 12px;
-            border-radius: 8px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--border);
+            padding: 14px;
+            border-radius: 12px;
             color: #fff;
             font-size: 1rem;
             outline: none;
+            transition: 0.3s;
         }
 
         .input-group input:focus {
-            border-color: var(--accent-green);
+            border-color: var(--neon-green);
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.2);
         }
 
         button.btn {
-            background: var(--accent-green);
-            color: #010101;
+            background: linear-gradient(135deg, var(--neon-green), #00ab66);
+            color: #000;
             border: none;
-            padding: 12px 20px;
-            border-radius: 8px;
-            font-weight: bold;
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             cursor: pointer;
-            transition: 0.2s;
-            font-size: 1rem;
+            transition: 0.3s;
         }
 
         button.btn:hover {
-            transform: translateY(-2px);
-            filter: brightness(1.1);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 255, 136, 0.4);
         }
 
         .stats-results {
-            margin-top: 15px;
+            margin-top: 20px;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            padding-top: 15px;
-            border-top: 1px solid #242629;
+            gap: 15px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
         }
 
         .stat-item {
-            background: #010101;
-            padding: 12px;
-            border-radius: 8px;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 15px;
+            border-radius: 12px;
             text-align: center;
+            border: 1px solid var(--border);
         }
 
         .stat-item span {
             display: block;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             color: var(--text-dim);
+            margin-bottom: 5px;
         }
 
         .stat-item strong {
-            font-size: 1.2rem;
-            color: var(--accent-purple);
+            font-size: 1.5rem;
+            color: var(--neon-purple);
+            font-weight: 800;
         }
 
-        /* Modos de Treino */
         .level-selector {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
-            gap: 10px;
-            margin-bottom: 20px;
+            gap: 12px;
+            margin-bottom: 25px;
         }
 
         .level-btn {
-            background: #010101;
-            border: 1px solid #242629;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--border);
             color: var(--text-dim);
-            padding: 12px;
-            border-radius: 8px;
+            padding: 14px;
+            border-radius: 12px;
             cursor: pointer;
-            font-weight: bold;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             transition: 0.3s;
         }
 
         .level-btn.active {
-            background: var(--accent-purple);
+            background: linear-gradient(135deg, var(--neon-purple), #5a189a);
             color: #fff;
-            border-color: var(--accent-purple);
+            border-color: var(--neon-purple);
+            box-shadow: 0 0 20px rgba(157, 78, 221, 0.4);
         }
 
-        /* Lista de Exercicios */
         .exercise-list {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 15px;
         }
 
         .exercise-card {
-            background: #010101;
-            padding: 15px;
-            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 20px;
+            border-radius: 16px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-left: 4px solid var(--accent-green);
+            border-left: 5px solid var(--neon-green);
+            border-top: 1px solid var(--border);
+            border-right: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            transition: 0.3s;
+        }
+
+        .exercise-card:hover {
+            transform: translateX(5px);
+            background: rgba(255, 255, 255, 0.03);
         }
 
         .exercise-info h3 {
-            font-size: 1rem;
+            font-size: 1.1rem;
             margin-bottom: 4px;
         }
 
@@ -217,13 +260,28 @@
             color: var(--text-dim);
         }
 
+        .exercise-reps {
+            background: rgba(0, 255, 136, 0.1);
+            color: var(--neon-green);
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-weight: 800;
+            border: 1px solid rgba(0, 255, 136, 0.2);
+        }
+
         .btn-complete {
             width: 100%;
-            margin-top: 20px;
-            padding: 15px;
-            background: var(--accent-orange);
+            margin-top: 25px;
+            padding: 18px;
+            background: linear-gradient(135deg, var(--neon-orange), #ff0055);
             color: #fff;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
+            border-radius: 14px;
+            box-shadow: 0 10px 25px rgba(255, 85, 0, 0.3);
+        }
+
+        .btn-complete:hover {
+            box-shadow: 0 15px 30px rgba(255, 85, 0, 0.5);
         }
 
         @media (max-width: 600px) {
@@ -241,14 +299,13 @@
     <header>
         <div class="logo">Calisthenix</div>
         <div class="streak-badge">
-            🔥 <span id="streak-count">0</span> Dias
+            🔥 <span id="streak-count">0</span> DIAS
         </div>
     </header>
 
     <div class="container">
-        <!-- Card do Perfil / Calculadora -->
         <div class="card">
-            <h2>Seu Perfil de Atleta</h2>
+            <h2>Dados do Atleta</h2>
             <div class="user-form">
                 <div class="input-group">
                     <label for="height">Altura (cm)</label>
@@ -263,68 +320,62 @@
 
             <div class="stats-results" id="stats" style="display: none;">
                 <div class="stat-item">
-                    <span>IMC</span>
+                    <span>Índice IMC</span>
                     <strong id="bmi-val">-</strong>
                 </div>
                 <div class="stat-item">
-                    <span>Meta Calórica Diária</span>
+                    <span>Gasto Calórico Estimado</span>
                     <strong id="calories-val">- kcal</strong>
                 </div>
             </div>
         </div>
 
-        <!-- Card dos Treinos -->
         <div class="card">
-            <h2>Escolha seu Nível</h2>
+            <h2>Modo de Treino</h2>
             <div class="level-selector">
                 <button class="level-btn active" onclick="setLevel('iniciante')">Iniciante</button>
                 <button class="level-btn" onclick="setLevel('intermediario')">Intermediário</button>
                 <button class="level-btn" onclick="setLevel('avancado')">Avançado</button>
             </div>
 
-            <div class="exercise-list" id="exercise-container">
-                <!-- Exercicios inseridos via JS -->
-            </div>
+            <div class="exercise-list" id="exercise-container"></div>
 
-            <button class="btn btn-complete" onclick="completeWorkout()">CONCLUIR TREINO DE HOJE 🚀</button>
+            <button class="btn btn-complete" onclick="completeWorkout()">REGISTRAR TREINO CONCLUÍDO 🔥</button>
         </div>
     </div>
 
     <script>
-        // Dados dos Treinos de Calistenia
         const workouts = {
             iniciante: [
-                { name: "Flexão de Braço Com Joelhos", sets: "3 Séries", reps: "8-12 repetições" },
-                { name: "Agachamento Livre", sets: "3 Séries", reps: "15 repetições" },
-                { name: "Remada Invertida na Mesa/Barra", sets: "3 Séries", reps: "8 repetições" },
-                { name: "Prancha Frontal", sets: "3 Séries", reps: "30 segundos" }
+                { name: "Flexão de Braço Com Joelhos", sets: "3 Séries", reps: "8-12 reps" },
+                { name: "Agachamento Livre", sets: "3 Séries", reps: "15 reps" },
+                { name: "Remada Invertida na Mesa/Barra", sets: "3 Séries", reps: "8 reps" },
+                { name: "Prancha Frontal", sets: "3 Séries", reps: "30 seg" }
             ],
             intermediario: [
-                { name: "Flexão de Braço Tradicional", sets: "4 Séries", reps: "12-15 repetições" },
-                { name: "Barra Fixa (Pull-ups)", sets: "4 Séries", reps: "6-8 repetições" },
+                { name: "Flexão de Braço Tradicional", sets: "4 Séries", reps: "12-15 reps" },
+                { name: "Barra Fixa (Pull-ups)", sets: "4 Séries", reps: "6-8 reps" },
                 { name: "Afundo (Lunge)", sets: "3 Séries", reps: "12 cada perna" },
-                { name: "Dips em Paralelas/Cadeira", sets: "3 Séries", reps: "10 repetições" },
-                { name: "L-Sit no Chão", sets: "3 Séries", reps: "15 segundos" }
+                { name: "Dips em Paralelas", sets: "3 Séries", reps: "10 reps" },
+                { name: "L-Sit no Chão", sets: "3 Séries", reps: "15 seg" }
             ],
             avancado: [
-                { name: "Flexão Diamante / Pique (Pike Pushup)", sets: "4 Séries", reps: "12 repetições" },
-                { name: "Barra Fixa Peq. Pronada / Supinada", sets: "4 Séries", reps: "10-12 repetições" },
-                { name: "Agachamento Pistola (Pistol Squat)", sets: "3 Séries", reps: "6-8 cada perna" },
-                { name: "Muscle-up ou Dips Avançado", sets: "4 Séries", reps: "5-8 repetições" },
-                { name: "Dragon Flag / Abdominal Canivete", sets: "3 Séries", reps: "10 repetições" }
+                { name: "Flexão Pike (Ombros)", sets: "4 Séries", reps: "12 reps" },
+                { name: "Barra Fixa Pronada Limpa", sets: "4 Séries", reps: "10-12 reps" },
+                { name: "Pistol Squat (Uma perna)", sets: "3 Séries", reps: "6-8 cada perna" },
+                { name: "Muscle-up na Barra", sets: "4 Séries", reps: "5-8 reps" },
+                { name: "Dragon Flag", sets: "3 Séries", reps: "10 reps" }
             ]
         };
 
         let currentLevel = 'iniciante';
 
-        // Carregar dados salvos ao iniciar a página
         window.onload = () => {
             loadUserData();
             renderWorkout();
             checkStreak();
         };
 
-        // Renderizar Exercícios na tela
         function renderWorkout() {
             const container = document.getElementById('exercise-container');
             container.innerHTML = '';
@@ -337,13 +388,12 @@
                         <h3>${ex.name}</h3>
                         <p>${ex.sets}</p>
                     </div>
-                    <span style="color: var(--accent-orange); font-weight: bold;">${ex.reps}</span>
+                    <span class="exercise-reps">${ex.reps}</span>
                 `;
                 container.appendChild(item);
             });
         }
 
-        // Alterar o Nível do Treino
         function setLevel(level) {
             currentLevel = level;
             document.querySelectorAll('.level-btn').forEach(btn => {
@@ -355,33 +405,24 @@
             renderWorkout();
         }
 
-        // Calcular IMC e Calorias
         function calculateMetrics() {
             const height = parseFloat(document.getElementById('height').value);
             const weight = parseFloat(document.getElementById('weight').value);
 
-            if (!height || !weight) {
-                alert("Por favor, preencha altura e peso corretamente!");
-                return;
-            }
+            if (!height || !weight) return;
 
-            // Calculo IMC
             const heightInMeters = height / 100;
             const bmi = (weight / (heightInMeters * heightInMeters)).toFixed(1);
-
-            // Estimativa Basal simples + Calistenia
-            const estimatedCalories = Math.round((10 * weight) + (6.25 * height) - (5 * 25) + 5 + 400);
+            const estimatedCalories = Math.round((10 * weight) + (6.25 * height) - (5 * 25) + 5 + 450);
 
             document.getElementById('bmi-val').innerText = bmi;
             document.getElementById('calories-val').innerText = `${estimatedCalories} kcal`;
             document.getElementById('stats').style.display = 'grid';
 
-            // Salvar no navegador
             localStorage.setItem('user_height', height);
             localStorage.setItem('user_weight', weight);
         }
 
-        // Carregar dados salvos
         function loadUserData() {
             const h = localStorage.getItem('user_height');
             const w = localStorage.getItem('user_weight');
@@ -392,7 +433,6 @@
             }
         }
 
-        // Sistema de Streaks (Ofensiva estilo Duolingo)
         function checkStreak() {
             const streak = parseInt(localStorage.getItem('streak_count')) || 0;
             document.getElementById('streak-count').innerText = streak;
@@ -403,7 +443,7 @@
             const today = new Date().toDateString();
 
             if (lastDate === today) {
-                alert("Você já completou o treino de hoje! Volte amanhã para manter a ofensiva 🔥");
+                alert("Treino de hoje já registrado! Mantenha o foco amanhã. 🔥");
                 return;
             }
 
@@ -413,16 +453,15 @@
 
             if (lastDate === yesterday.toDateString()) {
                 streak += 1;
-            } else if (lastDate !== today) {
-                // Se faltou algum dia, reinicia ou começa com 1
+            } else {
                 streak = 1;
             }
 
             localStorage.setItem('streak_count', streak);
             localStorage.setItem('last_workout_date', today);
-
             document.getElementById('streak-count').innerText = streak;
-            alert(`PARABÉNS! Treino Concluído! 🔥 Ofensiva atual: ${streak} dias!`);
+
+            alert(`TREINO REGISTRADO! 🔥 Sua ofensiva subiu para ${streak} dia(s)!`);
         }
     </script>
 </body>
