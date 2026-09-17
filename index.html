@@ -1,1407 +1,429 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#09090b" />
-  <title>FIRESET — Calistenia em Casa</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
-
-  <style>
-    :root {
-      --bg: #09090b;
-      --panel: #111114;
-      --panel-2: #18181b;
-      --line: #27272a;
-      --muted: #a1a1aa;
-      --text: #fafafa;
-      --orange: #f97316;
-      --red: #ef4444;
-      --yellow: #facc15;
-      --green: #22c55e;
-      --purple: #a855f7;
-      --blue: #3b82f6;
-      --pink: #ec4899;
-      --cyan: #14b8a6;
-      --radius: 22px;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      min-height: 100vh;
-      color: var(--text);
-      background:
-        radial-gradient(circle at 15% 0%, rgba(249,115,22,.13), transparent 30rem),
-        radial-gradient(circle at 90% 20%, rgba(168,85,247,.08), transparent 28rem),
-        var(--bg);
-      font-family: Inter, system-ui, sans-serif;
-    }
-
-    button {
-      border: 0;
-      color: inherit;
-      cursor: pointer;
-      font: inherit;
-    }
-
-    .app {
-      width: min(1180px, calc(100% - 28px));
-      margin: auto;
-      padding-bottom: 100px;
-    }
-
-    .topbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      padding: 24px 0;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 20px;
-      font-weight: 900;
-      letter-spacing: -.05em;
-    }
-
-    .brand-mark {
-      display: grid;
-      place-items: center;
-      width: 40px;
-      height: 40px;
-      border-radius: 13px;
-      background: linear-gradient(135deg, #fb923c, #dc2626);
-      box-shadow: 0 0 30px rgba(249,115,22,.35);
-    }
-
-    .top-actions {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .icon-btn,
-    .avatar {
-      display: grid;
-      place-items: center;
-      width: 42px;
-      height: 42px;
-      border: 1px solid var(--line);
-      border-radius: 50%;
-      background: var(--panel-2);
-    }
-
-    .avatar {
-      color: #111;
-      font-weight: 900;
-      background: linear-gradient(135deg, #fde047, #fb923c);
-    }
-
-    .hero {
-      display: grid;
-      grid-template-columns: 1.4fr .8fr;
-      gap: 18px;
-      margin-bottom: 18px;
-    }
-
-    .hero-card,
-    .panel,
-    .workout-card,
-    .exercise-card,
-    .modal-card {
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: linear-gradient(145deg, rgba(24,24,27,.96), rgba(15,15,18,.96));
-      box-shadow: 0 18px 70px rgba(0,0,0,.22);
-    }
-
-    .hero-card {
-      position: relative;
-      overflow: hidden;
-      min-height: 250px;
-      padding: 30px;
-      background:
-        radial-gradient(circle at 85% 30%, rgba(249,115,22,.36), transparent 15rem),
-        linear-gradient(135deg, #18181b, #101012);
-    }
-
-    .hero-card::after {
-      position: absolute;
-      right: -40px;
-      bottom: -90px;
-      content: "🔥";
-      font-size: 230px;
-      opacity: .08;
-      transform: rotate(-12deg);
-    }
-
-    .eyebrow {
-      color: #fb923c;
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-    }
-
-    h1,
-    h2,
-    h3,
-    p {
-      margin-top: 0;
-    }
-
-    h1 {
-      max-width: 640px;
-      margin: 12px 0;
-      font-size: clamp(34px, 7vw, 72px);
-      line-height: .96;
-      letter-spacing: -.07em;
-    }
-
-    h2 {
-      margin-bottom: 6px;
-      font-size: 24px;
-      letter-spacing: -.04em;
-    }
-
-    h3 {
-      margin-bottom: 7px;
-    }
-
-    .muted {
-      color: var(--muted);
-    }
-
-    .hero-copy {
-      max-width: 580px;
-      color: #d4d4d8;
-      line-height: 1.65;
-    }
-
-    .hero-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 24px;
-    }
-
-    .primary,
-    .secondary,
-    .danger {
-      min-height: 48px;
-      padding: 0 18px;
-      border-radius: 15px;
-      font-weight: 800;
-      transition: .2s ease;
-    }
-
-    .primary {
-      background: linear-gradient(135deg, #fb923c, #ea580c);
-      box-shadow: 0 8px 25px rgba(249,115,22,.22);
-    }
-
-    .secondary {
-      border: 1px solid var(--line);
-      background: #202024;
-    }
-
-    .danger {
-      background: linear-gradient(135deg, #ef4444, #b91c1c);
-    }
-
-    button:hover {
-      transform: translateY(-2px) scale(1.02);
-      filter: brightness(1.1);
-    }
-
-    .streak-card {
-      display: flex;
-      min-height: 250px;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 26px;
-      border-color: rgba(239,68,68,.35);
-      background:
-        radial-gradient(circle at 50% 0%, rgba(239,68,68,.23), transparent 13rem),
-        linear-gradient(145deg, #241316, #171114);
-    }
-
-    .streak-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: start;
-    }
-
-    .flame {
-      display: inline-block;
-      font-size: 68px;
-      line-height: 1;
-      filter: drop-shadow(0 0 18px rgba(239,68,68,.8));
-      animation: flame 1.25s ease-in-out infinite;
-    }
-
-    @keyframes flame {
-      0%, 100% { transform: scale(1) rotate(-3deg); }
-      50% { transform: scale(1.14) rotate(4deg); }
-    }
-
-    .streak-number {
-      margin-top: 10px;
-      font-size: 56px;
-      font-weight: 900;
-      letter-spacing: -.08em;
-    }
-
-    .grid {
-      display: grid;
-      gap: 18px;
-    }
-
-    .stats-grid {
-      grid-template-columns: repeat(3, 1fr);
-      margin-bottom: 18px;
-    }
-
-    .panel {
-      padding: 22px;
-    }
-
-    .stat-title {
-      color: var(--muted);
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    .stat-value {
-      margin: 10px 0 4px;
-      font-size: 29px;
-      font-weight: 900;
-      letter-spacing: -.05em;
-    }
-
-    .xp-track,
-    .progress-track {
-      overflow: hidden;
-      height: 10px;
-      border-radius: 99px;
-      background: #27272a;
-    }
-
-    .xp-fill,
-    .progress-fill {
-      width: 0;
-      height: 100%;
-      border-radius: inherit;
-      background: linear-gradient(90deg, #facc15, #f97316);
-      transition: width .6s cubic-bezier(.2,.8,.2,1);
-    }
-
-    .section {
-      margin-top: 26px;
-    }
-
-    .section-heading {
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      gap: 12px;
-      margin-bottom: 13px;
-    }
-
-    .workout-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-    }
-
-    .workout-card {
-      position: relative;
-      overflow: hidden;
-      padding: 22px;
-      cursor: pointer;
-      transition: .25s ease;
-    }
-
-    .workout-card:hover {
-      transform: translateY(-5px);
-      border-color: var(--orange);
-      box-shadow: 0 15px 45px rgba(249,115,22,.14);
-    }
-
-    .workout-card::after {
-      position: absolute;
-      right: 12px;
-      bottom: -12px;
-      font-size: 70px;
-      opacity: .12;
-    }
-
-    .workout-card:nth-child(1)::after { content: "⚡"; }
-    .workout-card:nth-child(2)::after { content: "🏋️"; }
-    .workout-card:nth-child(3)::after { content: "🔥"; }
-
-    .workout-icon {
-      margin-bottom: 22px;
-      font-size: 38px;
-    }
-
-    .workout-card p {
-      color: var(--muted);
-      line-height: 1.5;
-    }
-
-    .workout-meta {
-      display: flex;
-      gap: 7px;
-      flex-wrap: wrap;
-      margin-top: 17px;
-    }
-
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      min-height: 28px;
-      padding: 0 10px;
-      border-radius: 99px;
-      background: #27272a;
-      color: #d4d4d8;
-      font-size: 11px;
-      font-weight: 800;
-    }
-
-    .orange-pill {
-      background: rgba(249,115,22,.16);
-      color: #fdba74;
-    }
-
-    .calendar-wrap {
-      overflow-x: auto;
-    }
-
-    .calendar {
-      display: grid;
-      grid-template-columns: repeat(7, minmax(34px, 1fr));
-      gap: 8px;
-      min-width: 320px;
-      margin-top: 16px;
-    }
-
-    .day-label {
-      color: #71717a;
-      font-size: 11px;
-      font-weight: 800;
-      text-align: center;
-    }
-
-    .day {
-      display: grid;
-      place-items: center;
-      min-height: 39px;
-      border: 1px solid #27272a;
-      border-radius: 10px;
-      color: #71717a;
-      font-size: 12px;
-      font-weight: 700;
-    }
-
-    .day.active {
-      border-color: rgba(34,197,94,.7);
-      color: white;
-      background: #15803d;
-      box-shadow: 0 0 16px rgba(34,197,94,.2);
-    }
-
-    .day.today {
-      outline: 2px solid var(--orange);
-      outline-offset: 2px;
-    }
-
-    .achievement-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-    }
-
-    .achievement {
-      padding: 16px;
-      border: 1px solid var(--line);
-      border-radius: 17px;
-      background: #151518;
-      text-align: center;
-    }
-
-    .achievement.locked {
-      opacity: .34;
-      filter: grayscale(1);
-    }
-
-    .badge-icon {
-      display: block;
-      margin-bottom: 10px;
-      font-size: 32px;
-    }
-
-    .achievement small {
-      color: var(--muted);
-      font-size: 11px;
-      line-height: 1.4;
-    }
-
-    .toast {
-      position: fixed;
-      z-index: 20;
-      right: 18px;
-      bottom: 18px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      max-width: min(380px, calc(100% - 36px));
-      padding: 15px 17px;
-      border: 1px solid rgba(249,115,22,.4);
-      border-radius: 16px;
-      background: #1c1310;
-      box-shadow: 0 15px 45px rgba(0,0,0,.4);
-      opacity: 0;
-      transform: translateY(20px);
-      pointer-events: none;
-      transition: .3s ease;
-    }
-
-    .toast.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .modal {
-      position: fixed;
-      z-index: 10;
-      inset: 0;
-      display: none;
-      place-items: center;
-      padding: 16px;
-      background: rgba(0,0,0,.76);
-      backdrop-filter: blur(10px);
-    }
-
-    .modal.open {
-      display: grid;
-    }
-
-    .modal-card {
-      width: min(680px, 100%);
-      max-height: calc(100vh - 32px);
-      overflow: auto;
-      padding: 24px;
-    }
-
-    .modal-header {
-      display: flex;
-      justify-content: space-between;
-      gap: 15px;
-      align-items: start;
-      margin-bottom: 20px;
-    }
-
-    .close {
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      background: #27272a;
-      font-size: 20px;
-    }
-
-    .muscle-grid,
-    .exercise-list {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 11px;
-    }
-
-    .muscle,
-    .exercise {
-      padding: 16px;
-      border: 1px solid var(--line);
-      border-radius: 17px;
-      background: #17171a;
-      text-align: left;
-      transition: .2s;
-    }
-
-    .muscle:hover,
-    .exercise:hover,
-    .exercise.selected {
-      border-color: var(--orange);
-      background: rgba(249,115,22,.1);
-    }
-
-    .muscle-emoji {
-      display: block;
-      margin-bottom: 10px;
-      font-size: 32px;
-    }
-
-    .exercise {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-    }
-
-    .exercise small {
-      display: block;
-      margin-top: 5px;
-      color: var(--muted);
-    }
-
-    .check {
-      display: grid;
-      place-items: center;
-      width: 27px;
-      height: 27px;
-      border: 1px solid #3f3f46;
-      border-radius: 50%;
-      color: transparent;
-    }
-
-    .selected .check {
-      border-color: var(--orange);
-      color: white;
-      background: var(--orange);
-    }
-
-    .timer {
-      display: grid;
-      place-items: center;
-      width: 180px;
-      height: 180px;
-      margin: 22px auto;
-      border: 10px solid #27272a;
-      border-top-color: var(--orange);
-      border-radius: 50%;
-      font-size: 54px;
-      font-weight: 900;
-      animation: timer-ring 2s linear infinite;
-    }
-
-    @keyframes timer-ring {
-      to { transform: rotate(360deg); }
-    }
-
-    .timer span {
-      animation: timer-text 2s linear infinite;
-    }
-
-    @keyframes timer-text {
-      to { transform: rotate(-360deg); }
-    }
-
-    .floating-xp {
-      position: fixed;
-      z-index: 30;
-      left: 50%;
-      top: 42%;
-      color: #facc15;
-      font-size: 42px;
-      font-weight: 900;
-      pointer-events: none;
-      animation: float-xp 1.3s ease-out forwards;
-    }
-
-    @keyframes float-xp {
-      0% { opacity: 0; transform: translate(-50%, 20px) scale(.7); }
-      25% { opacity: 1; }
-      100% { opacity: 0; transform: translate(-50%, -130px) scale(1.2); }
-    }
-
-    .level-up {
-      text-align: center;
-    }
-
-    .level-up .big {
-      font-size: 75px;
-      animation: level-pop .8s ease-out both;
-    }
-
-    @keyframes level-pop {
-      0% { transform: scale(.2) rotate(-20deg); opacity: 0; }
-      70% { transform: scale(1.15) rotate(7deg); }
-      100% { transform: scale(1); opacity: 1; }
-    }
-
-    @media (max-width: 850px) {
-      .hero {
-        grid-template-columns: 1fr;
-      }
-
-      .workout-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .stats-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 560px) {
-      .app {
-        width: min(100% - 20px, 1180px);
-      }
-
-      .hero-card,
-      .streak-card,
-      .panel {
-        padding: 19px;
-      }
-
-      h1 {
-        font-size: 46px;
-      }
-
-      .achievement-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .muscle-grid,
-      .exercise-list {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CALISTHENIX - Treino de Peso Corporal</title>
+    <style>
+        :root {
+            --bg-color: #0a0a0c;
+            --card-bg: #16161a;
+            --accent-green: #2cb67d;
+            --accent-orange: #ff6e40;
+            --accent-purple: #7f5af0;
+            --text-color: #fffffe;
+            --text-dim: #94a1b2;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        header {
+            width: 100%;
+            max-width: 800px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 25px;
+            background: var(--card-bg);
+            border-radius: 16px;
+            margin-bottom: 25px;
+            border: 1px solid #242629;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            color: var(--accent-green);
+            text-transform: uppercase;
+        }
+
+        .streak-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 110, 64, 0.15);
+            color: var(--accent-orange);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            border: 1px solid var(--accent-orange);
+            font-size: 1.1rem;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 16px;
+            border: 1px solid #242629;
+        }
+
+        h2 {
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            color: var(--accent-green);
+        }
+
+        /* Formulario de Perfil */
+        .user-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr auto;
+            gap: 15px;
+            align-items: end;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .input-group label {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+        }
+
+        .input-group input {
+            background: #010101;
+            border: 1px solid #242629;
+            padding: 12px;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .input-group input:focus {
+            border-color: var(--accent-green);
+        }
+
+        button.btn {
+            background: var(--accent-green);
+            color: #010101;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 1rem;
+        }
+
+        button.btn:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.1);
+        }
+
+        .stats-results {
+            margin-top: 15px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            padding-top: 15px;
+            border-top: 1px solid #242629;
+        }
+
+        .stat-item {
+            background: #010101;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-item span {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+
+        .stat-item strong {
+            font-size: 1.2rem;
+            color: var(--accent-purple);
+        }
+
+        /* Modos de Treino */
+        .level-selector {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .level-btn {
+            background: #010101;
+            border: 1px solid #242629;
+            color: var(--text-dim);
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .level-btn.active {
+            background: var(--accent-purple);
+            color: #fff;
+            border-color: var(--accent-purple);
+        }
+
+        /* Lista de Exercicios */
+        .exercise-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .exercise-card {
+            background: #010101;
+            padding: 15px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-left: 4px solid var(--accent-green);
+        }
+
+        .exercise-info h3 {
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+
+        .exercise-info p {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+        }
+
+        .btn-complete {
+            width: 100%;
+            margin-top: 20px;
+            padding: 15px;
+            background: var(--accent-orange);
+            color: #fff;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 600px) {
+            .user-form {
+                grid-template-columns: 1fr;
+            }
+            .level-selector {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
-
 <body>
-  <main class="app">
-    <header class="topbar">
-      <div class="brand">
-        <span class="brand-mark">🔥</span>
-        FIRESET
-      </div>
 
-      <div class="top-actions">
-        <button class="icon-btn" id="soundButton" title="Ativar/desativar som">🔊</button>
-        <div class="avatar">JS</div>
-      </div>
+    <header>
+        <div class="logo">Calisthenix</div>
+        <div class="streak-badge">
+            🔥 <span id="streak-count">0</span> Dias
+        </div>
     </header>
 
-    <section class="hero">
-      <article class="hero-card">
-        <div class="eyebrow">Seu treino. Seu fogo.</div>
-        <h1>Fique forte.<br><span style="color:#fb923c">Sem desculpas.</span></h1>
-        <p class="hero-copy">
-          Calistenia em casa, progressão inteligente e uma chama que você não vai querer apagar.
-        </p>
+    <div class="container">
+        <!-- Card do Perfil / Calculadora -->
+        <div class="card">
+            <h2>Seu Perfil de Atleta</h2>
+            <div class="user-form">
+                <div class="input-group">
+                    <label for="height">Altura (cm)</label>
+                    <input type="number" id="height" placeholder="Ex: 175">
+                </div>
+                <div class="input-group">
+                    <label for="weight">Peso (kg)</label>
+                    <input type="number" id="weight" placeholder="Ex: 70">
+                </div>
+                <button class="btn" onclick="calculateMetrics()">Calcular</button>
+            </div>
 
-        <div class="hero-buttons">
-          <button class="primary" id="quickStart">⚡ Começar treino</button>
-          <button class="secondary" id="chooseMuscle">🎯 Escolher grupo</button>
+            <div class="stats-results" id="stats" style="display: none;">
+                <div class="stat-item">
+                    <span>IMC</span>
+                    <strong id="bmi-val">-</strong>
+                </div>
+                <div class="stat-item">
+                    <span>Meta Calórica Diária</span>
+                    <strong id="calories-val">- kcal</strong>
+                </div>
+            </div>
         </div>
-      </article>
 
-      <article class="streak-card">
-        <div class="streak-top">
-          <div>
-            <div class="eyebrow" style="color:#f87171">Ofensiva atual</div>
-            <div class="streak-number"><span id="streak">0</span> dias</div>
-            <div class="muted" id="streakMessage">Acenda sua chama hoje.</div>
-          </div>
-          <span class="flame">🔥</span>
+        <!-- Card dos Treinos -->
+        <div class="card">
+            <h2>Escolha seu Nível</h2>
+            <div class="level-selector">
+                <button class="level-btn active" onclick="setLevel('iniciante')">Iniciante</button>
+                <button class="level-btn" onclick="setLevel('intermediario')">Intermediário</button>
+                <button class="level-btn" onclick="setLevel('avancado')">Avançado</button>
+            </div>
+
+            <div class="exercise-list" id="exercise-container">
+                <!-- Exercicios inseridos via JS -->
+            </div>
+
+            <button class="btn btn-complete" onclick="completeWorkout()">CONCLUIR TREINO DE HOJE 🚀</button>
         </div>
-
-        <button class="danger" id="streakButton">Manter minha chama</button>
-      </article>
-    </section>
-
-    <section class="grid stats-grid">
-      <article class="panel">
-        <div class="stat-title">NÍVEL ATUAL</div>
-        <div class="stat-value">Nível <span id="level">1</span></div>
-        <div class="xp-track">
-          <div class="xp-fill" id="xpFill"></div>
-        </div>
-        <p class="muted" style="margin:9px 0 0;font-size:12px">
-          <span id="xp">0</span> / <span id="nextXp">100</span> XP
-        </p>
-      </article>
-
-      <article class="panel">
-        <div class="stat-title">META DIÁRIA</div>
-        <div class="stat-value"><span id="minutes">0</span> / <span id="goal">20</span> min</div>
-        <div class="progress-track">
-          <div class="progress-fill" id="minutesFill"></div>
-        </div>
-        <p class="muted" style="margin:9px 0 0;font-size:12px">Só falta um pouco. Você consegue.</p>
-      </article>
-
-      <article class="panel">
-        <div class="stat-title">TREINOS COMPLETOS</div>
-        <div class="stat-value" id="workouts">0</div>
-        <p class="muted" style="margin:0;font-size:13px">Cada sessão conta.</p>
-      </article>
-    </section>
-
-    <section class="section">
-      <div class="section-heading">
-        <div>
-          <div class="eyebrow">Escolha seu modo</div>
-          <h2>Treino de hoje</h2>
-        </div>
-        <button class="secondary" id="randomWorkout">🎲 Aleatório</button>
-      </div>
-
-      <div class="workout-grid">
-        <article class="workout-card" data-minutes="10" data-xp="35">
-          <div class="workout-icon">⚡</div>
-          <h3>Treino Relâmpago</h3>
-          <p>Uma sessão rápida para não quebrar a corrente.</p>
-          <div class="workout-meta">
-            <span class="pill orange-pill">10 min</span>
-            <span class="pill">+35 XP</span>
-            <span class="pill">Sem equipamento</span>
-          </div>
-        </article>
-
-        <article class="workout-card" data-minutes="20" data-xp="55">
-          <div class="workout-icon">🏋️</div>
-          <h3>Barra Total</h3>
-          <p>Costas, bíceps e antebraços usando sua barra.</p>
-          <div class="workout-meta">
-            <span class="pill orange-pill">20 min</span>
-            <span class="pill">+55 XP</span>
-            <span class="pill">Barra fixa</span>
-          </div>
-        </article>
-
-        <article class="workout-card" data-minutes="30" data-xp="80">
-          <div class="workout-icon">🔥</div>
-          <h3>Dia Completo</h3>
-          <p>O desafio completo para sair mais forte.</p>
-          <div class="workout-meta">
-            <span class="pill orange-pill">30 min</span>
-            <span class="pill">+80 XP</span>
-            <span class="pill">Corpo todo</span>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="section panel">
-      <div class="section-heading">
-        <div>
-          <div class="eyebrow">Não quebre a corrente</div>
-          <h2>Calendário de ofensiva</h2>
-        </div>
-        <span class="pill orange-pill" id="calendarLabel">Este mês</span>
-      </div>
-
-      <div class="calendar-wrap">
-        <div class="calendar" id="calendar"></div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-heading">
-        <div>
-          <div class="eyebrow">Colecione todos</div>
-          <h2>Conquistas</h2>
-        </div>
-      </div>
-
-      <div class="achievement-grid" id="achievements"></div>
-    </section>
-  </main>
-
-  <div class="toast" id="toast"></div>
-
-  <div class="modal" id="muscleModal">
-    <div class="modal-card">
-      <div class="modal-header">
-        <div>
-          <div class="eyebrow">Monte sua sessão</div>
-          <h2>Escolha um grupo muscular</h2>
-        </div>
-        <button class="close" data-close="muscleModal">×</button>
-      </div>
-
-      <div class="muscle-grid" id="muscleGrid"></div>
     </div>
-  </div>
 
-  <div class="modal" id="exerciseModal">
-    <div class="modal-card">
-      <div class="modal-header">
-        <div>
-          <div class="eyebrow" id="selectedMuscleLabel">Exercícios</div>
-          <h2>Selecione seus movimentos</h2>
-        </div>
-        <button class="close" data-close="exerciseModal">×</button>
-      </div>
+    <script>
+        // Dados dos Treinos de Calistenia
+        const workouts = {
+            iniciante: [
+                { name: "Flexão de Braço Com Joelhos", sets: "3 Séries", reps: "8-12 repetições" },
+                { name: "Agachamento Livre", sets: "3 Séries", reps: "15 repetições" },
+                { name: "Remada Invertida na Mesa/Barra", sets: "3 Séries", reps: "8 repetições" },
+                { name: "Prancha Frontal", sets: "3 Séries", reps: "30 segundos" }
+            ],
+            intermediario: [
+                { name: "Flexão de Braço Tradicional", sets: "4 Séries", reps: "12-15 repetições" },
+                { name: "Barra Fixa (Pull-ups)", sets: "4 Séries", reps: "6-8 repetições" },
+                { name: "Afundo (Lunge)", sets: "3 Séries", reps: "12 cada perna" },
+                { name: "Dips em Paralelas/Cadeira", sets: "3 Séries", reps: "10 repetições" },
+                { name: "L-Sit no Chão", sets: "3 Séries", reps: "15 segundos" }
+            ],
+            avancado: [
+                { name: "Flexão Diamante / Pique (Pike Pushup)", sets: "4 Séries", reps: "12 repetições" },
+                { name: "Barra Fixa Peq. Pronada / Supinada", sets: "4 Séries", reps: "10-12 repetições" },
+                { name: "Agachamento Pistola (Pistol Squat)", sets: "3 Séries", reps: "6-8 cada perna" },
+                { name: "Muscle-up ou Dips Avançado", sets: "4 Séries", reps: "5-8 repetições" },
+                { name: "Dragon Flag / Abdominal Canivete", sets: "3 Séries", reps: "10 repetições" }
+            ]
+        };
 
-      <div class="exercise-list" id="exerciseList"></div>
+        let currentLevel = 'iniciante';
 
-      <button class="primary" id="startSelected" style="width:100%;margin-top:18px">
-        Começar treino 🔥
-      </button>
-    </div>
-  </div>
+        // Carregar dados salvos ao iniciar a página
+        window.onload = () => {
+            loadUserData();
+            renderWorkout();
+            checkStreak();
+        };
 
-  <div class="modal" id="timerModal">
-    <div class="modal-card">
-      <div class="modal-header">
-        <div>
-          <div class="eyebrow">Modo foco</div>
-          <h2 id="timerTitle">Treino em andamento</h2>
-        </div>
-        <button class="close" data-close="timerModal">×</button>
-      </div>
+        // Renderizar Exercícios na tela
+        function renderWorkout() {
+            const container = document.getElementById('exercise-container');
+            container.innerHTML = '';
 
-      <p class="muted" id="timerExercise">Prepare-se para começar.</p>
-      <div class="timer"><span id="timerValue">30</span></div>
-
-      <div style="display:flex;gap:10px">
-        <button class="secondary" id="pauseTimer" style="flex:1">Pausar</button>
-        <button class="primary" id="completeTimer" style="flex:1">Concluir série</button>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal" id="levelModal">
-    <div class="modal-card level-up">
-      <div class="big">🏆</div>
-      <div class="eyebrow">Você subiu de nível</div>
-      <h2>Nível <span id="newLevel">2</span> desbloqueado!</h2>
-      <p class="muted">Seu esforço está virando força. Continue incendiando.</p>
-      <button class="primary" data-close="levelModal">Continuar</button>
-    </div>
-  </div>
-
-  <script>
-    const STORAGE_KEY = "fireset-data-v1";
-
-    const defaultData = {
-      xp: 0,
-      streak: 0,
-      workouts: 0,
-      minutes: 0,
-      goal: 20,
-      lastWorkout: null,
-      trainedDates: [],
-      unlocked: []
-    };
-
-    const exercises = {
-      "Braços": {
-        emoji: "💪",
-        color: "#3b82f6",
-        items: [
-          ["Chin-up supinada", "Barra • Intermediário"],
-          ["Chin-up negativo", "Barra • Iniciante"],
-          ["Flexão diamante", "Peso corporal • Intermediário"],
-          ["Bench dip na cadeira", "Cadeira • Iniciante"],
-          ["Dead hang", "Barra • Iniciante"],
-          ["Chin-up com toalha", "Barra + toalha • Avançado"]
-        ]
-      },
-      "Tronco": {
-        emoji: "🫁",
-        color: "#ef4444",
-        items: [
-          ["Flexão na parede", "Peso corporal • Iniciante"],
-          ["Flexão inclinada", "Cadeira • Iniciante"],
-          ["Flexão normal", "Peso corporal • Intermediário"],
-          ["Flexão declinada", "Cadeira • Avançado"],
-          ["Archer push-up", "Peso corporal • Avançado"],
-          ["Pseudo planche", "Peso corporal • Avançado"]
-        ]
-      },
-      "Inferiores": {
-        emoji: "🦵",
-        color: "#6366f1",
-        items: [
-          ["Agachamento cadeira", "Cadeira • Iniciante"],
-          ["Agachamento livre", "Peso corporal • Iniciante"],
-          ["Agachamento sumô", "Peso corporal • Iniciante"],
-          ["Bulgarian split squat", "Cadeira • Intermediário"],
-          ["Pistol assistido", "Cadeira • Avançado"],
-          ["Wall sit", "Parede • Intermediário"]
-        ]
-      },
-      "Core": {
-        emoji: "🔥",
-        color: "#eab308",
-        items: [
-          ["Prancha", "Peso corporal • Iniciante"],
-          ["Prancha lateral", "Peso corporal • Iniciante"],
-          ["Hollow body", "Peso corporal • Intermediário"],
-          ["Leg raise", "Barra • Intermediário"],
-          ["V-up", "Peso corporal • Intermediário"],
-          ["Dragon flag", "Sofá • Avançado"]
-        ]
-      },
-      "Costas": {
-        emoji: "🔙",
-        color: "#22c55e",
-        items: [
-          ["Superman", "Peso corporal • Iniciante"],
-          ["Australian pull-up", "Mesa/barra baixa • Iniciante"],
-          ["Pull-up negativo", "Barra • Intermediário"],
-          ["Pull-up completo", "Barra • Intermediário"],
-          ["Archer pull-up", "Barra • Avançado"],
-          ["Reverse snow angel", "Peso corporal • Iniciante"]
-        ]
-      },
-      "Glúteos": {
-        emoji: "🍑",
-        color: "#ec4899",
-        items: [
-          ["Glute bridge", "Peso corporal • Iniciante"],
-          ["Single-leg bridge", "Peso corporal • Intermediário"],
-          ["Hip thrust no sofá", "Sofá • Iniciante"],
-          ["Donkey kick", "Peso corporal • Iniciante"],
-          ["Fire hydrant", "Peso corporal • Iniciante"]
-        ]
-      }
-    };
-
-    const achievements = [
-      ["first", "💪", "Primeira Flexão", "Complete seu primeiro treino"],
-      ["streak3", "🔥", "Chama Acesa", "Alcance 3 dias de streak"],
-      ["streak7", "🌋", "Uma Semana de Fogo", "Alcance 7 dias de streak"],
-      ["streak30", "👑", "Mês de Ferro", "Alcance 30 dias de streak"],
-      ["workouts100", "🏆", "Centurião", "Complete 100 treinos"],
-      ["goal", "🎯", "Meta Batida", "Complete sua meta diária"]
-    ];
-
-    let data = loadData();
-    let selectedMuscle = null;
-    let selectedExercises = [];
-    let timer = null;
-    let timerSeconds = 30;
-    let timerRunning = false;
-    let soundEnabled = true;
-
-    function loadData() {
-      try {
-        return { ...defaultData, ...JSON.parse(localStorage.getItem(STORAGE_KEY)) };
-      } catch {
-        return { ...defaultData };
-      }
-    }
-
-    function saveData() {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-    }
-
-    function todayKey(date = new Date()) {
-      return date.toISOString().slice(0, 10);
-    }
-
-    function yesterdayKey() {
-      const date = new Date();
-      date.setDate(date.getDate() - 1);
-      return todayKey(date);
-    }
-
-    function levelFromXp(xp) {
-      let level = 1;
-      let required = 100;
-
-      while (xp >= required) {
-        xp -= required;
-        level++;
-        required = 100 + (level - 1) * 50;
-      }
-
-      return { level, current: xp, required };
-    }
-
-    function render() {
-      const level = levelFromXp(data.xp);
-
-      document.querySelector("#streak").textContent = data.streak;
-      document.querySelector("#xp").textContent = level.current;
-      document.querySelector("#nextXp").textContent = level.required;
-      document.querySelector("#level").textContent = level.level;
-      document.querySelector("#minutes").textContent = data.minutes;
-      document.querySelector("#goal").textContent = data.goal;
-      document.querySelector("#workouts").textContent = data.workouts;
-
-      document.querySelector("#xpFill").style.width =
-        `${Math.min(100, (level.current / level.required) * 100)}%`;
-
-      document.querySelector("#minutesFill").style.width =
-        `${Math.min(100, (data.minutes / data.goal) * 100)}%`;
-
-      const message = data.streak === 0
-        ? "Acenda sua chama hoje."
-        : data.streak === 1
-          ? "Primeiro dia. Agora não pare."
-          : data.streak < 7
-            ? `Só falta ${7 - data.streak} treino(s) para uma semana de fogo.`
-            : "Sua chama está absurda. Continue.";
-
-      document.querySelector("#streakMessage").textContent = message;
-
-      renderCalendar();
-      renderAchievements();
-    }
-
-    function renderCalendar() {
-      const calendar = document.querySelector("#calendar");
-      const now = new Date();
-      const year = now.getFullYear();
-      const month = now.getMonth();
-      const firstDay = new Date(year, month, 1).getDay();
-      const daysInMonth = new Date(year, month + 1, 0).getDate();
-
-      const labels = ["D", "S", "T", "Q", "Q", "S", "S"];
-      calendar.innerHTML = labels.map(label =>
-        `<div class="day-label">${label}</div>`
-      ).join("");
-
-      for (let i = 0; i < firstDay; i++) {
-        calendar.innerHTML += `<div></div>`;
-      }
-
-      for (let day = 1; day <= daysInMonth; day++) {
-        const date = new Date(year, month, day);
-        const key = todayKey(date);
-        const active = data.trainedDates.includes(key);
-        const today = key === todayKey();
-
-        calendar.innerHTML += `
-          <div class="day ${active ? "active" : ""} ${today ? "today" : ""}">
-            ${day}
-          </div>
-        `;
-      }
-
-      document.querySelector("#calendarLabel").textContent =
-        now.toLocaleDateString("pt-BR", { month: "long", year: "numeric" });
-    }
-
-    function renderAchievements() {
-      const container = document.querySelector("#achievements");
-
-      container.innerHTML = achievements.map(([id, icon, title, description]) => {
-        const unlocked = checkAchievement(id);
-
-        return `
-          <div class="achievement ${unlocked ? "" : "locked"}">
-            <span class="badge-icon">${icon}</span>
-            <strong>${title}</strong>
-            <small>${description}</small>
-          </div>
-        `;
-      }).join("");
-    }
-
-    function checkAchievement(id) {
-      if (id === "first") return data.workouts >= 1;
-      if (id === "streak3") return data.streak >= 3;
-      if (id === "streak7") return data.streak >= 7;
-      if (id === "streak30") return data.streak >= 30;
-      if (id === "workouts100") return data.workouts >= 100;
-      if (id === "goal") return data.minutes >= data.goal;
-      return false;
-    }
-
-    function showToast(message) {
-      const toast = document.querySelector("#toast");
-      toast.textContent = message;
-      toast.classList.add("show");
-
-      setTimeout(() => toast.classList.remove("show"), 3500);
-    }
-
-    function addXp(amount) {
-      const before = levelFromXp(data.xp).level;
-      data.xp += amount;
-      const after = levelFromXp(data.xp).level;
-
-      const floating = document.createElement("div");
-      floating.className = "floating-xp";
-      floating.textContent = `+${amount} XP`;
-      document.body.appendChild(floating);
-      setTimeout(() => floating.remove(), 1400);
-
-      if (after > before) {
-        document.querySelector("#newLevel").textContent = after;
-        openModal("levelModal");
-        launchConfetti();
-        playTone(660, .25);
-      }
-    }
-
-    function completeWorkout(minutes, xp, label = "Treino concluído") {
-      const today = todayKey();
-      const yesterday = yesterdayKey();
-
-      if (!data.trainedDates.includes(today)) {
-        if (data.lastWorkout === yesterday) {
-          data.streak++;
-        } else if (data.lastWorkout !== today) {
-          data.streak = 1;
+            workouts[currentLevel].forEach(ex => {
+                const item = document.createElement('div');
+                item.className = 'exercise-card';
+                item.innerHTML = `
+                    <div class="exercise-info">
+                        <h3>${ex.name}</h3>
+                        <p>${ex.sets}</p>
+                    </div>
+                    <span style="color: var(--accent-orange); font-weight: bold;">${ex.reps}</span>
+                `;
+                container.appendChild(item);
+            });
         }
 
-        data.lastWorkout = today;
-        data.trainedDates.push(today);
-      }
-
-      data.workouts++;
-      data.minutes += minutes;
-      addXp(xp);
-
-      if (data.minutes >= data.goal && data.minutes - minutes < data.goal) {
-        addXp(20);
-        showToast("🎯 Meta diária batida! +20 XP bônus");
-      } else {
-        showToast(`🔥 ${label}! Streak de ${data.streak} dias salva!`);
-      }
-
-      saveData();
-      render();
-      launchConfetti();
-      vibrate();
-      playTone(880, .2);
-    }
-
-    function launchConfetti() {
-      if (typeof confetti !== "function") return;
-
-      confetti({
-        particleCount: 130,
-        spread: 85,
-        origin: { y: .65 },
-        colors: ["#f97316", "#ef4444", "#facc15", "#22c55e"]
-      });
-    }
-
-    function vibrate() {
-      if ("vibrate" in navigator) navigator.vibrate([80, 50, 120]);
-    }
-
-    function playTone(frequency = 440, duration = .15) {
-      if (!soundEnabled) return;
-
-      try {
-        const AudioContext = window.AudioContext || window.webkitAudioContext;
-        const context = new AudioContext();
-        const oscillator = context.createOscillator();
-        const gain = context.createGain();
-
-        oscillator.frequency.value = frequency;
-        oscillator.type = "sine";
-        gain.gain.setValueAtTime(.06, context.currentTime);
-        gain.gain.exponentialRampToValueAtTime(.001, context.currentTime + duration);
-
-        oscillator.connect(gain);
-        gain.connect(context.destination);
-        oscillator.start();
-        oscillator.stop(context.currentTime + duration);
-      } catch {}
-    }
-
-    function openModal(id) {
-      document.querySelector(`#${id}`).classList.add("open");
-    }
-
-    function closeModal(id) {
-      document.querySelector(`#${id}`).classList.remove("open");
-    }
-
-    function renderMuscles() {
-      const container = document.querySelector("#muscleGrid");
-
-      container.innerHTML = Object.entries(exercises).map(([name, group]) => `
-        <button class="muscle" data-muscle="${name}" style="border-color:${group.color}33">
-          <span class="muscle-emoji">${group.emoji}</span>
-          <strong>${name}</strong>
-          <small class="muted">${group.items.length} exercícios</small>
-        </button>
-      `).join("");
-
-      document.querySelectorAll("[data-muscle]").forEach(button => {
-        button.addEventListener("click", () => {
-          selectedMuscle = button.dataset.muscle;
-          renderExercises();
-          closeModal("muscleModal");
-          openModal("exerciseModal");
-        });
-      });
-    }
-
-    function renderExercises() {
-      const group = exercises[selectedMuscle];
-      document.querySelector("#selectedMuscleLabel").textContent =
-        `${group.emoji} ${selectedMuscle}`;
-
-      selectedExercises = [];
-
-      document.querySelector("#exerciseList").innerHTML = group.items.map((item, index) => `
-        <button class="exercise" data-exercise-index="${index}">
-          <span>
-            <strong>${item[0]}</strong>
-            <small>${item[1]}</small>
-          </span>
-          <span class="check">✓</span>
-        </button>
-      `).join("");
-
-      document.querySelectorAll("[data-exercise-index]").forEach(button => {
-        button.addEventListener("click", () => {
-          const index = Number(button.dataset.exerciseIndex);
-
-          if (selectedExercises.includes(index)) {
-            selectedExercises = selectedExercises.filter(item => item !== index);
-            button.classList.remove("selected");
-          } else {
-            selectedExercises.push(index);
-            button.classList.add("selected");
-          }
-        });
-      });
-    }
-
-    function startTimer(title = "Treino em andamento", exercise = "Prepare-se para começar.") {
-      document.querySelector("#timerTitle").textContent = title;
-      document.querySelector("#timerExercise").textContent = exercise;
-      document.querySelector("#timerValue").textContent = timerSeconds;
-      document.querySelector("#pauseTimer").textContent = "Pausar";
-
-      openModal("timerModal");
-      timerRunning = true;
-      playTone(660, .12);
-
-      clearInterval(timer);
-      timer = setInterval(() => {
-        if (!timerRunning) return;
-
-        timerSeconds--;
-        document.querySelector("#timerValue").textContent = timerSeconds;
-
-        if (timerSeconds <= 0) {
-          clearInterval(timer);
-          timerRunning = false;
-          timerSeconds = 30;
-          completeTimerStep();
+        // Alterar o Nível do Treino
+        function setLevel(level) {
+            currentLevel = level;
+            document.querySelectorAll('.level-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.innerText.toLowerCase() === level) {
+                    btn.classList.add('active');
+                }
+            });
+            renderWorkout();
         }
-      }, 1000);
-    }
 
-    function completeTimerStep() {
-      playTone(880, .22);
-      vibrate();
-      showToast("✅ Série concluída! Excelente trabalho.");
-      document.querySelector("#timerValue").textContent = "✓";
-    }
+        // Calcular IMC e Calorias
+        function calculateMetrics() {
+            const height = parseFloat(document.getElementById('height').value);
+            const weight = parseFloat(document.getElementById('weight').value);
 
-    document.querySelector("#quickStart").addEventListener("click", () => {
-      timerSeconds = 30;
-      startTimer("Treino Relâmpago", "Prancha + flexões + agachamentos");
-    });
+            if (!height || !weight) {
+                alert("Por favor, preencha altura e peso corretamente!");
+                return;
+            }
 
-    document.querySelector("#chooseMuscle").addEventListener("click", () => {
-      openModal("muscleModal");
-    });
+            // Calculo IMC
+            const heightInMeters = height / 100;
+            const bmi = (weight / (heightInMeters * heightInMeters)).toFixed(1);
 
-    document.querySelector("#streakButton").addEventListener("click", () => {
-      if (data.trainedDates.includes(todayKey())) {
-        showToast("🔥 Você já treinou hoje. Chama protegida!");
-        return;
-      }
+            // Estimativa Basal simples + Calistenia
+            const estimatedCalories = Math.round((10 * weight) + (6.25 * height) - (5 * 25) + 5 + 400);
 
-      completeWorkout(1, 10, "Treino mínimo concluído");
-    });
+            document.getElementById('bmi-val').innerText = bmi;
+            document.getElementById('calories-val').innerText = `${estimatedCalories} kcal`;
+            document.getElementById('stats').style.display = 'grid';
 
-    document.querySelectorAll(".workout-card").forEach(card => {
-      card.addEventListener("click", () => {
-        timerSeconds = 30;
-        startTimer(
-          card.querySelector("h3").textContent,
-          card.querySelector("p").textContent
-        );
+            // Salvar no navegador
+            localStorage.setItem('user_height', height);
+            localStorage.setItem('user_weight', weight);
+        }
 
-        document.querySelector("#completeTimer").dataset.minutes =
-          card.dataset.minutes;
+        // Carregar dados salvos
+        function loadUserData() {
+            const h = localStorage.getItem('user_height');
+            const w = localStorage.getItem('user_weight');
+            if (h && w) {
+                document.getElementById('height').value = h;
+                document.getElementById('weight').value = w;
+                calculateMetrics();
+            }
+        }
 
-        document.querySelector("#completeTimer").dataset.xp =
-          card.dataset.xp;
-      });
-    });
+        // Sistema de Streaks (Ofensiva estilo Duolingo)
+        function checkStreak() {
+            const streak = parseInt(localStorage.getItem('streak_count')) || 0;
+            document.getElementById('streak-count').innerText = streak;
+        }
 
-    document.querySelector("#randomWorkout").addEventListener("click", () => {
-      const cards = [...document.querySelectorAll(".workout-card")];
-      const card = cards[Math.floor(Math.random() * cards.length)];
-      card.click();
-      showToast("🎲 Treino aleatório escolhido!");
-    });
+        function completeWorkout() {
+            const lastDate = localStorage.getItem('last_workout_date');
+            const today = new Date().toDateString();
 
-    document.querySelector("#startSelected").addEventListener("click", () => {
-      if (!selectedExercises.length) {
-        showToast("Selecione pelo menos um exercício.");
-        return;
-      }
+            if (lastDate === today) {
+                alert("Você já completou o treino de hoje! Volte amanhã para manter a ofensiva 🔥");
+                return;
+            }
 
-      closeModal("exerciseModal");
-      timerSeconds = 30;
+            let streak = parseInt(localStorage.getItem('streak_count')) || 0;
+            const yesterday = new Date();
+            yesterday.setDate(yesterday.getDate() - 1);
 
-      const group = exercises[selectedMuscle];
-      const first = group.items[selectedExercises[0]][0];
+            if (lastDate === yesterday.toDateString()) {
+                streak += 1;
+            } else if (lastDate !== today) {
+                // Se faltou algum dia, reinicia ou começa com 1
+                streak = 1;
+            }
 
-      startTimer(`${group.emoji} ${selectedMuscle}`, first);
-    });
+            localStorage.setItem('streak_count', streak);
+            localStorage.setItem('last_workout_date', today);
 
-    document.querySelector("#pauseTimer").addEventListener("click", event => {
-      timerRunning = !timerRunning;
-      event.target.textContent = timerRunning ? "Pausar" : "Continuar";
-    });
-
-    document.querySelector("#completeTimer").addEventListener("click", () => {
-      clearInterval(timer);
-      timerRunning = false;
-
-      const minutes = Number(document.querySelector("#completeTimer").dataset.minutes || 10);
-      const xp = Number(document.querySelector("#completeTimer").dataset.xp || 35);
-
-      closeModal("timerModal");
-      completeWorkout(minutes, xp);
-      timerSeconds = 30;
-    });
-
-    document.querySelector("#soundButton").addEventListener("click", event => {
-      soundEnabled = !soundEnabled;
-      event.target.textContent = soundEnabled ? "🔊" : "🔇";
-      showToast(soundEnabled ? "Som ativado." : "Som desativado.");
-    });
-
-    document.querySelectorAll("[data-close]").forEach(button => {
-      button.addEventListener("click", () => closeModal(button.dataset.close));
-    });
-
-    document.querySelectorAll(".modal").forEach(modal => {
-      modal.addEventListener("click", event => {
-        if (event.target === modal) closeModal(modal.id);
-      });
-    });
-
-    renderMuscles();
-    render();
-  </script>
+            document.getElementById('streak-count').innerText = streak;
+            alert(`PARABÉNS! Treino Concluído! 🔥 Ofensiva atual: ${streak} dias!`);
+        }
+    </script>
 </body>
 </html>
