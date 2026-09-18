@@ -29,6 +29,23 @@
     --blue-400: #3d7bc8;
     --blue-300: #5e97dd;
     --blue-glow: rgba(37, 96, 171, 0.5);
+
+    /* Ligas */
+    --bronze-1: #5a3823;
+    --bronze-2: #a5714a;
+    --bronze-3: #d99a6c;
+    --prata-1: #4a4f57;
+    --prata-2: #8a9099;
+    --prata-3: #c8cdd4;
+    --ouro-1: #6b4d10;
+    --ouro-2: #c9962b;
+    --ouro-3: #f0c445;
+    --diamante-1: #1d4a5c;
+    --diamante-2: #4ba8c9;
+    --diamante-3: #7fe0f5;
+    --ruby-1: #5c0e1a;
+    --ruby-2: #b81e35;
+    --ruby-3: #f0435c;
   }
 
   html { scroll-behavior: smooth; }
@@ -87,25 +104,11 @@
     font-size: 15px;
     color: white;
     box-shadow: 0 0 0 1px rgba(94, 151, 221, 0.2), 0 4px 16px var(--blue-glow);
-    position: relative;
   }
 
-  .logo-mark::before {
-    content: '';
-    position: absolute;
-    inset: 1px;
-    border-radius: 8px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.15), transparent 50%);
-  }
-
-  .logo-name { font-weight: 800; }
   .logo-name span { color: var(--blue-300); font-weight: 500; }
 
-  .nav-links {
-    display: flex;
-    gap: 4px;
-    align-items: center;
-  }
+  .nav-links { display: flex; gap: 4px; align-items: center; }
 
   .nav-links a {
     color: var(--text-3);
@@ -120,11 +123,7 @@
   .nav-links a:hover { color: var(--text); background: var(--surface); }
   .nav-links a.active { color: var(--text); background: var(--surface-2); }
 
-  .nav-right {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
+  .nav-right { display: flex; align-items: center; gap: 10px; }
 
   .coin-display {
     display: flex;
@@ -137,10 +136,7 @@
     font-size: 13px;
     font-weight: 600;
     font-variant-numeric: tabular-nums;
-    transition: all 0.15s ease;
   }
-
-  .coin-display:hover { border-color: var(--border-2); background: var(--surface-2); }
 
   .coin-dot {
     width: 16px;
@@ -148,7 +144,6 @@
     border-radius: 50%;
     background: linear-gradient(135deg, var(--blue-400), var(--blue-600));
     box-shadow: 0 0 8px var(--blue-glow), inset 0 1px 0 rgba(255,255,255,0.3);
-    flex-shrink: 0;
   }
 
   .user-btn {
@@ -164,10 +159,9 @@
     color: white;
     transition: all 0.15s ease;
     border: 1px solid rgba(94, 151, 221, 0.25);
-    box-shadow: 0 4px 14px rgba(37, 96, 171, 0.25);
   }
 
-  .user-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(37, 96, 171, 0.4); }
+  .user-btn:hover { transform: translateY(-1px); }
 
   @media (max-width: 900px) {
     .nav-links { display: none; }
@@ -185,7 +179,7 @@
     .container { padding: 24px 18px 100px; }
   }
 
-  /* ===== SECTION HEAD ===== */
+  /* ===== SECTION ===== */
   .section { margin-bottom: 56px; }
 
   .section-head {
@@ -204,7 +198,6 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    color: var(--text);
   }
 
   .section-head-left h2 i { color: var(--blue-400); font-size: 15px; }
@@ -213,21 +206,7 @@
     color: var(--text-3);
     font-size: 13.5px;
     margin-top: 6px;
-    font-weight: 400;
   }
-
-  .section-head-right a {
-    color: var(--blue-300);
-    font-size: 13px;
-    font-weight: 500;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    transition: all 0.15s ease;
-  }
-
-  .section-head-right a:hover { color: var(--blue-400); gap: 8px; }
 
   /* ===== HERO ===== */
   .hero {
@@ -237,9 +216,7 @@
     margin-bottom: 56px;
   }
 
-  @media (max-width: 980px) {
-    .hero { grid-template-columns: 1fr; }
-  }
+  @media (max-width: 980px) { .hero { grid-template-columns: 1fr; } }
 
   .hero-panel {
     background: linear-gradient(155deg, var(--surface-2) 0%, var(--surface) 60%);
@@ -289,10 +266,9 @@
     text-transform: uppercase;
     width: fit-content;
     margin-bottom: 20px;
-    position: relative;
   }
 
-  .hero-tag .pulse-dot {
+  .pulse-dot {
     width: 6px;
     height: 6px;
     border-radius: 50%;
@@ -312,7 +288,6 @@
     letter-spacing: -1.2px;
     line-height: 1.1;
     margin-bottom: 14px;
-    position: relative;
   }
 
   .hero-panel h1 em {
@@ -329,18 +304,13 @@
     line-height: 1.6;
     margin-bottom: 30px;
     max-width: 520px;
-    position: relative;
   }
 
   .hero-panel .hero-desc strong { color: var(--text); font-weight: 600; }
 
-  .hero-actions {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    position: relative;
-  }
+  .hero-actions { display: flex; gap: 10px; flex-wrap: wrap; }
 
+  /* ===== BOTÕES ===== */
   .btn {
     padding: 12px 22px;
     border-radius: 10px;
@@ -353,7 +323,6 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
-    text-decoration: none;
     white-space: nowrap;
     font-family: inherit;
     letter-spacing: -0.1px;
@@ -366,18 +335,12 @@
     border: 1px solid var(--blue-500);
   }
 
-  .btn-primary:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 1px 0 rgba(255,255,255,0.2) inset, 0 10px 28px rgba(37, 96, 171, 0.55);
-  }
-
-  .btn-primary:active { transform: translateY(0); }
+  .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 1px 0 rgba(255,255,255,0.2) inset, 0 10px 28px rgba(37, 96, 171, 0.55); }
 
   .btn-secondary {
     background: var(--surface-2);
     color: var(--text);
     border: 1px solid var(--border-2);
-    box-shadow: 0 1px 0 rgba(255,255,255,0.04) inset;
   }
 
   .btn-secondary:hover { background: var(--surface-3); border-color: var(--text-4); }
@@ -399,28 +362,9 @@
     gap: 4px;
     transition: all 0.2s ease;
     position: relative;
-    overflow: hidden;
   }
 
-  .stat-card:hover {
-    border-color: var(--border-2);
-    background: var(--surface-2);
-    transform: translateY(-2px);
-  }
-
-  .stat-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 2px;
-    height: 100%;
-    background: linear-gradient(180deg, var(--blue-500), transparent);
-    opacity: 0;
-    transition: opacity 0.2s ease;
-  }
-
-  .stat-card:hover::before { opacity: 1; }
+  .stat-card:hover { border-color: var(--border-2); background: var(--surface-2); transform: translateY(-2px); }
 
   .stat-head {
     display: flex;
@@ -449,9 +393,6 @@
     background: rgba(37, 96, 171, 0.1);
     padding: 3px 7px;
     border-radius: 5px;
-    display: flex;
-    align-items: center;
-    gap: 3px;
   }
 
   .stat-value {
@@ -462,324 +403,140 @@
     line-height: 1.1;
   }
 
-  .stat-value .unit {
-    font-size: 13px;
-    color: var(--text-3);
-    font-weight: 500;
-    margin-left: 3px;
-    letter-spacing: 0;
+  .stat-label { font-size: 12px; color: var(--text-3); font-weight: 500; }
+
+  /* ===== LIGAS ===== */
+  .leagues-showcase {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
   }
 
-  .stat-label {
-    font-size: 12px;
-    color: var(--text-3);
-    font-weight: 500;
+  @media (max-width: 900px) {
+    .leagues-showcase { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
   }
 
-  /* ===== TRILHA ===== */
-  .trail {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .module {
+  .league-card {
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 16px;
-    padding: 20px 24px;
+    padding: 20px 16px;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 20px;
-    cursor: pointer;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    text-align: center;
+    gap: 10px;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
   }
 
-  .module::after {
+  .league-card::before {
     content: '';
     position: absolute;
-    left: 0; top: 0; bottom: 0;
-    width: 3px;
-    background: var(--blue-500);
+    inset: 0;
+    background: radial-gradient(circle at 50% 0%, var(--league-glow), transparent 70%);
     opacity: 0;
-    transition: opacity 0.2s;
+    transition: opacity 0.3s;
   }
 
-  .module:hover {
-    border-color: var(--border-2);
-    background: var(--surface-2);
-    transform: translateX(2px);
-  }
+  .league-card:hover::before { opacity: 1; }
+  .league-card.current { border-width: 1px; transform: translateY(-4px); }
+  .league-card.current::before { opacity: 1; }
 
-  .module:hover::after { opacity: 1; }
+  .league-card.locked { opacity: 0.55; }
 
-  .module.completed::after { opacity: 1; background: var(--blue-400); }
-  .module.completed { border-color: rgba(37, 96, 171, 0.3); }
-
-  .module.boss {
-    background: linear-gradient(135deg, var(--surface-2) 0%, var(--surface) 100%);
-    border-color: rgba(37, 96, 171, 0.35);
-  }
-
-  .module.boss::after { background: var(--blue-300); opacity: 1; }
-
-  .module.locked {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-
-  .module.locked:hover { transform: none; background: var(--surface); border-color: var(--border); }
-  .module.locked:hover::after { opacity: 0; }
-
-  .module-num {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
-    background: var(--surface-3);
-    border: 1px solid var(--border-2);
+  .league-emblem {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 14px;
-    font-weight: 800;
-    color: var(--text-3);
-    flex-shrink: 0;
+    font-size: 22px;
+    color: white;
     position: relative;
-    transition: all 0.2s;
+    z-index: 1;
+    box-shadow: inset 0 -6px 16px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.06);
   }
 
-  .module.completed .module-num {
-    background: linear-gradient(135deg, var(--blue-700), var(--blue-500));
-    border-color: var(--blue-500);
+  .league-emblem::after {
+    content: '';
+    position: absolute;
+    top: 12%;
+    left: 18%;
+    width: 44%;
+    height: 34%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.35), transparent 70%);
+    filter: blur(4px);
+  }
+
+  .league-name {
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: -0.2px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .league-xp-req {
+    font-size: 11px;
+    color: var(--text-3);
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    position: relative;
+    z-index: 1;
+  }
+
+  .league-badge-current {
+    font-size: 9.5px;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
     color: white;
-  }
-
-  .module.boss .module-num {
-    background: linear-gradient(135deg, var(--blue-600), var(--blue-400));
-    border-color: var(--blue-400);
-    color: white;
-    box-shadow: 0 0 20px rgba(37, 96, 171, 0.4);
-  }
-
-  .module-body { flex: 1; min-width: 0; }
-
-  .module-title {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 4px;
-    flex-wrap: wrap;
-  }
-
-  .module-title h3 {
-    font-size: 15.5px;
-    font-weight: 700;
-    letter-spacing: -0.3px;
-    color: var(--text);
-  }
-
-  .badge {
-    font-size: 10px;
-    font-weight: 700;
+    background: var(--blue-600);
     padding: 3px 8px;
     border-radius: 5px;
-    letter-spacing: 0.4px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .league-badge-locked {
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
     text-transform: uppercase;
-  }
-
-  .badge-done { background: rgba(37, 96, 171, 0.18); color: var(--blue-300); border: 1px solid rgba(37, 96, 171, 0.3); }
-  .badge-active { background: rgba(255, 255, 255, 0.06); color: var(--text-2); border: 1px solid var(--border-2); }
-  .badge-locked { background: rgba(255, 255, 255, 0.03); color: var(--text-4); border: 1px solid var(--border); }
-  .badge-boss { background: linear-gradient(135deg, var(--blue-700), var(--blue-500)); color: white; border: 1px solid var(--blue-400); }
-
-  .module-desc {
-    font-size: 13px;
-    color: var(--text-3);
-    margin-bottom: 12px;
-    line-height: 1.5;
-  }
-
-  .module-progress {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    max-width: 480px;
-  }
-
-  .progress-track {
-    flex: 1;
-    height: 6px;
-    background: var(--bg-2);
-    border-radius: 6px;
-    overflow: hidden;
-    position: relative;
-    border: 1px solid var(--border);
-  }
-
-  .progress-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--blue-600), var(--blue-400));
-    border-radius: 6px;
-    transition: width 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-  }
-
-  .progress-fill::after {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 50%;
-    background: linear-gradient(180deg, rgba(255,255,255,0.25), transparent);
-    border-radius: 6px 6px 0 0;
-  }
-
-  .progress-pct {
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--text-2);
-    font-variant-numeric: tabular-nums;
-    min-width: 36px;
-    text-align: right;
-  }
-
-  .module-cta {
-    width: 40px;
-    height: 40px;
-    border-radius: 11px;
-    background: var(--surface-3);
-    border: 1px solid var(--border-2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-3);
-    font-size: 13px;
-    flex-shrink: 0;
-    transition: all 0.2s ease;
-  }
-
-  .module:hover .module-cta {
-    background: var(--blue-600);
-    border-color: var(--blue-500);
-    color: white;
-    box-shadow: 0 0 20px var(--blue-glow);
-  }
-
-  .module.locked .module-cta { color: var(--text-4); }
-  .module.locked:hover .module-cta { background: var(--surface-3); border-color: var(--border-2); color: var(--text-4); box-shadow: none; }
-
-  /* ===== QUICK WORKOUTS ===== */
-  .quick-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 14px;
-  }
-
-  .quick-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 22px;
-    cursor: pointer;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .quick-card:hover {
-    border-color: var(--blue-600);
-    background: var(--surface-2);
-    transform: translateY(-3px);
-    box-shadow: 0 12px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(37, 96, 171, 0.15);
-  }
-
-  .quick-head {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .quick-icon {
-    width: 42px;
-    height: 42px;
-    border-radius: 11px;
-    background: rgba(37, 96, 171, 0.12);
-    border: 1px solid rgba(37, 96, 171, 0.25);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
-    color: var(--blue-300);
-    transition: all 0.2s;
-  }
-
-  .quick-card:hover .quick-icon {
-    background: var(--blue-600);
-    border-color: var(--blue-500);
-    color: white;
-  }
-
-  .quick-time {
-    font-size: 11.5px;
-    font-weight: 600;
-    color: var(--text-3);
-    background: var(--surface-3);
-    padding: 4px 9px;
-    border-radius: 6px;
-    border: 1px solid var(--border);
-    font-variant-numeric: tabular-nums;
-  }
-
-  .quick-card h4 {
-    font-size: 15px;
-    font-weight: 700;
-    letter-spacing: -0.3px;
-    color: var(--text);
-  }
-
-  .quick-card p {
-    font-size: 12.5px;
-    color: var(--text-3);
-    line-height: 1.5;
-    flex: 1;
-  }
-
-  .quick-foot {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-top: 12px;
-    border-top: 1px solid var(--border);
-  }
-
-  .quick-reward {
-    font-size: 11.5px;
-    font-weight: 600;
-    color: var(--blue-300);
-    font-variant-numeric: tabular-nums;
-  }
-
-  .quick-arrow {
     color: var(--text-4);
-    font-size: 12px;
-    transition: transform 0.2s ease;
+    background: var(--surface-3);
+    padding: 3px 8px;
+    border-radius: 5px;
+    position: relative;
+    z-index: 1;
   }
 
-  .quick-card:hover .quick-arrow { transform: translateX(4px); color: var(--blue-300); }
+  /* Cores das ligas */
+  .lg-bronze .league-emblem { background: radial-gradient(circle at 30% 30%, var(--bronze-3), var(--bronze-1)); }
+  .lg-bronze { --league-glow: rgba(217, 154, 108, 0.12); }
+  .lg-prata .league-emblem { background: radial-gradient(circle at 30% 30%, var(--prata-3), var(--prata-1)); }
+  .lg-prata { --league-glow: rgba(200, 205, 212, 0.12); }
+  .lg-ouro .league-emblem { background: radial-gradient(circle at 30% 30%, var(--ouro-3), var(--ouro-1)); }
+  .lg-ouro { --league-glow: rgba(240, 196, 69, 0.14); }
+  .lg-diamante .league-emblem { background: radial-gradient(circle at 30% 30%, var(--diamante-3), var(--diamante-1)); }
+  .lg-diamante { --league-glow: rgba(127, 224, 245, 0.14); }
+  .lg-ruby .league-emblem { background: radial-gradient(circle at 30% 30%, var(--ruby-3), var(--ruby-1)); }
+  .lg-ruby { --league-glow: rgba(240, 67, 92, 0.16); }
 
-  /* ===== LIGA ===== */
+  /* League Panel Atual */
   .league-panel {
     background: linear-gradient(135deg, var(--surface-2) 0%, var(--surface) 100%);
     border: 1px solid var(--border);
     border-radius: 22px;
-    padding: 36px;
+    padding: 32px;
     display: grid;
     grid-template-columns: auto 1fr;
-    gap: 40px;
+    gap: 32px;
     align-items: center;
     position: relative;
     overflow: hidden;
@@ -792,34 +549,29 @@
     right: -10%;
     width: 500px;
     height: 500px;
-    background: radial-gradient(circle, rgba(37, 96, 171, 0.1), transparent 65%);
+    background: radial-gradient(circle, var(--league-glow-current, rgba(37, 96, 171, 0.1)), transparent 65%);
     pointer-events: none;
   }
 
   @media (max-width: 760px) {
-    .league-panel { grid-template-columns: 1fr; text-align: center; justify-items: center; padding: 28px; gap: 24px; }
+    .league-panel { grid-template-columns: 1fr; text-align: center; justify-items: center; padding: 26px; gap: 20px; }
   }
 
-  .league-badge {
-    width: 120px;
-    height: 120px;
+  .current-emblem {
+    width: 110px;
+    height: 110px;
     border-radius: 50%;
-    background: radial-gradient(circle at 30% 30%, var(--blue-500), var(--blue-800));
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 48px;
+    font-size: 44px;
     color: white;
-    box-shadow:
-      0 0 0 1px rgba(94, 151, 221, 0.3),
-      0 0 0 8px rgba(37, 96, 171, 0.06),
-      0 0 60px rgba(37, 96, 171, 0.35),
-      inset 0 -8px 24px rgba(0,0,0,0.35);
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 0 60px var(--league-glow-current, rgba(37,96,171,0.4)), inset 0 -8px 24px rgba(0,0,0,0.35);
     position: relative;
     flex-shrink: 0;
   }
 
-  .league-badge::after {
+  .current-emblem::after {
     content: '';
     position: absolute;
     top: 12%;
@@ -849,18 +601,9 @@
     margin-bottom: 6px;
   }
 
-  .league-info .sub {
-    color: var(--text-3);
-    font-size: 13.5px;
-    margin-bottom: 20px;
-  }
+  .league-info .sub { color: var(--text-3); font-size: 13.5px; margin-bottom: 20px; }
 
-  .league-progress-row {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    margin-bottom: 10px;
-  }
+  .league-progress-row { display: flex; align-items: center; gap: 14px; margin-bottom: 10px; }
 
   .league-track {
     flex: 1;
@@ -869,16 +612,14 @@
     border-radius: 10px;
     overflow: hidden;
     border: 1px solid var(--border);
-    position: relative;
   }
 
   .league-fill {
     height: 100%;
-    background: linear-gradient(90deg, var(--blue-700), var(--blue-400));
+    background: linear-gradient(90deg, var(--league-fill-1, var(--blue-700)), var(--league-fill-2, var(--blue-400)));
     border-radius: 10px;
     transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
-    box-shadow: 0 0 16px var(--blue-glow);
   }
 
   .league-fill::after {
@@ -892,7 +633,6 @@
   .league-xp {
     font-size: 13px;
     font-weight: 700;
-    color: var(--text);
     font-variant-numeric: tabular-nums;
     white-space: nowrap;
   }
@@ -909,7 +649,455 @@
   .league-tip i { color: var(--blue-300); font-size: 12px; }
   .league-tip strong { color: var(--text-2); font-weight: 600; }
 
-  /* ===== ACHIEVEMENTS ===== */
+  /* ===== GRUPOS MUSCULARES ===== */
+  .muscle-groups {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+
+  @media (max-width: 700px) {
+    .muscle-groups { grid-template-columns: 1fr; }
+  }
+
+  .muscle-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 26px 22px;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .muscle-card:hover {
+    border-color: var(--blue-600);
+    background: var(--surface-2);
+    transform: translateY(-3px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(37, 96, 171, 0.15);
+  }
+
+  .muscle-card.active {
+    border-color: var(--blue-500);
+    background: linear-gradient(155deg, var(--surface-2), var(--surface));
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(37, 96, 171, 0.3), 0 0 40px rgba(37, 96, 171, 0.15);
+  }
+
+  .muscle-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: rgba(37, 96, 171, 0.12);
+    border: 1px solid rgba(37, 96, 171, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    color: var(--blue-300);
+    transition: all 0.25s;
+  }
+
+  .muscle-card.active .muscle-icon,
+  .muscle-card:hover .muscle-icon {
+    background: linear-gradient(135deg, var(--blue-600), var(--blue-400));
+    border-color: var(--blue-400);
+    color: white;
+    box-shadow: 0 0 24px rgba(37, 96, 171, 0.4);
+  }
+
+  .muscle-card h3 {
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: -0.4px;
+  }
+
+  .muscle-card p {
+    font-size: 13px;
+    color: var(--text-3);
+    line-height: 1.55;
+  }
+
+  .muscle-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+    margin-top: auto;
+  }
+
+  .muscle-exercises {
+    font-size: 12px;
+    color: var(--text-3);
+    font-weight: 600;
+  }
+
+  .muscle-exercises strong { color: var(--text-2); }
+
+  .muscle-arrow {
+    color: var(--text-4);
+    font-size: 13px;
+    transition: all 0.2s;
+  }
+
+  .muscle-card:hover .muscle-arrow { color: var(--blue-300); transform: translateX(4px); }
+
+  /* ===== PROGRAMA DE 1 MÊS ===== */
+  .program-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    background: linear-gradient(135deg, var(--surface-2) 0%, var(--surface) 100%);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 26px 30px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .program-header::before {
+    content: '';
+    position: absolute;
+    top: -80px;
+    right: -80px;
+    width: 320px;
+    height: 320px;
+    background: radial-gradient(circle, rgba(37, 96, 171, 0.12), transparent 65%);
+  }
+
+  .program-header-left { position: relative; }
+
+  .program-header h3 {
+    font-size: 19px;
+    font-weight: 800;
+    letter-spacing: -0.4px;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .program-header h3 i { color: var(--blue-300); font-size: 16px; }
+
+  .program-header p { font-size: 13px; color: var(--text-3); }
+
+  .program-header-right {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    position: relative;
+  }
+
+  .program-stat { text-align: center; }
+
+  .program-stat .num {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.6px;
+    font-variant-numeric: tabular-nums;
+    background: linear-gradient(135deg, var(--blue-300), var(--blue-500));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .program-stat .lbl {
+    font-size: 11px;
+    color: var(--text-3);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 2px;
+  }
+
+  .month-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+
+  @media (max-width: 600px) {
+    .month-grid { gap: 5px; }
+  }
+
+  .day-cell {
+    aspect-ratio: 1;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 8px 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    min-height: 62px;
+  }
+
+  .day-cell:hover {
+    border-color: var(--blue-600);
+    background: var(--surface-2);
+    transform: translateY(-2px);
+  }
+
+  .day-cell.done {
+    background: linear-gradient(155deg, rgba(37, 96, 171, 0.15), rgba(37, 96, 171, 0.05));
+    border-color: rgba(37, 96, 171, 0.4);
+  }
+
+  .day-cell.done::before {
+    content: '\f00c';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    font-size: 9px;
+    color: var(--blue-300);
+  }
+
+  .day-cell.today {
+    border-color: var(--blue-400);
+    background: linear-gradient(155deg, rgba(37, 96, 171, 0.25), rgba(37, 96, 171, 0.08));
+    box-shadow: 0 0 0 1px rgba(37, 96, 171, 0.3), 0 0 20px rgba(37, 96, 171, 0.2);
+  }
+
+  .day-cell.rest {
+    background: var(--bg-2);
+    border-style: dashed;
+    opacity: 0.6;
+  }
+
+  .day-cell.rest::after {
+    content: 'DESCANSO';
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8px;
+    font-weight: 800;
+    color: var(--text-4);
+    letter-spacing: 0.5px;
+  }
+
+  .day-num {
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--text-2);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .day-cell.done .day-num { color: var(--blue-300); }
+
+  .day-label {
+    font-size: 8px;
+    font-weight: 700;
+    color: var(--text-4);
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+  }
+
+  .day-cell.done .day-label { color: var(--blue-300); opacity: 0.7; }
+
+  .day-cell.today .day-num { color: var(--text); }
+
+  @media (max-width: 600px) {
+    .day-cell { min-height: 48px; padding: 6px 4px; border-radius: 8px; }
+    .day-num { font-size: 10px; }
+    .day-label { display: none; }
+  }
+
+  /* ===== TREINOS POR DIFICULDADE ===== */
+  .level-tabs {
+    display: flex;
+    gap: 4px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 4px;
+    width: fit-content;
+    margin-bottom: 20px;
+  }
+
+  .level-tab {
+    padding: 9px 18px;
+    border-radius: 9px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-3);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: transparent;
+    border: none;
+    font-family: inherit;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  .level-tab:hover { color: var(--text); }
+
+  .level-tab.active {
+    background: linear-gradient(180deg, var(--blue-500), var(--blue-700));
+    color: white;
+    box-shadow: 0 1px 0 rgba(255,255,255,0.15) inset, 0 4px 14px rgba(37, 96, 171, 0.35);
+  }
+
+  .level-tab .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0.6;
+  }
+
+  .level-tab.active .dot { opacity: 1; background: white; }
+
+  /* ===== QUICK WORKOUTS ===== */
+  .quick-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 14px;
+  }
+
+  .quick-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 22px;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .quick-card:hover {
+    border-color: var(--blue-600);
+    background: var(--surface-2);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(37, 96, 171, 0.15);
+  }
+
+  .quick-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .quick-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 11px;
+    background: rgba(37, 96, 171, 0.12);
+    border: 1px solid rgba(37, 96, 171, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: var(--blue-300);
+    transition: all 0.25s;
+    flex-shrink: 0;
+  }
+
+  .quick-card:hover .quick-icon {
+    background: linear-gradient(135deg, var(--blue-600), var(--blue-400));
+    border-color: var(--blue-400);
+    color: white;
+  }
+
+  .quick-difficulty {
+    font-size: 10.5px;
+    font-weight: 800;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    padding: 4px 9px;
+    border-radius: 6px;
+  }
+
+  .diff-inic { color: #5eb55e; background: rgba(94, 181, 94, 0.12); border: 1px solid rgba(94, 181, 94, 0.25); }
+  .diff-inter { color: var(--blue-300); background: rgba(37, 96, 171, 0.15); border: 1px solid rgba(37, 96, 171, 0.3); }
+  .diff-avanc { color: var(--ruby-3); background: rgba(240, 67, 92, 0.12); border: 1px solid rgba(240, 67, 92, 0.25); }
+
+  .quick-card h4 {
+    font-size: 15.5px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+  }
+
+  .quick-card p {
+    font-size: 12.5px;
+    color: var(--text-3);
+    line-height: 1.5;
+    flex: 1;
+  }
+
+  .quick-stats {
+    display: flex;
+    gap: 14px;
+    padding: 12px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .quick-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .quick-stat .s-num {
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--text);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .quick-stat .s-lbl {
+    font-size: 10px;
+    color: var(--text-4);
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+  }
+
+  .quick-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+  }
+
+  .quick-reward {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--blue-300);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .quick-arrow {
+    color: var(--text-4);
+    font-size: 12px;
+    transition: transform 0.2s ease;
+  }
+
+  .quick-card:hover .quick-arrow { transform: translateX(4px); color: var(--blue-300); }
+
+  /* ===== CONQUISTAS ===== */
   .ach-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -925,11 +1113,9 @@
     gap: 14px;
     align-items: center;
     transition: all 0.2s ease;
-    cursor: default;
   }
 
   .ach-card:hover { border-color: var(--border-2); background: var(--surface-2); }
-
   .ach-card.unlocked { border-color: rgba(37, 96, 171, 0.3); }
 
   .ach-medal {
@@ -954,19 +1140,8 @@
   }
 
   .ach-body { flex: 1; min-width: 0; }
-
-  .ach-body h4 {
-    font-size: 14px;
-    font-weight: 700;
-    margin-bottom: 3px;
-    letter-spacing: -0.2px;
-  }
-
-  .ach-body p {
-    font-size: 12px;
-    color: var(--text-3);
-    line-height: 1.4;
-  }
+  .ach-body h4 { font-size: 14px; font-weight: 700; margin-bottom: 3px; letter-spacing: -0.2px; }
+  .ach-body p { font-size: 12px; color: var(--text-3); line-height: 1.4; }
 
   .ach-status {
     font-size: 10.5px;
@@ -980,12 +1155,9 @@
     letter-spacing: 0.3px;
   }
 
-  .ach-card.unlocked .ach-status {
-    color: var(--blue-300);
-    background: rgba(37, 96, 171, 0.15);
-  }
+  .ach-card.unlocked .ach-status { color: var(--blue-300); background: rgba(37, 96, 171, 0.15); }
 
-  /* ===== MODAL ===== */
+  /* ===== MODAL DE DIFICULDADE ===== */
   .modal-overlay {
     position: fixed;
     inset: 0;
@@ -1007,9 +1179,9 @@
     background: var(--bg-2);
     border: 1px solid var(--border-2);
     border-radius: 22px;
-    max-width: 460px;
+    max-width: 520px;
     width: 100%;
-    padding: 36px;
+    padding: 32px;
     position: relative;
     animation: modalIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     max-height: 90vh;
@@ -1042,37 +1214,114 @@
 
   .modal-close:hover { background: var(--surface-2); color: var(--text); border-color: var(--border-2); }
 
-  .modal-icon-wrap {
-    width: 76px;
-    height: 76px;
-    border-radius: 20px;
+  .modal-header-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 16px;
     background: linear-gradient(135deg, var(--blue-700), var(--blue-500));
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 30px;
-    margin: 0 auto 22px;
+    font-size: 24px;
+    margin-bottom: 20px;
     color: white;
-    box-shadow: 0 0 40px rgba(37, 96, 171, 0.4), inset 0 -6px 16px rgba(0,0,0,0.25);
+    box-shadow: 0 0 30px rgba(37, 96, 171, 0.35);
     border: 1px solid rgba(94, 151, 221, 0.3);
   }
 
   .modal h2 {
     font-size: 22px;
     font-weight: 800;
-    text-align: center;
-    margin-bottom: 8px;
     letter-spacing: -0.5px;
+    margin-bottom: 6px;
   }
 
   .modal-sub {
-    text-align: center;
     color: var(--text-3);
     font-size: 13.5px;
-    margin-bottom: 28px;
+    margin-bottom: 24px;
     line-height: 1.5;
   }
 
+  .difficulty-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .diff-option {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 20px;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .diff-option:hover {
+    border-color: var(--border-2);
+    background: var(--surface-2);
+    transform: translateX(3px);
+  }
+
+  .diff-option.selected {
+    border-color: var(--blue-500);
+    background: linear-gradient(135deg, rgba(37, 96, 171, 0.15), rgba(37, 96, 171, 0.04));
+    box-shadow: 0 0 0 1px rgba(37, 96, 171, 0.3), 0 0 30px rgba(37, 96, 171, 0.15);
+  }
+
+  .diff-option.selected::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--blue-400);
+    box-shadow: 0 0 12px var(--blue-glow);
+  }
+
+  .diff-badge {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 900;
+    flex-shrink: 0;
+  }
+
+  .diff-badge.inic { background: rgba(94, 181, 94, 0.15); color: #5eb55e; border: 1px solid rgba(94, 181, 94, 0.3); }
+  .diff-badge.inter { background: rgba(37, 96, 171, 0.2); color: var(--blue-300); border: 1px solid rgba(37, 96, 171, 0.35); }
+  .diff-badge.avanc { background: rgba(240, 67, 92, 0.15); color: var(--ruby-3); border: 1px solid rgba(240, 67, 92, 0.3); }
+
+  .diff-body { flex: 1; min-width: 0; }
+  .diff-body h4 { font-size: 15px; font-weight: 700; margin-bottom: 3px; letter-spacing: -0.2px; }
+  .diff-body p { font-size: 12.5px; color: var(--text-3); line-height: 1.45; }
+
+  .diff-meta {
+    text-align: right;
+    flex-shrink: 0;
+    font-size: 11.5px;
+    color: var(--text-3);
+    font-weight: 600;
+    line-height: 1.5;
+  }
+
+  .diff-meta .xp { color: var(--blue-300); font-weight: 700; }
+
+  .modal-actions { display: flex; gap: 10px; }
+  .modal-actions .btn { flex: 1; }
+
+  /* ===== TIMER MODAL ===== */
   .timer-box {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -1129,7 +1378,6 @@
     font-size: 14.5px;
     font-weight: 700;
     margin-bottom: 4px;
-    color: var(--text);
     display: flex;
     align-items: center;
     gap: 8px;
@@ -1144,15 +1392,7 @@
     box-shadow: 0 0 8px var(--blue-glow);
   }
 
-  .exercise-detail {
-    font-size: 12.5px;
-    color: var(--text-3);
-    line-height: 1.5;
-    padding-left: 12px;
-  }
-
-  .modal-actions { display: flex; gap: 10px; }
-  .modal-actions .btn { flex: 1; }
+  .exercise-detail { font-size: 12.5px; color: var(--text-3); line-height: 1.5; padding-left: 12px; }
 
   /* ===== TOAST ===== */
   .toast {
@@ -1187,11 +1427,10 @@
     color: white;
     font-size: 14px;
     flex-shrink: 0;
-    box-shadow: 0 0 20px var(--blue-glow);
   }
 
   .toast-content { display: flex; flex-direction: column; gap: 2px; }
-  .toast-title { font-size: 13.5px; font-weight: 700; color: var(--text); }
+  .toast-title { font-size: 13.5px; font-weight: 700; }
   .toast-sub { font-size: 12px; color: var(--text-3); }
 
   /* ===== FOOTER ===== */
@@ -1240,14 +1479,15 @@
     .hero-panel h1 { font-size: 28px; }
     .hero-panel .hero-desc { font-size: 14px; }
     .stat-value { font-size: 22px; }
-    .module { padding: 16px 18px; gap: 14px; }
-    .module-num { width: 38px; height: 38px; font-size: 13px; }
     .league-panel { padding: 24px; }
-    .league-badge { width: 90px; height: 90px; font-size: 36px; }
+    .current-emblem { width: 90px; height: 90px; font-size: 36px; }
     .league-info h3 { font-size: 22px; }
     .timer-time { font-size: 48px; }
-    .modal { padding: 28px 22px; }
+    .modal { padding: 26px 22px; }
     .section-head-left h2 { font-size: 17px; }
+    .program-header { padding: 20px; }
+    .program-header-right { gap: 14px; }
+    .program-stat .num { font-size: 18px; }
   }
 
   ::-webkit-scrollbar { width: 8px; height: 8px; }
@@ -1256,6 +1496,10 @@
   ::-webkit-scrollbar-thumb:hover { background: var(--text-4); }
 
   ::selection { background: var(--blue-600); color: white; }
+
+  /* Animação de entrada */
+  .fade-in { animation: fadeIn 0.4s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 </style>
 </head>
 <body>
@@ -1269,10 +1513,10 @@
     </a>
     <div class="nav-links">
       <a href="#" class="active">Dashboard</a>
-      <a href="#trilha">Trilha</a>
+      <a href="#grupos">Grupos</a>
+      <a href="#programa">Programa</a>
       <a href="#treinos">Treinos</a>
-      <a href="#liga">Liga</a>
-      <a href="#conquistas">Conquistas</a>
+      <a href="#ligas">Ligas</a>
     </div>
     <div class="nav-right">
       <div class="coin-display">
@@ -1298,11 +1542,11 @@
         Você está em uma ofensiva de <strong id="heroStreak">12 dias</strong>. Cada treino concluído rende XP, moedas e aproxima você da próxima divisão. Não quebre a sequência.
       </p>
       <div class="hero-actions">
-        <button class="btn btn-primary" onclick="openWorkout('daily')">
-          <i class="fas fa-play"></i> Iniciar treino diário
+        <button class="btn btn-primary" onclick="openMuscleGroup('fullbody')">
+          <i class="fas fa-play"></i> Iniciar treino de hoje
         </button>
-        <button class="btn btn-secondary" onclick="openWorkout('quick')">
-          <i class="fas fa-bolt"></i> Treino rápido
+        <button class="btn btn-secondary" onclick="document.getElementById('grupos').scrollIntoView()">
+          <i class="fas fa-list"></i> Ver grupos musculares
         </button>
       </div>
     </div>
@@ -1311,7 +1555,7 @@
       <div class="stat-card">
         <div class="stat-head">
           <div class="stat-icon"><i class="fas fa-fire"></i></div>
-          <div class="stat-trend"><i class="fas fa-arrow-up"></i> +1</div>
+          <div class="stat-trend">+1</div>
         </div>
         <div class="stat-value" id="statStreak">12</div>
         <div class="stat-label">Dias em sequência</div>
@@ -1326,7 +1570,7 @@
       <div class="stat-card">
         <div class="stat-head">
           <div class="stat-icon"><i class="fas fa-bolt"></i></div>
-          <div class="stat-trend"><i class="fas fa-arrow-up"></i> +30</div>
+          <div class="stat-trend">+30</div>
         </div>
         <div class="stat-value" id="statXp">420</div>
         <div class="stat-label">XP semanal</div>
@@ -1341,159 +1585,165 @@
     </div>
   </section>
 
-  <!-- ===== TRILHA ===== -->
-  <section class="section" id="trilha">
+  <!-- ===== GRUPOS MUSCULARES ===== -->
+  <section class="section" id="grupos">
     <div class="section-head">
       <div class="section-head-left">
-        <h2><i class="fas fa-route"></i> Trilha de Treino</h2>
-        <p class="desc">Avance módulo por módulo. Complete 100% para desbloquear o próximo desafio.</p>
-      </div>
-      <div class="section-head-right">
-        <a href="#">Ver progresso completo <i class="fas fa-arrow-right"></i></a>
+        <h2><i class="fas fa-bullseye"></i> Escolha seu foco</h2>
+        <p class="desc">Treine o grupo muscular que você quer desenvolver hoje.</p>
       </div>
     </div>
 
-    <div class="trail">
-      <!-- Módulo 1 -->
-      <div class="module completed" onclick="openWorkout('module', 1)">
-        <div class="module-num">01</div>
-        <div class="module-body">
-          <div class="module-title">
-            <h3>Fundamentos da Força</h3>
-            <span class="badge badge-done">Concluído</span>
-          </div>
-          <p class="module-desc">Agachamentos, flexões e pranchas básicas. Base para todo o resto.</p>
-          <div class="module-progress">
-            <div class="progress-track"><div class="progress-fill" style="width:100%"></div></div>
-            <span class="progress-pct">100%</span>
-          </div>
+    <div class="muscle-groups">
+      <div class="muscle-card" onclick="openMuscleGroup('braco')">
+        <div class="muscle-icon"><i class="fas fa-hand-fist"></i></div>
+        <h3>Braços</h3>
+        <p>Flexões, tríceps, bíceps e força de empurrar.</p>
+        <div class="muscle-meta">
+          <span class="muscle-exercises"><strong>12</strong> exercícios</span>
+          <i class="fas fa-arrow-right muscle-arrow"></i>
         </div>
-        <div class="module-cta"><i class="fas fa-redo"></i></div>
       </div>
 
-      <!-- Módulo 2 -->
-      <div class="module" id="module2" onclick="openWorkout('module', 2)">
-        <div class="module-num">02</div>
-        <div class="module-body">
-          <div class="module-title">
-            <h3>Controle de Core</h3>
-            <span class="badge badge-active">Em progresso</span>
-          </div>
-          <p class="module-desc">Pranchas avançadas, hollow hold, elevação de pernas e anti-rotação.</p>
-          <div class="module-progress">
-            <div class="progress-track"><div class="progress-fill" id="module2Fill" style="width:45%"></div></div>
-            <span class="progress-pct" id="module2Label">45%</span>
-          </div>
+      <div class="muscle-card" onclick="openMuscleGroup('abdomen')">
+        <div class="muscle-icon"><i class="fas fa-shield-halved"></i></div>
+        <h3>Abdômen</h3>
+        <p>Core, pranchas, hollow holds e oblíquos.</p>
+        <div class="muscle-meta">
+          <span class="muscle-exercises"><strong>10</strong> exercícios</span>
+          <i class="fas fa-arrow-right muscle-arrow"></i>
         </div>
-        <div class="module-cta"><i class="fas fa-play"></i></div>
       </div>
 
-      <!-- Módulo 3 — Boss -->
-      <div class="module boss locked" id="module3" onclick="openWorkout('boss')">
-        <div class="module-num"><i class="fas fa-crown"></i></div>
-        <div class="module-body">
-          <div class="module-title">
-            <h3>Chefe · Domínio de Flexões</h3>
-            <span class="badge badge-boss">Boss Fight</span>
-          </div>
-          <p class="module-desc">100 flexões contínuas sem pausa. Vença para acessar o módulo final.</p>
-          <div class="module-progress">
-            <div class="progress-track"><div class="progress-fill" id="module3Fill" style="width:0%"></div></div>
-            <span class="progress-pct" id="module3Label">Bloqueado</span>
-          </div>
+      <div class="muscle-card" onclick="openMuscleGroup('perna')">
+        <div class="muscle-icon"><i class="fas fa-person-running"></i></div>
+        <h3>Pernas</h3>
+        <p>Agachamentos, afundos, panturrilha e glúteos.</p>
+        <div class="muscle-meta">
+          <span class="muscle-exercises"><strong>14</strong> exercícios</span>
+          <i class="fas fa-arrow-right muscle-arrow"></i>
         </div>
-        <div class="module-cta" id="module3Cta"><i class="fas fa-lock"></i></div>
       </div>
     </div>
   </section>
 
-  <!-- ===== TREINOS RÁPIDOS ===== -->
+  <!-- ===== PROGRAMA DE 1 MÊS ===== -->
+  <section class="section" id="programa">
+    <div class="section-head">
+      <div class="section-head-left">
+        <h2><i class="fas fa-calendar-days"></i> Programa de 30 dias</h2>
+        <p class="desc">Trilha completa do mês. Siga o calendário e veja sua evolução.</p>
+      </div>
+    </div>
+
+    <div class="program-header">
+      <div class="program-header-left">
+        <h3><i class="fas fa-bullseye"></i> Desafio do Mês Atual</h3>
+        <p>Iniciado em 1 de novembro · Meta: 22 treinos concluídos</p>
+      </div>
+      <div class="program-header-right">
+        <div class="program-stat">
+          <div class="num" id="progDone">8</div>
+          <div class="lbl">Concluídos</div>
+        </div>
+        <div class="program-stat">
+          <div class="num" id="progRemaining">22</div>
+          <div class="lbl">Restantes</div>
+        </div>
+        <div class="program-stat">
+          <div class="num" id="progPct">27%</div>
+          <div class="lbl">Progresso</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="month-grid" id="monthGrid"></div>
+  </section>
+
+  <!-- ===== TREINOS POR DIFICULDADE ===== -->
   <section class="section" id="treinos">
     <div class="section-head">
       <div class="section-head-left">
-        <h2><i class="fas fa-bolt"></i> Treinos Rápidos</h2>
-        <p class="desc">Sessões curtas de 3 a 7 minutos para manter a ofensiva nos dias cheios.</p>
-      </div>
-      <div class="section-head-right">
-        <a href="#">Ver todos <i class="fas fa-arrow-right"></i></a>
+        <h2><i class="fas fa-layer-group"></i> Treinos por dificuldade</h2>
+        <p class="desc">Escolha o nível adequado para o seu momento atual.</p>
       </div>
     </div>
 
-    <div class="quick-grid">
-      <div class="quick-card" onclick="openWorkout('quick', 1)">
-        <div class="quick-head">
-          <div class="quick-icon"><i class="fas fa-sun"></i></div>
-          <div class="quick-time">3 min</div>
-        </div>
-        <h4>Ativação Matinal</h4>
-        <p>Agachamentos e flexões para acordar o corpo antes do dia começar.</p>
-        <div class="quick-foot">
-          <span class="quick-reward">+10 XP · +5 moedas</span>
-          <i class="fas fa-arrow-right quick-arrow"></i>
-        </div>
-      </div>
-
-      <div class="quick-card" onclick="openWorkout('quick', 2)">
-        <div class="quick-head">
-          <div class="quick-icon"><i class="fas fa-hourglass-half"></i></div>
-          <div class="quick-time">5 min</div>
-        </div>
-        <h4>Pausa do Trabalho</h4>
-        <p>Alongamento e core para aliviar a tensão de horas sentado.</p>
-        <div class="quick-foot">
-          <span class="quick-reward">+15 XP · +8 moedas</span>
-          <i class="fas fa-arrow-right quick-arrow"></i>
-        </div>
-      </div>
-
-      <div class="quick-card" onclick="openWorkout('quick', 3)">
-        <div class="quick-head">
-          <div class="quick-icon"><i class="fas fa-moon"></i></div>
-          <div class="quick-time">7 min</div>
-        </div>
-        <h4>Relaxamento Noturno</h4>
-        <p>Pranchas leves e respiração controlada para melhorar o sono.</p>
-        <div class="quick-foot">
-          <span class="quick-reward">+20 XP · +10 moedas</span>
-          <i class="fas fa-arrow-right quick-arrow"></i>
-        </div>
-      </div>
-
-      <div class="quick-card" onclick="openWorkout('quick', 4)">
-        <div class="quick-head">
-          <div class="quick-icon"><i class="fas fa-bolt"></i></div>
-          <div class="quick-time">4 min</div>
-        </div>
-        <h4>Força Expressa</h4>
-        <p>Flexões e afundos para manter o hábito mesmo com pouco tempo.</p>
-        <div class="quick-foot">
-          <span class="quick-reward">+12 XP · +6 moedas</span>
-          <i class="fas fa-arrow-right quick-arrow"></i>
-        </div>
-      </div>
+    <div class="level-tabs">
+      <button class="level-tab active" data-level="all" onclick="switchLevel('all')">
+        <span class="dot"></span> Todos
+      </button>
+      <button class="level-tab" data-level="inic" onclick="switchLevel('inic')">
+        <span class="dot" style="background:#5eb55e"></span> Iniciante
+      </button>
+      <button class="level-tab" data-level="inter" onclick="switchLevel('inter')">
+        <span class="dot" style="background:var(--blue-300)"></span> Intermediário
+      </button>
+      <button class="level-tab" data-level="avanc" onclick="switchLevel('avanc')">
+        <span class="dot" style="background:var(--ruby-3)"></span> Avançado
+      </button>
     </div>
+
+    <div class="quick-grid" id="workoutsGrid"></div>
   </section>
 
-  <!-- ===== LIGA ===== -->
-  <section class="section" id="liga">
+  <!-- ===== LIGAS ===== -->
+  <section class="section" id="ligas">
     <div class="section-head">
       <div class="section-head-left">
-        <h2><i class="fas fa-trophy"></i> Liga Semanal</h2>
-        <p class="desc">Ganhe XP treinando e suba de divisão até o topo do ranking.</p>
+        <h2><i class="fas fa-trophy"></i> Divisões e Ligas</h2>
+        <p class="desc">Ganhe XP treinando e suba até a prestigiada Liga Rubi.</p>
       </div>
     </div>
 
-    <div class="league-panel">
-      <div class="league-badge">
+    <div class="leagues-showcase">
+      <div class="league-card lg-bronze current">
+        <div class="league-emblem"><i class="fas fa-medal"></i></div>
+        <div class="league-name">Bronze</div>
+        <div class="league-xp-req">0 – 999 XP</div>
+        <div class="league-badge-current">Você está aqui</div>
+      </div>
+
+      <div class="league-card lg-prata">
+        <div class="league-emblem"><i class="fas fa-medal"></i></div>
+        <div class="league-name">Prata</div>
+        <div class="league-xp-req">1.000 – 2.499 XP</div>
+        <div class="league-badge-locked">Bloqueada</div>
+      </div>
+
+      <div class="league-card lg-ouro">
+        <div class="league-emblem"><i class="fas fa-medal"></i></div>
+        <div class="league-name">Ouro</div>
+        <div class="league-xp-req">2.500 – 5.999 XP</div>
+        <div class="league-badge-locked">Bloqueada</div>
+      </div>
+
+      <div class="league-card lg-diamante">
+        <div class="league-emblem"><i class="fas fa-gem"></i></div>
+        <div class="league-name">Diamante</div>
+        <div class="league-xp-req">6.000 – 11.999 XP</div>
+        <div class="league-badge-locked">Bloqueada</div>
+      </div>
+
+      <div class="league-card lg-ruby">
+        <div class="league-emblem"><i class="fas fa-crown"></i></div>
+        <div class="league-name">Rubi</div>
+        <div class="league-xp-req">12.000+ XP</div>
+        <div class="league-badge-locked">Bloqueada</div>
+      </div>
+    </div>
+
+    <div class="league-panel" style="--league-glow-current: rgba(217, 154, 108, 0.15); --league-fill-1: var(--bronze-2); --league-fill-2: var(--bronze-3);">
+      <div class="current-emblem" style="background: radial-gradient(circle at 30% 30%, var(--bronze-3), var(--bronze-1));">
         <i class="fas fa-medal"></i>
       </div>
       <div class="league-info">
         <div class="league-division">Divisão atual</div>
         <h3>Liga Bronze</h3>
-        <p class="sub">Termina em 4 dias · 12 participantes</p>
+        <p class="sub">Termina em 4 dias · Você está em 3º lugar</p>
         <div class="league-progress-row">
           <div class="league-track"><div class="league-fill" id="leagueFill" style="width:42%"></div></div>
-          <div class="league-xp" id="leagueXp">420 / 1000 XP</div>
+          <div class="league-xp" id="leagueXp">420 / 1.000 XP</div>
         </div>
         <div class="league-tip">
           <i class="fas fa-info-circle"></i>
@@ -1504,7 +1754,7 @@
   </section>
 
   <!-- ===== CONQUISTAS ===== -->
-  <section class="section" id="conquistas">
+  <section class="section">
     <div class="section-head">
       <div class="section-head-left">
         <h2><i class="fas fa-award"></i> Conquistas</h2>
@@ -1532,15 +1782,6 @@
       </div>
 
       <div class="ach-card">
-        <div class="ach-medal"><i class="fas fa-crown"></i></div>
-        <div class="ach-body">
-          <h4>Matador de Chefes</h4>
-          <p>Vença seu primeiro Boss Fight</p>
-          <span class="ach-status">Bloqueada</span>
-        </div>
-      </div>
-
-      <div class="ach-card">
         <div class="ach-medal"><i class="fas fa-gem"></i></div>
         <div class="ach-body">
           <h4>Disciplina Absoluta</h4>
@@ -1548,16 +1789,82 @@
           <span class="ach-status">12 / 30</span>
         </div>
       </div>
+
+      <div class="ach-card">
+        <div class="ach-medal"><i class="fas fa-crown"></i></div>
+        <div class="ach-body">
+          <h4>Lenda Rubi</h4>
+          <p>Alcance a Liga Rubi</p>
+          <span class="ach-status">Bloqueada</span>
+        </div>
+      </div>
     </div>
   </section>
 
 </div>
 
-<!-- ===== MODAL ===== -->
+<!-- ===== MODAL DE DIFICULDADE ===== -->
+<div class="modal-overlay" id="diffModal">
+  <div class="modal">
+    <div class="modal-close" onclick="closeDiffModal()"><i class="fas fa-xmark"></i></div>
+    <div class="modal-header-icon" id="diffModalIcon"><i class="fas fa-hand-fist"></i></div>
+    <h2 id="diffModalTitle">Treino de Braços</h2>
+    <p class="modal-sub" id="diffModalSub">Escolha o nível de dificuldade para este treino.</p>
+
+    <div class="difficulty-options">
+      <div class="diff-option" data-diff="inic" onclick="selectDiff('inic')">
+        <div class="diff-badge inic">I</div>
+        <div class="diff-body">
+          <h4>Iniciante</h4>
+          <p>Movimentos básicos com volume reduzido. Ideal para começar.</p>
+        </div>
+        <div class="diff-meta">
+          <div class="xp">+20 XP</div>
+          <div>15 min</div>
+        </div>
+      </div>
+
+      <div class="diff-option" data-diff="inter" onclick="selectDiff('inter')">
+        <div class="diff-badge inter">II</div>
+        <div class="diff-body">
+          <h4>Intermediário</h4>
+          <p>Exercícios compostos com mais volume e intensidade moderada.</p>
+        </div>
+        <div class="diff-meta">
+          <div class="xp">+40 XP</div>
+          <div>25 min</div>
+        </div>
+      </div>
+
+      <div class="diff-option" data-diff="avanc" onclick="selectDiff('avanc')">
+        <div class="diff-badge avanc">III</div>
+        <div class="diff-body">
+          <h4>Avançado</h4>
+          <p>Alta intensidade, variações difíceis e séries longas. Sem moleza.</p>
+        </div>
+        <div class="diff-meta">
+          <div class="xp">+80 XP</div>
+          <div>40 min</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn btn-secondary" onclick="closeDiffModal()">
+        <i class="fas fa-xmark"></i> Cancelar
+      </button>
+      <button class="btn btn-primary" onclick="startSelectedWorkout()">
+        <i class="fas fa-play"></i> Iniciar treino
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MODAL DE TREINO ATIVO ===== -->
 <div class="modal-overlay" id="workoutModal">
   <div class="modal">
     <div class="modal-close" onclick="closeWorkout()"><i class="fas fa-xmark"></i></div>
-    <div class="modal-icon-wrap" id="modalIcon"><i class="fas fa-dumbbell"></i></div>
+    <div class="modal-header-icon" id="modalIcon"><i class="fas fa-dumbbell"></i></div>
     <h2 id="modalTitle">Treino Diário</h2>
     <div class="modal-sub" id="modalSub">Prepare-se. Complete as séries com boa forma.</div>
 
@@ -1613,13 +1920,21 @@
     coins: 320,
     streak: 12,
     xp: 420,
-    xpMax: 1000,
     workouts: 8,
-    module2Progress: 45,
-    bossUnlocked: false
+    monthDay: new Date().getDate(),
+    monthProgress: [1,2,3,4,5,8,9,10,11,12,15,16,17,18,19,22,23,24,25,26,29,30],
+    completedDays: [1,2,3,4,5,8,9,10,11,12,15,16,17,18],
   };
 
-  // ===== DOM =====
+  // XP máximo de cada liga
+  const leagueXP = {
+    bronze: 0,
+    prata: 1000,
+    ouro: 2500,
+    diamante: 6000,
+    ruby: 12000
+  };
+
   const $ = (id) => document.getElementById(id);
   const ui = {
     navCoins: $('navCoins'),
@@ -1631,13 +1946,16 @@
     leagueFill: $('leagueFill'),
     leagueXp: $('leagueXp'),
     xpNeeded: $('xpNeeded'),
-    module2Fill: $('module2Fill'),
-    module2Label: $('module2Label'),
-    module3Fill: $('module3Fill'),
-    module3Label: $('module3Label'),
-    module3: $('module3'),
-    module3Cta: $('module3Cta'),
-    modal: $('workoutModal'),
+    progDone: $('progDone'),
+    progRemaining: $('progRemaining'),
+    progPct: $('progPct'),
+    monthGrid: $('monthGrid'),
+    workoutsGrid: $('workoutsGrid'),
+    diffModal: $('diffModal'),
+    diffModalIcon: $('diffModalIcon'),
+    diffModalTitle: $('diffModalTitle'),
+    diffModalSub: $('diffModalSub'),
+    workoutModal: $('workoutModal'),
     modalTitle: $('modalTitle'),
     modalSub: $('modalSub'),
     modalIcon: $('modalIcon'),
@@ -1651,7 +1969,147 @@
     toastIcon: $('toastIcon')
   };
 
-  // ===== UPDATE UI =====
+  // ===== TREINOS =====
+  const workouts = {
+    braco: {
+      title: 'Treino de Braços',
+      icon: 'fa-hand-fist',
+      sub: 'Foco em flexões, tríceps e força de empurrar.',
+      levels: {
+        inic: {
+          xp: 20, coins: 10, duration: 15,
+          exercises: [
+            { name: 'Flexão na parede', detail: 'Em pé, incline-se para a parede e flexione.' },
+            { name: 'Flexão de joelhos', detail: 'Joelhos no chão, corpo alinhado.' },
+            { name: 'Tríceps banco', detail: 'Use uma cadeira firme como apoio.' }
+          ]
+        },
+        inter: {
+          xp: 40, coins: 20, duration: 25,
+          exercises: [
+            { name: 'Flexão padrão', detail: 'Corpo alinhado, desça controlado.' },
+            { name: 'Flexão diamante', detail: 'Mãos juntas, foco no tríceps.' },
+            { name: 'Flexão archer', detail: 'Peso de um lado, alternando.' },
+            { name: 'Mergulho entre cadeiras', detail: 'Use duas cadeiras firmes como apoio.' }
+          ]
+        },
+        avanc: {
+          xp: 80, coins: 40, duration: 40,
+          exercises: [
+            { name: 'Flexão explosiva', detail: 'Empurre forte para tirar as mãos do chão.' },
+            { name: 'Flexão archer completa', detail: 'Um braço estendido, outro flexionando.' },
+            { name: 'Flexão pike', detail: 'Quadril elevado, foco no ombro.' },
+            { name: 'Flexão uma mão assistida', detail: 'Uma mão no chão, outra no pulso.' },
+            { name: 'Mergulho profundo', detail: 'Amplitude total, sem travar no topo.' }
+          ]
+        }
+      }
+    },
+    abdomen: {
+      title: 'Treino de Abdômen',
+      icon: 'fa-shield-halved',
+      sub: 'Core, pranchas e estabilidade abdominal.',
+      levels: {
+        inic: {
+          xp: 20, coins: 10, duration: 15,
+          exercises: [
+            { name: 'Prancha frontal', detail: '20-30 segundos, quadril firme.' },
+            { name: 'Abdominal curto', detail: 'Elevação leve da cabeça e ombros.' },
+            { name: 'Dead bug', detail: 'Braço e perna opostos, lombar no chão.' }
+          ]
+        },
+        inter: {
+          xp: 40, coins: 20, duration: 25,
+          exercises: [
+            { name: 'Prancha lateral', detail: 'Quadril elevado, corpo alinhado.' },
+            { name: 'Hollow hold', detail: 'Lombar colada, pernas e braços estendidos.' },
+            { name: 'Elevação de pernas', detail: 'Sem arquear a lombar.' },
+            { name: 'Bicicleta no ar', detail: 'Ritmo controlado, respiração constante.' }
+          ]
+        },
+        avanc: {
+          xp: 80, coins: 40, duration: 40,
+          exercises: [
+            { name: 'Dragon flag', detail: 'Segure em superfície firme, corpo estendido.' },
+            { name: 'Prancha com toque no ombro', detail: 'Alterne as mãos mantendo o quadril firme.' },
+            { name: 'V-up completo', detail: 'Pernas e tronco sobem ao mesmo tempo.' },
+            { name: 'Hollow rock', detail: 'Balanço controlado mantendo o corpo firme.' },
+            { name: 'Prancha uma mão', detail: 'Pés afastados, equilíbrio extremo.' }
+          ]
+        }
+      }
+    },
+    perna: {
+      title: 'Treino de Pernas',
+      icon: 'fa-person-running',
+      sub: 'Agachamentos, afundos e força de glúteos.',
+      levels: {
+        inic: {
+          xp: 20, coins: 10, duration: 15,
+          exercises: [
+            { name: 'Agachamento livre', detail: 'Pés na largura dos ombros, desça controlado.' },
+            { name: 'Afundo estático', detail: 'Uma perna à frente, desça reto.' },
+            { name: 'Elevação de panturrilha', detail: 'Suba na ponta dos pés e desça devagar.' }
+          ]
+        },
+        inter: {
+          xp: 40, coins: 20, duration: 25,
+          exercises: [
+            { name: 'Agachamento búlgaro', detail: 'Pé de trás elevado em cadeira.' },
+            { name: 'Afundo caminhando', detail: 'Amplitude total, tronco ereto.' },
+            { name: 'Agachamento sumô', detail: 'Pés afastados, joelhos para fora.' },
+            { name: 'Ponte de glúteo', detail: 'Quadril sobe contraindo os glúteos.' }
+          ]
+        },
+        avanc: {
+          xp: 80, coins: 40, duration: 40,
+          exercises: [
+            { name: 'Pistol squat assistido', detail: 'Uma perna, apoio leve para equilíbrio.' },
+            { name: 'Agachamento explosivo', detail: 'Salto na subida, aterrissagem suave.' },
+            { name: 'Afundo com salto', detail: 'Troca de pernas no ar.' },
+            { name: 'Pistol squat completo', detail: 'Sem apoio, uma perna por vez.' },
+            { name: 'Elevação nórdica', detail: 'Pés fixos, corpo cai controlado.' }
+          ]
+        }
+      }
+    },
+    fullbody: {
+      title: 'Treino Full Body',
+      icon: 'fa-dumbbell',
+      sub: 'Corpo inteiro em uma única sessão equilibrada.',
+      levels: {
+        inic: {
+          xp: 25, coins: 12, duration: 20,
+          exercises: [
+            { name: 'Agachamento livre', detail: 'Ritmo constante, respire.' },
+            { name: 'Flexão de joelhos', detail: 'Foco na descida controlada.' },
+            { name: 'Prancha frontal', detail: '20-30 segundos, quadril firme.' }
+          ]
+        },
+        inter: {
+          xp: 45, coins: 22, duration: 30,
+          exercises: [
+            { name: 'Flexão padrão', detail: 'Corpo alinhado, desça controlado.' },
+            { name: 'Agachamento búlgaro', detail: 'Pé de trás em cadeira, desça reto.' },
+            { name: 'Prancha lateral', detail: 'Quadril elevado, corpo alinhado.' },
+            { name: 'Afundo caminhando', detail: 'Amplitude máxima, tronco ereto.' }
+          ]
+        },
+        avanc: {
+          xp: 90, coins: 45, duration: 45,
+          exercises: [
+            { name: 'Flexão explosiva', detail: 'Empurre forte, mãos fora do chão.' },
+            { name: 'Pistol squat assistido', detail: 'Uma perna, apoio leve.' },
+            { name: 'Dragon flag', detail: 'Corpo estendido, controle total.' },
+            { name: 'Burpee', detail: 'Flexão + salto em um só movimento.' },
+            { name: 'Flexão archer', detail: 'Peso alternado entre os braços.' }
+          ]
+        }
+      }
+    }
+  };
+
+  // ===== UI UPDATE =====
   function updateUI() {
     ui.navCoins.textContent = state.coins;
     ui.statCoins.textContent = state.coins;
@@ -1660,23 +2118,19 @@
     ui.statWorkouts.textContent = state.workouts;
     ui.heroStreak.textContent = state.streak + ' dias';
 
-    const pct = Math.min(100, (state.xp / state.xpMax) * 100);
+    // Liga
+    const nextXP = leagueXP.prata;
+    const pct = Math.min(100, (state.xp / nextXP) * 100);
     ui.leagueFill.style.width = pct + '%';
-    ui.leagueXp.textContent = `${state.xp} / ${state.xpMax} XP`;
-    ui.xpNeeded.textContent = Math.max(0, state.xpMax - state.xp) + ' XP';
+    ui.leagueXp.textContent = `${state.xp} / ${nextXP} XP`;
+    ui.xpNeeded.textContent = Math.max(0, nextXP - state.xp) + ' XP';
 
-    ui.module2Fill.style.width = state.module2Progress + '%';
-    ui.module2Label.textContent = state.module2Progress + '%';
-
-    if (state.bossUnlocked) {
-      ui.module3.classList.remove('locked');
-      ui.module3Label.textContent = 'Pronto';
-      ui.module3Cta.innerHTML = '<i class="fas fa-play"></i>';
-    } else {
-      ui.module3.classList.add('locked');
-      ui.module3Label.textContent = 'Bloqueado';
-      ui.module3Cta.innerHTML = '<i class="fas fa-lock"></i>';
-    }
+    // Programa mensal
+    const total = state.monthProgress.length;
+    const done = state.completedDays.length;
+    ui.progDone.textContent = done;
+    ui.progRemaining.textContent = total - done;
+    ui.progPct.textContent = Math.round((done / total) * 100) + '%';
   }
 
   // ===== TOAST =====
@@ -1702,7 +2156,7 @@
 
   // ===== ÁUDIO =====
   let audioCtx;
-  function playTone(freqs, type = 'sine', duration = 0.15, volume = 0.12) {
+  function playTone(freqs, type = 'sine', duration = 0.15, volume = 0.1) {
     try {
       if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
       const osc = audioCtx.createOscillator();
@@ -1710,9 +2164,7 @@
       osc.connect(gain);
       gain.connect(audioCtx.destination);
       osc.type = type;
-      freqs.forEach((f, i) => {
-        osc.frequency.setValueAtTime(f, audioCtx.currentTime + i * 0.08);
-      });
+      freqs.forEach((f, i) => osc.frequency.setValueAtTime(f, audioCtx.currentTime + i * 0.08));
       gain.gain.setValueAtTime(volume, audioCtx.currentTime);
       gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration + freqs.length * 0.08);
       osc.start();
@@ -1722,93 +2174,205 @@
 
   const sounds = {
     success: () => playTone([523, 659, 784], 'sine', 0.15),
-    coin: () => playTone([988, 1175], 'square', 0.08, 0.08),
+    coin: () => playTone([988, 1175], 'square', 0.08, 0.06),
     streak: () => playTone([440, 554, 659], 'triangle', 0.12),
-    lock: () => playTone([220, 180], 'sawtooth', 0.1, 0.06)
+    lock: () => playTone([220, 180], 'sawtooth', 0.1, 0.05)
   };
 
-  // ===== TREINOS =====
-  const workouts = {
-    daily: {
-      title: 'Treino Diário',
-      icon: 'fa-dumbbell',
-      sub: 'Circuito completo para manter a ofensiva.',
-      exercises: [
-        { name: 'Flexão com pausa', detail: 'Core firme, desça controlado até o peito.' },
-        { name: 'Agachamento profundo', detail: 'Joelhos alinhados com os pés, tronco ereto.' },
-        { name: 'Prancha abdominal', detail: 'Mantenha o quadril firme e respire.' },
-        { name: 'Afundo alternado', detail: 'Amplitude máxima, peso no meio do pé.' }
-      ],
-      xp: 30,
-      coins: 15
-    },
-    quick: {
-      title: 'Treino Rápido',
-      icon: 'fa-bolt',
-      sub: 'Sessão curta para não perder a ofensiva.',
-      exercises: [
-        { name: 'Agachamento livre', detail: 'Ritmo constante, respire profundamente.' },
-        { name: 'Flexão de joelhos', detail: 'Foco na descida controlada.' }
-      ],
-      xp: 10,
-      coins: 5
-    },
-    module: {
-      title: 'Controle de Core',
-      icon: 'fa-route',
-      sub: 'Módulo em andamento — complete para liberar o chefe.',
-      exercises: [
-        { name: 'Hollow hold', detail: 'Lombar colada ao chão, respiração curta.' },
-        { name: 'Elevação de pernas', detail: 'Sem balançar o tronco.' },
-        { name: 'Prancha lateral', detail: 'Quadril elevado, corpo alinhado.' },
-        { name: 'Superman', detail: 'Contraia glúteos no topo do movimento.' }
-      ],
-      xp: 40,
-      coins: 20
-    },
-    boss: {
-      title: 'Boss Fight · Flexões',
-      icon: 'fa-crown',
-      sub: '100 flexões contínuas. Sem pausas. Respire fundo.',
-      exercises: [
-        { name: 'Flexão padrão', detail: 'Ritmo constante, sem travar no topo.' }
-      ],
-      xp: 150,
-      coins: 100
+  // ===== RENDER CALENDÁRIO =====
+  function renderMonth() {
+    const grid = ui.monthGrid;
+    grid.innerHTML = '';
+    
+    const dayNames = ['DOM', 'SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SÁB'];
+    const today = new Date();
+    const currentDay = today.getDate();
+    
+    for (let day = 1; day <= 30; day++) {
+      const cell = document.createElement('div');
+      cell.className = 'day-cell';
+      
+      const isDone = state.completedDays.includes(day);
+      const isToday = day === currentDay;
+      const isRest = !state.monthProgress.includes(day);
+      
+      if (isDone) cell.classList.add('done');
+      if (isToday) cell.classList.add('today');
+      if (isRest) cell.classList.add('rest');
+      
+      // Dia da semana (baseado em 1º de novembro de 2025 que é sábado)
+      const dayOfWeek = ((day - 1 + 6) % 7);
+      const label = dayNames[dayOfWeek];
+      
+      cell.innerHTML = `
+        <div class="day-num">${String(day).padStart(2, '0')}</div>
+        ${!isRest ? `<div class="day-label">${label}</div>` : ''}
+      `;
+      
+      cell.addEventListener('click', () => {
+        if (isRest) {
+          showToast('Dia de descanso', 'Aproveite para recuperar o corpo.', 'lock');
+          sounds.lock();
+          return;
+        }
+        if (isDone) {
+          showToast('Treino já concluído', 'Continue para o próximo dia.', 'check');
+          return;
+        }
+        openMuscleGroup('fullbody');
+      });
+      
+      grid.appendChild(cell);
     }
-  };
+  }
 
-  // ===== MODAL =====
+  // ===== RENDER TREINOS =====
+  let currentFilter = 'all';
+  
+  function renderWorkouts() {
+    const grid = ui.workoutsGrid;
+    grid.innerHTML = '';
+    
+    const workoutList = [
+      { key: 'braco', icon: 'fa-hand-fist', name: 'Braços', desc: 'Flexões, tríceps, bíceps e força de empurrar.' },
+      { key: 'abdomen', icon: 'fa-shield-halved', name: 'Abdômen', desc: 'Core, pranchas, hollow holds e oblíquos.' },
+      { key: 'perna', icon: 'fa-person-running', name: 'Pernas', desc: 'Agachamentos, afundos, panturrilha e glúteos.' },
+      { key: 'fullbody', icon: 'fa-dumbbell', name: 'Full Body', desc: 'Corpo inteiro em uma única sessão equilibrada.' }
+    ];
+    
+    const difficulties = [
+      { key: 'inic', label: 'Iniciante', cls: 'diff-inic', xp: '20' },
+      { key: 'inter', label: 'Intermediário', cls: 'diff-inter', xp: '40' },
+      { key: 'avanc', label: 'Avançado', cls: 'diff-avanc', xp: '80' }
+    ];
+    
+    workoutList.forEach(w => {
+      difficulties.forEach(d => {
+        if (currentFilter !== 'all' && currentFilter !== d.key) return;
+        
+        const card = document.createElement('div');
+        card.className = 'quick-card fade-in';
+        
+        const levelData = workouts[w.key].levels[d.key];
+        
+        card.innerHTML = `
+          <div class="quick-head">
+            <div class="quick-icon"><i class="fas ${w.icon}"></i></div>
+            <div class="quick-difficulty ${d.cls}">${d.label}</div>
+          </div>
+          <h4>${w.name}</h4>
+          <p>${w.desc}</p>
+          <div class="quick-stats">
+            <div class="quick-stat">
+              <div class="s-num">${levelData.exercises.length}</div>
+              <div class="s-lbl">Exercícios</div>
+            </div>
+            <div class="quick-stat">
+              <div class="s-num">${levelData.duration} min</div>
+              <div class="s-lbl">Duração</div>
+            </div>
+            <div class="quick-stat">
+              <div class="s-num">+${levelData.xp}</div>
+              <div class="s-lbl">XP</div>
+            </div>
+          </div>
+          <div class="quick-foot">
+            <span class="quick-reward">+${levelData.xp} XP · +${levelData.coins} moedas</span>
+            <i class="fas fa-arrow-right quick-arrow"></i>
+          </div>
+        `;
+        
+        card.addEventListener('click', () => {
+          openWorkout(w.key, d.key);
+        });
+        
+        grid.appendChild(card);
+      });
+    });
+  }
+
+  function switchLevel(level) {
+    currentFilter = level;
+    document.querySelectorAll('.level-tab').forEach(tab => {
+      tab.classList.toggle('active', tab.dataset.level === level);
+    });
+    renderWorkouts();
+  }
+
+  // ===== MODAL DIFICULDADE =====
+  let selectedMuscle = null;
+  let selectedDifficulty = null;
+
+  function openMuscleGroup(muscle) {
+    selectedMuscle = muscle;
+    selectedDifficulty = null;
+    
+    const data = workouts[muscle];
+    if (!data) return;
+    
+    ui.diffModalIcon.innerHTML = `<i class="fas ${data.icon}"></i>`;
+    ui.diffModalTitle.textContent = data.title;
+    ui.diffModalSub.textContent = data.sub;
+    
+    document.querySelectorAll('.diff-option').forEach(opt => opt.classList.remove('selected'));
+    
+    ui.diffModal.classList.add('active');
+  }
+
+  function selectDiff(diff) {
+    selectedDifficulty = diff;
+    document.querySelectorAll('.diff-option').forEach(opt => {
+      opt.classList.toggle('selected', opt.dataset.diff === diff);
+    });
+  }
+
+  function closeDiffModal() {
+    ui.diffModal.classList.remove('active');
+  }
+
+  function startSelectedWorkout() {
+    if (!selectedDifficulty) {
+      showToast('Escolha uma dificuldade', 'Selecione o nível para continuar.', 'lock');
+      sounds.lock();
+      return;
+    }
+    closeDiffModal();
+    openWorkout(selectedMuscle, selectedDifficulty);
+  }
+
+  // ===== MODAL TREINO ATIVO =====
   let currentWorkout = null;
   let timerInterval = null;
   let timeLeft = 45;
 
-  function openWorkout(type) {
-    if (type === 'boss' && !state.bossUnlocked) {
-      sounds.lock();
-      showToast('Desafio bloqueado', 'Complete o módulo Controle de Core primeiro.', 'lock');
-      return;
-    }
-
-    currentWorkout = workouts[type];
-    if (!currentWorkout) return;
-
-    ui.modalTitle.textContent = currentWorkout.title;
-    ui.modalSub.textContent = currentWorkout.sub;
-    ui.modalIcon.innerHTML = `<i class="fas ${currentWorkout.icon}"></i>`;
-    ui.modalExercise.textContent = currentWorkout.exercises[0].name;
-    ui.modalExerciseDetail.textContent = currentWorkout.exercises[0].detail;
+  function openWorkout(muscle, difficulty) {
+    const data = workouts[muscle];
+    if (!data) return;
+    
+    const level = data.levels[difficulty];
+    currentWorkout = {
+      muscle,
+      difficulty,
+      data,
+      level
+    };
+    
+    ui.modalTitle.textContent = data.title;
+    ui.modalSub.textContent = `${level.exercises.length} exercícios · ${level.duration} min`;
+    ui.modalIcon.innerHTML = `<i class="fas ${data.icon}"></i>`;
+    ui.modalExercise.textContent = level.exercises[0].name;
+    ui.modalExerciseDetail.textContent = level.exercises[0].detail;
     ui.modalPhase.textContent = 'Série 1 de 4';
-
-    timeLeft = type === 'quick' ? 30 : 45;
+    
+    timeLeft = difficulty === 'inic' ? 30 : difficulty === 'inter' ? 45 : 60;
     updateTimerDisplay();
-
-    ui.modal.classList.add('active');
+    
+    ui.workoutModal.classList.add('active');
     startTimer();
   }
 
   function closeWorkout() {
-    ui.modal.classList.remove('active');
+    ui.workoutModal.classList.remove('active');
     if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
   }
 
@@ -1822,69 +2386,66 @@
     if (timerInterval) clearInterval(timerInterval);
     timerInterval = setInterval(() => {
       timeLeft--;
-      if (timeLeft < 0) timeLeft = 45;
+      if (timeLeft < 0) timeLeft = currentWorkout?.difficulty === 'avanc' ? 60 : 45;
       updateTimerDisplay();
     }, 1000);
   }
 
-  // ===== COMPLETAR =====
   function completeWorkout() {
     if (!currentWorkout) return;
-
-    const isBoss = currentWorkout === workouts.boss;
-    const isModule = currentWorkout === workouts.module;
-
-    state.xp += currentWorkout.xp;
-    state.coins += currentWorkout.coins;
+    
+    const { level, muscle, difficulty } = currentWorkout;
+    
+    state.xp += level.xp;
+    state.coins += level.coins;
     state.streak += 1;
     state.workouts += 1;
-
-    if (isModule) {
-      state.module2Progress = Math.min(100, state.module2Progress + 15);
-      if (state.module2Progress >= 100 && !state.bossUnlocked) {
-        state.bossUnlocked = true;
-        setTimeout(() => {
-          showToast('Boss Fight desbloqueado', 'Enfrente 100 flexões contínuas.', 'crown');
-          sounds.streak();
-        }, 1400);
-      }
+    
+    // Adiciona dia atual aos concluídos (se ainda não estiver)
+    const today = new Date().getDate();
+    if (!state.completedDays.includes(today) && state.monthProgress.includes(today)) {
+      state.completedDays.push(today);
+      renderMonth();
     }
-
-    // Toast
-    if (isBoss) {
-      showToast('Chefe derrotado', '+150 XP · +100 moedas · módulo final liberado', 'crown');
-    } else {
-      showToast('Treino concluído', `+${currentWorkout.xp} XP · +${currentWorkout.coins} moedas`, 'check');
+    
+    const diffLabel = { inic: 'Iniciante', inter: 'Intermediário', avanc: 'Avançado' }[difficulty];
+    showToast('Treino concluído', `${diffLabel} · +${level.xp} XP · +${level.coins} moedas`, 'check');
+    
+    // Level up de liga
+    if (state.xp >= leagueXP.prata && state.xp < leagueXP.prata + 100) {
+      setTimeout(() => showToast('Nova divisão', 'Você subiu para a Liga Prata!', 'trophy'), 2800);
     }
-
-    // Level up
-    if (state.xp >= state.xpMax) {
-      state.xp = state.xp - state.xpMax;
-      setTimeout(() => showToast('Nova divisão', 'Você subiu para a Liga Prata.', 'trophy'), 2800);
-    }
-
-    // Sons
+    
     sounds.success();
     setTimeout(() => sounds.coin(), 200);
     setTimeout(() => sounds.streak(), 400);
-
+    
     closeWorkout();
     updateUI();
-
+    
     if (navigator.vibrate) navigator.vibrate([25, 40, 25]);
   }
 
-  // ===== FECHAR AO CLICAR FORA =====
-  ui.modal.addEventListener('click', (e) => {
-    if (e.target === ui.modal) closeWorkout();
+  // ===== EVENT LISTENERS =====
+  ui.diffModal.addEventListener('click', (e) => {
+    if (e.target === ui.diffModal) closeDiffModal();
   });
-
+  
+  ui.workoutModal.addEventListener('click', (e) => {
+    if (e.target === ui.workoutModal) closeWorkout();
+  });
+  
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeWorkout();
+    if (e.key === 'Escape') {
+      closeDiffModal();
+      closeWorkout();
+    }
   });
 
   // ===== INIT =====
   updateUI();
+  renderMonth();
+  renderWorkouts();
 </script>
 
 </body>
