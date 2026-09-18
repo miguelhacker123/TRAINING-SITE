@@ -29,23 +29,10 @@
     --blue-400: #3d7bc8;
     --blue-300: #5e97dd;
     --blue-glow: rgba(37, 96, 171, 0.5);
-
-    /* Ligas */
-    --bronze-1: #5a3823;
-    --bronze-2: #a5714a;
-    --bronze-3: #d99a6c;
-    --prata-1: #4a4f57;
-    --prata-2: #8a9099;
-    --prata-3: #c8cdd4;
-    --ouro-1: #6b4d10;
-    --ouro-2: #c9962b;
-    --ouro-3: #f0c445;
-    --diamante-1: #1d4a5c;
-    --diamante-2: #4ba8c9;
-    --diamante-3: #7fe0f5;
-    --ruby-1: #5c0e1a;
-    --ruby-2: #b81e35;
-    --ruby-3: #f0435c;
+    --green: #4ade80;
+    --green-dark: #16a34a;
+    --red: #f0435c;
+    --red-dark: #b81e35;
   }
 
   html { scroll-behavior: smooth; }
@@ -56,7 +43,6 @@
     min-height: 100vh;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
-    font-feature-settings: 'cv11', 'ss01';
     line-height: 1.5;
   }
 
@@ -121,7 +107,6 @@
   }
 
   .nav-links a:hover { color: var(--text); background: var(--surface); }
-  .nav-links a.active { color: var(--text); background: var(--surface-2); }
 
   .nav-right { display: flex; align-items: center; gap: 10px; }
 
@@ -157,11 +142,8 @@
     cursor: pointer;
     font-size: 15px;
     color: white;
-    transition: all 0.15s ease;
     border: 1px solid rgba(94, 151, 221, 0.25);
   }
-
-  .user-btn:hover { transform: translateY(-1px); }
 
   @media (max-width: 900px) {
     .nav-links { display: none; }
@@ -191,7 +173,7 @@
     flex-wrap: wrap;
   }
 
-  .section-head-left h2 {
+  .section-head h2 {
     font-size: 20px;
     font-weight: 700;
     letter-spacing: -0.4px;
@@ -200,9 +182,9 @@
     gap: 10px;
   }
 
-  .section-head-left h2 i { color: var(--blue-400); font-size: 15px; }
+  .section-head h2 i { color: var(--blue-400); font-size: 15px; }
 
-  .section-head-left .desc {
+  .section-head .desc {
     color: var(--text-3);
     font-size: 13.5px;
     margin-top: 6px;
@@ -239,16 +221,6 @@
     height: 400px;
     background: radial-gradient(circle, rgba(37, 96, 171, 0.15), transparent 65%);
     pointer-events: none;
-  }
-
-  .hero-panel::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 100%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--blue-700), transparent);
   }
 
   .hero-tag {
@@ -325,7 +297,6 @@
     gap: 8px;
     white-space: nowrap;
     font-family: inherit;
-    letter-spacing: -0.1px;
   }
 
   .btn-primary {
@@ -361,7 +332,6 @@
     flex-direction: column;
     gap: 4px;
     transition: all 0.2s ease;
-    position: relative;
   }
 
   .stat-card:hover { border-color: var(--border-2); background: var(--surface-2); transform: translateY(-2px); }
@@ -405,19 +375,19 @@
 
   .stat-label { font-size: 12px; color: var(--text-3); font-weight: 500; }
 
-  /* ===== LIGAS ===== */
-  .leagues-showcase {
+  /* ===== RANKS / NÍVEIS ===== */
+  .ranks-showcase {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 12px;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
   }
 
   @media (max-width: 900px) {
-    .leagues-showcase { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+    .ranks-showcase { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
   }
 
-  .league-card {
+  .rank-card {
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 16px;
@@ -432,22 +402,22 @@
     overflow: hidden;
   }
 
-  .league-card::before {
+  .rank-card::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at 50% 0%, var(--league-glow), transparent 70%);
+    background: radial-gradient(circle at 50% 0%, var(--rank-glow), transparent 70%);
     opacity: 0;
     transition: opacity 0.3s;
   }
 
-  .league-card:hover::before { opacity: 1; }
-  .league-card.current { border-width: 1px; transform: translateY(-4px); }
-  .league-card.current::before { opacity: 1; }
+  .rank-card:hover::before { opacity: 1; }
+  .rank-card.current { transform: translateY(-4px); border-color: var(--rank-border); box-shadow: 0 0 0 1px var(--rank-border), 0 12px 32px rgba(0,0,0,0.4); }
+  .rank-card.current::before { opacity: 1; }
 
-  .league-card.locked { opacity: 0.55; }
+  .rank-card.locked { opacity: 0.55; }
 
-  .league-emblem {
+  .rank-emblem {
     width: 60px;
     height: 60px;
     border-radius: 50%;
@@ -461,7 +431,7 @@
     box-shadow: inset 0 -6px 16px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.06);
   }
 
-  .league-emblem::after {
+  .rank-emblem::after {
     content: '';
     position: absolute;
     top: 12%;
@@ -473,7 +443,7 @@
     filter: blur(4px);
   }
 
-  .league-name {
+  .rank-name {
     font-size: 13px;
     font-weight: 800;
     letter-spacing: -0.2px;
@@ -481,7 +451,7 @@
     z-index: 1;
   }
 
-  .league-xp-req {
+  .rank-xp-req {
     font-size: 11px;
     color: var(--text-3);
     font-weight: 600;
@@ -490,46 +460,35 @@
     z-index: 1;
   }
 
-  .league-badge-current {
+  .rank-badge {
     font-size: 9.5px;
     font-weight: 800;
     letter-spacing: 0.8px;
     text-transform: uppercase;
-    color: white;
-    background: var(--blue-600);
     padding: 3px 8px;
     border-radius: 5px;
     position: relative;
     z-index: 1;
   }
 
-  .league-badge-locked {
-    font-size: 9.5px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    color: var(--text-4);
-    background: var(--surface-3);
-    padding: 3px 8px;
-    border-radius: 5px;
-    position: relative;
-    z-index: 1;
-  }
+  .rank-badge-current { color: white; background: var(--blue-600); }
+  .rank-badge-locked { color: var(--text-4); background: var(--surface-3); }
+  .rank-badge-unlocked { color: white; background: var(--green-dark); }
 
-  /* Cores das ligas */
-  .lg-bronze .league-emblem { background: radial-gradient(circle at 30% 30%, var(--bronze-3), var(--bronze-1)); }
-  .lg-bronze { --league-glow: rgba(217, 154, 108, 0.12); }
-  .lg-prata .league-emblem { background: radial-gradient(circle at 30% 30%, var(--prata-3), var(--prata-1)); }
-  .lg-prata { --league-glow: rgba(200, 205, 212, 0.12); }
-  .lg-ouro .league-emblem { background: radial-gradient(circle at 30% 30%, var(--ouro-3), var(--ouro-1)); }
-  .lg-ouro { --league-glow: rgba(240, 196, 69, 0.14); }
-  .lg-diamante .league-emblem { background: radial-gradient(circle at 30% 30%, var(--diamante-3), var(--diamante-1)); }
-  .lg-diamante { --league-glow: rgba(127, 224, 245, 0.14); }
-  .lg-ruby .league-emblem { background: radial-gradient(circle at 30% 30%, var(--ruby-3), var(--ruby-1)); }
-  .lg-ruby { --league-glow: rgba(240, 67, 92, 0.16); }
+  /* Cores das ranks */
+  .rk-iniciante .rank-emblem { background: radial-gradient(circle at 30% 30%, #8a8a95, #3a3a44); }
+  .rk-iniciante { --rank-glow: rgba(138, 138, 149, 0.15); --rank-border: #5a5a66; }
+  .rk-bronze .rank-emblem { background: radial-gradient(circle at 30% 30%, #d99a6c, #5a3823); }
+  .rk-bronze { --rank-glow: rgba(217, 154, 108, 0.15); --rank-border: #a5714a; }
+  .rk-prata .rank-emblem { background: radial-gradient(circle at 30% 30%, #c8cdd4, #4a4f57); }
+  .rk-prata { --rank-glow: rgba(200, 205, 212, 0.15); --rank-border: #8a9099; }
+  .rk-ouro .rank-emblem { background: radial-gradient(circle at 30% 30%, #f0c445, #6b4d10); }
+  .rk-ouro { --rank-glow: rgba(240, 196, 69, 0.18); --rank-border: #c9962b; }
+  .rk-rubi .rank-emblem { background: radial-gradient(circle at 30% 30%, #f0435c, #5c0e1a); }
+  .rk-rubi { --rank-glow: rgba(240, 67, 92, 0.2); --rank-border: #b81e35; }
 
-  /* League Panel Atual */
-  .league-panel {
+  /* ===== RANK PANEL ===== */
+  .rank-panel {
     background: linear-gradient(135deg, var(--surface-2) 0%, var(--surface) 100%);
     border: 1px solid var(--border);
     border-radius: 22px;
@@ -542,19 +501,19 @@
     overflow: hidden;
   }
 
-  .league-panel::before {
+  .rank-panel::before {
     content: '';
     position: absolute;
     top: -50%;
     right: -10%;
     width: 500px;
     height: 500px;
-    background: radial-gradient(circle, var(--league-glow-current, rgba(37, 96, 171, 0.1)), transparent 65%);
+    background: radial-gradient(circle, var(--rank-glow), transparent 65%);
     pointer-events: none;
   }
 
   @media (max-width: 760px) {
-    .league-panel { grid-template-columns: 1fr; text-align: center; justify-items: center; padding: 26px; gap: 20px; }
+    .rank-panel { grid-template-columns: 1fr; text-align: center; justify-items: center; padding: 26px; gap: 20px; }
   }
 
   .current-emblem {
@@ -566,7 +525,7 @@
     justify-content: center;
     font-size: 44px;
     color: white;
-    box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 0 60px var(--league-glow-current, rgba(37,96,171,0.4)), inset 0 -8px 24px rgba(0,0,0,0.35);
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 0 60px var(--rank-glow), inset 0 -8px 24px rgba(0,0,0,0.35);
     position: relative;
     flex-shrink: 0;
   }
@@ -583,9 +542,9 @@
     filter: blur(6px);
   }
 
-  .league-info { position: relative; }
+  .rank-info { position: relative; }
 
-  .league-division {
+  .rank-division {
     font-size: 11.5px;
     color: var(--text-3);
     font-weight: 600;
@@ -594,18 +553,18 @@
     margin-bottom: 6px;
   }
 
-  .league-info h3 {
+  .rank-info h3 {
     font-size: 26px;
     font-weight: 800;
     letter-spacing: -0.8px;
     margin-bottom: 6px;
   }
 
-  .league-info .sub { color: var(--text-3); font-size: 13.5px; margin-bottom: 20px; }
+  .rank-info .sub { color: var(--text-3); font-size: 13.5px; margin-bottom: 20px; }
 
-  .league-progress-row { display: flex; align-items: center; gap: 14px; margin-bottom: 10px; }
+  .rank-progress-row { display: flex; align-items: center; gap: 14px; margin-bottom: 10px; }
 
-  .league-track {
+  .rank-track {
     flex: 1;
     height: 10px;
     background: var(--bg-2);
@@ -614,15 +573,15 @@
     border: 1px solid var(--border);
   }
 
-  .league-fill {
+  .rank-fill {
     height: 100%;
-    background: linear-gradient(90deg, var(--league-fill-1, var(--blue-700)), var(--league-fill-2, var(--blue-400)));
+    background: linear-gradient(90deg, var(--rank-fill-1), var(--rank-fill-2));
     border-radius: 10px;
     transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
   }
 
-  .league-fill::after {
+  .rank-fill::after {
     content: '';
     position: absolute;
     inset: 0;
@@ -630,14 +589,14 @@
     border-radius: 10px;
   }
 
-  .league-xp {
+  .rank-xp {
     font-size: 13px;
     font-weight: 700;
     font-variant-numeric: tabular-nums;
     white-space: nowrap;
   }
 
-  .league-tip {
+  .rank-tip {
     font-size: 12.5px;
     color: var(--text-3);
     display: flex;
@@ -646,15 +605,14 @@
     margin-top: 4px;
   }
 
-  .league-tip i { color: var(--blue-300); font-size: 12px; }
-  .league-tip strong { color: var(--text-2); font-weight: 600; }
+  .rank-tip i { color: var(--blue-300); font-size: 12px; }
+  .rank-tip strong { color: var(--text-2); font-weight: 600; }
 
   /* ===== GRUPOS MUSCULARES ===== */
   .muscle-groups {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 14px;
-    margin-bottom: 24px;
   }
 
   @media (max-width: 700px) {
@@ -682,12 +640,6 @@
     box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(37, 96, 171, 0.15);
   }
 
-  .muscle-card.active {
-    border-color: var(--blue-500);
-    background: linear-gradient(155deg, var(--surface-2), var(--surface));
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(37, 96, 171, 0.3), 0 0 40px rgba(37, 96, 171, 0.15);
-  }
-
   .muscle-icon {
     width: 52px;
     height: 52px;
@@ -702,7 +654,6 @@
     transition: all 0.25s;
   }
 
-  .muscle-card.active .muscle-icon,
   .muscle-card:hover .muscle-icon {
     background: linear-gradient(135deg, var(--blue-600), var(--blue-400));
     border-color: var(--blue-400);
@@ -747,421 +698,169 @@
 
   .muscle-card:hover .muscle-arrow { color: var(--blue-300); transform: translateX(4px); }
 
-  /* ===== PROGRAMA DE 1 MÊS ===== */
-  .program-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-    background: linear-gradient(135deg, var(--surface-2) 0%, var(--surface) 100%);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 26px 30px;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .program-header::before {
-    content: '';
-    position: absolute;
-    top: -80px;
-    right: -80px;
-    width: 320px;
-    height: 320px;
-    background: radial-gradient(circle, rgba(37, 96, 171, 0.12), transparent 65%);
-  }
-
-  .program-header-left { position: relative; }
-
-  .program-header h3 {
-    font-size: 19px;
-    font-weight: 800;
-    letter-spacing: -0.4px;
-    margin-bottom: 6px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .program-header h3 i { color: var(--blue-300); font-size: 16px; }
-
-  .program-header p { font-size: 13px; color: var(--text-3); }
-
-  .program-header-right {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    position: relative;
-  }
-
-  .program-stat { text-align: center; }
-
-  .program-stat .num {
-    font-size: 22px;
-    font-weight: 800;
-    letter-spacing: -0.6px;
-    font-variant-numeric: tabular-nums;
-    background: linear-gradient(135deg, var(--blue-300), var(--blue-500));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .program-stat .lbl {
-    font-size: 11px;
-    color: var(--text-3);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-top: 2px;
-  }
-
-  .month-grid {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 8px;
-    margin-bottom: 14px;
-  }
-
-  @media (max-width: 600px) {
-    .month-grid { gap: 5px; }
-  }
-
-  .day-cell {
-    aspect-ratio: 1;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 8px 6px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    cursor: pointer;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    min-height: 62px;
-  }
-
-  .day-cell:hover {
-    border-color: var(--blue-600);
-    background: var(--surface-2);
-    transform: translateY(-2px);
-  }
-
-  .day-cell.done {
-    background: linear-gradient(155deg, rgba(37, 96, 171, 0.15), rgba(37, 96, 171, 0.05));
-    border-color: rgba(37, 96, 171, 0.4);
-  }
-
-  .day-cell.done::before {
-    content: '\f00c';
-    font-family: 'Font Awesome 6 Free';
-    font-weight: 900;
-    position: absolute;
-    top: 6px;
-    right: 6px;
-    font-size: 9px;
-    color: var(--blue-300);
-  }
-
-  .day-cell.today {
-    border-color: var(--blue-400);
-    background: linear-gradient(155deg, rgba(37, 96, 171, 0.25), rgba(37, 96, 171, 0.08));
-    box-shadow: 0 0 0 1px rgba(37, 96, 171, 0.3), 0 0 20px rgba(37, 96, 171, 0.2);
-  }
-
-  .day-cell.rest {
-    background: var(--bg-2);
-    border-style: dashed;
-    opacity: 0.6;
-  }
-
-  .day-cell.rest::after {
-    content: 'DESCANSO';
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 8px;
-    font-weight: 800;
-    color: var(--text-4);
-    letter-spacing: 0.5px;
-  }
-
-  .day-num {
-    font-size: 12px;
-    font-weight: 800;
-    color: var(--text-2);
-    font-variant-numeric: tabular-nums;
-  }
-
-  .day-cell.done .day-num { color: var(--blue-300); }
-
-  .day-label {
-    font-size: 8px;
-    font-weight: 700;
-    color: var(--text-4);
-    letter-spacing: 0.3px;
-    text-transform: uppercase;
-  }
-
-  .day-cell.done .day-label { color: var(--blue-300); opacity: 0.7; }
-
-  .day-cell.today .day-num { color: var(--text); }
-
-  @media (max-width: 600px) {
-    .day-cell { min-height: 48px; padding: 6px 4px; border-radius: 8px; }
-    .day-num { font-size: 10px; }
-    .day-label { display: none; }
-  }
-
-  /* ===== TREINOS POR DIFICULDADE ===== */
-  .level-tabs {
-    display: flex;
-    gap: 4px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 4px;
-    width: fit-content;
-    margin-bottom: 20px;
-  }
-
-  .level-tab {
-    padding: 9px 18px;
-    border-radius: 9px;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--text-3);
-    cursor: pointer;
-    transition: all 0.2s ease;
-    background: transparent;
-    border: none;
-    font-family: inherit;
-    display: flex;
-    align-items: center;
-    gap: 7px;
-  }
-
-  .level-tab:hover { color: var(--text); }
-
-  .level-tab.active {
-    background: linear-gradient(180deg, var(--blue-500), var(--blue-700));
-    color: white;
-    box-shadow: 0 1px 0 rgba(255,255,255,0.15) inset, 0 4px 14px rgba(37, 96, 171, 0.35);
-  }
-
-  .level-tab .dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: currentColor;
-    opacity: 0.6;
-  }
-
-  .level-tab.active .dot { opacity: 1; background: white; }
-
-  /* ===== QUICK WORKOUTS ===== */
-  .quick-grid {
+  /* ===== EXERCÍCIOS ===== */
+  .exercise-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 14px;
   }
 
-  .quick-card {
+  .exercise-card {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 22px;
+    border-radius: 18px;
+    padding: 0;
     cursor: pointer;
     transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     flex-direction: column;
-    gap: 14px;
     position: relative;
     overflow: hidden;
   }
 
-  .quick-card:hover {
+  .exercise-card:hover {
     border-color: var(--blue-600);
     background: var(--surface-2);
     transform: translateY(-3px);
-    box-shadow: 0 12px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(37, 96, 171, 0.15);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(37, 96, 171, 0.2);
   }
 
-  .quick-head {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-  }
-
-  .quick-icon {
-    width: 42px;
-    height: 42px;
-    border-radius: 11px;
-    background: rgba(37, 96, 171, 0.12);
-    border: 1px solid rgba(37, 96, 171, 0.25);
+  .exercise-preview {
+    height: 180px;
+    background: linear-gradient(155deg, var(--surface-3) 0%, var(--surface-2) 100%);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 16px;
-    color: var(--blue-300);
-    transition: all 0.25s;
-    flex-shrink: 0;
-  }
-
-  .quick-card:hover .quick-icon {
-    background: linear-gradient(135deg, var(--blue-600), var(--blue-400));
-    border-color: var(--blue-400);
-    color: white;
-  }
-
-  .quick-difficulty {
-    font-size: 10.5px;
-    font-weight: 800;
-    letter-spacing: 0.6px;
-    text-transform: uppercase;
-    padding: 4px 9px;
-    border-radius: 6px;
-  }
-
-  .diff-inic { color: #5eb55e; background: rgba(94, 181, 94, 0.12); border: 1px solid rgba(94, 181, 94, 0.25); }
-  .diff-inter { color: var(--blue-300); background: rgba(37, 96, 171, 0.15); border: 1px solid rgba(37, 96, 171, 0.3); }
-  .diff-avanc { color: var(--ruby-3); background: rgba(240, 67, 92, 0.12); border: 1px solid rgba(240, 67, 92, 0.25); }
-
-  .quick-card h4 {
-    font-size: 15.5px;
-    font-weight: 700;
-    letter-spacing: -0.3px;
-  }
-
-  .quick-card p {
-    font-size: 12.5px;
-    color: var(--text-3);
-    line-height: 1.5;
-    flex: 1;
-  }
-
-  .quick-stats {
-    display: flex;
-    gap: 14px;
-    padding: 12px 0;
-    border-top: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
     border-bottom: 1px solid var(--border);
   }
 
-  .quick-stat {
+  .exercise-preview::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      linear-gradient(90deg, transparent 0%, rgba(37, 96, 171, 0.05) 50%, transparent 100%),
+      radial-gradient(circle at 50% 50%, rgba(37, 96, 171, 0.15), transparent 70%);
+  }
+
+  /* SVG animações inline */
+  .exercise-svg {
+    width: 140px;
+    height: 140px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .exercise-svg path,
+  .exercise-svg circle,
+  .exercise-svg rect,
+  .exercise-svg line,
+  .exercise-svg polyline {
+    stroke: var(--blue-300);
+    stroke-width: 2.5;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .exercise-svg .fill-primary {
+    fill: var(--blue-500);
+    stroke: none;
+    opacity: 0.3;
+  }
+
+  .exercise-svg .fill-accent {
+    fill: var(--blue-400);
+    stroke: none;
+  }
+
+  /* animações */
+  @keyframes pushup-move {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(14px); }
+  }
+
+  @keyframes pushup-arm-bend {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(-18deg); }
+  }
+
+  @keyframes plank-breathe {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+  }
+
+  @keyframes pulse-ring {
+    0% { transform: scale(1); opacity: 0.6; }
+    100% { transform: scale(1.3); opacity: 0; }
+  }
+
+  .anim-pushup .torso {
+    animation: pushup-move 2s ease-in-out infinite;
+    transform-origin: center;
+  }
+
+  .exercise-card-body {
+    padding: 18px 20px;
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 10px;
   }
 
-  .quick-stat .s-num {
-    font-size: 13px;
+  .exercise-card h4 {
+    font-size: 15.5px;
     font-weight: 800;
-    color: var(--text);
-    font-variant-numeric: tabular-nums;
-  }
-
-  .quick-stat .s-lbl {
-    font-size: 10px;
-    color: var(--text-4);
-    font-weight: 600;
-    letter-spacing: 0.4px;
-    text-transform: uppercase;
-  }
-
-  .quick-foot {
+    letter-spacing: -0.3px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: auto;
+    gap: 8px;
   }
 
-  .quick-reward {
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--blue-300);
-    font-variant-numeric: tabular-nums;
-  }
-
-  .quick-arrow {
-    color: var(--text-4);
-    font-size: 12px;
-    transition: transform 0.2s ease;
-  }
-
-  .quick-card:hover .quick-arrow { transform: translateX(4px); color: var(--blue-300); }
-
-  /* ===== CONQUISTAS ===== */
-  .ach-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 14px;
-  }
-
-  .ach-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 20px;
-    display: flex;
-    gap: 14px;
-    align-items: center;
-    transition: all 0.2s ease;
-  }
-
-  .ach-card:hover { border-color: var(--border-2); background: var(--surface-2); }
-  .ach-card.unlocked { border-color: rgba(37, 96, 171, 0.3); }
-
-  .ach-medal {
-    width: 52px;
-    height: 52px;
-    border-radius: 14px;
-    background: var(--surface-3);
-    border: 1px solid var(--border-2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    color: var(--text-4);
-    flex-shrink: 0;
-  }
-
-  .ach-card.unlocked .ach-medal {
-    background: linear-gradient(135deg, var(--blue-700), var(--blue-500));
-    border-color: var(--blue-500);
-    color: white;
-    box-shadow: 0 0 24px rgba(37, 96, 171, 0.35);
-  }
-
-  .ach-body { flex: 1; min-width: 0; }
-  .ach-body h4 { font-size: 14px; font-weight: 700; margin-bottom: 3px; letter-spacing: -0.2px; }
-  .ach-body p { font-size: 12px; color: var(--text-3); line-height: 1.4; }
-
-  .ach-status {
-    font-size: 10.5px;
-    font-weight: 700;
-    color: var(--text-4);
-    background: var(--surface-3);
+  .exercise-card h4 .ex-tag {
+    font-size: 9.5px;
+    font-weight: 800;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
     padding: 3px 8px;
     border-radius: 5px;
-    margin-top: 8px;
-    display: inline-block;
-    letter-spacing: 0.3px;
+    color: var(--blue-300);
+    background: rgba(37, 96, 171, 0.15);
+    border: 1px solid rgba(37, 96, 171, 0.3);
   }
 
-  .ach-card.unlocked .ach-status { color: var(--blue-300); background: rgba(37, 96, 171, 0.15); }
+  .exercise-card p {
+    font-size: 12.5px;
+    color: var(--text-3);
+    line-height: 1.5;
+  }
 
-  /* ===== MODAL DE DIFICULDADE ===== */
+  .exercise-meta {
+    display: flex;
+    gap: 16px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+    margin-top: 4px;
+  }
+
+  .exercise-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11.5px;
+    color: var(--text-3);
+    font-weight: 600;
+  }
+
+  .exercise-meta-item i { color: var(--blue-400); font-size: 11px; }
+
+  /* ===== MODAL ===== */
   .modal-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.85);
+    background: rgba(0,0,0,0.88);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     z-index: 1000;
@@ -1171,6 +870,7 @@
     padding: 20px;
     opacity: 0;
     transition: opacity 0.25s ease;
+    overflow-y: auto;
   }
 
   .modal-overlay.active { display: flex; opacity: 1; }
@@ -1179,14 +879,14 @@
     background: var(--bg-2);
     border: 1px solid var(--border-2);
     border-radius: 22px;
-    max-width: 520px;
+    max-width: 560px;
     width: 100%;
-    padding: 32px;
     position: relative;
     animation: modalIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-    max-height: 90vh;
+    max-height: 92vh;
     overflow-y: auto;
-    box-shadow: 0 40px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.03);
+    box-shadow: 0 40px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.03);
+    margin: auto;
   }
 
   @keyframes modalIn {
@@ -1196,137 +896,178 @@
 
   .modal-close {
     position: absolute;
-    top: 18px;
-    right: 18px;
-    width: 34px;
-    height: 34px;
+    top: 16px;
+    right: 16px;
+    width: 36px;
+    height: 36px;
     border-radius: 10px;
-    background: var(--surface);
-    border: 1px solid var(--border);
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--border-2);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--text-3);
+    color: var(--text-2);
     cursor: pointer;
     transition: all 0.15s;
     font-size: 13px;
+    z-index: 10;
   }
 
-  .modal-close:hover { background: var(--surface-2); color: var(--text); border-color: var(--border-2); }
+  .modal-close:hover { background: var(--surface-2); color: var(--text); }
 
-  .modal-header-icon {
-    width: 60px;
-    height: 60px;
-    border-radius: 16px;
-    background: linear-gradient(135deg, var(--blue-700), var(--blue-500));
+  .exercise-demo {
+    height: 240px;
+    background: linear-gradient(155deg, var(--surface-3) 0%, var(--surface-2) 100%);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 24px;
-    margin-bottom: 20px;
-    color: white;
-    box-shadow: 0 0 30px rgba(37, 96, 171, 0.35);
-    border: 1px solid rgba(94, 151, 221, 0.3);
+    position: relative;
+    overflow: hidden;
+    border-radius: 22px 22px 0 0;
+    border-bottom: 1px solid var(--border);
   }
 
-  .modal h2 {
+  .exercise-demo::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      linear-gradient(90deg, transparent 0%, rgba(37, 96, 171, 0.08) 50%, transparent 100%),
+      radial-gradient(circle at 50% 50%, rgba(37, 96, 171, 0.2), transparent 70%);
+  }
+
+  .exercise-demo .exercise-svg {
+    width: 200px;
+    height: 200px;
+  }
+
+  .demo-badge {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--border-2);
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 10.5px;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--blue-300);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    z-index: 2;
+  }
+
+  .demo-badge .rec-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--red);
+    box-shadow: 0 0 8px var(--red);
+    animation: pulse 1.5s infinite;
+  }
+
+  .modal-body {
+    padding: 28px 32px 32px;
+  }
+
+  .modal-body h2 {
     font-size: 22px;
     font-weight: 800;
-    letter-spacing: -0.5px;
-    margin-bottom: 6px;
+    letter-spacing: -0.6px;
+    margin-bottom: 8px;
   }
 
-  .modal-sub {
+  .modal-body .modal-sub {
     color: var(--text-3);
     font-size: 13.5px;
-    margin-bottom: 24px;
-    line-height: 1.5;
+    line-height: 1.55;
+    margin-bottom: 22px;
   }
 
-  .difficulty-options {
+  .exercise-steps {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 22px;
   }
 
-  .diff-option {
+  .exercise-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 14px;
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 18px 20px;
-    cursor: pointer;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .diff-option:hover {
-    border-color: var(--border-2);
-    background: var(--surface-2);
-    transform: translateX(3px);
-  }
-
-  .diff-option.selected {
-    border-color: var(--blue-500);
-    background: linear-gradient(135deg, rgba(37, 96, 171, 0.15), rgba(37, 96, 171, 0.04));
-    box-shadow: 0 0 0 1px rgba(37, 96, 171, 0.3), 0 0 30px rgba(37, 96, 171, 0.15);
-  }
-
-  .diff-option.selected::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 3px;
-    background: var(--blue-400);
-    box-shadow: 0 0 12px var(--blue-glow);
-  }
-
-  .diff-badge {
-    width: 44px;
-    height: 44px;
     border-radius: 12px;
+  }
+
+  .exercise-step .step-num {
+    width: 24px;
+    height: 24px;
+    border-radius: 7px;
+    background: rgba(37, 96, 171, 0.2);
+    border: 1px solid rgba(37, 96, 171, 0.35);
+    color: var(--blue-300);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 16px;
-    font-weight: 900;
+    font-size: 11px;
+    font-weight: 800;
     flex-shrink: 0;
   }
 
-  .diff-badge.inic { background: rgba(94, 181, 94, 0.15); color: #5eb55e; border: 1px solid rgba(94, 181, 94, 0.3); }
-  .diff-badge.inter { background: rgba(37, 96, 171, 0.2); color: var(--blue-300); border: 1px solid rgba(37, 96, 171, 0.35); }
-  .diff-badge.avanc { background: rgba(240, 67, 92, 0.15); color: var(--ruby-3); border: 1px solid rgba(240, 67, 92, 0.3); }
-
-  .diff-body { flex: 1; min-width: 0; }
-  .diff-body h4 { font-size: 15px; font-weight: 700; margin-bottom: 3px; letter-spacing: -0.2px; }
-  .diff-body p { font-size: 12.5px; color: var(--text-3); line-height: 1.45; }
-
-  .diff-meta {
-    text-align: right;
-    flex-shrink: 0;
-    font-size: 11.5px;
-    color: var(--text-3);
-    font-weight: 600;
+  .exercise-step .step-txt {
+    font-size: 12.5px;
+    color: var(--text-2);
     line-height: 1.5;
   }
 
-  .diff-meta .xp { color: var(--blue-300); font-weight: 700; }
+  .exercise-info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 22px;
+  }
+
+  .exercise-info-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px;
+    text-align: center;
+  }
+
+  .exercise-info-item .info-val {
+    font-size: 17px;
+    font-weight: 800;
+    letter-spacing: -0.4px;
+    color: var(--text);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .exercise-info-item .info-lbl {
+    font-size: 10.5px;
+    color: var(--text-3);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
 
   .modal-actions { display: flex; gap: 10px; }
   .modal-actions .btn { flex: 1; }
 
-  /* ===== TIMER MODAL ===== */
+  /* ===== TIMER ===== */
   .timer-box {
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 18px;
-    padding: 28px 20px;
+    padding: 24px;
     margin-bottom: 16px;
     position: relative;
     overflow: hidden;
@@ -1344,7 +1085,7 @@
   }
 
   .timer-time {
-    font-size: 58px;
+    font-size: 52px;
     font-weight: 800;
     text-align: center;
     letter-spacing: -2px;
@@ -1364,35 +1105,30 @@
     font-weight: 600;
     letter-spacing: 1.8px;
     text-transform: uppercase;
+    margin-bottom: 14px;
   }
 
-  .exercise-box {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 18px 20px;
-    margin-bottom: 24px;
+  .timer-progress {
+    height: 4px;
+    background: var(--bg-2);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 8px;
   }
 
-  .exercise-name {
-    font-size: 14.5px;
-    font-weight: 700;
-    margin-bottom: 4px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  .timer-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--blue-600), var(--blue-400));
+    border-radius: 4px;
+    transition: width 1s linear;
   }
 
-  .exercise-name::before {
-    content: '';
-    width: 4px;
-    height: 14px;
-    border-radius: 2px;
-    background: var(--blue-400);
-    box-shadow: 0 0 8px var(--blue-glow);
+  .timer-reps {
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-3);
+    font-weight: 600;
   }
-
-  .exercise-detail { font-size: 12.5px; color: var(--text-3); line-height: 1.5; padding-left: 12px; }
 
   /* ===== TOAST ===== */
   .toast {
@@ -1479,15 +1215,13 @@
     .hero-panel h1 { font-size: 28px; }
     .hero-panel .hero-desc { font-size: 14px; }
     .stat-value { font-size: 22px; }
-    .league-panel { padding: 24px; }
+    .rank-panel { padding: 24px; }
     .current-emblem { width: 90px; height: 90px; font-size: 36px; }
-    .league-info h3 { font-size: 22px; }
-    .timer-time { font-size: 48px; }
-    .modal { padding: 26px 22px; }
-    .section-head-left h2 { font-size: 17px; }
-    .program-header { padding: 20px; }
-    .program-header-right { gap: 14px; }
-    .program-stat .num { font-size: 18px; }
+    .rank-info h3 { font-size: 22px; }
+    .timer-time { font-size: 44px; }
+    .modal-body { padding: 22px; }
+    .section-head h2 { font-size: 17px; }
+    .exercise-info-grid { grid-template-columns: 1fr; }
   }
 
   ::-webkit-scrollbar { width: 8px; height: 8px; }
@@ -1497,7 +1231,6 @@
 
   ::selection { background: var(--blue-600); color: white; }
 
-  /* Animação de entrada */
   .fade-in { animation: fadeIn 0.4s ease; }
   @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 </style>
@@ -1512,11 +1245,9 @@
       <span class="logo-name">Body<span>Quest</span></span>
     </a>
     <div class="nav-links">
-      <a href="#" class="active">Dashboard</a>
-      <a href="#grupos">Grupos</a>
-      <a href="#programa">Programa</a>
-      <a href="#treinos">Treinos</a>
-      <a href="#ligas">Ligas</a>
+      <a href="#grupos">Exercícios</a>
+      <a href="#ranks">Níveis</a>
+      <a href="#braco">Braços</a>
     </div>
     <div class="nav-right">
       <div class="coin-display">
@@ -1535,18 +1266,18 @@
     <div class="hero-panel">
       <div class="hero-tag">
         <span class="pulse-dot"></span>
-        Treino em casa · sem equipamentos
+        Treino em casa · peso do corpo
       </div>
-      <h1>Construa seu corpo<br>com <em>disciplina e progresso</em>.</h1>
+      <h1>Treine cada músculo<br>com <em>apenas seu corpo</em>.</h1>
       <p class="hero-desc">
-        Você está em uma ofensiva de <strong id="heroStreak">12 dias</strong>. Cada treino concluído rende XP, moedas e aproxima você da próxima divisão. Não quebre a sequência.
+        Você está em uma ofensiva de <strong id="heroStreak">12 dias</strong>. Escolha um exercício, assista a animação, execute com boa forma. Cada repetição conta.
       </p>
       <div class="hero-actions">
-        <button class="btn btn-primary" onclick="openMuscleGroup('fullbody')">
-          <i class="fas fa-play"></i> Iniciar treino de hoje
+        <button class="btn btn-primary" onclick="document.getElementById('braco').scrollIntoView()">
+          <i class="fas fa-play"></i> Ver exercícios de braço
         </button>
         <button class="btn btn-secondary" onclick="document.getElementById('grupos').scrollIntoView()">
-          <i class="fas fa-list"></i> Ver grupos musculares
+          <i class="fas fa-list"></i> Todos os grupos
         </button>
       </div>
     </div>
@@ -1573,7 +1304,7 @@
           <div class="stat-trend">+30</div>
         </div>
         <div class="stat-value" id="statXp">420</div>
-        <div class="stat-label">XP semanal</div>
+        <div class="stat-label">XP total</div>
       </div>
       <div class="stat-card">
         <div class="stat-head">
@@ -1588,214 +1319,118 @@
   <!-- ===== GRUPOS MUSCULARES ===== -->
   <section class="section" id="grupos">
     <div class="section-head">
-      <div class="section-head-left">
+      <div>
         <h2><i class="fas fa-bullseye"></i> Escolha seu foco</h2>
-        <p class="desc">Treine o grupo muscular que você quer desenvolver hoje.</p>
+        <p class="desc">Cada grupo tem seus próprios exercícios com animação e instruções.</p>
       </div>
     </div>
 
     <div class="muscle-groups">
-      <div class="muscle-card" onclick="openMuscleGroup('braco')">
+      <div class="muscle-card" onclick="scrollToExercises('braco')">
         <div class="muscle-icon"><i class="fas fa-hand-fist"></i></div>
         <h3>Braços</h3>
-        <p>Flexões, tríceps, bíceps e força de empurrar.</p>
+        <p>Flexões, tríceps, bíceps e força de empurrar o corpo.</p>
         <div class="muscle-meta">
-          <span class="muscle-exercises"><strong>12</strong> exercícios</span>
+          <span class="muscle-exercises"><strong id="bracoCount">8</strong> exercícios</span>
           <i class="fas fa-arrow-right muscle-arrow"></i>
         </div>
       </div>
 
-      <div class="muscle-card" onclick="openMuscleGroup('abdomen')">
+      <div class="muscle-card" onclick="showToast('Em breve', 'Abdômen e Pernas estão sendo desenvolvidos.', 'lock')">
         <div class="muscle-icon"><i class="fas fa-shield-halved"></i></div>
         <h3>Abdômen</h3>
         <p>Core, pranchas, hollow holds e oblíquos.</p>
         <div class="muscle-meta">
-          <span class="muscle-exercises"><strong>10</strong> exercícios</span>
+          <span class="muscle-exercises"><strong>Em breve</strong></span>
           <i class="fas fa-arrow-right muscle-arrow"></i>
         </div>
       </div>
 
-      <div class="muscle-card" onclick="openMuscleGroup('perna')">
+      <div class="muscle-card" onclick="showToast('Em breve', 'Pernas está sendo desenvolvido.', 'lock')">
         <div class="muscle-icon"><i class="fas fa-person-running"></i></div>
         <h3>Pernas</h3>
         <p>Agachamentos, afundos, panturrilha e glúteos.</p>
         <div class="muscle-meta">
-          <span class="muscle-exercises"><strong>14</strong> exercícios</span>
+          <span class="muscle-exercises"><strong>Em breve</strong></span>
           <i class="fas fa-arrow-right muscle-arrow"></i>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== PROGRAMA DE 1 MÊS ===== -->
-  <section class="section" id="programa">
+  <!-- ===== EXERCÍCIOS DE BRAÇO ===== -->
+  <section class="section" id="braco">
     <div class="section-head">
-      <div class="section-head-left">
-        <h2><i class="fas fa-calendar-days"></i> Programa de 30 dias</h2>
-        <p class="desc">Trilha completa do mês. Siga o calendário e veja sua evolução.</p>
+      <div>
+        <h2><i class="fas fa-hand-fist"></i> Treino completo de braços</h2>
+        <p class="desc">8 exercícios apenas com peso do corpo. Toque em cada card para ver a animação e instruções.</p>
       </div>
     </div>
 
-    <div class="program-header">
-      <div class="program-header-left">
-        <h3><i class="fas fa-bullseye"></i> Desafio do Mês Atual</h3>
-        <p>Iniciado em 1 de novembro · Meta: 22 treinos concluídos</p>
-      </div>
-      <div class="program-header-right">
-        <div class="program-stat">
-          <div class="num" id="progDone">8</div>
-          <div class="lbl">Concluídos</div>
-        </div>
-        <div class="program-stat">
-          <div class="num" id="progRemaining">22</div>
-          <div class="lbl">Restantes</div>
-        </div>
-        <div class="program-stat">
-          <div class="num" id="progPct">27%</div>
-          <div class="lbl">Progresso</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="month-grid" id="monthGrid"></div>
+    <div class="exercise-grid" id="exerciseGrid"></div>
   </section>
 
-  <!-- ===== TREINOS POR DIFICULDADE ===== -->
-  <section class="section" id="treinos">
+  <!-- ===== NÍVEIS / RANKS ===== -->
+  <section class="section" id="ranks">
     <div class="section-head">
-      <div class="section-head-left">
-        <h2><i class="fas fa-layer-group"></i> Treinos por dificuldade</h2>
-        <p class="desc">Escolha o nível adequado para o seu momento atual.</p>
+      <div>
+        <h2><i class="fas fa-trophy"></i> Níveis de progressão</h2>
+        <p class="desc">Ganhe XP treinando e desbloqueie cada nível. Cada um tem recompensas próprias.</p>
       </div>
     </div>
 
-    <div class="level-tabs">
-      <button class="level-tab active" data-level="all" onclick="switchLevel('all')">
-        <span class="dot"></span> Todos
-      </button>
-      <button class="level-tab" data-level="inic" onclick="switchLevel('inic')">
-        <span class="dot" style="background:#5eb55e"></span> Iniciante
-      </button>
-      <button class="level-tab" data-level="inter" onclick="switchLevel('inter')">
-        <span class="dot" style="background:var(--blue-300)"></span> Intermediário
-      </button>
-      <button class="level-tab" data-level="avanc" onclick="switchLevel('avanc')">
-        <span class="dot" style="background:var(--ruby-3)"></span> Avançado
-      </button>
-    </div>
+    <div class="ranks-showcase">
+      <div class="rank-card rk-iniciante current" id="rankIniciante">
+        <div class="rank-emblem"><i class="fas fa-seedling"></i></div>
+        <div class="rank-name">Iniciante</div>
+        <div class="rank-xp-req">0 – 499 XP</div>
+        <div class="rank-badge rank-badge-current">Você está aqui</div>
+      </div>
 
-    <div class="quick-grid" id="workoutsGrid"></div>
-  </section>
+      <div class="rank-card rk-bronze locked" id="rankBronze">
+        <div class="rank-emblem"><i class="fas fa-shield"></i></div>
+        <div class="rank-name">Bronze</div>
+        <div class="rank-xp-req">500 – 1.499 XP</div>
+        <div class="rank-badge rank-badge-locked">Bloqueado</div>
+      </div>
 
-  <!-- ===== LIGAS ===== -->
-  <section class="section" id="ligas">
-    <div class="section-head">
-      <div class="section-head-left">
-        <h2><i class="fas fa-trophy"></i> Divisões e Ligas</h2>
-        <p class="desc">Ganhe XP treinando e suba até a prestigiada Liga Rubi.</p>
+      <div class="rank-card rk-prata locked" id="rankPrata">
+        <div class="rank-emblem"><i class="fas fa-medal"></i></div>
+        <div class="rank-name">Prata</div>
+        <div class="rank-xp-req">1.500 – 3.499 XP</div>
+        <div class="rank-badge rank-badge-locked">Bloqueado</div>
+      </div>
+
+      <div class="rank-card rk-ouro locked" id="rankOuro">
+        <div class="rank-emblem"><i class="fas fa-crown"></i></div>
+        <div class="rank-name">Ouro</div>
+        <div class="rank-xp-req">3.500 – 6.999 XP</div>
+        <div class="rank-badge rank-badge-locked">Bloqueado</div>
+      </div>
+
+      <div class="rank-card rk-rubi locked" id="rankRubi">
+        <div class="rank-emblem"><i class="fas fa-gem"></i></div>
+        <div class="rank-name">Rubi</div>
+        <div class="rank-xp-req">7.000+ XP</div>
+        <div class="rank-badge rank-badge-locked">Bloqueado</div>
       </div>
     </div>
 
-    <div class="leagues-showcase">
-      <div class="league-card lg-bronze current">
-        <div class="league-emblem"><i class="fas fa-medal"></i></div>
-        <div class="league-name">Bronze</div>
-        <div class="league-xp-req">0 – 999 XP</div>
-        <div class="league-badge-current">Você está aqui</div>
+    <div class="rank-panel" id="rankPanel" style="--rank-glow: rgba(138, 138, 149, 0.15); --rank-fill-1: #5a5a66; --rank-fill-2: #8a8a95;">
+      <div class="current-emblem" style="background: radial-gradient(circle at 30% 30%, #8a8a95, #3a3a44);">
+        <i class="fas fa-seedling"></i>
       </div>
-
-      <div class="league-card lg-prata">
-        <div class="league-emblem"><i class="fas fa-medal"></i></div>
-        <div class="league-name">Prata</div>
-        <div class="league-xp-req">1.000 – 2.499 XP</div>
-        <div class="league-badge-locked">Bloqueada</div>
-      </div>
-
-      <div class="league-card lg-ouro">
-        <div class="league-emblem"><i class="fas fa-medal"></i></div>
-        <div class="league-name">Ouro</div>
-        <div class="league-xp-req">2.500 – 5.999 XP</div>
-        <div class="league-badge-locked">Bloqueada</div>
-      </div>
-
-      <div class="league-card lg-diamante">
-        <div class="league-emblem"><i class="fas fa-gem"></i></div>
-        <div class="league-name">Diamante</div>
-        <div class="league-xp-req">6.000 – 11.999 XP</div>
-        <div class="league-badge-locked">Bloqueada</div>
-      </div>
-
-      <div class="league-card lg-ruby">
-        <div class="league-emblem"><i class="fas fa-crown"></i></div>
-        <div class="league-name">Rubi</div>
-        <div class="league-xp-req">12.000+ XP</div>
-        <div class="league-badge-locked">Bloqueada</div>
-      </div>
-    </div>
-
-    <div class="league-panel" style="--league-glow-current: rgba(217, 154, 108, 0.15); --league-fill-1: var(--bronze-2); --league-fill-2: var(--bronze-3);">
-      <div class="current-emblem" style="background: radial-gradient(circle at 30% 30%, var(--bronze-3), var(--bronze-1));">
-        <i class="fas fa-medal"></i>
-      </div>
-      <div class="league-info">
-        <div class="league-division">Divisão atual</div>
-        <h3>Liga Bronze</h3>
-        <p class="sub">Termina em 4 dias · Você está em 3º lugar</p>
-        <div class="league-progress-row">
-          <div class="league-track"><div class="league-fill" id="leagueFill" style="width:42%"></div></div>
-          <div class="league-xp" id="leagueXp">420 / 1.000 XP</div>
+      <div class="rank-info">
+        <div class="rank-division">Nível atual</div>
+        <h3>Iniciante</h3>
+        <p class="sub">Complete exercícios para ganhar XP e subir de nível</p>
+        <div class="rank-progress-row">
+          <div class="rank-track"><div class="rank-fill" id="rankFill" style="width:84%"></div></div>
+          <div class="rank-xp" id="rankXp">420 / 500 XP</div>
         </div>
-        <div class="league-tip">
+        <div class="rank-tip">
           <i class="fas fa-info-circle"></i>
-          Faltam <strong id="xpNeeded">580 XP</strong> para alcançar a Liga Prata
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== CONQUISTAS ===== -->
-  <section class="section">
-    <div class="section-head">
-      <div class="section-head-left">
-        <h2><i class="fas fa-award"></i> Conquistas</h2>
-        <p class="desc">Marcos desbloqueados através de consistência e desempenho.</p>
-      </div>
-    </div>
-
-    <div class="ach-grid">
-      <div class="ach-card unlocked">
-        <div class="ach-medal"><i class="fas fa-fire"></i></div>
-        <div class="ach-body">
-          <h4>Primeira Ofensiva</h4>
-          <p>Complete 7 dias consecutivos</p>
-          <span class="ach-status">Desbloqueada</span>
-        </div>
-      </div>
-
-      <div class="ach-card">
-        <div class="ach-medal"><i class="fas fa-dumbbell"></i></div>
-        <div class="ach-body">
-          <h4>Rato de Academia</h4>
-          <p>Complete 10 treinos no total</p>
-          <span class="ach-status">8 / 10</span>
-        </div>
-      </div>
-
-      <div class="ach-card">
-        <div class="ach-medal"><i class="fas fa-gem"></i></div>
-        <div class="ach-body">
-          <h4>Disciplina Absoluta</h4>
-          <p>30 dias consecutivos de treino</p>
-          <span class="ach-status">12 / 30</span>
-        </div>
-      </div>
-
-      <div class="ach-card">
-        <div class="ach-medal"><i class="fas fa-crown"></i></div>
-        <div class="ach-body">
-          <h4>Lenda Rubi</h4>
-          <p>Alcance a Liga Rubi</p>
-          <span class="ach-status">Bloqueada</span>
+          Faltam <strong id="rankNeeded">80 XP</strong> para alcançar o nível Bronze
         </div>
       </div>
     </div>
@@ -1803,88 +1438,84 @@
 
 </div>
 
-<!-- ===== MODAL DE DIFICULDADE ===== -->
-<div class="modal-overlay" id="diffModal">
+<!-- ===== MODAL DE EXERCÍCIO ===== -->
+<div class="modal-overlay" id="exerciseModal">
   <div class="modal">
-    <div class="modal-close" onclick="closeDiffModal()"><i class="fas fa-xmark"></i></div>
-    <div class="modal-header-icon" id="diffModalIcon"><i class="fas fa-hand-fist"></i></div>
-    <h2 id="diffModalTitle">Treino de Braços</h2>
-    <p class="modal-sub" id="diffModalSub">Escolha o nível de dificuldade para este treino.</p>
-
-    <div class="difficulty-options">
-      <div class="diff-option" data-diff="inic" onclick="selectDiff('inic')">
-        <div class="diff-badge inic">I</div>
-        <div class="diff-body">
-          <h4>Iniciante</h4>
-          <p>Movimentos básicos com volume reduzido. Ideal para começar.</p>
-        </div>
-        <div class="diff-meta">
-          <div class="xp">+20 XP</div>
-          <div>15 min</div>
-        </div>
-      </div>
-
-      <div class="diff-option" data-diff="inter" onclick="selectDiff('inter')">
-        <div class="diff-badge inter">II</div>
-        <div class="diff-body">
-          <h4>Intermediário</h4>
-          <p>Exercícios compostos com mais volume e intensidade moderada.</p>
-        </div>
-        <div class="diff-meta">
-          <div class="xp">+40 XP</div>
-          <div>25 min</div>
-        </div>
-      </div>
-
-      <div class="diff-option" data-diff="avanc" onclick="selectDiff('avanc')">
-        <div class="diff-badge avanc">III</div>
-        <div class="diff-body">
-          <h4>Avançado</h4>
-          <p>Alta intensidade, variações difíceis e séries longas. Sem moleza.</p>
-        </div>
-        <div class="diff-meta">
-          <div class="xp">+80 XP</div>
-          <div>40 min</div>
-        </div>
-      </div>
+    <div class="modal-close" onclick="closeExerciseModal()"><i class="fas fa-xmark"></i></div>
+    
+    <div class="exercise-demo">
+      <div class="demo-badge"><span class="rec-dot"></span> Demonstração</div>
+      <div id="modalSvgContainer"></div>
     </div>
 
-    <div class="modal-actions">
-      <button class="btn btn-secondary" onclick="closeDiffModal()">
-        <i class="fas fa-xmark"></i> Cancelar
-      </button>
-      <button class="btn btn-primary" onclick="startSelectedWorkout()">
-        <i class="fas fa-play"></i> Iniciar treino
-      </button>
+    <div class="modal-body">
+      <h2 id="modalExTitle">Flexão padrão</h2>
+      <p class="modal-sub" id="modalExDesc">Exercício fundamental para peito, tríceps e ombros.</p>
+
+      <div class="exercise-info-grid">
+        <div class="exercise-info-item">
+          <div class="info-val" id="modalExReps">3x12</div>
+          <div class="info-lbl">Séries</div>
+        </div>
+        <div class="exercise-info-item">
+          <div class="info-val" id="modalExRest">45s</div>
+          <div class="info-lbl">Descanso</div>
+        </div>
+        <div class="exercise-info-item">
+          <div class="info-val" id="modalExXp">+15</div>
+          <div class="info-lbl">XP</div>
+        </div>
+      </div>
+
+      <div style="font-size: 12px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: var(--text-3); margin-bottom: 12px;">
+        Como executar
+      </div>
+
+      <div class="exercise-steps" id="modalExSteps"></div>
+
+      <div class="modal-actions">
+        <button class="btn btn-secondary" onclick="closeExerciseModal()">
+          <i class="fas fa-xmark"></i> Fechar
+        </button>
+        <button class="btn btn-primary" onclick="startExerciseFromModal()">
+          <i class="fas fa-play"></i> Iniciar exercício
+        </button>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- ===== MODAL DE TREINO ATIVO ===== -->
-<div class="modal-overlay" id="workoutModal">
+<!-- ===== MODAL DE TIMER / TREINO ===== -->
+<div class="modal-overlay" id="timerModal">
   <div class="modal">
-    <div class="modal-close" onclick="closeWorkout()"><i class="fas fa-xmark"></i></div>
-    <div class="modal-header-icon" id="modalIcon"><i class="fas fa-dumbbell"></i></div>
-    <h2 id="modalTitle">Treino Diário</h2>
-    <div class="modal-sub" id="modalSub">Prepare-se. Complete as séries com boa forma.</div>
-
-    <div class="timer-box">
-      <div class="timer-time" id="modalTimer">00:45</div>
-      <div class="timer-phase" id="modalPhase">Série 1 de 4 · Flexões</div>
+    <div class="modal-close" onclick="closeTimer()"><i class="fas fa-xmark"></i></div>
+    
+    <div class="exercise-demo" style="height: 200px;">
+      <div class="demo-badge"><span class="rec-dot"></span> Em execução</div>
+      <div id="timerSvgContainer"></div>
     </div>
 
-    <div class="exercise-box">
-      <div class="exercise-name" id="modalExercise">Flexão com pausa</div>
-      <div class="exercise-detail" id="modalExerciseDetail">Mantenha o core firme e desça controlado.</div>
-    </div>
+    <div class="modal-body">
+      <h2 id="timerTitle">Flexão padrão</h2>
+      <p class="modal-sub" id="timerSub">Série 1 de 3 · 12 repetições</p>
 
-    <div class="modal-actions">
-      <button class="btn btn-secondary" onclick="closeWorkout()">
-        <i class="fas fa-xmark"></i> Sair
-      </button>
-      <button class="btn btn-primary" onclick="completeWorkout()">
-        <i class="fas fa-check"></i> Concluir
-      </button>
+      <div class="timer-box">
+        <div class="timer-time" id="timerDisplay">00:45</div>
+        <div class="timer-phase" id="timerPhase">DESCANSO</div>
+        <div class="timer-progress">
+          <div class="timer-progress-fill" id="timerProgressFill" style="width: 0%"></div>
+        </div>
+        <div class="timer-reps" id="timerReps">Prepare-se para a próxima série</div>
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn btn-secondary" onclick="closeTimer()">
+          <i class="fas fa-xmark"></i> Sair
+        </button>
+        <button class="btn btn-primary" onclick="finishExercise()">
+          <i class="fas fa-check"></i> Concluir
+        </button>
+      </div>
     </div>
   </div>
 </div>
@@ -1894,7 +1525,7 @@
   <div class="toast-icon" id="toastIcon"><i class="fas fa-check"></i></div>
   <div class="toast-content">
     <div class="toast-title" id="toastTitle">Treino concluído</div>
-    <div class="toast-sub" id="toastSub">+30 XP · +15 moedas</div>
+    <div class="toast-sub" id="toastSub">+15 XP · +8 moedas</div>
   </div>
 </div>
 
@@ -1920,21 +1551,364 @@
     coins: 320,
     streak: 12,
     xp: 420,
-    workouts: 8,
-    monthDay: new Date().getDate(),
-    monthProgress: [1,2,3,4,5,8,9,10,11,12,15,16,17,18,19,22,23,24,25,26,29,30],
-    completedDays: [1,2,3,4,5,8,9,10,11,12,15,16,17,18],
+    workouts: 8
   };
 
-  // XP máximo de cada liga
-  const leagueXP = {
-    bronze: 0,
-    prata: 1000,
-    ouro: 2500,
-    diamante: 6000,
-    ruby: 12000
+  // ===== NÍVEIS (RANKS) =====
+  const ranks = [
+    { key: 'iniciante', name: 'Iniciante', icon: 'fa-seedling', min: 0, max: 499, cls: 'rk-iniciante', fill1: '#5a5a66', fill2: '#8a8a95', glow: 'rgba(138, 138, 149, 0.15)' },
+    { key: 'bronze', name: 'Bronze', icon: 'fa-shield', min: 500, max: 1499, cls: 'rk-bronze', fill1: '#5a3823', fill2: '#a5714a', glow: 'rgba(217, 154, 108, 0.15)' },
+    { key: 'prata', name: 'Prata', icon: 'fa-medal', min: 1500, max: 3499, cls: 'rk-prata', fill1: '#4a4f57', fill2: '#8a9099', glow: 'rgba(200, 205, 212, 0.15)' },
+    { key: 'ouro', name: 'Ouro', icon: 'fa-crown', min: 3500, max: 6999, cls: 'rk-ouro', fill1: '#6b4d10', fill2: '#c9962b', glow: 'rgba(240, 196, 69, 0.18)' },
+    { key: 'rubi', name: 'Rubi', icon: 'fa-gem', min: 7000, max: 999999, cls: 'rk-rubi', fill1: '#5c0e1a', fill2: '#b81e35', glow: 'rgba(240, 67, 92, 0.2)' }
+  ];
+
+  // ===== SVGs ANIMADOS (bonecos palito) =====
+  const svgs = {
+    // Flexão padrão
+    pushup: `
+      <svg class="exercise-svg anim-pushup" viewBox="0 0 200 200">
+        <ellipse class="fill-primary" cx="100" cy="180" rx="80" ry="6"/>
+        <!-- chão -->
+        <line x1="30" y1="175" x2="170" y2="175" stroke="#3d7bc8" stroke-width="1" opacity="0.3"/>
+        <!-- corpo (torso) - anima subindo e descendo -->
+        <g class="torso">
+          <circle cx="150" cy="105" r="10"/>
+          <line x1="140" y1="110" x2="75" y2="130"/>
+        </g>
+        <!-- braços -->
+        <line x1="140" y1="112" x2="130" y2="175"/>
+        <line x1="140" y1="112" x2="155" y2="175"/>
+        <!-- pernas -->
+        <line x1="75" y1="130" x2="45" y2="155"/>
+        <line x1="45" y1="155" x2="40" y2="175"/>
+        <line x1="45" y1="155" x2="55" y2="175"/>
+        <!-- indicador de movimento -->
+        <polyline points="105,90 105,120" stroke="#5e97dd" stroke-width="1.5" stroke-dasharray="3 3" opacity="0.5">
+          <animate attributeName="opacity" values="0.5;0.1;0.5" dur="2s" repeatCount="indefinite"/>
+        </polyline>
+      </svg>
+    `,
+    // Flexão diamante
+    diamond: `
+      <svg class="exercise-svg anim-pushup" viewBox="0 0 200 200">
+        <ellipse class="fill-primary" cx="100" cy="180" rx="80" ry="6"/>
+        <line x1="30" y1="175" x2="170" y2="175" stroke="#3d7bc8" stroke-width="1" opacity="0.3"/>
+        <g class="torso">
+          <circle cx="150" cy="105" r="10"/>
+          <line x1="140" y1="110" x2="75" y2="130"/>
+        </g>
+        <!-- braços juntos (diamante) -->
+        <polyline points="140,115 145,175 155,175 140,120"/>
+        <line x1="75" y1="130" x2="45" y2="155"/>
+        <line x1="45" y1="155" x2="40" y2="175"/>
+        <line x1="45" y1="155" x2="55" y2="175"/>
+        <polygon points="145,175 155,175 150,165" fill="#5e97dd" opacity="0.4"/>
+      </svg>
+    `,
+    // Flexão archer
+    archer: `
+      <svg class="exercise-svg anim-pushup" viewBox="0 0 200 200">
+        <ellipse class="fill-primary" cx="100" cy="180" rx="80" ry="6"/>
+        <line x1="30" y1="175" x2="170" y2="175" stroke="#3d7bc8" stroke-width="1" opacity="0.3"/>
+        <g class="torso">
+          <circle cx="150" cy="105" r="10"/>
+          <line x1="140" y1="110" x2="75" y2="130"/>
+        </g>
+        <!-- braço esquerdo estendido (archer) -->
+        <line x1="140" y1="112" x2="110" y2="175"/>
+        <!-- braço direito dobrado -->
+        <line x1="140" y1="112" x2="165" y2="150"/>
+        <line x1="165" y1="150" x2="155" y2="175"/>
+        <line x1="75" y1="130" x2="45" y2="155"/>
+        <line x1="45" y1="155" x2="40" y2="175"/>
+        <line x1="45" y1="155" x2="55" y2="175"/>
+      </svg>
+    `,
+    // Flexão explosiva
+    explosive: `
+      <svg class="exercise-svg" viewBox="0 0 200 200">
+        <ellipse class="fill-primary" cx="100" cy="180" rx="80" ry="6"/>
+        <line x1="30" y1="175" x2="170" y2="175" stroke="#3d7bc8" stroke-width="1" opacity="0.3"/>
+        <g>
+          <circle cx="150" cy="105" r="10">
+            <animate attributeName="cy" values="105;75;105" dur="1.5s" repeatCount="indefinite"/>
+            <animate attributeName="cx" values="150;155;150" dur="1.5s" repeatCount="indefinite"/>
+          </circle>
+          <line x1="140" y1="110" x2="75" y2="130">
+            <animate attributeName="y1" values="110;80;110" dur="1.5s" repeatCount="indefinite"/>
+            <animate attributeName="y2" values="130;100;130" dur="1.5s" repeatCount="indefinite"/>
+          </line>
+        </g>
+        <line x1="140" y1="112" x2="130" y2="175">
+          <animate attributeName="y1" values="112;82;112" dur="1.5s" repeatCount="indefinite"/>
+        </line>
+        <line x1="140" y1="112" x2="155" y2="175">
+          <animate attributeName="y1" values="112;82;112" dur="1.5s" repeatCount="indefinite"/>
+        </line>
+        <line x1="75" y1="130" x2="45" y2="155">
+          <animate attributeName="y1" values="130;100;130" dur="1.5s" repeatCount="indefinite"/>
+        </line>
+        <line x1="45" y1="155" x2="40" y2="175"/>
+        <line x1="45" y1="155" x2="55" y2="175"/>
+        <!-- partículas de explosão -->
+        <circle cx="100" cy="140" r="2" fill="#5e97dd" opacity="0">
+          <animate attributeName="opacity" values="0;1;0" dur="1.5s" repeatCount="indefinite"/>
+          <animate attributeName="cy" values="140;110;140" dur="1.5s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="120" cy="150" r="2" fill="#5e97dd" opacity="0">
+          <animate attributeName="opacity" values="0;1;0" dur="1.5s" begin="0.2s" repeatCount="indefinite"/>
+        </circle>
+      </svg>
+    `,
+    // Tríceps banco
+    triceps: `
+      <svg class="exercise-svg" viewBox="0 0 200 200">
+        <ellipse class="fill-primary" cx="100" cy="180" rx="80" ry="6"/>
+        <line x1="30" y1="175" x2="170" y2="175" stroke="#3d7bc8" stroke-width="1" opacity="0.3"/>
+        <!-- banco -->
+        <rect x="110" y="140" width="60" height="8" rx="2" fill="none" stroke="#5e97dd" stroke-width="2"/>
+        <line x1="115" y1="148" x2="115" y2="175"/>
+        <line x1="165" y1="148" x2="165" y2="175"/>
+        <!-- corpo -->
+        <g>
+          <circle cx="80" cy="90" r="10">
+            <animate attributeName="cy" values="90;125;90" dur="2s" repeatCount="indefinite"/>
+          </circle>
+          <line x1="80" y1="100" x2="110" y2="140">
+            <animate attributeName="y2" values="140;155;140" dur="2s" repeatCount="indefinite"/>
+          </line>
+          <!-- braços atrás no banco -->
+          <line x1="80" y1="100" x2="115" y2="148">
+            <animate attributeName="y1" values="100;135;100" dur="2s" repeatCount="indefinite"/>
+            <animate attributeName="y2" values="148;148;148" dur="2s" repeatCount="indefinite"/>
+          </line>
+          <!-- pernas estendidas -->
+          <line x1="110" y1="140" x2="60" y2="160">
+            <animate attributeName="y1" values="140;155;140" dur="2s" repeatCount="indefinite"/>
+          </line>
+          <line x1="60" y1="160" x2="40" y2="175"/>
+        </g>
+      </svg>
+    `,
+    // Flexão pike
+    pike: `
+      <svg class="exercise-svg" viewBox="0 0 200 200">
+        <ellipse class="fill-primary" cx="100" cy="180" rx="80" ry="6"/>
+        <line x1="30" y1="175" x2="170" y2="175" stroke="#3d7bc8" stroke-width="1" opacity="0.3"/>
+        <g>
+          <!-- cabeça -->
+          <circle cx="100" cy="120" r="10">
+            <animate attributeName="cy" values="120;150;120" dur="2s" repeatCount="indefinite"/>
+          </circle>
+          <!-- tronco em V -->
+          <line x1="100" y1="130" x2="60" y2="160">
+            <animate attributeName="y1" values="130;160;130" dur="2s" repeatCount="indefinite"/>
+            <animate attributeName="y2" values="160;175;160" dur="2s" repeatCount="indefinite"/>
+          </line>
+          <line x1="100" y1="130" x2="140" y2="160">
+            <animate attributeName="y1" values="130;160;130" dur="2s" repeatCount="indefinite"/>
+            <animate attributeName="y2" values="160;175;160" dur="2s" repeatCount="indefinite"/>
+          </line>
+          <!-- braços -->
+          <line x1="100" y1="135" x2="80" y2="175"/>
+          <line x1="100" y1="135" x2="120" y2="175"/>
+          <!-- pernas -->
+          <line x1="60" y1="160" x2="40" y2="175"/>
+          <line x1="140" y1="160" x2="160" y2="175"/>
+        </g>
+      </svg>
+    `,
+    // Mergulho entre cadeiras
+    dips: `
+      <svg class="exercise-svg" viewBox="0 0 200 200">
+        <ellipse class="fill-primary" cx="100" cy="180" rx="80" ry="6"/>
+        <line x1="30" y1="175" x2="170" y2="175" stroke="#3d7bc8" stroke-width="1" opacity="0.3"/>
+        <!-- duas cadeiras -->
+        <rect x="30" y="140" width="40" height="8" rx="2" fill="none" stroke="#5e97dd" stroke-width="2"/>
+        <line x1="35" y1="148" x2="35" y2="175"/>
+        <line x1="65" y1="148" x2="65" y2="175"/>
+        
+        <rect x="130" y="140" width="40" height="8" rx="2" fill="none" stroke="#5e97dd" stroke-width="2"/>
+        <line x1="135" y1="148" x2="135" y2="175"/>
+        <line x1="165" y1="148" x2="165" y2="175"/>
+        
+        <!-- corpo entre as cadeiras -->
+        <g>
+          <circle cx="100" cy="80" r="10">
+            <animate attributeName="cy" values="80;115;80" dur="2s" repeatCount="indefinite"/>
+          </circle>
+          <line x1="100" y1="90" x2="100" y2="120">
+            <animate attributeName="y2" values="120;155;120" dur="2s" repeatCount="indefinite"/>
+          </line>
+          <!-- braços apoiados nas cadeiras -->
+          <line x1="100" y1="95" x2="50" y2="140">
+            <animate attributeName="y1" values="95;130;95" dur="2s" repeatCount="indefinite"/>
+          </line>
+          <line x1="100" y1="95" x2="150" y2="140">
+            <animate attributeName="y1" values="95;130;95" dur="2s" repeatCount="indefinite"/>
+          </line>
+          <!-- pernas -->
+          <line x1="100" y1="120" x2="100" y2="175">
+            <animate attributeName="y1" values="120;155;120" dur="2s" repeatCount="indefinite"/>
+          </line>
+        </g>
+      </svg>
+    `,
+    // Flexão uma mão (assistida)
+    onearm: `
+      <svg class="exercise-svg anim-pushup" viewBox="0 0 200 200">
+        <ellipse class="fill-primary" cx="100" cy="180" rx="80" ry="6"/>
+        <line x1="30" y1="175" x2="170" y2="175" stroke="#3d7bc8" stroke-width="1" opacity="0.3"/>
+        <g class="torso">
+          <circle cx="150" cy="105" r="10"/>
+          <line x1="140" y1="110" x2="75" y2="130"/>
+        </g>
+        <!-- braço único estendido -->
+        <line x1="140" y1="112" x2="130" y2="175"/>
+        <!-- outro braço atrás das costas -->
+        <line x1="140" y1="112" x2="110" y2="105"/>
+        <!-- pernas afastadas -->
+        <line x1="75" y1="130" x2="45" y2="160"/>
+        <line x1="45" y1="160" x2="35" y2="175"/>
+        <line x1="45" y1="160" x2="55" y2="175"/>
+      </svg>
+    `
   };
 
+  // ===== EXERCÍCIOS DE BRAÇO =====
+  const exercises = [
+    {
+      id: 'pushup',
+      name: 'Flexão padrão',
+      tag: 'Base',
+      desc: 'Exercício fundamental para peito, tríceps e ombros.',
+      reps: '3x12',
+      rest: '45s',
+      xp: 15,
+      coins: 8,
+      svg: 'pushup',
+      steps: [
+        'Mãos na largura dos ombros, corpo reto como uma prancha.',
+        'Desça o peito controladamente até quase tocar o chão.',
+        'Empurre de volta estendendo os braços, sem travar os cotovelos.'
+      ]
+    },
+    {
+      id: 'diamond',
+      name: 'Flexão diamante',
+      tag: 'Tríceps',
+      desc: 'Foco total no tríceps. Mãos juntas formando um diamante.',
+      reps: '3x10',
+      rest: '50s',
+      xp: 18,
+      coins: 9,
+      svg: 'diamond',
+      steps: [
+        'Junte as mãos embaixo do peito formando um diamante com os indicadores e polegares.',
+        'Desça mantendo os cotovelos próximos ao corpo.',
+        'Empurre de volta com força, contraindo o tríceps no topo.'
+      ]
+    },
+    {
+      id: 'archer',
+      name: 'Flexão archer',
+      tag: 'Força',
+      desc: 'Transferência de peso para um lado. Prepara para a uma mão.',
+      reps: '3x8 cada',
+      rest: '60s',
+      xp: 25,
+      coins: 12,
+      svg: 'archer',
+      steps: [
+        'Mãos bem afastadas, uma mais larga que a outra.',
+        'Desça o corpo em direção ao braço dobrado.',
+        'O braço oposto permanece estendido durante todo o movimento.'
+      ]
+    },
+    {
+      id: 'explosive',
+      name: 'Flexão explosiva',
+      tag: 'Potência',
+      desc: 'Empurre com força suficiente para as mãos saírem do chão.',
+      reps: '4x6',
+      rest: '75s',
+      xp: 30,
+      coins: 15,
+      svg: 'explosive',
+      steps: [
+        'Comece na posição de flexão padrão.',
+        'Desça controlado e empurre explosivamente.',
+        'Tire as mãos do chão por um instante e aterrisse suave.'
+      ]
+    },
+    {
+      id: 'triceps',
+      name: 'Tríceps no banco',
+      tag: 'Tríceps',
+      desc: 'Use uma cadeira firme para isolar o tríceps.',
+      reps: '3x15',
+      rest: '45s',
+      xp: 15,
+      coins: 8,
+      svg: 'triceps',
+      steps: [
+        'Mãos na beirada da cadeira, costas próximas a ela.',
+        'Pernas estendidas à frente, desça flexionando os cotovelos.',
+        'Suba contraindo o tríceps, sem travar os cotovelos no topo.'
+      ]
+    },
+    {
+      id: 'pike',
+      name: 'Flexão pike',
+      tag: 'Ombros',
+      desc: 'Foco nos ombros. Quadril elevado como um V invertido.',
+      reps: '3x10',
+      rest: '50s',
+      xp: 18,
+      coins: 9,
+      svg: 'pike',
+      steps: [
+        'Em posição de flexão, eleve o quadril para formar um V.',
+        'Desça a cabeça em direção ao chão entre as mãos.',
+        'Empurre de volta contraindo os ombros.'
+      ]
+    },
+    {
+      id: 'dips',
+      name: 'Mergulho entre cadeiras',
+      tag: 'Peito',
+      desc: 'Duas cadeiras firmes como apoio. Amplitude total.',
+      reps: '3x12',
+      rest: '60s',
+      xp: 22,
+      coins: 11,
+      svg: 'dips',
+      steps: [
+        'Apoie as mãos em duas cadeiras firmes, um de cada lado.',
+        'Desça o corpo flexionando os cotovelos até sentir alongar.',
+        'Empurre de volta contraindo o peito e o tríceps.'
+      ]
+    },
+    {
+      id: 'onearm',
+      name: 'Flexão uma mão assistida',
+      tag: 'Avançado',
+      desc: 'Preparação para a flexão uma mão completa.',
+      reps: '3x5 cada',
+      rest: '90s',
+      xp: 40,
+      coins: 20,
+      svg: 'onearm',
+      steps: [
+        'Uma mão no chão, outra apoiada levemente ao lado.',
+        'Pernas afastadas para dar estabilidade.',
+        'Desça controlado e empurre com força usando a mão principal.'
+      ]
+    }
+  ];
+
+  // ===== REFERÊNCIAS DOM =====
   const $ = (id) => document.getElementById(id);
   const ui = {
     navCoins: $('navCoins'),
@@ -1943,173 +1917,35 @@
     statXp: $('statXp'),
     statWorkouts: $('statWorkouts'),
     heroStreak: $('heroStreak'),
-    leagueFill: $('leagueFill'),
-    leagueXp: $('leagueXp'),
-    xpNeeded: $('xpNeeded'),
-    progDone: $('progDone'),
-    progRemaining: $('progRemaining'),
-    progPct: $('progPct'),
-    monthGrid: $('monthGrid'),
-    workoutsGrid: $('workoutsGrid'),
-    diffModal: $('diffModal'),
-    diffModalIcon: $('diffModalIcon'),
-    diffModalTitle: $('diffModalTitle'),
-    diffModalSub: $('diffModalSub'),
-    workoutModal: $('workoutModal'),
-    modalTitle: $('modalTitle'),
-    modalSub: $('modalSub'),
-    modalIcon: $('modalIcon'),
-    modalTimer: $('modalTimer'),
-    modalPhase: $('modalPhase'),
-    modalExercise: $('modalExercise'),
-    modalExerciseDetail: $('modalExerciseDetail'),
+    exerciseGrid: $('exerciseGrid'),
+    bracoCount: $('bracoCount'),
+    exerciseModal: $('exerciseModal'),
+    modalExTitle: $('modalExTitle'),
+    modalExDesc: $('modalExDesc'),
+    modalExReps: $('modalExReps'),
+    modalExRest: $('modalExRest'),
+    modalExXp: $('modalExXp'),
+    modalExSteps: $('modalExSteps'),
+    modalSvgContainer: $('modalSvgContainer'),
+    timerModal: $('timerModal'),
+    timerTitle: $('timerTitle'),
+    timerSub: $('timerSub'),
+    timerDisplay: $('timerDisplay'),
+    timerPhase: $('timerPhase'),
+    timerProgressFill: $('timerProgressFill'),
+    timerReps: $('timerReps'),
+    timerSvgContainer: $('timerSvgContainer'),
     toast: $('toast'),
     toastTitle: $('toastTitle'),
     toastSub: $('toastSub'),
-    toastIcon: $('toastIcon')
+    toastIcon: $('toastIcon'),
+    rankFill: $('rankFill'),
+    rankXp: $('rankXp'),
+    rankNeeded: $('rankNeeded'),
+    rankPanel: $('rankPanel')
   };
 
-  // ===== TREINOS =====
-  const workouts = {
-    braco: {
-      title: 'Treino de Braços',
-      icon: 'fa-hand-fist',
-      sub: 'Foco em flexões, tríceps e força de empurrar.',
-      levels: {
-        inic: {
-          xp: 20, coins: 10, duration: 15,
-          exercises: [
-            { name: 'Flexão na parede', detail: 'Em pé, incline-se para a parede e flexione.' },
-            { name: 'Flexão de joelhos', detail: 'Joelhos no chão, corpo alinhado.' },
-            { name: 'Tríceps banco', detail: 'Use uma cadeira firme como apoio.' }
-          ]
-        },
-        inter: {
-          xp: 40, coins: 20, duration: 25,
-          exercises: [
-            { name: 'Flexão padrão', detail: 'Corpo alinhado, desça controlado.' },
-            { name: 'Flexão diamante', detail: 'Mãos juntas, foco no tríceps.' },
-            { name: 'Flexão archer', detail: 'Peso de um lado, alternando.' },
-            { name: 'Mergulho entre cadeiras', detail: 'Use duas cadeiras firmes como apoio.' }
-          ]
-        },
-        avanc: {
-          xp: 80, coins: 40, duration: 40,
-          exercises: [
-            { name: 'Flexão explosiva', detail: 'Empurre forte para tirar as mãos do chão.' },
-            { name: 'Flexão archer completa', detail: 'Um braço estendido, outro flexionando.' },
-            { name: 'Flexão pike', detail: 'Quadril elevado, foco no ombro.' },
-            { name: 'Flexão uma mão assistida', detail: 'Uma mão no chão, outra no pulso.' },
-            { name: 'Mergulho profundo', detail: 'Amplitude total, sem travar no topo.' }
-          ]
-        }
-      }
-    },
-    abdomen: {
-      title: 'Treino de Abdômen',
-      icon: 'fa-shield-halved',
-      sub: 'Core, pranchas e estabilidade abdominal.',
-      levels: {
-        inic: {
-          xp: 20, coins: 10, duration: 15,
-          exercises: [
-            { name: 'Prancha frontal', detail: '20-30 segundos, quadril firme.' },
-            { name: 'Abdominal curto', detail: 'Elevação leve da cabeça e ombros.' },
-            { name: 'Dead bug', detail: 'Braço e perna opostos, lombar no chão.' }
-          ]
-        },
-        inter: {
-          xp: 40, coins: 20, duration: 25,
-          exercises: [
-            { name: 'Prancha lateral', detail: 'Quadril elevado, corpo alinhado.' },
-            { name: 'Hollow hold', detail: 'Lombar colada, pernas e braços estendidos.' },
-            { name: 'Elevação de pernas', detail: 'Sem arquear a lombar.' },
-            { name: 'Bicicleta no ar', detail: 'Ritmo controlado, respiração constante.' }
-          ]
-        },
-        avanc: {
-          xp: 80, coins: 40, duration: 40,
-          exercises: [
-            { name: 'Dragon flag', detail: 'Segure em superfície firme, corpo estendido.' },
-            { name: 'Prancha com toque no ombro', detail: 'Alterne as mãos mantendo o quadril firme.' },
-            { name: 'V-up completo', detail: 'Pernas e tronco sobem ao mesmo tempo.' },
-            { name: 'Hollow rock', detail: 'Balanço controlado mantendo o corpo firme.' },
-            { name: 'Prancha uma mão', detail: 'Pés afastados, equilíbrio extremo.' }
-          ]
-        }
-      }
-    },
-    perna: {
-      title: 'Treino de Pernas',
-      icon: 'fa-person-running',
-      sub: 'Agachamentos, afundos e força de glúteos.',
-      levels: {
-        inic: {
-          xp: 20, coins: 10, duration: 15,
-          exercises: [
-            { name: 'Agachamento livre', detail: 'Pés na largura dos ombros, desça controlado.' },
-            { name: 'Afundo estático', detail: 'Uma perna à frente, desça reto.' },
-            { name: 'Elevação de panturrilha', detail: 'Suba na ponta dos pés e desça devagar.' }
-          ]
-        },
-        inter: {
-          xp: 40, coins: 20, duration: 25,
-          exercises: [
-            { name: 'Agachamento búlgaro', detail: 'Pé de trás elevado em cadeira.' },
-            { name: 'Afundo caminhando', detail: 'Amplitude total, tronco ereto.' },
-            { name: 'Agachamento sumô', detail: 'Pés afastados, joelhos para fora.' },
-            { name: 'Ponte de glúteo', detail: 'Quadril sobe contraindo os glúteos.' }
-          ]
-        },
-        avanc: {
-          xp: 80, coins: 40, duration: 40,
-          exercises: [
-            { name: 'Pistol squat assistido', detail: 'Uma perna, apoio leve para equilíbrio.' },
-            { name: 'Agachamento explosivo', detail: 'Salto na subida, aterrissagem suave.' },
-            { name: 'Afundo com salto', detail: 'Troca de pernas no ar.' },
-            { name: 'Pistol squat completo', detail: 'Sem apoio, uma perna por vez.' },
-            { name: 'Elevação nórdica', detail: 'Pés fixos, corpo cai controlado.' }
-          ]
-        }
-      }
-    },
-    fullbody: {
-      title: 'Treino Full Body',
-      icon: 'fa-dumbbell',
-      sub: 'Corpo inteiro em uma única sessão equilibrada.',
-      levels: {
-        inic: {
-          xp: 25, coins: 12, duration: 20,
-          exercises: [
-            { name: 'Agachamento livre', detail: 'Ritmo constante, respire.' },
-            { name: 'Flexão de joelhos', detail: 'Foco na descida controlada.' },
-            { name: 'Prancha frontal', detail: '20-30 segundos, quadril firme.' }
-          ]
-        },
-        inter: {
-          xp: 45, coins: 22, duration: 30,
-          exercises: [
-            { name: 'Flexão padrão', detail: 'Corpo alinhado, desça controlado.' },
-            { name: 'Agachamento búlgaro', detail: 'Pé de trás em cadeira, desça reto.' },
-            { name: 'Prancha lateral', detail: 'Quadril elevado, corpo alinhado.' },
-            { name: 'Afundo caminhando', detail: 'Amplitude máxima, tronco ereto.' }
-          ]
-        },
-        avanc: {
-          xp: 90, coins: 45, duration: 45,
-          exercises: [
-            { name: 'Flexão explosiva', detail: 'Empurre forte, mãos fora do chão.' },
-            { name: 'Pistol squat assistido', detail: 'Uma perna, apoio leve.' },
-            { name: 'Dragon flag', detail: 'Corpo estendido, controle total.' },
-            { name: 'Burpee', detail: 'Flexão + salto em um só movimento.' },
-            { name: 'Flexão archer', detail: 'Peso alternado entre os braços.' }
-          ]
-        }
-      }
-    }
-  };
-
-  // ===== UI UPDATE =====
+  // ===== UPDATE UI =====
   function updateUI() {
     ui.navCoins.textContent = state.coins;
     ui.statCoins.textContent = state.coins;
@@ -2118,19 +1954,68 @@
     ui.statWorkouts.textContent = state.workouts;
     ui.heroStreak.textContent = state.streak + ' dias';
 
-    // Liga
-    const nextXP = leagueXP.prata;
-    const pct = Math.min(100, (state.xp / nextXP) * 100);
-    ui.leagueFill.style.width = pct + '%';
-    ui.leagueXp.textContent = `${state.xp} / ${nextXP} XP`;
-    ui.xpNeeded.textContent = Math.max(0, nextXP - state.xp) + ' XP';
+    // Rank atual
+    const currentRank = getCurrentRank();
+    const nextRank = getNextRank(currentRank);
+    const pct = nextRank ? Math.min(100, ((state.xp - currentRank.min) / (nextRank.min - currentRank.min)) * 100) : 100;
+    
+    ui.rankFill.style.width = pct + '%';
+    ui.rankFill.style.background = `linear-gradient(90deg, ${currentRank.fill1}, ${currentRank.fill2})`;
+    ui.rankFill.style.boxShadow = `0 0 16px ${currentRank.glow}`;
+    
+    if (nextRank) {
+      ui.rankXp.textContent = `${state.xp} / ${nextRank.min} XP`;
+      ui.rankNeeded.textContent = (nextRank.min - state.xp) + ' XP';
+    } else {
+      ui.rankXp.textContent = `${state.xp} XP (máximo)`;
+      ui.rankNeeded.textContent = 'Nível máximo';
+    }
+    
+    ui.rankPanel.style.setProperty('--rank-glow', currentRank.glow);
+    
+    // Atualizar cards de rank
+    updateRankCards();
+  }
 
-    // Programa mensal
-    const total = state.monthProgress.length;
-    const done = state.completedDays.length;
-    ui.progDone.textContent = done;
-    ui.progRemaining.textContent = total - done;
-    ui.progPct.textContent = Math.round((done / total) * 100) + '%';
+  function getCurrentRank() {
+    for (let i = ranks.length - 1; i >= 0; i--) {
+      if (state.xp >= ranks[i].min) return ranks[i];
+    }
+    return ranks[0];
+  }
+
+  function getNextRank(current) {
+    const idx = ranks.findIndex(r => r.key === current.key);
+    return idx < ranks.length - 1 ? ranks[idx + 1] : null;
+  }
+
+  function updateRankCards() {
+    const currentRank = getCurrentRank();
+    
+    ranks.forEach(rank => {
+      const card = document.getElementById('rank' + rank.name);
+      if (!card) return;
+      
+      const badge = card.querySelector('.rank-badge');
+      const isCurrent = rank.key === currentRank.key;
+      const isUnlocked = state.xp >= rank.min;
+      
+      card.classList.remove('current', 'locked');
+      badge.className = 'rank-badge';
+      
+      if (isCurrent) {
+        card.classList.add('current');
+        badge.classList.add('rank-badge-current');
+        badge.textContent = 'Você está aqui';
+      } else if (isUnlocked) {
+        badge.classList.add('rank-badge-unlocked');
+        badge.textContent = 'Desbloqueado';
+      } else {
+        card.classList.add('locked');
+        badge.classList.add('rank-badge-locked');
+        badge.textContent = 'Bloqueado';
+      }
+    });
   }
 
   // ===== TOAST =====
@@ -2176,276 +2061,208 @@
     success: () => playTone([523, 659, 784], 'sine', 0.15),
     coin: () => playTone([988, 1175], 'square', 0.08, 0.06),
     streak: () => playTone([440, 554, 659], 'triangle', 0.12),
-    lock: () => playTone([220, 180], 'sawtooth', 0.1, 0.05)
+    lock: () => playTone([220, 180], 'sawtooth', 0.1, 0.05),
+    tick: () => playTone([880], 'sine', 0.05, 0.04)
   };
 
-  // ===== RENDER CALENDÁRIO =====
-  function renderMonth() {
-    const grid = ui.monthGrid;
-    grid.innerHTML = '';
+  // ===== RENDER EXERCÍCIOS =====
+  function renderExercises() {
+    ui.exerciseGrid.innerHTML = '';
+    ui.bracoCount.textContent = exercises.length;
     
-    const dayNames = ['DOM', 'SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SÁB'];
-    const today = new Date();
-    const currentDay = today.getDate();
-    
-    for (let day = 1; day <= 30; day++) {
-      const cell = document.createElement('div');
-      cell.className = 'day-cell';
+    exercises.forEach((ex, idx) => {
+      const card = document.createElement('div');
+      card.className = 'exercise-card fade-in';
+      card.style.animationDelay = (idx * 0.05) + 's';
       
-      const isDone = state.completedDays.includes(day);
-      const isToday = day === currentDay;
-      const isRest = !state.monthProgress.includes(day);
-      
-      if (isDone) cell.classList.add('done');
-      if (isToday) cell.classList.add('today');
-      if (isRest) cell.classList.add('rest');
-      
-      // Dia da semana (baseado em 1º de novembro de 2025 que é sábado)
-      const dayOfWeek = ((day - 1 + 6) % 7);
-      const label = dayNames[dayOfWeek];
-      
-      cell.innerHTML = `
-        <div class="day-num">${String(day).padStart(2, '0')}</div>
-        ${!isRest ? `<div class="day-label">${label}</div>` : ''}
+      card.innerHTML = `
+        <div class="exercise-preview">
+          ${svgs[ex.svg] || svgs.pushup}
+        </div>
+        <div class="exercise-card-body">
+          <h4>
+            <span>${ex.name}</span>
+            <span class="ex-tag">${ex.tag}</span>
+          </h4>
+          <p>${ex.desc}</p>
+          <div class="exercise-meta">
+            <div class="exercise-meta-item"><i class="fas fa-layer-group"></i> ${ex.reps}</div>
+            <div class="exercise-meta-item"><i class="fas fa-clock"></i> ${ex.rest}</div>
+            <div class="exercise-meta-item"><i class="fas fa-bolt"></i> +${ex.xp} XP</div>
+          </div>
+        </div>
       `;
       
-      cell.addEventListener('click', () => {
-        if (isRest) {
-          showToast('Dia de descanso', 'Aproveite para recuperar o corpo.', 'lock');
-          sounds.lock();
-          return;
-        }
-        if (isDone) {
-          showToast('Treino já concluído', 'Continue para o próximo dia.', 'check');
-          return;
-        }
-        openMuscleGroup('fullbody');
-      });
-      
-      grid.appendChild(cell);
-    }
-  }
-
-  // ===== RENDER TREINOS =====
-  let currentFilter = 'all';
-  
-  function renderWorkouts() {
-    const grid = ui.workoutsGrid;
-    grid.innerHTML = '';
-    
-    const workoutList = [
-      { key: 'braco', icon: 'fa-hand-fist', name: 'Braços', desc: 'Flexões, tríceps, bíceps e força de empurrar.' },
-      { key: 'abdomen', icon: 'fa-shield-halved', name: 'Abdômen', desc: 'Core, pranchas, hollow holds e oblíquos.' },
-      { key: 'perna', icon: 'fa-person-running', name: 'Pernas', desc: 'Agachamentos, afundos, panturrilha e glúteos.' },
-      { key: 'fullbody', icon: 'fa-dumbbell', name: 'Full Body', desc: 'Corpo inteiro em uma única sessão equilibrada.' }
-    ];
-    
-    const difficulties = [
-      { key: 'inic', label: 'Iniciante', cls: 'diff-inic', xp: '20' },
-      { key: 'inter', label: 'Intermediário', cls: 'diff-inter', xp: '40' },
-      { key: 'avanc', label: 'Avançado', cls: 'diff-avanc', xp: '80' }
-    ];
-    
-    workoutList.forEach(w => {
-      difficulties.forEach(d => {
-        if (currentFilter !== 'all' && currentFilter !== d.key) return;
-        
-        const card = document.createElement('div');
-        card.className = 'quick-card fade-in';
-        
-        const levelData = workouts[w.key].levels[d.key];
-        
-        card.innerHTML = `
-          <div class="quick-head">
-            <div class="quick-icon"><i class="fas ${w.icon}"></i></div>
-            <div class="quick-difficulty ${d.cls}">${d.label}</div>
-          </div>
-          <h4>${w.name}</h4>
-          <p>${w.desc}</p>
-          <div class="quick-stats">
-            <div class="quick-stat">
-              <div class="s-num">${levelData.exercises.length}</div>
-              <div class="s-lbl">Exercícios</div>
-            </div>
-            <div class="quick-stat">
-              <div class="s-num">${levelData.duration} min</div>
-              <div class="s-lbl">Duração</div>
-            </div>
-            <div class="quick-stat">
-              <div class="s-num">+${levelData.xp}</div>
-              <div class="s-lbl">XP</div>
-            </div>
-          </div>
-          <div class="quick-foot">
-            <span class="quick-reward">+${levelData.xp} XP · +${levelData.coins} moedas</span>
-            <i class="fas fa-arrow-right quick-arrow"></i>
-          </div>
-        `;
-        
-        card.addEventListener('click', () => {
-          openWorkout(w.key, d.key);
-        });
-        
-        grid.appendChild(card);
-      });
+      card.addEventListener('click', () => openExerciseModal(ex));
+      ui.exerciseGrid.appendChild(card);
     });
   }
 
-  function switchLevel(level) {
-    currentFilter = level;
-    document.querySelectorAll('.level-tab').forEach(tab => {
-      tab.classList.toggle('active', tab.dataset.level === level);
+  // ===== MODAL EXERCÍCIO =====
+  let currentExercise = null;
+
+  function openExerciseModal(ex) {
+    currentExercise = ex;
+    
+    ui.modalExTitle.textContent = ex.name;
+    ui.modalExDesc.textContent = ex.desc;
+    ui.modalExReps.textContent = ex.reps;
+    ui.modalExRest.textContent = ex.rest;
+    ui.modalExXp.textContent = '+' + ex.xp;
+    ui.modalSvgContainer.innerHTML = svgs[ex.svg] || svgs.pushup;
+    
+    ui.modalExSteps.innerHTML = '';
+    ex.steps.forEach((step, i) => {
+      const stepEl = document.createElement('div');
+      stepEl.className = 'exercise-step';
+      stepEl.innerHTML = `
+        <div class="step-num">${i + 1}</div>
+        <div class="step-txt">${step}</div>
+      `;
+      ui.modalExSteps.appendChild(stepEl);
     });
-    renderWorkouts();
-  }
-
-  // ===== MODAL DIFICULDADE =====
-  let selectedMuscle = null;
-  let selectedDifficulty = null;
-
-  function openMuscleGroup(muscle) {
-    selectedMuscle = muscle;
-    selectedDifficulty = null;
     
-    const data = workouts[muscle];
-    if (!data) return;
-    
-    ui.diffModalIcon.innerHTML = `<i class="fas ${data.icon}"></i>`;
-    ui.diffModalTitle.textContent = data.title;
-    ui.diffModalSub.textContent = data.sub;
-    
-    document.querySelectorAll('.diff-option').forEach(opt => opt.classList.remove('selected'));
-    
-    ui.diffModal.classList.add('active');
+    ui.exerciseModal.classList.add('active');
   }
 
-  function selectDiff(diff) {
-    selectedDifficulty = diff;
-    document.querySelectorAll('.diff-option').forEach(opt => {
-      opt.classList.toggle('selected', opt.dataset.diff === diff);
-    });
+  function closeExerciseModal() {
+    ui.exerciseModal.classList.remove('active');
   }
 
-  function closeDiffModal() {
-    ui.diffModal.classList.remove('active');
-  }
-
-  function startSelectedWorkout() {
-    if (!selectedDifficulty) {
-      showToast('Escolha uma dificuldade', 'Selecione o nível para continuar.', 'lock');
-      sounds.lock();
-      return;
-    }
-    closeDiffModal();
-    openWorkout(selectedMuscle, selectedDifficulty);
-  }
-
-  // ===== MODAL TREINO ATIVO =====
-  let currentWorkout = null;
+  // ===== TIMER / TREINO ATIVO =====
   let timerInterval = null;
   let timeLeft = 45;
+  let totalTime = 45;
+  let currentSet = 1;
+  const totalSets = 3;
 
-  function openWorkout(muscle, difficulty) {
-    const data = workouts[muscle];
-    if (!data) return;
+  function startExerciseFromModal() {
+    if (!currentExercise) return;
+    closeExerciseModal();
+    openTimer(currentExercise);
+  }
+
+  function openTimer(ex) {
+    currentExercise = ex;
+    timeLeft = 45;
+    totalTime = 45;
+    currentSet = 1;
     
-    const level = data.levels[difficulty];
-    currentWorkout = {
-      muscle,
-      difficulty,
-      data,
-      level
-    };
-    
-    ui.modalTitle.textContent = data.title;
-    ui.modalSub.textContent = `${level.exercises.length} exercícios · ${level.duration} min`;
-    ui.modalIcon.innerHTML = `<i class="fas ${data.icon}"></i>`;
-    ui.modalExercise.textContent = level.exercises[0].name;
-    ui.modalExerciseDetail.textContent = level.exercises[0].detail;
-    ui.modalPhase.textContent = 'Série 1 de 4';
-    
-    timeLeft = difficulty === 'inic' ? 30 : difficulty === 'inter' ? 45 : 60;
+    ui.timerTitle.textContent = ex.name;
+    ui.timerSub.textContent = `Série 1 de ${totalSets} · ${ex.reps.split('x')[1]} repetições`;
+    ui.timerSvgContainer.innerHTML = svgs[ex.svg] || svgs.pushup;
+    ui.timerPhase.textContent = 'DESCANSO';
+    ui.timerReps.textContent = 'Prepare-se para a primeira série';
     updateTimerDisplay();
     
-    ui.workoutModal.classList.add('active');
+    ui.timerModal.classList.add('active');
     startTimer();
   }
 
-  function closeWorkout() {
-    ui.workoutModal.classList.remove('active');
+  function closeTimer() {
+    ui.timerModal.classList.remove('active');
     if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
   }
 
   function updateTimerDisplay() {
     const m = String(Math.floor(timeLeft / 60)).padStart(2, '0');
     const s = String(timeLeft % 60).padStart(2, '0');
-    ui.modalTimer.textContent = `${m}:${s}`;
+    ui.timerDisplay.textContent = `${m}:${s}`;
+    
+    const pct = ((totalTime - timeLeft) / totalTime) * 100;
+    ui.timerProgressFill.style.width = pct + '%';
   }
 
   function startTimer() {
     if (timerInterval) clearInterval(timerInterval);
     timerInterval = setInterval(() => {
       timeLeft--;
-      if (timeLeft < 0) timeLeft = currentWorkout?.difficulty === 'avanc' ? 60 : 45;
+      
+      if (timeLeft <= 5 && timeLeft > 0) sounds.tick();
+      
+      if (timeLeft <= 0) {
+        // Fim da série
+        if (currentSet < totalSets) {
+          currentSet++;
+          timeLeft = 45;
+          totalTime = 45;
+          ui.timerSub.textContent = `Série ${currentSet} de ${totalSets} · ${currentExercise.reps.split('x')[1]} repetições`;
+          ui.timerPhase.textContent = 'DESCANSO';
+          ui.timerReps.textContent = `Série ${currentSet - 1} concluída · prepare-se`;
+          sounds.success();
+        } else {
+          // Fim de todas as séries
+          clearInterval(timerInterval);
+          timerInterval = null;
+          ui.timerPhase.textContent = 'CONCLUÍDO';
+          ui.timerReps.textContent = 'Todas as séries completas!';
+          sounds.streak();
+          finishExercise();
+          return;
+        }
+      } else if (timeLeft <= 5) {
+        ui.timerPhase.textContent = 'PREPARAR';
+      } else {
+        ui.timerPhase.textContent = 'DESCANSO';
+      }
+      
       updateTimerDisplay();
     }, 1000);
   }
 
-  function completeWorkout() {
-    if (!currentWorkout) return;
+  function finishExercise() {
+    if (!currentExercise) return;
     
-    const { level, muscle, difficulty } = currentWorkout;
-    
-    state.xp += level.xp;
-    state.coins += level.coins;
+    state.xp += currentExercise.xp;
+    state.coins += currentExercise.coins;
     state.streak += 1;
     state.workouts += 1;
     
-    // Adiciona dia atual aos concluídos (se ainda não estiver)
-    const today = new Date().getDate();
-    if (!state.completedDays.includes(today) && state.monthProgress.includes(today)) {
-      state.completedDays.push(today);
-      renderMonth();
-    }
+    const prevRank = getCurrentRank();
+    const newRank = getCurrentRank();
     
-    const diffLabel = { inic: 'Iniciante', inter: 'Intermediário', avanc: 'Avançado' }[difficulty];
-    showToast('Treino concluído', `${diffLabel} · +${level.xp} XP · +${level.coins} moedas`, 'check');
+    showToast('Exercício concluído', `${currentExercise.name} · +${currentExercise.xp} XP · +${currentExercise.coins} moedas`, 'check');
     
-    // Level up de liga
-    if (state.xp >= leagueXP.prata && state.xp < leagueXP.prata + 100) {
-      setTimeout(() => showToast('Nova divisão', 'Você subiu para a Liga Prata!', 'trophy'), 2800);
+    if (prevRank.key !== newRank.key) {
+      setTimeout(() => {
+        showToast('Novo nível!', `Você alcançou o nível ${newRank.name}!`, 'trophy');
+      }, 1800);
     }
     
     sounds.success();
     setTimeout(() => sounds.coin(), 200);
     setTimeout(() => sounds.streak(), 400);
     
-    closeWorkout();
+    closeTimer();
     updateUI();
     
     if (navigator.vibrate) navigator.vibrate([25, 40, 25]);
   }
 
+  // ===== HELPERS =====
+  function scrollToExercises(group) {
+    document.getElementById('braco').scrollIntoView({ behavior: 'smooth' });
+  }
+
   // ===== EVENT LISTENERS =====
-  ui.diffModal.addEventListener('click', (e) => {
-    if (e.target === ui.diffModal) closeDiffModal();
+  ui.exerciseModal.addEventListener('click', (e) => {
+    if (e.target === ui.exerciseModal) closeExerciseModal();
   });
   
-  ui.workoutModal.addEventListener('click', (e) => {
-    if (e.target === ui.workoutModal) closeWorkout();
+  ui.timerModal.addEventListener('click', (e) => {
+    if (e.target === ui.timerModal) closeTimer();
   });
   
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-      closeDiffModal();
-      closeWorkout();
+      closeExerciseModal();
+      closeTimer();
     }
   });
 
   // ===== INIT =====
   updateUI();
-  renderMonth();
-  renderWorkouts();
+  renderExercises();
 </script>
 
 </body>
