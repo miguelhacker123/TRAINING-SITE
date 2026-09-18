@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BodyQuest — Treino em Casa</title>
+<title>BodyQuest — Treino de Braços</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
@@ -33,6 +33,7 @@
     --green-dark: #16a34a;
     --red: #f0435c;
     --red-dark: #b81e35;
+    --amber: #f0a020;
   }
 
   html { scroll-behavior: smooth; }
@@ -51,7 +52,7 @@
     position: sticky;
     top: 0;
     z-index: 100;
-    background: rgba(6, 6, 8, 0.85);
+    background: rgba(6, 6, 8, 0.9);
     backdrop-filter: blur(24px) saturate(180%);
     -webkit-backdrop-filter: blur(24px) saturate(180%);
     border-bottom: 1px solid var(--border);
@@ -174,15 +175,15 @@
   }
 
   .section-head h2 {
-    font-size: 20px;
-    font-weight: 700;
-    letter-spacing: -0.4px;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
     display: flex;
     align-items: center;
     gap: 10px;
   }
 
-  .section-head h2 i { color: var(--blue-400); font-size: 15px; }
+  .section-head h2 i { color: var(--blue-400); font-size: 17px; }
 
   .section-head .desc {
     color: var(--text-3);
@@ -207,9 +208,6 @@
     padding: 40px 36px;
     position: relative;
     overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
   }
 
   .hero-panel::before {
@@ -316,6 +314,15 @@
 
   .btn-secondary:hover { background: var(--surface-3); border-color: var(--text-4); }
 
+  .btn-success {
+    background: linear-gradient(180deg, var(--green), var(--green-dark));
+    color: white;
+    box-shadow: 0 1px 0 rgba(255,255,255,0.2) inset, 0 6px 20px rgba(22, 163, 74, 0.4);
+    border: 1px solid var(--green);
+  }
+
+  .btn-success:hover { transform: translateY(-1px); box-shadow: 0 1px 0 rgba(255,255,255,0.25) inset, 0 10px 28px rgba(22, 163, 74, 0.55); }
+
   /* ===== STATS ===== */
   .stats-grid {
     display: grid;
@@ -375,251 +382,16 @@
 
   .stat-label { font-size: 12px; color: var(--text-3); font-weight: 500; }
 
-  /* ===== RANKS / NÍVEIS ===== */
-  .ranks-showcase {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 12px;
-    margin-bottom: 20px;
-  }
-
-  @media (max-width: 900px) {
-    .ranks-showcase { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
-  }
-
-  .rank-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 20px 16px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 10px;
-    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .rank-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at 50% 0%, var(--rank-glow), transparent 70%);
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-
-  .rank-card:hover::before { opacity: 1; }
-  .rank-card.current { transform: translateY(-4px); border-color: var(--rank-border); box-shadow: 0 0 0 1px var(--rank-border), 0 12px 32px rgba(0,0,0,0.4); }
-  .rank-card.current::before { opacity: 1; }
-
-  .rank-card.locked { opacity: 0.55; }
-
-  .rank-emblem {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 22px;
-    color: white;
-    position: relative;
-    z-index: 1;
-    box-shadow: inset 0 -6px 16px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.06);
-  }
-
-  .rank-emblem::after {
-    content: '';
-    position: absolute;
-    top: 12%;
-    left: 18%;
-    width: 44%;
-    height: 34%;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(255,255,255,0.35), transparent 70%);
-    filter: blur(4px);
-  }
-
-  .rank-name {
-    font-size: 13px;
-    font-weight: 800;
-    letter-spacing: -0.2px;
-    position: relative;
-    z-index: 1;
-  }
-
-  .rank-xp-req {
-    font-size: 11px;
-    color: var(--text-3);
-    font-weight: 600;
-    font-variant-numeric: tabular-nums;
-    position: relative;
-    z-index: 1;
-  }
-
-  .rank-badge {
-    font-size: 9.5px;
-    font-weight: 800;
-    letter-spacing: 0.8px;
-    text-transform: uppercase;
-    padding: 3px 8px;
-    border-radius: 5px;
-    position: relative;
-    z-index: 1;
-  }
-
-  .rank-badge-current { color: white; background: var(--blue-600); }
-  .rank-badge-locked { color: var(--text-4); background: var(--surface-3); }
-  .rank-badge-unlocked { color: white; background: var(--green-dark); }
-
-  /* Cores das ranks */
-  .rk-iniciante .rank-emblem { background: radial-gradient(circle at 30% 30%, #8a8a95, #3a3a44); }
-  .rk-iniciante { --rank-glow: rgba(138, 138, 149, 0.15); --rank-border: #5a5a66; }
-  .rk-bronze .rank-emblem { background: radial-gradient(circle at 30% 30%, #d99a6c, #5a3823); }
-  .rk-bronze { --rank-glow: rgba(217, 154, 108, 0.15); --rank-border: #a5714a; }
-  .rk-prata .rank-emblem { background: radial-gradient(circle at 30% 30%, #c8cdd4, #4a4f57); }
-  .rk-prata { --rank-glow: rgba(200, 205, 212, 0.15); --rank-border: #8a9099; }
-  .rk-ouro .rank-emblem { background: radial-gradient(circle at 30% 30%, #f0c445, #6b4d10); }
-  .rk-ouro { --rank-glow: rgba(240, 196, 69, 0.18); --rank-border: #c9962b; }
-  .rk-rubi .rank-emblem { background: radial-gradient(circle at 30% 30%, #f0435c, #5c0e1a); }
-  .rk-rubi { --rank-glow: rgba(240, 67, 92, 0.2); --rank-border: #b81e35; }
-
-  /* ===== RANK PANEL ===== */
-  .rank-panel {
-    background: linear-gradient(135deg, var(--surface-2) 0%, var(--surface) 100%);
-    border: 1px solid var(--border);
-    border-radius: 22px;
-    padding: 32px;
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 32px;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .rank-panel::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    right: -10%;
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, var(--rank-glow), transparent 65%);
-    pointer-events: none;
-  }
-
-  @media (max-width: 760px) {
-    .rank-panel { grid-template-columns: 1fr; text-align: center; justify-items: center; padding: 26px; gap: 20px; }
-  }
-
-  .current-emblem {
-    width: 110px;
-    height: 110px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 44px;
-    color: white;
-    box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 0 60px var(--rank-glow), inset 0 -8px 24px rgba(0,0,0,0.35);
-    position: relative;
-    flex-shrink: 0;
-  }
-
-  .current-emblem::after {
-    content: '';
-    position: absolute;
-    top: 12%;
-    left: 20%;
-    width: 50%;
-    height: 40%;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(255,255,255,0.35), transparent 70%);
-    filter: blur(6px);
-  }
-
-  .rank-info { position: relative; }
-
-  .rank-division {
-    font-size: 11.5px;
-    color: var(--text-3);
-    font-weight: 600;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    margin-bottom: 6px;
-  }
-
-  .rank-info h3 {
-    font-size: 26px;
-    font-weight: 800;
-    letter-spacing: -0.8px;
-    margin-bottom: 6px;
-  }
-
-  .rank-info .sub { color: var(--text-3); font-size: 13.5px; margin-bottom: 20px; }
-
-  .rank-progress-row { display: flex; align-items: center; gap: 14px; margin-bottom: 10px; }
-
-  .rank-track {
-    flex: 1;
-    height: 10px;
-    background: var(--bg-2);
-    border-radius: 10px;
-    overflow: hidden;
-    border: 1px solid var(--border);
-  }
-
-  .rank-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--rank-fill-1), var(--rank-fill-2));
-    border-radius: 10px;
-    transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-  }
-
-  .rank-fill::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(255,255,255,0.3), transparent 55%);
-    border-radius: 10px;
-  }
-
-  .rank-xp {
-    font-size: 13px;
-    font-weight: 700;
-    font-variant-numeric: tabular-nums;
-    white-space: nowrap;
-  }
-
-  .rank-tip {
-    font-size: 12.5px;
-    color: var(--text-3);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-top: 4px;
-  }
-
-  .rank-tip i { color: var(--blue-300); font-size: 12px; }
-  .rank-tip strong { color: var(--text-2); font-weight: 600; }
-
-  /* ===== GRUPOS MUSCULARES ===== */
-  .muscle-groups {
+  /* ===== NÍVEIS ===== */
+  .levels-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 14px;
   }
 
-  @media (max-width: 700px) {
-    .muscle-groups { grid-template-columns: 1fr; }
-  }
+  @media (max-width: 800px) { .levels-grid { grid-template-columns: 1fr; } }
 
-  .muscle-card {
+  .level-card {
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 18px;
@@ -633,47 +405,65 @@
     overflow: hidden;
   }
 
-  .muscle-card:hover {
-    border-color: var(--blue-600);
-    background: var(--surface-2);
-    transform: translateY(-3px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(37, 96, 171, 0.15);
+  .level-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--level-color);
+    opacity: 0.8;
   }
 
-  .muscle-icon {
+  .level-card:hover {
+    border-color: var(--level-color);
+    background: var(--surface-2);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 0 1px var(--level-color);
+  }
+
+  .level-card.iniciante { --level-color: #5eb55e; }
+  .level-card.intermediario { --level-color: var(--blue-400); }
+  .level-card.avancado { --level-color: var(--red); }
+
+  .level-icon {
     width: 52px;
     height: 52px;
     border-radius: 14px;
-    background: rgba(37, 96, 171, 0.12);
-    border: 1px solid rgba(37, 96, 171, 0.25);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 22px;
-    color: var(--blue-300);
-    transition: all 0.25s;
-  }
-
-  .muscle-card:hover .muscle-icon {
-    background: linear-gradient(135deg, var(--blue-600), var(--blue-400));
-    border-color: var(--blue-400);
     color: white;
-    box-shadow: 0 0 24px rgba(37, 96, 171, 0.4);
+    background: var(--level-color);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    position: relative;
   }
 
-  .muscle-card h3 {
-    font-size: 18px;
+  .level-icon::after {
+    content: '';
+    position: absolute;
+    top: 8%;
+    left: 15%;
+    width: 50%;
+    height: 40%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.35), transparent 70%);
+    filter: blur(6px);
+  }
+
+  .level-card h3 {
+    font-size: 20px;
     font-weight: 800;
     letter-spacing: -0.4px;
   }
 
-  .muscle-card p {
+  .level-card p {
     font-size: 13px;
     color: var(--text-3);
     line-height: 1.55;
   }
 
-  .muscle-meta {
+  .level-meta {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -682,187 +472,197 @@
     margin-top: auto;
   }
 
-  .muscle-exercises {
+  .level-info-text {
     font-size: 12px;
     color: var(--text-3);
     font-weight: 600;
   }
 
-  .muscle-exercises strong { color: var(--text-2); }
+  .level-info-text strong { color: var(--text-2); }
 
-  .muscle-arrow {
+  .level-arrow {
     color: var(--text-4);
     font-size: 13px;
     transition: all 0.2s;
   }
 
-  .muscle-card:hover .muscle-arrow { color: var(--blue-300); transform: translateX(4px); }
+  .level-card:hover .level-arrow { color: var(--level-color); transform: translateX(4px); }
 
-  /* ===== EXERCÍCIOS ===== */
-  .exercise-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 14px;
-  }
-
-  .exercise-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 18px;
-    padding: 0;
-    cursor: pointer;
-    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .exercise-card:hover {
-    border-color: var(--blue-600);
-    background: var(--surface-2);
-    transform: translateY(-3px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(37, 96, 171, 0.2);
-  }
-
-  .exercise-preview {
-    height: 180px;
-    background: linear-gradient(155deg, var(--surface-3) 0%, var(--surface-2) 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .exercise-preview::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: 
-      linear-gradient(90deg, transparent 0%, rgba(37, 96, 171, 0.05) 50%, transparent 100%),
-      radial-gradient(circle at 50% 50%, rgba(37, 96, 171, 0.15), transparent 70%);
-  }
-
-  /* SVG animações inline */
-  .exercise-svg {
-    width: 140px;
-    height: 140px;
-    position: relative;
-    z-index: 1;
-  }
-
-  .exercise-svg path,
-  .exercise-svg circle,
-  .exercise-svg rect,
-  .exercise-svg line,
-  .exercise-svg polyline {
-    stroke: var(--blue-300);
-    stroke-width: 2.5;
-    fill: none;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-  }
-
-  .exercise-svg .fill-primary {
-    fill: var(--blue-500);
-    stroke: none;
-    opacity: 0.3;
-  }
-
-  .exercise-svg .fill-accent {
-    fill: var(--blue-400);
-    stroke: none;
-  }
-
-  /* animações */
-  @keyframes pushup-move {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(14px); }
-  }
-
-  @keyframes pushup-arm-bend {
-    0%, 100% { transform: rotate(0deg); }
-    50% { transform: rotate(-18deg); }
-  }
-
-  @keyframes plank-breathe {
-    0%, 100% { opacity: 0.5; }
-    50% { opacity: 1; }
-  }
-
-  @keyframes pulse-ring {
-    0% { transform: scale(1); opacity: 0.6; }
-    100% { transform: scale(1.3); opacity: 0; }
-  }
-
-  .anim-pushup .torso {
-    animation: pushup-move 2s ease-in-out infinite;
-    transform-origin: center;
-  }
-
-  .exercise-card-body {
-    padding: 18px 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .exercise-card h4 {
-    font-size: 15.5px;
-    font-weight: 800;
-    letter-spacing: -0.3px;
+  /* ===== PROGRAMA 30 DIAS ===== */
+  .program-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 20px;
+    background: linear-gradient(135deg, var(--surface-2) 0%, var(--surface) 100%);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 26px 30px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .program-header::before {
+    content: '';
+    position: absolute;
+    top: -80px;
+    right: -80px;
+    width: 320px;
+    height: 320px;
+    background: radial-gradient(circle, rgba(37, 96, 171, 0.12), transparent 65%);
+  }
+
+  .program-header-left { position: relative; }
+
+  .program-header h3 {
+    font-size: 19px;
+    font-weight: 800;
+    letter-spacing: -0.4px;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .program-header h3 i { color: var(--blue-300); font-size: 16px; }
+
+  .program-header p { font-size: 13px; color: var(--text-3); }
+
+  .program-header-right {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    position: relative;
+  }
+
+  .program-stat { text-align: center; }
+
+  .program-stat .num {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.6px;
+    font-variant-numeric: tabular-nums;
+    background: linear-gradient(135deg, var(--blue-300), var(--blue-500));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .program-stat .lbl {
+    font-size: 11px;
+    color: var(--text-3);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 2px;
+  }
+
+  .month-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
     gap: 8px;
   }
 
-  .exercise-card h4 .ex-tag {
-    font-size: 9.5px;
-    font-weight: 800;
-    letter-spacing: 0.6px;
-    text-transform: uppercase;
-    padding: 3px 8px;
-    border-radius: 5px;
-    color: var(--blue-300);
-    background: rgba(37, 96, 171, 0.15);
-    border: 1px solid rgba(37, 96, 171, 0.3);
+  @media (max-width: 600px) {
+    .month-grid { gap: 5px; }
   }
 
-  .exercise-card p {
-    font-size: 12.5px;
-    color: var(--text-3);
-    line-height: 1.5;
-  }
-
-  .exercise-meta {
+  .day-cell {
+    aspect-ratio: 1;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 8px 6px;
     display: flex;
-    gap: 16px;
-    padding-top: 10px;
-    border-top: 1px solid var(--border);
-    margin-top: 4px;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    min-height: 62px;
   }
 
-  .exercise-meta-item {
+  .day-cell:hover {
+    border-color: var(--blue-600);
+    background: var(--surface-2);
+    transform: translateY(-2px);
+  }
+
+  .day-cell.done {
+    background: linear-gradient(155deg, rgba(22, 163, 74, 0.2), rgba(22, 163, 74, 0.05));
+    border-color: rgba(22, 163, 74, 0.5);
+  }
+
+  .day-cell.done::before {
+    content: '\f00c';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    font-size: 9px;
+    color: var(--green);
+  }
+
+  .day-cell.today {
+    border-color: var(--blue-400);
+    background: linear-gradient(155deg, rgba(37, 96, 171, 0.25), rgba(37, 96, 171, 0.08));
+    box-shadow: 0 0 0 1px rgba(37, 96, 171, 0.3), 0 0 20px rgba(37, 96, 171, 0.2);
+  }
+
+  .day-cell.rest {
+    background: var(--bg-2);
+    border-style: dashed;
+    opacity: 0.55;
+  }
+
+  .day-cell.rest::after {
+    content: 'DESCANSO';
+    position: absolute;
+    inset: 0;
     display: flex;
     align-items: center;
-    gap: 6px;
-    font-size: 11.5px;
-    color: var(--text-3);
-    font-weight: 600;
+    justify-content: center;
+    font-size: 8px;
+    font-weight: 800;
+    color: var(--text-4);
+    letter-spacing: 0.5px;
   }
 
-  .exercise-meta-item i { color: var(--blue-400); font-size: 11px; }
+  .day-num {
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--text-2);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .day-cell.done .day-num { color: var(--green); }
+
+  .day-label {
+    font-size: 8px;
+    font-weight: 700;
+    color: var(--text-4);
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+  }
+
+  .day-cell.done .day-label { color: var(--green); opacity: 0.7; }
+
+  @media (max-width: 600px) {
+    .day-cell { min-height: 48px; padding: 6px 4px; border-radius: 8px; }
+    .day-num { font-size: 10px; }
+    .day-label { display: none; }
+  }
 
   /* ===== MODAL ===== */
   .modal-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.88);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background: rgba(0,0,0,0.92);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
     z-index: 1000;
     display: none;
     align-items: center;
@@ -879,7 +679,7 @@
     background: var(--bg-2);
     border: 1px solid var(--border-2);
     border-radius: 22px;
-    max-width: 560px;
+    max-width: 620px;
     width: 100%;
     position: relative;
     animation: modalIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
@@ -916,103 +716,251 @@
 
   .modal-close:hover { background: var(--surface-2); color: var(--text); }
 
-  .exercise-demo {
-    height: 240px;
-    background: linear-gradient(155deg, var(--surface-3) 0%, var(--surface-2) 100%);
+  /* ===== TELA DE EXERCÍCIO ===== */
+  .ex-screen {
+    padding: 40px 36px 32px;
+  }
+
+  .ex-screen .screen-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    width: fit-content;
+  }
+
+  .screen-badge.work { color: var(--blue-300); background: rgba(37, 96, 171, 0.15); border: 1px solid rgba(37, 96, 171, 0.3); }
+  .screen-badge.rest { color: var(--amber); background: rgba(240, 160, 32, 0.12); border: 1px solid rgba(240, 160, 32, 0.3); }
+  .screen-badge.done { color: var(--green); background: rgba(22, 163, 74, 0.12); border: 1px solid rgba(22, 163, 74, 0.3); }
+
+  .progress-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 12px;
+    color: var(--text-3);
+    font-weight: 600;
+  }
+
+  .progress-header .progress-count {
+    color: var(--text-2);
+    font-weight: 700;
+  }
+
+  .progress-header .progress-name {
+    color: var(--text-3);
+    font-weight: 500;
+  }
+
+  .progress-track-main {
+    height: 6px;
+    background: var(--bg);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 32px;
+    border: 1px solid var(--border);
+  }
+
+  .progress-track-main .fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--blue-600), var(--blue-400));
+    border-radius: 6px;
+    transition: width 0.5s ease;
+  }
+
+  .ex-svg-stage {
+    height: 220px;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    overflow: hidden;
-    border-radius: 22px 22px 0 0;
-    border-bottom: 1px solid var(--border);
+    margin-bottom: 24px;
   }
 
-  .exercise-demo::before {
+  .ex-svg-stage::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: 
-      linear-gradient(90deg, transparent 0%, rgba(37, 96, 171, 0.08) 50%, transparent 100%),
-      radial-gradient(circle at 50% 50%, rgba(37, 96, 171, 0.2), transparent 70%);
+    background: radial-gradient(circle at 50% 50%, rgba(37, 96, 171, 0.1), transparent 70%);
   }
 
-  .exercise-demo .exercise-svg {
-    width: 200px;
-    height: 200px;
+  .ex-svg-stage svg {
+    width: 240px;
+    height: 240px;
+    position: relative;
   }
 
-  .demo-badge {
-    position: absolute;
-    top: 16px;
-    left: 16px;
-    background: rgba(0,0,0,0.6);
-    backdrop-filter: blur(8px);
-    border: 1px solid var(--border-2);
-    padding: 6px 12px;
-    border-radius: 8px;
-    font-size: 10.5px;
+  .ex-svg-stage svg path,
+  .ex-svg-stage svg circle,
+  .ex-svg-stage svg rect,
+  .ex-svg-stage svg line,
+  .ex-svg-stage svg polyline,
+  .ex-svg-stage svg ellipse,
+  .ex-svg-stage svg polygon {
+    stroke: var(--blue-300);
+    stroke-width: 3;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .ex-svg-stage svg .fill-primary { fill: rgba(37, 96, 171, 0.25); stroke: none; }
+  .ex-svg-stage svg .fill-accent { fill: var(--blue-400); stroke: none; }
+  .ex-svg-stage svg .fill-head { fill: var(--blue-500); stroke: none; }
+
+  .ex-title {
+    font-size: 26px;
     font-weight: 800;
-    letter-spacing: 0.8px;
-    text-transform: uppercase;
-    color: var(--blue-300);
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    z-index: 2;
-  }
-
-  .demo-badge .rec-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--red);
-    box-shadow: 0 0 8px var(--red);
-    animation: pulse 1.5s infinite;
-  }
-
-  .modal-body {
-    padding: 28px 32px 32px;
-  }
-
-  .modal-body h2 {
-    font-size: 22px;
-    font-weight: 800;
-    letter-spacing: -0.6px;
+    letter-spacing: -0.7px;
     margin-bottom: 8px;
+    text-align: center;
   }
 
-  .modal-body .modal-sub {
+  .ex-desc {
+    font-size: 14px;
     color: var(--text-3);
-    font-size: 13.5px;
     line-height: 1.55;
-    margin-bottom: 22px;
+    text-align: center;
+    margin-bottom: 20px;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
-  .exercise-steps {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: 22px;
+  .ex-highlight {
+    background: linear-gradient(155deg, rgba(37, 96, 171, 0.15), rgba(37, 96, 171, 0.04));
+    border: 1px solid rgba(37, 96, 171, 0.3);
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 24px;
   }
 
-  .exercise-step {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    padding: 12px 14px;
+  .ex-highlight .ex-count {
+    font-size: 44px;
+    font-weight: 900;
+    letter-spacing: -1.5px;
+    line-height: 1;
+    background: linear-gradient(135deg, #fff 0%, var(--blue-300) 120%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .ex-highlight .ex-count-label {
+    font-size: 12.5px;
+    color: var(--text-3);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 6px;
+  }
+
+  .ex-timer-box {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 12px;
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 24px;
   }
 
-  .exercise-step .step-num {
+  .ex-timer {
+    font-size: 52px;
+    font-weight: 800;
+    letter-spacing: -2px;
+    font-variant-numeric: tabular-nums;
+    background: linear-gradient(180deg, #fff 0%, var(--blue-300) 120%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .ex-timer-lbl {
+    font-size: 11.5px;
+    color: var(--text-3);
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+
+  .ex-timer-progress {
+    height: 4px;
+    background: var(--bg);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 14px;
+  }
+
+  .ex-timer-progress .fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--blue-600), var(--blue-400));
+    border-radius: 4px;
+    transition: width 1s linear;
+  }
+
+  .ex-actions {
+    display: flex;
+    gap: 10px;
+  }
+
+  .ex-actions .btn { flex: 1; }
+
+  /* ===== LISTA DE EXERCÍCIOS DO DIA ===== */
+  .workout-preview-list {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 18px;
+    margin-bottom: 24px;
+  }
+
+  .workout-preview-list h4 {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-3);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 12px;
+  }
+
+  .workout-preview-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    margin-bottom: 6px;
+    transition: all 0.2s;
+    font-size: 13px;
+  }
+
+  .workout-preview-item:last-child { margin-bottom: 0; }
+
+  .workout-preview-item.current {
+    background: rgba(37, 96, 171, 0.15);
+    border: 1px solid rgba(37, 96, 171, 0.3);
+  }
+
+  .workout-preview-item.done { opacity: 0.5; }
+
+  .workout-preview-item .wpi-num {
     width: 24px;
     height: 24px;
     border-radius: 7px;
-    background: rgba(37, 96, 171, 0.2);
-    border: 1px solid rgba(37, 96, 171, 0.35);
-    color: var(--blue-300);
+    background: var(--surface-3);
+    border: 1px solid var(--border-2);
+    color: var(--text-3);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1021,114 +969,34 @@
     flex-shrink: 0;
   }
 
-  .exercise-step .step-txt {
-    font-size: 12.5px;
+  .workout-preview-item.current .wpi-num {
+    background: var(--blue-600);
+    border-color: var(--blue-500);
+    color: white;
+  }
+
+  .workout-preview-item.done .wpi-num {
+    background: var(--green-dark);
+    border-color: var(--green);
+    color: white;
+  }
+
+  .workout-preview-item .wpi-name {
+    flex: 1;
     color: var(--text-2);
-    line-height: 1.5;
-  }
-
-  .exercise-info-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    margin-bottom: 22px;
-  }
-
-  .exercise-info-item {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 14px;
-    text-align: center;
-  }
-
-  .exercise-info-item .info-val {
-    font-size: 17px;
-    font-weight: 800;
-    letter-spacing: -0.4px;
-    color: var(--text);
-    font-variant-numeric: tabular-nums;
-  }
-
-  .exercise-info-item .info-lbl {
-    font-size: 10.5px;
-    color: var(--text-3);
     font-weight: 600;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    margin-top: 4px;
   }
 
-  .modal-actions { display: flex; gap: 10px; }
-  .modal-actions .btn { flex: 1; }
+  .workout-preview-item.current .wpi-name { color: var(--text); font-weight: 700; }
 
-  /* ===== TIMER ===== */
-  .timer-box {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 18px;
-    padding: 24px;
-    margin-bottom: 16px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .timer-box::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--blue-500), transparent);
-  }
-
-  .timer-time {
-    font-size: 52px;
-    font-weight: 800;
-    text-align: center;
-    letter-spacing: -2px;
-    font-variant-numeric: tabular-nums;
-    background: linear-gradient(180deg, #fff 0%, var(--blue-300) 120%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    line-height: 1;
-    margin-bottom: 8px;
-  }
-
-  .timer-phase {
-    text-align: center;
+  .workout-preview-item .wpi-reps {
     font-size: 11.5px;
     color: var(--text-3);
-    font-weight: 600;
-    letter-spacing: 1.8px;
-    text-transform: uppercase;
-    margin-bottom: 14px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
   }
 
-  .timer-progress {
-    height: 4px;
-    background: var(--bg-2);
-    border-radius: 4px;
-    overflow: hidden;
-    margin-bottom: 8px;
-  }
-
-  .timer-progress-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--blue-600), var(--blue-400));
-    border-radius: 4px;
-    transition: width 1s linear;
-  }
-
-  .timer-reps {
-    text-align: center;
-    font-size: 12px;
-    color: var(--text-3);
-    font-weight: 600;
-  }
+  .workout-preview-item.current .wpi-reps { color: var(--blue-300); }
 
   /* ===== TOAST ===== */
   .toast {
@@ -1209,19 +1077,20 @@
 
   .footer-links a:hover { color: var(--text); }
 
-  /* ===== RESPONSIVE ===== */
   @media (max-width: 640px) {
     .hero-panel { padding: 28px 24px; }
     .hero-panel h1 { font-size: 28px; }
-    .hero-panel .hero-desc { font-size: 14px; }
     .stat-value { font-size: 22px; }
-    .rank-panel { padding: 24px; }
-    .current-emblem { width: 90px; height: 90px; font-size: 36px; }
-    .rank-info h3 { font-size: 22px; }
-    .timer-time { font-size: 44px; }
-    .modal-body { padding: 22px; }
-    .section-head h2 { font-size: 17px; }
-    .exercise-info-grid { grid-template-columns: 1fr; }
+    .ex-screen { padding: 32px 22px 26px; }
+    .ex-svg-stage { height: 180px; }
+    .ex-svg-stage svg { width: 180px; height: 180px; }
+    .ex-title { font-size: 22px; }
+    .ex-highlight .ex-count { font-size: 36px; }
+    .ex-timer { font-size: 42px; }
+    .section-head h2 { font-size: 18px; }
+    .program-header { padding: 20px; }
+    .program-header-right { gap: 14px; }
+    .program-stat .num { font-size: 18px; }
   }
 
   ::-webkit-scrollbar { width: 8px; height: 8px; }
@@ -1245,9 +1114,8 @@
       <span class="logo-name">Body<span>Quest</span></span>
     </a>
     <div class="nav-links">
-      <a href="#grupos">Exercícios</a>
-      <a href="#ranks">Níveis</a>
-      <a href="#braco">Braços</a>
+      <a href="#niveis">Níveis</a>
+      <a href="#programa">Programa 30 dias</a>
     </div>
     <div class="nav-right">
       <div class="coin-display">
@@ -1266,18 +1134,18 @@
     <div class="hero-panel">
       <div class="hero-tag">
         <span class="pulse-dot"></span>
-        Treino em casa · peso do corpo
+        Treino de braços · peso do corpo
       </div>
-      <h1>Treine cada músculo<br>com <em>apenas seu corpo</em>.</h1>
+      <h1>Fortaleça seus braços<br>em <em>30 dias</em>.</h1>
       <p class="hero-desc">
-        Você está em uma ofensiva de <strong id="heroStreak">12 dias</strong>. Escolha um exercício, assista a animação, execute com boa forma. Cada repetição conta.
+        Escolha seu nível e siga o programa completo de 30 dias. Cada treino executa um exercício por vez, com contagem de repetições e descanso controlado.
       </p>
       <div class="hero-actions">
-        <button class="btn btn-primary" onclick="document.getElementById('braco').scrollIntoView()">
-          <i class="fas fa-play"></i> Ver exercícios de braço
+        <button class="btn btn-primary" onclick="document.getElementById('niveis').scrollIntoView()">
+          <i class="fas fa-play"></i> Começar agora
         </button>
-        <button class="btn btn-secondary" onclick="document.getElementById('grupos').scrollIntoView()">
-          <i class="fas fa-list"></i> Todos os grupos
+        <button class="btn btn-secondary" onclick="document.getElementById('programa').scrollIntoView()">
+          <i class="fas fa-calendar"></i> Ver programa
         </button>
       </div>
     </div>
@@ -1316,206 +1184,90 @@
     </div>
   </section>
 
-  <!-- ===== GRUPOS MUSCULARES ===== -->
-  <section class="section" id="grupos">
+  <!-- ===== NÍVEIS ===== -->
+  <section class="section" id="niveis">
     <div class="section-head">
       <div>
-        <h2><i class="fas fa-bullseye"></i> Escolha seu foco</h2>
-        <p class="desc">Cada grupo tem seus próprios exercícios com animação e instruções.</p>
+        <h2><i class="fas fa-layer-group"></i> Escolha seu nível</h2>
+        <p class="desc">Cada nível tem um treino completo de braços, do aquecimento ao esgotamento.</p>
       </div>
     </div>
 
-    <div class="muscle-groups">
-      <div class="muscle-card" onclick="scrollToExercises('braco')">
-        <div class="muscle-icon"><i class="fas fa-hand-fist"></i></div>
-        <h3>Braços</h3>
-        <p>Flexões, tríceps, bíceps e força de empurrar o corpo.</p>
-        <div class="muscle-meta">
-          <span class="muscle-exercises"><strong id="bracoCount">8</strong> exercícios</span>
-          <i class="fas fa-arrow-right muscle-arrow"></i>
-        </div>
-      </div>
-
-      <div class="muscle-card" onclick="showToast('Em breve', 'Abdômen e Pernas estão sendo desenvolvidos.', 'lock')">
-        <div class="muscle-icon"><i class="fas fa-shield-halved"></i></div>
-        <h3>Abdômen</h3>
-        <p>Core, pranchas, hollow holds e oblíquos.</p>
-        <div class="muscle-meta">
-          <span class="muscle-exercises"><strong>Em breve</strong></span>
-          <i class="fas fa-arrow-right muscle-arrow"></i>
-        </div>
-      </div>
-
-      <div class="muscle-card" onclick="showToast('Em breve', 'Pernas está sendo desenvolvido.', 'lock')">
-        <div class="muscle-icon"><i class="fas fa-person-running"></i></div>
-        <h3>Pernas</h3>
-        <p>Agachamentos, afundos, panturrilha e glúteos.</p>
-        <div class="muscle-meta">
-          <span class="muscle-exercises"><strong>Em breve</strong></span>
-          <i class="fas fa-arrow-right muscle-arrow"></i>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== EXERCÍCIOS DE BRAÇO ===== -->
-  <section class="section" id="braco">
-    <div class="section-head">
-      <div>
-        <h2><i class="fas fa-hand-fist"></i> Treino completo de braços</h2>
-        <p class="desc">8 exercícios apenas com peso do corpo. Toque em cada card para ver a animação e instruções.</p>
-      </div>
-    </div>
-
-    <div class="exercise-grid" id="exerciseGrid"></div>
-  </section>
-
-  <!-- ===== NÍVEIS / RANKS ===== -->
-  <section class="section" id="ranks">
-    <div class="section-head">
-      <div>
-        <h2><i class="fas fa-trophy"></i> Níveis de progressão</h2>
-        <p class="desc">Ganhe XP treinando e desbloqueie cada nível. Cada um tem recompensas próprias.</p>
-      </div>
-    </div>
-
-    <div class="ranks-showcase">
-      <div class="rank-card rk-iniciante current" id="rankIniciante">
-        <div class="rank-emblem"><i class="fas fa-seedling"></i></div>
-        <div class="rank-name">Iniciante</div>
-        <div class="rank-xp-req">0 – 499 XP</div>
-        <div class="rank-badge rank-badge-current">Você está aqui</div>
-      </div>
-
-      <div class="rank-card rk-bronze locked" id="rankBronze">
-        <div class="rank-emblem"><i class="fas fa-shield"></i></div>
-        <div class="rank-name">Bronze</div>
-        <div class="rank-xp-req">500 – 1.499 XP</div>
-        <div class="rank-badge rank-badge-locked">Bloqueado</div>
-      </div>
-
-      <div class="rank-card rk-prata locked" id="rankPrata">
-        <div class="rank-emblem"><i class="fas fa-medal"></i></div>
-        <div class="rank-name">Prata</div>
-        <div class="rank-xp-req">1.500 – 3.499 XP</div>
-        <div class="rank-badge rank-badge-locked">Bloqueado</div>
-      </div>
-
-      <div class="rank-card rk-ouro locked" id="rankOuro">
-        <div class="rank-emblem"><i class="fas fa-crown"></i></div>
-        <div class="rank-name">Ouro</div>
-        <div class="rank-xp-req">3.500 – 6.999 XP</div>
-        <div class="rank-badge rank-badge-locked">Bloqueado</div>
-      </div>
-
-      <div class="rank-card rk-rubi locked" id="rankRubi">
-        <div class="rank-emblem"><i class="fas fa-gem"></i></div>
-        <div class="rank-name">Rubi</div>
-        <div class="rank-xp-req">7.000+ XP</div>
-        <div class="rank-badge rank-badge-locked">Bloqueado</div>
-      </div>
-    </div>
-
-    <div class="rank-panel" id="rankPanel" style="--rank-glow: rgba(138, 138, 149, 0.15); --rank-fill-1: #5a5a66; --rank-fill-2: #8a8a95;">
-      <div class="current-emblem" style="background: radial-gradient(circle at 30% 30%, #8a8a95, #3a3a44);">
-        <i class="fas fa-seedling"></i>
-      </div>
-      <div class="rank-info">
-        <div class="rank-division">Nível atual</div>
+    <div class="levels-grid">
+      <div class="level-card iniciante" onclick="openLevel('iniciante')">
+        <div class="level-icon"><i class="fas fa-seedling"></i></div>
         <h3>Iniciante</h3>
-        <p class="sub">Complete exercícios para ganhar XP e subir de nível</p>
-        <div class="rank-progress-row">
-          <div class="rank-track"><div class="rank-fill" id="rankFill" style="width:84%"></div></div>
-          <div class="rank-xp" id="rankXp">420 / 500 XP</div>
+        <p>Introdução à calistenia. Movimentos básicos com volume controlado para construir base.</p>
+        <div class="level-meta">
+          <span class="level-info-text"><strong>6</strong> exercícios · ~20 min</span>
+          <i class="fas fa-arrow-right level-arrow"></i>
         </div>
-        <div class="rank-tip">
-          <i class="fas fa-info-circle"></i>
-          Faltam <strong id="rankNeeded">80 XP</strong> para alcançar o nível Bronze
+      </div>
+
+      <div class="level-card intermediario" onclick="openLevel('intermediario')">
+        <div class="level-icon"><i class="fas fa-fire"></i></div>
+        <h3>Intermediário</h3>
+        <p>Variações mais exigentes, maior volume e exercícios que exigem controle real.</p>
+        <div class="level-meta">
+          <span class="level-info-text"><strong>7</strong> exercícios · ~30 min</span>
+          <i class="fas fa-arrow-right level-arrow"></i>
+        </div>
+      </div>
+
+      <div class="level-card avancado" onclick="openLevel('avancado')">
+        <div class="level-icon"><i class="fas fa-bolt"></i></div>
+        <h3>Avançado</h3>
+        <p>Movimentos de força bruta. Flexões complexas, unilaterais e de alto nível.</p>
+        <div class="level-meta">
+          <span class="level-info-text"><strong>8</strong> exercícios · ~40 min</span>
+          <i class="fas fa-arrow-right level-arrow"></i>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- ===== PROGRAMA 30 DIAS ===== -->
+  <section class="section" id="programa">
+    <div class="section-head">
+      <div>
+        <h2><i class="fas fa-calendar-days"></i> Programa de 30 dias</h2>
+        <p class="desc">Seu cronograma completo. Toque em qualquer dia para treinar.</p>
+      </div>
+    </div>
+
+    <div class="program-header">
+      <div class="program-header-left">
+        <h3><i class="fas fa-bullseye"></i> Desafio do Mês</h3>
+        <p>Progressão completa para braços fortes em 30 dias</p>
+      </div>
+      <div class="program-header-right">
+        <div class="program-stat">
+          <div class="num" id="progDone">0</div>
+          <div class="lbl">Concluídos</div>
+        </div>
+        <div class="program-stat">
+          <div class="num" id="progRemaining">30</div>
+          <div class="lbl">Restantes</div>
+        </div>
+        <div class="program-stat">
+          <div class="num" id="progPct">0%</div>
+          <div class="lbl">Progresso</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="month-grid" id="monthGrid"></div>
+  </section>
+
 </div>
 
-<!-- ===== MODAL DE EXERCÍCIO ===== -->
-<div class="modal-overlay" id="exerciseModal">
+<!-- ===== MODAL DE TREINO ===== -->
+<div class="modal-overlay" id="workoutModal">
   <div class="modal">
-    <div class="modal-close" onclick="closeExerciseModal()"><i class="fas fa-xmark"></i></div>
+    <div class="modal-close" onclick="closeWorkout()"><i class="fas fa-xmark"></i></div>
     
-    <div class="exercise-demo">
-      <div class="demo-badge"><span class="rec-dot"></span> Demonstração</div>
-      <div id="modalSvgContainer"></div>
-    </div>
-
-    <div class="modal-body">
-      <h2 id="modalExTitle">Flexão padrão</h2>
-      <p class="modal-sub" id="modalExDesc">Exercício fundamental para peito, tríceps e ombros.</p>
-
-      <div class="exercise-info-grid">
-        <div class="exercise-info-item">
-          <div class="info-val" id="modalExReps">3x12</div>
-          <div class="info-lbl">Séries</div>
-        </div>
-        <div class="exercise-info-item">
-          <div class="info-val" id="modalExRest">45s</div>
-          <div class="info-lbl">Descanso</div>
-        </div>
-        <div class="exercise-info-item">
-          <div class="info-val" id="modalExXp">+15</div>
-          <div class="info-lbl">XP</div>
-        </div>
-      </div>
-
-      <div style="font-size: 12px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: var(--text-3); margin-bottom: 12px;">
-        Como executar
-      </div>
-
-      <div class="exercise-steps" id="modalExSteps"></div>
-
-      <div class="modal-actions">
-        <button class="btn btn-secondary" onclick="closeExerciseModal()">
-          <i class="fas fa-xmark"></i> Fechar
-        </button>
-        <button class="btn btn-primary" onclick="startExerciseFromModal()">
-          <i class="fas fa-play"></i> Iniciar exercício
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ===== MODAL DE TIMER / TREINO ===== -->
-<div class="modal-overlay" id="timerModal">
-  <div class="modal">
-    <div class="modal-close" onclick="closeTimer()"><i class="fas fa-xmark"></i></div>
-    
-    <div class="exercise-demo" style="height: 200px;">
-      <div class="demo-badge"><span class="rec-dot"></span> Em execução</div>
-      <div id="timerSvgContainer"></div>
-    </div>
-
-    <div class="modal-body">
-      <h2 id="timerTitle">Flexão padrão</h2>
-      <p class="modal-sub" id="timerSub">Série 1 de 3 · 12 repetições</p>
-
-      <div class="timer-box">
-        <div class="timer-time" id="timerDisplay">00:45</div>
-        <div class="timer-phase" id="timerPhase">DESCANSO</div>
-        <div class="timer-progress">
-          <div class="timer-progress-fill" id="timerProgressFill" style="width: 0%"></div>
-        </div>
-        <div class="timer-reps" id="timerReps">Prepare-se para a próxima série</div>
-      </div>
-
-      <div class="modal-actions">
-        <button class="btn btn-secondary" onclick="closeTimer()">
-          <i class="fas fa-xmark"></i> Sair
-        </button>
-        <button class="btn btn-primary" onclick="finishExercise()">
-          <i class="fas fa-check"></i> Concluir
-        </button>
-      </div>
+    <div class="ex-screen" id="workoutContent">
+      <!-- Conteúdo dinâmico renderizado via JS -->
     </div>
   </div>
 </div>
@@ -1525,7 +1277,7 @@
   <div class="toast-icon" id="toastIcon"><i class="fas fa-check"></i></div>
   <div class="toast-content">
     <div class="toast-title" id="toastTitle">Treino concluído</div>
-    <div class="toast-sub" id="toastSub">+15 XP · +8 moedas</div>
+    <div class="toast-sub" id="toastSub">+30 XP</div>
   </div>
 </div>
 
@@ -1546,369 +1298,558 @@
 </footer>
 
 <script>
-  // ===== ESTADO =====
+  // ============================================
+  // ESTADO
+  // ============================================
   const state = {
     coins: 320,
     streak: 12,
     xp: 420,
-    workouts: 8
+    workouts: 8,
+    completedDays: [1, 2, 3]
   };
 
-  // ===== NÍVEIS (RANKS) =====
-  const ranks = [
-    { key: 'iniciante', name: 'Iniciante', icon: 'fa-seedling', min: 0, max: 499, cls: 'rk-iniciante', fill1: '#5a5a66', fill2: '#8a8a95', glow: 'rgba(138, 138, 149, 0.15)' },
-    { key: 'bronze', name: 'Bronze', icon: 'fa-shield', min: 500, max: 1499, cls: 'rk-bronze', fill1: '#5a3823', fill2: '#a5714a', glow: 'rgba(217, 154, 108, 0.15)' },
-    { key: 'prata', name: 'Prata', icon: 'fa-medal', min: 1500, max: 3499, cls: 'rk-prata', fill1: '#4a4f57', fill2: '#8a9099', glow: 'rgba(200, 205, 212, 0.15)' },
-    { key: 'ouro', name: 'Ouro', icon: 'fa-crown', min: 3500, max: 6999, cls: 'rk-ouro', fill1: '#6b4d10', fill2: '#c9962b', glow: 'rgba(240, 196, 69, 0.18)' },
-    { key: 'rubi', name: 'Rubi', icon: 'fa-gem', min: 7000, max: 999999, cls: 'rk-rubi', fill1: '#5c0e1a', fill2: '#b81e35', glow: 'rgba(240, 67, 92, 0.2)' }
-  ];
+  // ============================================
+  // TREINOS DE BRAÇO POR NÍVEL
+  // ============================================
+  const workouts = {
+    iniciante: {
+      name: 'Iniciante',
+      color: '#5eb55e',
+      xpTotal: 60,
+      coinsTotal: 30,
+      exercises: [
+        { name: 'Flexão na parede', reps: 12, sets: 3, rest: 40, svg: 'wallPushup',
+          desc: 'Em pé de frente para a parede, mãos na altura do peito. Flexione os braços aproximando o corpo da parede.' },
+        { name: 'Flexão de joelhos', reps: 10, sets: 3, rest: 45, svg: 'kneePushup',
+          desc: 'Apoie os joelhos no chão, mantenha o tronco reto e desça o peito controladamente.' },
+        { name: 'Tríceps no banco', reps: 12, sets: 3, rest: 45, svg: 'tricepsBench',
+          desc: 'Use uma cadeira firme. Mãos na borda, desça o corpo flexionando os cotovelos para trás.' },
+        { name: 'Flexão incline', reps: 10, sets: 3, rest: 45, svg: 'inclinePushup',
+          desc: 'Mãos em uma superfície elevada (mesa, sofá). Desça o peito controladamente.' },
+        { name: 'Prancha com toque no ombro', reps: 20, sets: 3, rest: 40, svg: 'plankTap',
+          desc: 'Em posição de prancha alta, toque o ombro oposto com cada mão alternando.' },
+        { name: 'Flexão negativa', reps: 8, sets: 3, rest: 60, svg: 'negativePushup',
+          desc: 'Comece no topo e desça muito devagar (3-4 segundos). Empurre de volta se conseguir.' }
+      ]
+    },
 
-  // ===== SVGs ANIMADOS (bonecos palito) =====
+    intermediario: {
+      name: 'Intermediário',
+      color: '#3d7bc8',
+      xpTotal: 120,
+      coinsTotal: 60,
+      exercises: [
+        { name: 'Flexão padrão', reps: 12, sets: 4, rest: 45, svg: 'pushup',
+          desc: 'Mãos na largura dos ombros, corpo reto. Desça o peito até quase tocar o chão.' },
+        { name: 'Flexão diamante', reps: 10, sets: 3, rest: 50, svg: 'diamondPushup',
+          desc: 'Mãos juntas formando um diamante. Foco total no tríceps. Cotovelos próximos do corpo.' },
+        { name: 'Tríceps no banco', reps: 15, sets: 3, rest: 45, svg: 'tricepsBench',
+          desc: 'Pernas estendidas à frente. Desça o corpo flexionando os cotovelos para trás.' },
+        { name: 'Flexão incline (pés elevados)', reps: 10, sets: 3, rest: 55, svg: 'declinePushup',
+          desc: 'Pés em uma cadeira ou sofá. Isso transfere mais peso para os ombros e peito superior.' },
+        { name: 'Flexão archer', reps: 8, sets: 3, rest: 60, svg: 'archerPushup',
+          desc: 'Mãos bem afastadas. Desça em direção a um braço enquanto o outro permanece estendido.' },
+        { name: 'Mergulho entre cadeiras', reps: 10, sets: 3, rest: 60, svg: 'dips',
+          desc: 'Duas cadeiras firmes, mãos em cada uma. Desça o corpo flexionando os cotovelos.' },
+        { name: 'Flexão explosiva', reps: 6, sets: 3, rest: 75, svg: 'explosivePushup',
+          desc: 'Desça controlado e empurre com força para tirar as mãos do chão brevemente.' }
+      ]
+    },
+
+    avancado: {
+      name: 'Avançado',
+      color: '#f0435c',
+      xpTotal: 200,
+      coinsTotal: 100,
+      exercises: [
+        { name: 'Flexão padrão (peso)', reps: 15, sets: 4, rest: 45, svg: 'pushup',
+          desc: 'Volume alto com boa forma. Não trave os cotovelos no topo.' },
+        { name: 'Flexão diamante explosiva', reps: 8, sets: 3, rest: 60, svg: 'diamondPushup',
+          desc: 'Mãos em diamante, empurre explosivamente para tirar as mãos do chão.' },
+        { name: 'Flexão archer completa', reps: 6, sets: 3, rest: 75, svg: 'archerPushup',
+          desc: 'Um braço estendido totalmente, o outro flexionando. Desça próximo do braço dobrado.' },
+        { name: 'Flexão pike', reps: 10, sets: 3, rest: 60, svg: 'pikePushup',
+          desc: 'Quadril elevado formando um V. Foco total nos ombros. Desça a cabeça entre as mãos.' },
+        { name: 'Mergulho entre cadeiras', reps: 15, sets: 3, rest: 60, svg: 'dips',
+          desc: 'Amplitude total. Desça até sentir alongar bem o peito e o tríceps.' },
+        { name: 'Flexão uma mão assistida', reps: 5, sets: 3, rest: 90, svg: 'oneArmPushup',
+          desc: 'Uma mão no chão, outra apoiada levemente ao lado. Pernas afastadas para estabilidade.' },
+        { name: 'Flexão com pausa de 3s', reps: 8, sets: 3, rest: 60, svg: 'pushupPause',
+          desc: 'Desça até embaixo, pause 3 segundos na posição baixa, depois empurre de volta.' },
+        { name: 'Flexão tipo hindu', reps: 8, sets: 3, rest: 75, svg: 'hinduPushup',
+          desc: 'Movimento fluido em arco: do pike desça em curva em direção ao chão e suba como cobra.' }
+      ]
+    }
+  };
+
+  // ============================================
+  // SVG ANIMADOS — bonecos palito com movimento real
+  // ============================================
   const svgs = {
-    // Flexão padrão
-    pushup: `
-      <svg class="exercise-svg anim-pushup" viewBox="0 0 200 200">
-        <ellipse class="fill-primary" cx="100" cy="180" rx="80" ry="6"/>
+    wallPushup: `
+      <svg viewBox="0 0 200 200">
+        <!-- parede -->
+        <rect x="160" y="20" width="6" height="160" fill="none" stroke="#3d7bc8" stroke-width="2" opacity="0.4"/>
         <!-- chão -->
-        <line x1="30" y1="175" x2="170" y2="175" stroke="#3d7bc8" stroke-width="1" opacity="0.3"/>
-        <!-- corpo (torso) - anima subindo e descendo -->
-        <g class="torso">
-          <circle cx="150" cy="105" r="10"/>
-          <line x1="140" y1="110" x2="75" y2="130"/>
-        </g>
-        <!-- braços -->
-        <line x1="140" y1="112" x2="130" y2="175"/>
-        <line x1="140" y1="112" x2="155" y2="175"/>
-        <!-- pernas -->
-        <line x1="75" y1="130" x2="45" y2="155"/>
-        <line x1="45" y1="155" x2="40" y2="175"/>
-        <line x1="45" y1="155" x2="55" y2="175"/>
-        <!-- indicador de movimento -->
-        <polyline points="105,90 105,120" stroke="#5e97dd" stroke-width="1.5" stroke-dasharray="3 3" opacity="0.5">
-          <animate attributeName="opacity" values="0.5;0.1;0.5" dur="2s" repeatCount="indefinite"/>
-        </polyline>
-      </svg>
-    `,
-    // Flexão diamante
-    diamond: `
-      <svg class="exercise-svg anim-pushup" viewBox="0 0 200 200">
-        <ellipse class="fill-primary" cx="100" cy="180" rx="80" ry="6"/>
-        <line x1="30" y1="175" x2="170" y2="175" stroke="#3d7bc8" stroke-width="1" opacity="0.3"/>
-        <g class="torso">
-          <circle cx="150" cy="105" r="10"/>
-          <line x1="140" y1="110" x2="75" y2="130"/>
-        </g>
-        <!-- braços juntos (diamante) -->
-        <polyline points="140,115 145,175 155,175 140,120"/>
-        <line x1="75" y1="130" x2="45" y2="155"/>
-        <line x1="45" y1="155" x2="40" y2="175"/>
-        <line x1="45" y1="155" x2="55" y2="175"/>
-        <polygon points="145,175 155,175 150,165" fill="#5e97dd" opacity="0.4"/>
-      </svg>
-    `,
-    // Flexão archer
-    archer: `
-      <svg class="exercise-svg anim-pushup" viewBox="0 0 200 200">
-        <ellipse class="fill-primary" cx="100" cy="180" rx="80" ry="6"/>
-        <line x1="30" y1="175" x2="170" y2="175" stroke="#3d7bc8" stroke-width="1" opacity="0.3"/>
-        <g class="torso">
-          <circle cx="150" cy="105" r="10"/>
-          <line x1="140" y1="110" x2="75" y2="130"/>
-        </g>
-        <!-- braço esquerdo estendido (archer) -->
-        <line x1="140" y1="112" x2="110" y2="175"/>
-        <!-- braço direito dobrado -->
-        <line x1="140" y1="112" x2="165" y2="150"/>
-        <line x1="165" y1="150" x2="155" y2="175"/>
-        <line x1="75" y1="130" x2="45" y2="155"/>
-        <line x1="45" y1="155" x2="40" y2="175"/>
-        <line x1="45" y1="155" x2="55" y2="175"/>
-      </svg>
-    `,
-    // Flexão explosiva
-    explosive: `
-      <svg class="exercise-svg" viewBox="0 0 200 200">
-        <ellipse class="fill-primary" cx="100" cy="180" rx="80" ry="6"/>
-        <line x1="30" y1="175" x2="170" y2="175" stroke="#3d7bc8" stroke-width="1" opacity="0.3"/>
+        <line x1="20" y1="180" x2="180" y2="180" stroke="#3d7bc8" stroke-width="1" opacity="0.3"/>
+        <!-- corpo em pé inclinado -->
         <g>
-          <circle cx="150" cy="105" r="10">
-            <animate attributeName="cy" values="105;75;105" dur="1.5s" repeatCount="indefinite"/>
-            <animate attributeName="cx" values="150;155;150" dur="1.5s" repeatCount="indefinite"/>
+          <circle cx="100" cy="60" r="10" class="fill-head">
+            <animate attributeName="cx" values="100;110;100" dur="2s" repeatCount="indefinite"/>
+            <animate attributeName="cy" values="60;65;60" dur="2s" repeatCount="indefinite"/>
           </circle>
-          <line x1="140" y1="110" x2="75" y2="130">
-            <animate attributeName="y1" values="110;80;110" dur="1.5s" repeatCount="indefinite"/>
-            <animate attributeName="y2" values="130;100;130" dur="1.5s" repeatCount="indefinite"/>
+          <line x1="100" y1="70" x2="100" y2="130">
+            <animate attributeName="x1" values="100;110;100" dur="2s" repeatCount="indefinite"/>
+            <animate attributeName="y1" values="70;75;70" dur="2s" repeatCount="indefinite"/>
+            <animate attributeName="x2" values="100;102;100" dur="2s" repeatCount="indefinite"/>
           </line>
-        </g>
-        <line x1="140" y1="112" x2="130" y2="175">
-          <animate attributeName="y1" values="112;82;112" dur="1.5s" repeatCount="indefinite"/>
-        </line>
-        <line x1="140" y1="112" x2="155" y2="175">
-          <animate attributeName="y1" values="112;82;112" dur="1.5s" repeatCount="indefinite"/>
-        </line>
-        <line x1="75" y1="130" x2="45" y2="155">
-          <animate attributeName="y1" values="130;100;130" dur="1.5s" repeatCount="indefinite"/>
-        </line>
-        <line x1="45" y1="155" x2="40" y2="175"/>
-        <line x1="45" y1="155" x2="55" y2="175"/>
-        <!-- partículas de explosão -->
-        <circle cx="100" cy="140" r="2" fill="#5e97dd" opacity="0">
-          <animate attributeName="opacity" values="0;1;0" dur="1.5s" repeatCount="indefinite"/>
-          <animate attributeName="cy" values="140;110;140" dur="1.5s" repeatCount="indefinite"/>
-        </circle>
-        <circle cx="120" cy="150" r="2" fill="#5e97dd" opacity="0">
-          <animate attributeName="opacity" values="0;1;0" dur="1.5s" begin="0.2s" repeatCount="indefinite"/>
-        </circle>
-      </svg>
-    `,
-    // Tríceps banco
-    triceps: `
-      <svg class="exercise-svg" viewBox="0 0 200 200">
-        <ellipse class="fill-primary" cx="100" cy="180" rx="80" ry="6"/>
-        <line x1="30" y1="175" x2="170" y2="175" stroke="#3d7bc8" stroke-width="1" opacity="0.3"/>
-        <!-- banco -->
-        <rect x="110" y="140" width="60" height="8" rx="2" fill="none" stroke="#5e97dd" stroke-width="2"/>
-        <line x1="115" y1="148" x2="115" y2="175"/>
-        <line x1="165" y1="148" x2="165" y2="175"/>
-        <!-- corpo -->
-        <g>
-          <circle cx="80" cy="90" r="10">
-            <animate attributeName="cy" values="90;125;90" dur="2s" repeatCount="indefinite"/>
-          </circle>
-          <line x1="80" y1="100" x2="110" y2="140">
-            <animate attributeName="y2" values="140;155;140" dur="2s" repeatCount="indefinite"/>
+          <!-- braços até parede -->
+          <line x1="100" y1="80" x2="160" y2="80">
+            <animate attributeName="x1" values="100;110;100" dur="2s" repeatCount="indefinite"/>
+            <animate attributeName="y1" values="80;85;80" dur="2s" repeatCount="indefinite"/>
           </line>
-          <!-- braços atrás no banco -->
-          <line x1="80" y1="100" x2="115" y2="148">
-            <animate attributeName="y1" values="100;135;100" dur="2s" repeatCount="indefinite"/>
-            <animate attributeName="y2" values="148;148;148" dur="2s" repeatCount="indefinite"/>
+          <line x1="100" y1="90" x2="160" y2="90">
+            <animate attributeName="x1" values="100;110;100" dur="2s" repeatCount="indefinite"/>
+            <animate attributeName="y1" values="90;95;90" dur="2s" repeatCount="indefinite"/>
           </line>
-          <!-- pernas estendidas -->
-          <line x1="110" y1="140" x2="60" y2="160">
-            <animate attributeName="y1" values="140;155;140" dur="2s" repeatCount="indefinite"/>
-          </line>
-          <line x1="60" y1="160" x2="40" y2="175"/>
+          <!-- pernas -->
+          <line x1="100" y1="130" x2="95" y2="180"/>
+          <line x1="100" y1="130" x2="110" y2="180"/>
         </g>
       </svg>
     `,
-    // Flexão pike
-    pike: `
-      <svg class="exercise-svg" viewBox="0 0 200 200">
-        <ellipse class="fill-primary" cx="100" cy="180" rx="80" ry="6"/>
-        <line x1="30" y1="175" x2="170" y2="175" stroke="#3d7bc8" stroke-width="1" opacity="0.3"/>
+
+    kneePushup: `
+      <svg viewBox="0 0 200 200">
+        <ellipse cx="100" cy="182" rx="80" ry="5" class="fill-primary"/>
+        <line x1="20" y1="180" x2="180" y2="180" stroke="#3d7bc8" stroke-width="1" opacity="0.3"/>
+        <!-- corpo descendo/subindo -->
         <g>
-          <!-- cabeça -->
-          <circle cx="100" cy="120" r="10">
-            <animate attributeName="cy" values="120;150;120" dur="2s" repeatCount="indefinite"/>
+          <circle cx="140" cy="100" r="10" class="fill-head">
+            <animate attributeName="cy" values="100;130;100" dur="2s" repeatCount="indefinite"/>
           </circle>
-          <!-- tronco em V -->
-          <line x1="100" y1="130" x2="60" y2="160">
-            <animate attributeName="y1" values="130;160;130" dur="2s" repeatCount="indefinite"/>
-            <animate attributeName="y2" values="160;175;160" dur="2s" repeatCount="indefinite"/>
-          </line>
-          <line x1="100" y1="130" x2="140" y2="160">
-            <animate attributeName="y1" values="130;160;130" dur="2s" repeatCount="indefinite"/>
-            <animate attributeName="y2" values="160;175;160" dur="2s" repeatCount="indefinite"/>
+          <line x1="130" y1="105" x2="80" y2="125">
+            <animate attributeName="y1" values="105;135;105" dur="2s" repeatCount="indefinite"/>
+            <animate attributeName="y2" values="125;155;125" dur="2s" repeatCount="indefinite"/>
           </line>
           <!-- braços -->
-          <line x1="100" y1="135" x2="80" y2="175"/>
-          <line x1="100" y1="135" x2="120" y2="175"/>
-          <!-- pernas -->
-          <line x1="60" y1="160" x2="40" y2="175"/>
-          <line x1="140" y1="160" x2="160" y2="175"/>
+          <line x1="130" y1="110" x2="120" y2="180">
+            <animate attributeName="y1" values="110;140;110" dur="2s" repeatCount="indefinite"/>
+          </line>
+          <line x1="130" y1="110" x2="145" y2="180">
+            <animate attributeName="y1" values="110;140;110" dur="2s" repeatCount="indefinite"/>
+          </line>
+          <!-- joelhos no chão -->
+          <line x1="80" y1="125" x2="70" y2="180">
+            <animate attributeName="y1" values="125;155;125" dur="2s" repeatCount="indefinite"/>
+          </line>
+          <!-- pés pra trás -->
+          <line x1="70" y1="180" x2="40" y2="180"/>
         </g>
       </svg>
     `,
-    // Mergulho entre cadeiras
-    dips: `
-      <svg class="exercise-svg" viewBox="0 0 200 200">
-        <ellipse class="fill-primary" cx="100" cy="180" rx="80" ry="6"/>
-        <line x1="30" y1="175" x2="170" y2="175" stroke="#3d7bc8" stroke-width="1" opacity="0.3"/>
-        <!-- duas cadeiras -->
-        <rect x="30" y="140" width="40" height="8" rx="2" fill="none" stroke="#5e97dd" stroke-width="2"/>
-        <line x1="35" y1="148" x2="35" y2="175"/>
-        <line x1="65" y1="148" x2="65" y2="175"/>
-        
-        <rect x="130" y="140" width="40" height="8" rx="2" fill="none" stroke="#5e97dd" stroke-width="2"/>
-        <line x1="135" y1="148" x2="135" y2="175"/>
-        <line x1="165" y1="148" x2="165" y2="175"/>
-        
-        <!-- corpo entre as cadeiras -->
+
+    tricepsBench: `
+      <svg viewBox="0 0 200 200">
+        <ellipse cx="100" cy="182" rx="80" ry="5" class="fill-primary"/>
+        <line x1="20" y1="180" x2="180" y2="180" stroke="#3d7bc8" stroke-width="1" opacity="0.3"/>
+        <!-- cadeira/banco -->
+        <rect x="115" y="140" width="60" height="8" rx="2" class="fill-primary" stroke="#3d7bc8" stroke-width="2"/>
+        <line x1="120" y1="148" x2="120" y2="180" stroke="#3d7bc8" stroke-width="2"/>
+        <line x1="170" y1="148" x2="170" y2="180" stroke="#3d7bc8" stroke-width="2"/>
+        <!-- corpo descendo/subindo -->
         <g>
-          <circle cx="100" cy="80" r="10">
-            <animate attributeName="cy" values="80;115;80" dur="2s" repeatCount="indefinite"/>
+          <circle cx="80" cy="85" r="10" class="fill-head">
+            <animate attributeName="cy" values="85;120;85" dur="2s" repeatCount="indefinite"/>
           </circle>
-          <line x1="100" y1="90" x2="100" y2="120">
-            <animate attributeName="y2" values="120;155;120" dur="2s" repeatCount="indefinite"/>
+          <line x1="80" y1="95" x2="115" y2="135">
+            <animate attributeName="y2" values="135;150;135" dur="2s" repeatCount="indefinite"/>
           </line>
-          <!-- braços apoiados nas cadeiras -->
-          <line x1="100" y1="95" x2="50" y2="140">
-            <animate attributeName="y1" values="95;130;95" dur="2s" repeatCount="indefinite"/>
+          <!-- braço atrás apoiado no banco -->
+          <line x1="80" y1="100" x2="120" y2="148">
+            <animate attributeName="y1" values="100;135;100" dur="2s" repeatCount="indefinite"/>
           </line>
-          <line x1="100" y1="95" x2="150" y2="140">
-            <animate attributeName="y1" values="95;130;95" dur="2s" repeatCount="indefinite"/>
+          <!-- pernas estendidas -->
+          <line x1="115" y1="135" x2="65" y2="155">
+            <animate attributeName="y1" values="135;150;135" dur="2s" repeatCount="indefinite"/>
+          </line>
+          <line x1="65" y1="155" x2="40" y2="180"/>
+        </g>
+      </svg>
+    `,
+
+    inclinePushup: `
+      <svg viewBox="0 0 200 200">
+        <ellipse cx="100" cy="182" rx="80" ry="5" class="fill-primary"/>
+        <line x1="20" y1="180" x2="180" y2="180" stroke="#3d7bc8" stroke-width="1" opacity="0.3"/>
+        <!-- superfície elevada (mesa) -->
+        <rect x="120" y="100" width="60" height="6" rx="2" class="fill-primary" stroke="#3d7bc8" stroke-width="2"/>
+        <line x1="125" y1="106" x2="125" y2="180" stroke="#3d7bc8" stroke-width="2"/>
+        <line x1="175" y1="106" x2="175" y2="180" stroke="#3d7bc8" stroke-width="2"/>
+        <!-- corpo -->
+        <g>
+          <circle cx="140" cy="80" r="10" class="fill-head">
+            <animate attributeName="cy" values="80;95;80" dur="2s" repeatCount="indefinite"/>
+          </circle>
+          <line x1="130" y1="85" x2="80" y2="105">
+            <animate attributeName="y1" values="85;100;85" dur="2s" repeatCount="indefinite"/>
+            <animate attributeName="y2" values="105;120;105" dur="2s" repeatCount="indefinite"/>
+          </line>
+          <!-- braços até a superfície -->
+          <line x1="130" y1="90" x2="140" y2="105">
+            <animate attributeName="y1" values="90;105;90" dur="2s" repeatCount="indefinite"/>
+          </line>
+          <line x1="130" y1="90" x2="155" y2="105">
+            <animate attributeName="y1" values="90;105;90" dur="2s" repeatCount="indefinite"/>
           </line>
           <!-- pernas -->
-          <line x1="100" y1="120" x2="100" y2="175">
-            <animate attributeName="y1" values="120;155;120" dur="2s" repeatCount="indefinite"/>
+          <line x1="80" y1="105" x2="50" y2="140">
+            <animate attributeName="y1" values="105;120;105" dur="2s" repeatCount="indefinite"/>
+          </line>
+          <line x1="50" y1="140" x2="40" y2="180"/>
+        </g>
+      </svg>
+    `,
+
+    declinePushup: `
+      <svg viewBox="0 0 200 200">
+        <ellipse cx="100" cy="182" rx="80" ry="5" class="fill-primary"/>
+        <line x1="20" y1="180" x2="180" y2="180" stroke="#3d7bc8" stroke-width="1" opacity="0.3"/>
+        <!-- superfície elevada para os pés -->
+        <rect x="30" y="110" width="60" height="6" rx="2" class="fill-primary" stroke="#3d7bc8" stroke-width="2"/>
+        <line x1="35" y1="116" x2="35" y2="180" stroke="#3d7bc8" stroke-width="2"/>
+        <line x1="85" y1="116" x2="85" y2="180" stroke="#3d7bc8" stroke-width="2"/>
+        <!-- corpo inclinado (pés elevados) -->
+        <g>
+          <circle cx="160" cy="90" r="10" class="fill-head">
+            <animate attributeName="cy" values="90;115;90" dur="2s" repeatCount="indefinite"/>
+          </circle>
+          <line x1="150" y1="95" x2="85" y2="115">
+            <animate attributeName="y1" values="95;120;95" dur="2s" repeatCount="indefinite"/>
+            <animate attributeName="y2" values="115;135;115" dur="2s" repeatCount="indefinite"/>
+          </line>
+          <!-- braços no chão -->
+          <line x1="150" y1="100" x2="140" y2="180">
+            <animate attributeName="y1" values="100;125;100" dur="2s" repeatCount="indefinite"/>
+          </line>
+          <line x1="150" y1="100" x2="165" y2="180">
+            <animate attributeName="y1" values="100;125;100" dur="2s" repeatCount="indefinite"/>
+          </line>
+          <!-- pernas na superfície elevada -->
+          <line x1="85" y1="115" x2="70" y2="113">
+            <animate attributeName="y1" values="115;135;115" dur="2s" repeatCount="indefinite"/>
           </line>
         </g>
       </svg>
     `,
-    // Flexão uma mão (assistida)
-    onearm: `
-      <svg class="exercise-svg anim-pushup" viewBox="0 0 200 200">
-        <ellipse class="fill-primary" cx="100" cy="180" rx="80" ry="6"/>
-        <line x1="30" y1="175" x2="170" y2="175" stroke="#3d7bc8" stroke-width="1" opacity="0.3"/>
-        <g class="torso">
-          <circle cx="150" cy="105" r="10"/>
-          <line x1="140" y1="110" x2="75" y2="130"/>
+
+    plankTap: `
+      <svg viewBox="0 0 200 200">
+        <ellipse cx="100" cy="182" rx="80" ry="5" class="fill-primary"/>
+        <line x1="20" y1="180" x2="180" y2="180" stroke="#3d7bc8" stroke-width="1" opacity="0.3"/>
+        <!-- corpo em prancha alta -->
+        <g>
+          <circle cx="150" cy="90" r="10" class="fill-head"/>
+          <line x1="140" y1="95" x2="75" y2="115"/>
+          <!-- braço direito levantando para tocar ombro -->
+          <line x1="140" y1="100" x2="130" y2="180"/>
+          <line x1="140" y1="100" x2="155" y2="180"/>
+          <!-- braço esquerdo animando (toque) -->
+          <line x1="140" y1="105" x2="115" y2="90">
+            <animate attributeName="x2" values="115;120;115" dur="2s" repeatCount="indefinite"/>
+            <animate attributeName="y2" values="90;95;90" dur="2s" repeatCount="indefinite"/>
+          </line>
+          <!-- pernas -->
+          <line x1="75" y1="115" x2="45" y2="140"/>
+          <line x1="45" y1="140" x2="40" y2="180"/>
+          <line x1="45" y1="140" x2="55" y2="180"/>
         </g>
-        <!-- braço único estendido -->
-        <line x1="140" y1="112" x2="130" y2="175"/>
-        <!-- outro braço atrás das costas -->
-        <line x1="140" y1="112" x2="110" y2="105"/>
-        <!-- pernas afastadas -->
-        <line x1="75" y1="130" x2="45" y2="160"/>
-        <line x1="45" y1="160" x2="35" y2="175"/>
-        <line x1="45" y1="160" x2="55" y2="175"/>
+      </svg>
+    `,
+
+    negativePushup: `
+      <svg viewBox="0 0 200 200">
+        <ellipse cx="100" cy="182" rx="80" ry="5" class="fill-primary"/>
+        <line x1="20" y1="180" x2="180" y2="180" stroke="#3d7bc8" stroke-width="1" opacity="0.3"/>
+        <!-- corpo desce muito devagar -->
+        <g>
+          <circle cx="150" cy="90" r="10" class="fill-head">
+            <animate attributeName="cy" values="90;140;90" dur="3s" repeatCount="indefinite"/>
+          </circle>
+          <line x1="140" y1="95" x2="75" y2="115">
+            <animate attributeName="y1" values="95;145;95" dur="3s" repeatCount="indefinite"/>
+            <animate attributeName="y2" values="115;165;115" dur="3s" repeatCount="indefinite"/>
+          </line>
+          <line x1="140" y1="100" x2="130" y2="180">
+            <animate attributeName="y1" values="100;150;100" dur="3s" repeatCount="indefinite"/>
+          </line>
+          <line x1="140" y1="100" x2="155" y2="180">
+            <animate attributeName="y1" values="100;150;100" dur="3s" repeatCount="indefinite"/>
+          </line>
+          <line x1="75" y1="115" x2="45" y2="140">
+            <animate attributeName="y1" values="115;165;115" dur="3s" repeatCount="indefinite"/>
+          </line>
+          <line x1="45" y1="140" x2="40" y2="180"/>
+          <line x1="45" y1="140" x2="55" y2="180"/>
+        </g>
+      </svg>
+    `,
+
+    pushup: `
+      <svg viewBox="0 0 200 200">
+        <ellipse cx="100" cy="182" rx="80" ry="5" class="fill-primary"/>
+        <line x1="20" y1="180" x2="180" y2="180" stroke="#3d7bc8" stroke-width="1" opacity="0.3"/>
+        <g>
+          <circle cx="150" cy="95" r="10" class="fill-head">
+            <animate attributeName="cy" values="95;135;95" dur="2s" repeatCount="indefinite"/>
+          </circle>
+          <line x1="140" y1="100" x2="75" y2="120">
+            <animate attributeName="y1" values="100;140;100" dur="2s" repeatCount="indefinite"/>
+            <animate attributeName="y2" values="120;160;120" dur="2s" repeatCount="indefinite"/>
+          </line>
+          <line x1="140" y1="105" x2="130" y2="180">
+            <animate attributeName="y1" values="105;145;105" dur="2s" repeatCount="indefinite"/>
+          </line>
+          <line x1="140" y1="105" x2="155" y2="180">
+            <animate attributeName="y1" values="105;145;105" dur="2s" repeatCount="indefinite"/>
+          </line>
+          <line x1="75" y1="120" x2="45" y2="145">
+            <animate attributeName="y1" values="120;160;120" dur="2s" repeatCount="indefinite"/>
+          </line>
+          <line x1="45" y1="145" x2="40" y2="180"/>
+          <line x1="45" y1="145" x2="55" y2="180"/>
+        </g>
+      </svg>
+    `,
+
+    diamondPushup: `
+      <svg viewBox="0 0 200 200">
+        <ellipse cx="100" cy="182" rx="80" ry="5" class="fill-primary"/>
+        <line x1="20" y1="180" x2="180" y2="180" stroke="#3d7bc8" stroke-width="1" opacity="0.3"/>
+        <g>
+          <circle cx="150" cy="95" r="10" class="fill-head">
+            <animate attributeName="cy" values="95;135;95" dur="2s" repeatCount="indefinite"/>
+          </circle>
+          <line x1="140" y1="100" x2="75" y2="120">
+            <animate attributeName="y1" values="100;140;100" dur="2s" repeatCount="indefinite"/>
+            <animate attributeName="y2" values="120;160;120" dur="2s" repeatCount="indefinite"/>
+          </line>
+          <!-- mãos juntas (diamante) -->
+          <polyline points="140,110 145,180 155,180 140,115">
+            <animate attributeName="points" values="140,110 145,180 155,180 140,115;140,150 145,180 155,180 140,155;140,110 145,180 155,180 140,115" dur="2s" repeatCount="indefinite"/>
+          </polyline>
+          <line x1="75" y1="120" x2="45" y2="145">
+            <animate attributeName="y1" values="120;160;120" dur="2s" repeatCount="indefinite"/>
+          </line>
+          <line x1="45" y1="145" x2="40" y2="180"/>
+          <line x1="45" y1="145" x2="55" y2="180"/>
+        </g>
+      </svg>
+    `,
+
+    archerPushup: `
+      <svg viewBox="0 0 200 200">
+        <ellipse cx="100" cy="182" rx="80" ry="5" class="fill-primary"/>
+        <line x1="20" y1="180" x2="180" y2="180" stroke="#3d7bc8" stroke-width="1" opacity="0.3"/>
+        <g>
+          <circle cx="150" cy="95" r="10" class="fill-head">
+            <animate attributeName="cy" values="95;135;95" dur="2s" repeatCount="indefinite"/>
+          </circle>
+          <line x1="140" y1="100" x2="75" y2="120">
+            <animate attributeName="y1" values="100;140;100" dur="2s" repeatCount="indefinite"/>
+            <animate attributeName="y2" values="120;160;120" dur="2s" repeatCount="indefinite"/>
+          </line>
+          <!-- braço estendido esquerdo -->
+          <line x1="140" y1="105" x2="80" y2="180">
+            <animate attributeName="y1" values="105;145;105" dur="2s" repeatCount="indefinite"/>
+          </line>
+          <!-- braço direito dobrando -->
+          <line x1="140" y1="105" x2="165" y2="150">
+            <animate attributeName="y1" values="105;145;105" dur="2s" repeatCount="indefinite"/>
+            <animate attributeName="y2" values="150;180;150" dur="2s" repeatCount="indefinite"/>
+          </line>
+          <line x1="75" y1="120" x2="45" y2="145">
+            <animate attributeName="y1" values="120;160;120" dur="2s" repeatCount="indefinite"/>
+          </line>
+          <line x1="45" y1="145" x2="40" y2="180"/>
+          <line x1="45" y1="145" x2="55" y2="180"/>
+        </g>
+      </svg>
+    `,
+
+    dips: `
+      <svg viewBox="0 0 200 200">
+        <ellipse cx="100" cy="182" rx="80" ry="5" class="fill-primary"/>
+        <line x1="20" y1="180" x2="180" y2="180" stroke="#3d7bc8" stroke-width="1" opacity="0.3"/>
+        <!-- duas cadeiras -->
+        <rect x="30" y="140" width="40" height="8" rx="2" class="fill-primary" stroke="#3d7bc8" stroke-width="2"/>
+        <line x1="35" y1="148" x2="35" y2="180" stroke="#3d7bc8" stroke-width="2"/>
+        <line x1="65" y1="148" x2="65" y2="180" stroke="#3d7bc8" stroke-width="2"/>
+        <rect x="130" y="140" width="40" height="8" rx="2" class="fill-primary" stroke="#3d7bc8" stroke-width="2"/>
+        <line x1="135" y1="148" x2="135" y2="180" stroke="#3d7bc8" stroke-width="2"/>
+        <line x1="165" y1="148" x2="165" y2="180" stroke="#3d7bc8" stroke-width="2"/>
+        <!-- corpo descendo entre cadeiras -->
+        <g>
+          <circle cx="100" cy="75" r="10" class="fill-head">
+            <animate attributeName="cy" values="75;110;75" dur="2s" repeatCount="indefinite"/>
+          </circle>
+          <line x1="100" y1="85" x2="100" y2="115">
+            <animate attributeName="y2" values="115;150;115" dur="2s" repeatCount="indefinite"/>
+          </line>
+          <line x1="100" y1="90" x2="55" y2="140">
+            <animate attributeName="y1" values="90;125;90" dur="2s" repeatCount="indefinite"/>
+          </line>
+          <line x1="100" y1="90" x2="145" y2="140">
+            <animate attributeName="y1" values="90;125;90" dur="2s" repeatCount="indefinite"/>
+          </line>
+          <line x1="100" y1="115" x2="100" y2="180">
+            <animate attributeName="y1" values="115;150;115" dur="2s" repeatCount="indefinite"/>
+          </line>
+        </g>
+      </svg>
+    `,
+
+    explosivePushup: `
+      <svg viewBox="0 0 200 200">
+        <ellipse cx="100" cy="182" rx="80" ry="5" class="fill-primary"/>
+        <line x1="20" y1="180" x2="180" y2="180" stroke="#3d7bc8" stroke-width="1" opacity="0.3"/>
+        <g>
+          <circle cx="150" cy="95" r="10" class="fill-head">
+            <animate attributeName="cy" values="95;135;60;95" dur="2s" repeatCount="indefinite"/>
+          </circle>
+          <line x1="140" y1="100" x2="75" y2="120">
+            <animate attributeName="y1" values="100;140;65;100" dur="2s" repeatCount="indefinite"/>
+            <animate attributeName="y2" values="120;160;85;120" dur="2s" repeatCount="indefinite"/>
+          </line>
+          <line x1="140" y1="105" x2="130" y2="180">
+            <animate attributeName="y1" values="105;145;70;105" dur="2s" repeatCount="indefinite"/>
+          </line>
+          <line x1="140" y1="105" x2="155" y2="180">
+            <animate attributeName="y1" values="105;145;70;105" dur="2s" repeatCount="indefinite"/>
+          </line>
+          <line x1="75" y1="120" x2="45" y2="145">
+            <animate attributeName="y1" values="120;160;85;120" dur="2s" repeatCount="indefinite"/>
+          </line>
+          <line x1="45" y1="145" x2="40" y2="180"/>
+          <line x1="45" y1="145" x2="55" y2="180"/>
+        </g>
+      </svg>
+    `,
+
+    pikePushup: `
+      <svg viewBox="0 0 200 200">
+        <ellipse cx="100" cy="182" rx="80" ry="5" class="fill-primary"/>
+        <line x1="20" y1="180" x2="180" y2="180" stroke="#3d7bc8" stroke-width="1" opacity="0.3"/>
+        <g>
+          <circle cx="100" cy="115" r="10" class="fill-head">
+            <animate attributeName="cy" values="115;150;115" dur="2s" repeatCount="indefinite"/>
+          </circle>
+          <line x1="100" y1="125" x2="60" y2="155">
+            <animate attributeName="y1" values="125;160;125" dur="2s" repeatCount="indefinite"/>
+          </line>
+          <line x1="100" y1="125" x2="140" y2="155">
+            <animate attributeName="y1" values="125;160;125" dur="2s" repeatCount="indefinite"/>
+          </line>
+          <!-- braços -->
+          <line x1="100" y1="130" x2="80" y2="180"/>
+          <line x1="100" y1="130" x2="120" y2="180"/>
+          <!-- pernas -->
+          <line x1="60" y1="155" x2="40" y2="180"/>
+          <line x1="140" y1="155" x2="160" y2="180"/>
+        </g>
+      </svg>
+    `,
+
+    oneArmPushup: `
+      <svg viewBox="0 0 200 200">
+        <ellipse cx="100" cy="182" rx="80" ry="5" class="fill-primary"/>
+        <line x1="20" y1="180" x2="180" y2="180" stroke="#3d7bc8" stroke-width="1" opacity="0.3"/>
+        <g>
+          <circle cx="150" cy="95" r="10" class="fill-head">
+            <animate attributeName="cy" values="95;140;95" dur="2.5s" repeatCount="indefinite"/>
+          </circle>
+          <line x1="140" y1="100" x2="75" y2="120">
+            <animate attributeName="y1" values="100;145;100" dur="2.5s" repeatCount="indefinite"/>
+            <animate attributeName="y2" values="120;165;120" dur="2.5s" repeatCount="indefinite"/>
+          </line>
+          <!-- braço único estendido -->
+          <line x1="140" y1="105" x2="130" y2="180">
+            <animate attributeName="y1" values="105;150;105" dur="2.5s" repeatCount="indefinite"/>
+          </line>
+          <!-- outro braço atrás -->
+          <line x1="140" y1="105" x2="105" y2="100">
+            <animate attributeName="y1" values="105;150;105" dur="2.5s" repeatCount="indefinite"/>
+          </line>
+          <!-- pernas afastadas -->
+          <line x1="75" y1="120" x2="40" y2="155">
+            <animate attributeName="y1" values="120;165;120" dur="2.5s" repeatCount="indefinite"/>
+          </line>
+          <line x1="40" y1="155" x2="30" y2="180"/>
+          <line x1="40" y1="155" x2="55" y2="180"/>
+        </g>
+      </svg>
+    `,
+
+    pushupPause: `
+      <svg viewBox="0 0 200 200">
+        <ellipse cx="100" cy="182" rx="80" ry="5" class="fill-primary"/>
+        <line x1="20" y1="180" x2="180" y2="180" stroke="#3d7bc8" stroke-width="1" opacity="0.3"/>
+        <g>
+          <circle cx="150" cy="95" r="10" class="fill-head">
+            <animate attributeName="cy" values="95;140;140;95" dur="3s" repeatCount="indefinite"/>
+          </circle>
+          <line x1="140" y1="100" x2="75" y2="120">
+            <animate attributeName="y1" values="100;145;145;100" dur="3s" repeatCount="indefinite"/>
+            <animate attributeName="y2" values="120;165;165;120" dur="3s" repeatCount="indefinite"/>
+          </line>
+          <line x1="140" y1="105" x2="130" y2="180">
+            <animate attributeName="y1" values="105;150;150;105" dur="3s" repeatCount="indefinite"/>
+          </line>
+          <line x1="140" y1="105" x2="155" y2="180">
+            <animate attributeName="y1" values="105;150;150;105" dur="3s" repeatCount="indefinite"/>
+          </line>
+          <line x1="75" y1="120" x2="45" y2="145">
+            <animate attributeName="y1" values="120;165;165;120" dur="3s" repeatCount="indefinite"/>
+          </line>
+          <line x1="45" y1="145" x2="40" y2="180"/>
+          <line x1="45" y1="145" x2="55" y2="180"/>
+        </g>
+      </svg>
+    `,
+
+    hinduPushup: `
+      <svg viewBox="0 0 200 200">
+        <ellipse cx="100" cy="182" rx="80" ry="5" class="fill-primary"/>
+        <line x1="20" y1="180" x2="180" y2="180" stroke="#3d7bc8" stroke-width="1" opacity="0.3"/>
+        <g>
+          <circle cx="100" cy="110" r="10" class="fill-head">
+            <animate attributeName="cx" values="100;150;100" dur="3s" repeatCount="indefinite"/>
+            <animate attributeName="cy" values="110;140;110" dur="3s" repeatCount="indefinite"/>
+          </circle>
+          <!-- corpo em arco -->
+          <line x1="100" y1="120" x2="60" y2="150">
+            <animate attributeName="x1" values="100;150;100" dur="3s" repeatCount="indefinite"/>
+            <animate attributeName="y1" values="120;150;120" dur="3s" repeatCount="indefinite"/>
+          </line>
+          <line x1="100" y1="120" x2="140" y2="150">
+            <animate attributeName="x1" values="100;150;100" dur="3s" repeatCount="indefinite"/>
+            <animate attributeName="y1" values="120;150;120" dur="3s" repeatCount="indefinite"/>
+          </line>
+          <!-- braços -->
+          <line x1="100" y1="125" x2="80" y2="180"/>
+          <line x1="100" y1="125" x2="120" y2="180"/>
+          <!-- pernas -->
+          <line x1="60" y1="150" x2="40" y2="180"/>
+          <line x1="140" y1="150" x2="160" y2="180"/>
+        </g>
       </svg>
     `
   };
 
-  // ===== EXERCÍCIOS DE BRAÇO =====
-  const exercises = [
-    {
-      id: 'pushup',
-      name: 'Flexão padrão',
-      tag: 'Base',
-      desc: 'Exercício fundamental para peito, tríceps e ombros.',
-      reps: '3x12',
-      rest: '45s',
-      xp: 15,
-      coins: 8,
-      svg: 'pushup',
-      steps: [
-        'Mãos na largura dos ombros, corpo reto como uma prancha.',
-        'Desça o peito controladamente até quase tocar o chão.',
-        'Empurre de volta estendendo os braços, sem travar os cotovelos.'
-      ]
-    },
-    {
-      id: 'diamond',
-      name: 'Flexão diamante',
-      tag: 'Tríceps',
-      desc: 'Foco total no tríceps. Mãos juntas formando um diamante.',
-      reps: '3x10',
-      rest: '50s',
-      xp: 18,
-      coins: 9,
-      svg: 'diamond',
-      steps: [
-        'Junte as mãos embaixo do peito formando um diamante com os indicadores e polegares.',
-        'Desça mantendo os cotovelos próximos ao corpo.',
-        'Empurre de volta com força, contraindo o tríceps no topo.'
-      ]
-    },
-    {
-      id: 'archer',
-      name: 'Flexão archer',
-      tag: 'Força',
-      desc: 'Transferência de peso para um lado. Prepara para a uma mão.',
-      reps: '3x8 cada',
-      rest: '60s',
-      xp: 25,
-      coins: 12,
-      svg: 'archer',
-      steps: [
-        'Mãos bem afastadas, uma mais larga que a outra.',
-        'Desça o corpo em direção ao braço dobrado.',
-        'O braço oposto permanece estendido durante todo o movimento.'
-      ]
-    },
-    {
-      id: 'explosive',
-      name: 'Flexão explosiva',
-      tag: 'Potência',
-      desc: 'Empurre com força suficiente para as mãos saírem do chão.',
-      reps: '4x6',
-      rest: '75s',
-      xp: 30,
-      coins: 15,
-      svg: 'explosive',
-      steps: [
-        'Comece na posição de flexão padrão.',
-        'Desça controlado e empurre explosivamente.',
-        'Tire as mãos do chão por um instante e aterrisse suave.'
-      ]
-    },
-    {
-      id: 'triceps',
-      name: 'Tríceps no banco',
-      tag: 'Tríceps',
-      desc: 'Use uma cadeira firme para isolar o tríceps.',
-      reps: '3x15',
-      rest: '45s',
-      xp: 15,
-      coins: 8,
-      svg: 'triceps',
-      steps: [
-        'Mãos na beirada da cadeira, costas próximas a ela.',
-        'Pernas estendidas à frente, desça flexionando os cotovelos.',
-        'Suba contraindo o tríceps, sem travar os cotovelos no topo.'
-      ]
-    },
-    {
-      id: 'pike',
-      name: 'Flexão pike',
-      tag: 'Ombros',
-      desc: 'Foco nos ombros. Quadril elevado como um V invertido.',
-      reps: '3x10',
-      rest: '50s',
-      xp: 18,
-      coins: 9,
-      svg: 'pike',
-      steps: [
-        'Em posição de flexão, eleve o quadril para formar um V.',
-        'Desça a cabeça em direção ao chão entre as mãos.',
-        'Empurre de volta contraindo os ombros.'
-      ]
-    },
-    {
-      id: 'dips',
-      name: 'Mergulho entre cadeiras',
-      tag: 'Peito',
-      desc: 'Duas cadeiras firmes como apoio. Amplitude total.',
-      reps: '3x12',
-      rest: '60s',
-      xp: 22,
-      coins: 11,
-      svg: 'dips',
-      steps: [
-        'Apoie as mãos em duas cadeiras firmes, um de cada lado.',
-        'Desça o corpo flexionando os cotovelos até sentir alongar.',
-        'Empurre de volta contraindo o peito e o tríceps.'
-      ]
-    },
-    {
-      id: 'onearm',
-      name: 'Flexão uma mão assistida',
-      tag: 'Avançado',
-      desc: 'Preparação para a flexão uma mão completa.',
-      reps: '3x5 cada',
-      rest: '90s',
-      xp: 40,
-      coins: 20,
-      svg: 'onearm',
-      steps: [
-        'Uma mão no chão, outra apoiada levemente ao lado.',
-        'Pernas afastadas para dar estabilidade.',
-        'Desça controlado e empurre com força usando a mão principal.'
-      ]
-    }
-  ];
-
-  // ===== REFERÊNCIAS DOM =====
+  // ============================================
+  // DOM
+  // ============================================
   const $ = (id) => document.getElementById(id);
   const ui = {
     navCoins: $('navCoins'),
@@ -1916,109 +1857,38 @@
     statStreak: $('statStreak'),
     statXp: $('statXp'),
     statWorkouts: $('statWorkouts'),
-    heroStreak: $('heroStreak'),
-    exerciseGrid: $('exerciseGrid'),
-    bracoCount: $('bracoCount'),
-    exerciseModal: $('exerciseModal'),
-    modalExTitle: $('modalExTitle'),
-    modalExDesc: $('modalExDesc'),
-    modalExReps: $('modalExReps'),
-    modalExRest: $('modalExRest'),
-    modalExXp: $('modalExXp'),
-    modalExSteps: $('modalExSteps'),
-    modalSvgContainer: $('modalSvgContainer'),
-    timerModal: $('timerModal'),
-    timerTitle: $('timerTitle'),
-    timerSub: $('timerSub'),
-    timerDisplay: $('timerDisplay'),
-    timerPhase: $('timerPhase'),
-    timerProgressFill: $('timerProgressFill'),
-    timerReps: $('timerReps'),
-    timerSvgContainer: $('timerSvgContainer'),
+    monthGrid: $('monthGrid'),
+    progDone: $('progDone'),
+    progRemaining: $('progRemaining'),
+    progPct: $('progPct'),
+    workoutModal: $('workoutModal'),
+    workoutContent: $('workoutContent'),
     toast: $('toast'),
     toastTitle: $('toastTitle'),
     toastSub: $('toastSub'),
-    toastIcon: $('toastIcon'),
-    rankFill: $('rankFill'),
-    rankXp: $('rankXp'),
-    rankNeeded: $('rankNeeded'),
-    rankPanel: $('rankPanel')
+    toastIcon: $('toastIcon')
   };
 
-  // ===== UPDATE UI =====
+  // ============================================
+  // UPDATE UI
+  // ============================================
   function updateUI() {
     ui.navCoins.textContent = state.coins;
     ui.statCoins.textContent = state.coins;
     ui.statStreak.textContent = state.streak;
     ui.statXp.textContent = state.xp;
     ui.statWorkouts.textContent = state.workouts;
-    ui.heroStreak.textContent = state.streak + ' dias';
 
-    // Rank atual
-    const currentRank = getCurrentRank();
-    const nextRank = getNextRank(currentRank);
-    const pct = nextRank ? Math.min(100, ((state.xp - currentRank.min) / (nextRank.min - currentRank.min)) * 100) : 100;
-    
-    ui.rankFill.style.width = pct + '%';
-    ui.rankFill.style.background = `linear-gradient(90deg, ${currentRank.fill1}, ${currentRank.fill2})`;
-    ui.rankFill.style.boxShadow = `0 0 16px ${currentRank.glow}`;
-    
-    if (nextRank) {
-      ui.rankXp.textContent = `${state.xp} / ${nextRank.min} XP`;
-      ui.rankNeeded.textContent = (nextRank.min - state.xp) + ' XP';
-    } else {
-      ui.rankXp.textContent = `${state.xp} XP (máximo)`;
-      ui.rankNeeded.textContent = 'Nível máximo';
-    }
-    
-    ui.rankPanel.style.setProperty('--rank-glow', currentRank.glow);
-    
-    // Atualizar cards de rank
-    updateRankCards();
+    const total = 30;
+    const done = state.completedDays.length;
+    ui.progDone.textContent = done;
+    ui.progRemaining.textContent = total - done;
+    ui.progPct.textContent = Math.round((done / total) * 100) + '%';
   }
 
-  function getCurrentRank() {
-    for (let i = ranks.length - 1; i >= 0; i--) {
-      if (state.xp >= ranks[i].min) return ranks[i];
-    }
-    return ranks[0];
-  }
-
-  function getNextRank(current) {
-    const idx = ranks.findIndex(r => r.key === current.key);
-    return idx < ranks.length - 1 ? ranks[idx + 1] : null;
-  }
-
-  function updateRankCards() {
-    const currentRank = getCurrentRank();
-    
-    ranks.forEach(rank => {
-      const card = document.getElementById('rank' + rank.name);
-      if (!card) return;
-      
-      const badge = card.querySelector('.rank-badge');
-      const isCurrent = rank.key === currentRank.key;
-      const isUnlocked = state.xp >= rank.min;
-      
-      card.classList.remove('current', 'locked');
-      badge.className = 'rank-badge';
-      
-      if (isCurrent) {
-        card.classList.add('current');
-        badge.classList.add('rank-badge-current');
-        badge.textContent = 'Você está aqui';
-      } else if (isUnlocked) {
-        badge.classList.add('rank-badge-unlocked');
-        badge.textContent = 'Desbloqueado';
-      } else {
-        card.classList.add('locked');
-        badge.classList.add('rank-badge-locked');
-        badge.textContent = 'Bloqueado';
-      }
-    });
-  }
-
-  // ===== TOAST =====
+  // ============================================
+  // TOAST
+  // ============================================
   let toastTimer;
   const iconMap = {
     check: '<i class="fas fa-check"></i>',
@@ -2039,7 +1909,9 @@
     toastTimer = setTimeout(() => ui.toast.classList.remove('show'), 3000);
   }
 
-  // ===== ÁUDIO =====
+  // ============================================
+  // ÁUDIO
+  // ============================================
   let audioCtx;
   function playTone(freqs, type = 'sine', duration = 0.15, volume = 0.1) {
     try {
@@ -2061,208 +1933,334 @@
     success: () => playTone([523, 659, 784], 'sine', 0.15),
     coin: () => playTone([988, 1175], 'square', 0.08, 0.06),
     streak: () => playTone([440, 554, 659], 'triangle', 0.12),
-    lock: () => playTone([220, 180], 'sawtooth', 0.1, 0.05),
-    tick: () => playTone([880], 'sine', 0.05, 0.04)
+    tick: () => playTone([880], 'sine', 0.05, 0.04),
+    beep: () => playTone([660, 880], 'square', 0.1, 0.08)
   };
 
-  // ===== RENDER EXERCÍCIOS =====
-  function renderExercises() {
-    ui.exerciseGrid.innerHTML = '';
-    ui.bracoCount.textContent = exercises.length;
+  // ============================================
+  // CALENDÁRIO 30 DIAS
+  // ============================================
+  function renderMonth() {
+    const grid = ui.monthGrid;
+    grid.innerHTML = '';
     
-    exercises.forEach((ex, idx) => {
-      const card = document.createElement('div');
-      card.className = 'exercise-card fade-in';
-      card.style.animationDelay = (idx * 0.05) + 's';
+    const dayNames = ['DOM', 'SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SÁB'];
+    const today = new Date().getDate();
+    
+    // Define dias de descanso (dias 7, 14, 21, 28)
+    const restDays = [7, 14, 21, 28];
+    
+    for (let day = 1; day <= 30; day++) {
+      const cell = document.createElement('div');
+      cell.className = 'day-cell';
       
-      card.innerHTML = `
-        <div class="exercise-preview">
-          ${svgs[ex.svg] || svgs.pushup}
-        </div>
-        <div class="exercise-card-body">
-          <h4>
-            <span>${ex.name}</span>
-            <span class="ex-tag">${ex.tag}</span>
-          </h4>
-          <p>${ex.desc}</p>
-          <div class="exercise-meta">
-            <div class="exercise-meta-item"><i class="fas fa-layer-group"></i> ${ex.reps}</div>
-            <div class="exercise-meta-item"><i class="fas fa-clock"></i> ${ex.rest}</div>
-            <div class="exercise-meta-item"><i class="fas fa-bolt"></i> +${ex.xp} XP</div>
-          </div>
-        </div>
+      const isDone = state.completedDays.includes(day);
+      const isToday = day === today && day <= 30;
+      const isRest = restDays.includes(day);
+      
+      if (isDone) cell.classList.add('done');
+      if (isToday) cell.classList.add('today');
+      if (isRest) cell.classList.add('rest');
+      
+      const dayOfWeek = (day - 1 + 6) % 7;
+      const label = dayNames[dayOfWeek];
+      
+      cell.innerHTML = `
+        <div class="day-num">${String(day).padStart(2, '0')}</div>
+        ${!isRest ? `<div class="day-label">${label}</div>` : ''}
       `;
       
-      card.addEventListener('click', () => openExerciseModal(ex));
-      ui.exerciseGrid.appendChild(card);
-    });
-  }
-
-  // ===== MODAL EXERCÍCIO =====
-  let currentExercise = null;
-
-  function openExerciseModal(ex) {
-    currentExercise = ex;
-    
-    ui.modalExTitle.textContent = ex.name;
-    ui.modalExDesc.textContent = ex.desc;
-    ui.modalExReps.textContent = ex.reps;
-    ui.modalExRest.textContent = ex.rest;
-    ui.modalExXp.textContent = '+' + ex.xp;
-    ui.modalSvgContainer.innerHTML = svgs[ex.svg] || svgs.pushup;
-    
-    ui.modalExSteps.innerHTML = '';
-    ex.steps.forEach((step, i) => {
-      const stepEl = document.createElement('div');
-      stepEl.className = 'exercise-step';
-      stepEl.innerHTML = `
-        <div class="step-num">${i + 1}</div>
-        <div class="step-txt">${step}</div>
-      `;
-      ui.modalExSteps.appendChild(stepEl);
-    });
-    
-    ui.exerciseModal.classList.add('active');
-  }
-
-  function closeExerciseModal() {
-    ui.exerciseModal.classList.remove('active');
-  }
-
-  // ===== TIMER / TREINO ATIVO =====
-  let timerInterval = null;
-  let timeLeft = 45;
-  let totalTime = 45;
-  let currentSet = 1;
-  const totalSets = 3;
-
-  function startExerciseFromModal() {
-    if (!currentExercise) return;
-    closeExerciseModal();
-    openTimer(currentExercise);
-  }
-
-  function openTimer(ex) {
-    currentExercise = ex;
-    timeLeft = 45;
-    totalTime = 45;
-    currentSet = 1;
-    
-    ui.timerTitle.textContent = ex.name;
-    ui.timerSub.textContent = `Série 1 de ${totalSets} · ${ex.reps.split('x')[1]} repetições`;
-    ui.timerSvgContainer.innerHTML = svgs[ex.svg] || svgs.pushup;
-    ui.timerPhase.textContent = 'DESCANSO';
-    ui.timerReps.textContent = 'Prepare-se para a primeira série';
-    updateTimerDisplay();
-    
-    ui.timerModal.classList.add('active');
-    startTimer();
-  }
-
-  function closeTimer() {
-    ui.timerModal.classList.remove('active');
-    if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
-  }
-
-  function updateTimerDisplay() {
-    const m = String(Math.floor(timeLeft / 60)).padStart(2, '0');
-    const s = String(timeLeft % 60).padStart(2, '0');
-    ui.timerDisplay.textContent = `${m}:${s}`;
-    
-    const pct = ((totalTime - timeLeft) / totalTime) * 100;
-    ui.timerProgressFill.style.width = pct + '%';
-  }
-
-  function startTimer() {
-    if (timerInterval) clearInterval(timerInterval);
-    timerInterval = setInterval(() => {
-      timeLeft--;
-      
-      if (timeLeft <= 5 && timeLeft > 0) sounds.tick();
-      
-      if (timeLeft <= 0) {
-        // Fim da série
-        if (currentSet < totalSets) {
-          currentSet++;
-          timeLeft = 45;
-          totalTime = 45;
-          ui.timerSub.textContent = `Série ${currentSet} de ${totalSets} · ${currentExercise.reps.split('x')[1]} repetições`;
-          ui.timerPhase.textContent = 'DESCANSO';
-          ui.timerReps.textContent = `Série ${currentSet - 1} concluída · prepare-se`;
-          sounds.success();
-        } else {
-          // Fim de todas as séries
-          clearInterval(timerInterval);
-          timerInterval = null;
-          ui.timerPhase.textContent = 'CONCLUÍDO';
-          ui.timerReps.textContent = 'Todas as séries completas!';
-          sounds.streak();
-          finishExercise();
+      cell.addEventListener('click', () => {
+        if (isRest) {
+          showToast('Dia de descanso', 'Aproveite para recuperar o corpo.', 'lock');
+          sounds.tick();
           return;
         }
-      } else if (timeLeft <= 5) {
-        ui.timerPhase.textContent = 'PREPARAR';
-      } else {
-        ui.timerPhase.textContent = 'DESCANSO';
+        openLevel('intermediario');
+      });
+      
+      grid.appendChild(cell);
+    }
+  }
+
+  // ============================================
+  // ABRIR NÍVEL (inicia o treino direto)
+  // ============================================
+  function openLevel(level) {
+    const workout = workouts[level];
+    if (!workout) return;
+    
+    // Inicia a sessão no exercício 0
+    startSession(level);
+  }
+
+  // ============================================
+  // SESSÃO DE TREINO
+  // ============================================
+  let session = null;
+
+  function startSession(level) {
+    session = {
+      level,
+      workout: workouts[level],
+      currentExerciseIndex: 0,
+      phase: 'exercise', // 'exercise' | 'rest' | 'done'
+      timerInterval: null,
+      timeLeft: 0,
+      totalTime: 0
+    };
+    
+    ui.workoutModal.classList.add('active');
+    renderSession();
+  }
+
+  function renderSession() {
+    if (!session) return;
+    
+    const { workout, currentExerciseIndex, phase } = session;
+    const exercise = workout.exercises[currentExerciseIndex];
+    const total = workout.exercises.length;
+    const isLast = currentExerciseIndex === total - 1;
+    
+    // Progresso
+    let progressPct = (currentExerciseIndex / total) * 100;
+    if (phase === 'rest') progressPct = ((currentExerciseIndex + 0.5) / total) * 100;
+    if (phase === 'done') progressPct = 100;
+    
+    let badgeClass = 'work';
+    let badgeText = 'EXERCÍCIO';
+    let mainContent = '';
+    
+    if (phase === 'exercise') {
+      badgeText = 'EXERCÍCIO ' + (currentExerciseIndex + 1) + ' DE ' + total;
+      mainContent = `
+        <div class="ex-svg-stage">
+          ${svgs[exercise.svg] || svgs.pushup}
+        </div>
+        
+        <h2 class="ex-title">${exercise.name}</h2>
+        <p class="ex-desc">${exercise.desc}</p>
+        
+        <div class="ex-highlight">
+          <div class="ex-count">${exercise.reps}</div>
+          <div class="ex-count-label">repetições × ${exercise.sets} séries</div>
+        </div>
+        
+        <div class="ex-actions">
+          <button class="btn btn-secondary" onclick="closeWorkout()">
+            <i class="fas fa-xmark"></i> Sair
+          </button>
+          <button class="btn btn-success" onclick="finishExercise()">
+            <i class="fas fa-check"></i> Terminar exercício
+          </button>
+        </div>
+      `;
+    } else if (phase === 'rest') {
+      badgeClass = 'rest';
+      badgeText = 'DESCANSO';
+      mainContent = `
+        <div class="ex-svg-stage">
+          <svg viewBox="0 0 200 200">
+            <circle cx="100" cy="100" r="60" fill="none" stroke="#f0a020" stroke-width="3" opacity="0.3"/>
+            <circle cx="100" cy="100" r="60" fill="none" stroke="#f0a020" stroke-width="3" stroke-dasharray="377" stroke-dashoffset="0">
+              <animate attributeName="stroke-dashoffset" from="0" to="377" dur="${exercise.rest}s" repeatCount="1"/>
+            </circle>
+            <text x="100" y="115" text-anchor="middle" fill="#f0a020" font-size="42" font-weight="800" font-family="Inter">${exercise.rest}</text>
+          </svg>
+        </div>
+        
+        <h2 class="ex-title">Descanse</h2>
+        <p class="ex-desc">Respire fundo e prepare-se para o próximo exercício.</p>
+        
+        <div class="ex-timer-box">
+          <div class="ex-timer" id="restTimer">${formatTime(session.timeLeft)}</div>
+          <div class="ex-timer-lbl">Tempo restante</div>
+          <div class="ex-timer-progress">
+            <div class="fill" id="restProgressFill" style="width: 0%"></div>
+          </div>
+        </div>
+        
+        <div class="ex-actions">
+          <button class="btn btn-secondary" onclick="skipRest()">
+            <i class="fas fa-forward"></i> Pular descanso
+          </button>
+          <button class="btn btn-primary" onclick="skipRest()">
+            <i class="fas fa-play"></i> Próximo exercício
+          </button>
+        </div>
+      `;
+    } else if (phase === 'done') {
+      badgeClass = 'done';
+      badgeText = 'TREINO COMPLETO';
+      
+      const xpEarned = workout.xpTotal;
+      const coinsEarned = workout.coinsTotal;
+      
+      mainContent = `
+        <div class="ex-svg-stage">
+          <svg viewBox="0 0 200 200">
+            <circle cx="100" cy="100" r="60" fill="none" stroke="#4ade80" stroke-width="3" opacity="0.3"/>
+            <circle cx="100" cy="100" r="60" fill="none" stroke="#4ade80" stroke-width="3" stroke-dasharray="377" stroke-dashoffset="0"/>
+            <path d="M70 100 L90 120 L130 80" stroke="#4ade80" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <animate attributeName="stroke-dasharray" from="0 200" to="200 0" dur="0.6s" fill="freeze"/>
+            </path>
+          </svg>
+        </div>
+        
+        <h2 class="ex-title">Treino concluído!</h2>
+        <p class="ex-desc">Você completou todos os ${workout.exercises.length} exercícios do nível ${workout.name}.</p>
+        
+        <div class="ex-highlight">
+          <div class="ex-count">+${xpEarned}</div>
+          <div class="ex-count-label">XP · +${coinsEarned} moedas</div>
+        </div>
+        
+        <div class="ex-actions">
+          <button class="btn btn-primary" onclick="closeWorkout()">
+            <i class="fas fa-check"></i> Finalizar
+          </button>
+        </div>
+      `;
+    }
+    
+    ui.workoutContent.innerHTML = `
+      <div class="screen-badge ${badgeClass}">${badgeText}</div>
+      
+      <div class="progress-header">
+        <span class="progress-count">${currentExerciseIndex + 1}/${total}</span>
+        <span class="progress-name">Nível ${workout.name}</span>
+      </div>
+      <div class="progress-track-main">
+        <div class="fill" style="width: ${progressPct}%"></div>
+      </div>
+      
+      ${mainContent}
+    `;
+  }
+
+  function formatTime(sec) {
+    const m = String(Math.floor(sec / 60)).padStart(2, '0');
+    const s = String(sec % 60).padStart(2, '0');
+    return `${m}:${s}`;
+  }
+
+  // ============================================
+  // FINALIZAR EXERCÍCIO → DESCANSO
+  // ============================================
+  function finishExercise() {
+    if (!session) return;
+    
+    const exercise = session.workout.exercises[session.currentExerciseIndex];
+    
+    // XP e moedas parciais
+    const xpGain = Math.round(session.workout.xpTotal / session.workout.exercises.length);
+    const coinGain = Math.round(session.workout.coinsTotal / session.workout.exercises.length);
+    state.xp += xpGain;
+    state.coins += coinGain;
+    
+    sounds.success();
+    updateUI();
+    
+    // Vai para o descanso
+    session.phase = 'rest';
+    session.timeLeft = exercise.rest;
+    session.totalTime = exercise.rest;
+    
+    renderSession();
+    startRestTimer();
+  }
+
+  function startRestTimer() {
+    if (session.timerInterval) clearInterval(session.timerInterval);
+    
+    session.timerInterval = setInterval(() => {
+      session.timeLeft--;
+      
+      const restTimerEl = document.getElementById('restTimer');
+      const restFillEl = document.getElementById('restProgressFill');
+      
+      if (restTimerEl) restTimerEl.textContent = formatTime(session.timeLeft);
+      if (restFillEl) {
+        const pct = ((session.totalTime - session.timeLeft) / session.totalTime) * 100;
+        restFillEl.style.width = pct + '%';
       }
       
-      updateTimerDisplay();
+      if (session.timeLeft <= 3 && session.timeLeft > 0) sounds.tick();
+      
+      if (session.timeLeft <= 0) {
+        clearInterval(session.timerInterval);
+        session.timerInterval = null;
+        advanceToNext();
+      }
     }, 1000);
   }
 
-  function finishExercise() {
-    if (!currentExercise) return;
+  function skipRest() {
+    if (session && session.timerInterval) {
+      clearInterval(session.timerInterval);
+      session.timerInterval = null;
+    }
+    advanceToNext();
+  }
+
+  function advanceToNext() {
+    if (!session) return;
     
-    state.xp += currentExercise.xp;
-    state.coins += currentExercise.coins;
-    state.streak += 1;
-    state.workouts += 1;
+    session.currentExerciseIndex++;
     
-    const prevRank = getCurrentRank();
-    const newRank = getCurrentRank();
-    
-    showToast('Exercício concluído', `${currentExercise.name} · +${currentExercise.xp} XP · +${currentExercise.coins} moedas`, 'check');
-    
-    if (prevRank.key !== newRank.key) {
-      setTimeout(() => {
-        showToast('Novo nível!', `Você alcançou o nível ${newRank.name}!`, 'trophy');
-      }, 1800);
+    if (session.currentExerciseIndex >= session.workout.exercises.length) {
+      // Treino completo
+      session.phase = 'done';
+      renderSession();
+      sounds.streak();
+      setTimeout(() => sounds.success(), 200);
+      
+      // Adiciona dia concluído
+      const today = new Date().getDate();
+      if (!state.completedDays.includes(today) && today <= 30) {
+        state.completedDays.push(today);
+        renderMonth();
+      }
+      
+      state.streak++;
+      state.workouts++;
+      updateUI();
+      
+      showToast('Treino concluído!', `Nível ${session.workout.name} finalizado.`, 'trophy');
+      return;
     }
     
-    sounds.success();
-    setTimeout(() => sounds.coin(), 200);
-    setTimeout(() => sounds.streak(), 400);
-    
-    closeTimer();
-    updateUI();
-    
-    if (navigator.vibrate) navigator.vibrate([25, 40, 25]);
+    // Próximo exercício
+    session.phase = 'exercise';
+    renderSession();
+    sounds.beep();
   }
 
-  // ===== HELPERS =====
-  function scrollToExercises(group) {
-    document.getElementById('braco').scrollIntoView({ behavior: 'smooth' });
+  function closeWorkout() {
+    if (session && session.timerInterval) {
+      clearInterval(session.timerInterval);
+      session.timerInterval = null;
+    }
+    session = null;
+    ui.workoutModal.classList.remove('active');
   }
 
-  // ===== EVENT LISTENERS =====
-  ui.exerciseModal.addEventListener('click', (e) => {
-    if (e.target === ui.exerciseModal) closeExerciseModal();
-  });
-  
-  ui.timerModal.addEventListener('click', (e) => {
-    if (e.target === ui.timerModal) closeTimer();
+  // ============================================
+  // EVENT LISTENERS
+  // ============================================
+  ui.workoutModal.addEventListener('click', (e) => {
+    if (e.target === ui.workoutModal) closeWorkout();
   });
   
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      closeExerciseModal();
-      closeTimer();
-    }
+    if (e.key === 'Escape') closeWorkout();
   });
 
-  // ===== INIT =====
+  // ============================================
+  // INIT
+  // ============================================
   updateUI();
-  renderExercises();
+  renderMonth();
 </script>
 
 </body>
