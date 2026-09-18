@@ -1,641 +1,818 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CALISTHENIX - HARDCORE BODYWEIGHT</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Teko:wght@700&family=Montserrat:wght@400;700;900&display=swap');
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>BodyQuest · treino em casa gamificado</title>
+  <!-- Fontes e ícones -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Nunito', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
 
-        :root {
-            --bg: #0a0a0a;
-            --card-bg: #121212;
-            --red-blood: #ff003c;
-            --red-glow: rgba(255, 0, 60, 0.4);
-            --text-main: #ffffff;
-            --text-dim: #777777;
-            --border: #222222;
-        }
+    body {
+      background: #0F0F1A;
+      color: #FFFFFF;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 12px;
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Montserrat', sans-serif;
-        }
+    /* container principal – simula o app */
+    .app-container {
+      max-width: 420px;
+      width: 100%;
+      background: #1A1A2E;
+      border-radius: 44px;
+      padding: 20px 18px 28px;
+      box-shadow: 0 25px 50px -8px rgba(0,0,0,0.8), 0 0 0 2px rgba(255,255,255,0.06);
+      transition: all 0.2s;
+    }
 
-        body {
-            background-color: var(--bg);
-            background-image: 
-                radial-gradient(circle at 50% 0%, rgba(255, 0, 60, 0.15) 0%, transparent 60%),
-                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-            background-size: 100% 100%, 30px 30px, 30px 30px;
-            color: var(--text-main);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-        }
+    /* CABEÇALHO */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 22px;
+    }
 
-        header {
-            width: 100%;
-            max-width: 800px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 30px;
-            background: var(--card-bg);
-            border-radius: 4px;
-            margin-bottom: 25px;
-            border: 1px solid var(--border);
-            border-left: 4px solid var(--red-blood);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
-        }
+    .streak-box {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #2D2D44;
+      padding: 8px 14px;
+      border-radius: 40px;
+      box-shadow: inset 0 2px 3px rgba(0,0,0,0.5), 0 4px 0 #0B0B16;
+      border: 1px solid rgba(255,200,0,0.3);
+    }
 
-        .logo {
-            font-family: 'Teko', sans-serif;
-            font-size: 2.8rem;
-            letter-spacing: 4px;
-            color: var(--text-main);
-            text-transform: uppercase;
-        }
+    .streak-box i {
+      color: #FFB800;
+      font-size: 22px;
+      filter: drop-shadow(0 0 6px #FFB800);
+    }
 
-        .logo span {
-            color: var(--red-blood);
-        }
+    .streak-count {
+      font-weight: 900;
+      font-size: 22px;
+      color: #FFD966;
+      margin-right: 2px;
+    }
 
-        .streak-badge {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: #000;
-            color: var(--red-blood);
-            padding: 10px 20px;
-            border-radius: 2px;
-            font-weight: 900;
-            border: 1px solid var(--red-blood);
-            box-shadow: 0 0 15px var(--red-glow);
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+    .streak-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: #AAAAC0;
+    }
 
-        .container {
-            width: 100%;
-            max-width: 800px;
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
+    .currency-box {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #2D2D44;
+      padding: 8px 16px;
+      border-radius: 40px;
+      box-shadow: inset 0 2px 3px rgba(0,0,0,0.5), 0 4px 0 #0B0B16;
+    }
 
-        .card {
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 4px;
-            border: 1px solid var(--border);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.9);
-            position: relative;
-        }
+    .currency-box i {
+      color: #FFD700;
+      font-size: 20px;
+    }
 
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, var(--red-blood), transparent);
-        }
+    .currency-count {
+      font-weight: 800;
+      font-size: 20px;
+      color: #FFE484;
+    }
 
-        h2 {
-            font-family: 'Teko', sans-serif;
-            font-size: 2.2rem;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-            color: var(--text-main);
-            text-transform: uppercase;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 5px;
-        }
+    /* MASCOTE */
+    .mascot-area {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(145deg, #23233B, #19192E);
+      border-radius: 30px;
+      padding: 10px 18px 10px 12px;
+      margin-bottom: 20px;
+      border: 1px solid #30304A;
+      box-shadow: 0 8px 0 #0E0E1A;
+    }
 
-        /* Forms & Inputs */
-        .user-form {
-            display: grid;
-            grid-template-columns: 1fr 1fr auto;
-            gap: 15px;
-            align-items: end;
-        }
+    .mascot-avatar {
+      width: 70px;
+      height: 70px;
+      background: #4F7DF3;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 42px;
+      box-shadow: 0 0 0 4px #2D2D44, 0 8px 0 #15152B;
+      transition: transform 0.15s;
+      animation: float 3s infinite ease-in-out;
+    }
 
-        .input-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
 
-        .input-group label {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--text-dim);
-            font-weight: 700;
-        }
+    .mascot-bubble {
+      background: #2D2D44;
+      border-radius: 24px 24px 24px 8px;
+      padding: 12px 18px;
+      max-width: 240px;
+      font-weight: 700;
+      font-size: 15px;
+      line-height: 1.3;
+      color: #EBEBFF;
+      box-shadow: inset 0 2px 5px rgba(0,0,0,0.4), 0 4px 0 #0B0B16;
+      border-left: 4px solid #4F7DF3;
+    }
 
-        .input-group input {
-            background: #000000;
-            border: 1px solid var(--border);
-            padding: 14px;
-            border-radius: 2px;
-            color: #fff;
-            font-size: 1rem;
-            outline: none;
-            transition: 0.3s;
-        }
+    /* TRILHA (SKILL TREE) */
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 14px;
+    }
 
-        .input-group input:focus {
-            border-color: var(--red-blood);
-            box-shadow: 0 0 10px var(--red-glow);
-        }
+    .section-title h2 {
+      font-size: 18px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #B6B6E0;
+    }
 
-        button.btn {
-            background: var(--red-blood);
-            color: #fff;
-            border: none;
-            padding: 14px 28px;
-            border-radius: 2px;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            cursor: pointer;
-            transition: 0.2s;
-        }
+    .section-title span {
+      font-size: 13px;
+      font-weight: 700;
+      color: #6F6F9C;
+    }
 
-        button.btn:hover {
-            background: #d60032;
-            box-shadow: 0 0 20px var(--red-glow);
-        }
+    .skill-tree {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
 
-        .stats-results {
-            margin-top: 20px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            padding-top: 20px;
-        }
+    .module {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: #23233B;
+      border-radius: 28px;
+      padding: 8px 16px 8px 10px;
+      box-shadow: 0 5px 0 #0E0E1A, inset 0 1px 2px rgba(255,255,255,0.05);
+      border: 1px solid #35355A;
+      transition: all 0.1s;
+      cursor: pointer;
+    }
 
-        .stat-item {
-            background: #000000;
-            padding: 15px;
-            border-radius: 2px;
-            text-align: center;
-            border: 1px solid var(--border);
-        }
+    .module:active {
+      transform: translateY(3px);
+      box-shadow: 0 2px 0 #0E0E1A;
+    }
 
-        .stat-item span {
-            display: block;
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--text-dim);
-            margin-bottom: 5px;
-        }
+    .module-icon {
+      width: 52px;
+      height: 52px;
+      background: #2D2D50;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      box-shadow: 0 4px 0 #0E0E1A;
+      color: #B6B6FF;
+    }
 
-        .stat-item strong {
-            font-size: 1.6rem;
-            color: var(--text-main);
-            font-weight: 900;
-        }
+    .module-info {
+      flex: 1;
+    }
 
-        /* Seletor de Opções */
-        .option-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-            gap: 12px;
-            margin-bottom: 20px;
-        }
+    .module-name {
+      font-weight: 800;
+      font-size: 16px;
+      margin-bottom: 2px;
+      color: #FFFFFF;
+    }
 
-        .opt-btn {
-            background: #000000;
-            border: 1px solid var(--border);
-            color: var(--text-dim);
-            padding: 14px;
-            border-radius: 2px;
-            cursor: pointer;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: 0.3s;
-            text-align: center;
-            font-size: 0.85rem;
-        }
+    .module-progress {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-        .opt-btn.active {
-            background: var(--red-blood);
-            color: #fff;
-            border-color: var(--red-blood);
-            box-shadow: 0 0 15px var(--red-glow);
-        }
+    .progress-bar-bg {
+      flex: 1;
+      height: 10px;
+      background: #13132A;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: inset 0 1px 4px #00000080;
+    }
 
-        /* Palco Interativo de Treino */
-        .workout-stage {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            gap: 20px;
-            padding: 10px 0;
-        }
+    .progress-fill {
+      height: 100%;
+      width: 65%;
+      background: linear-gradient(90deg, #4F7DF3, #9B6BFF);
+      border-radius: 12px;
+      box-shadow: 0 0 8px #4F7DF3;
+    }
 
-        .exercise-title {
-            font-size: 2rem;
-            font-weight: 900;
-            color: #fff;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+    .module-lock {
+      font-size: 18px;
+      color: #66668A;
+    }
 
-        .exercise-meta {
-            display: flex;
-            gap: 15px;
-        }
+    .module.locked {
+      opacity: 0.65;
+      filter: grayscale(0.5);
+    }
 
-        .meta-tag {
-            background: #000000;
-            color: var(--text-main);
-            padding: 8px 18px;
-            border-radius: 2px;
-            font-weight: 700;
-            border: 1px solid var(--border);
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-        }
+    .module.locked .module-icon {
+      background: #1F1F36;
+    }
 
-        .timer-box {
-            background: #000000;
-            border: 1px solid var(--border);
-            padding: 20px;
-            border-radius: 2px;
-            margin: 10px 0;
-            width: 100%;
-            max-width: 320px;
-        }
+    /* BOSS FIGHT - destaque */
+    .module.boss {
+      background: linear-gradient(145deg, #2A1E3A, #1D1530);
+      border: 1px solid #9B6BFF;
+      box-shadow: 0 5px 0 #160F2A, 0 0 15px rgba(155,107,255,0.3);
+    }
 
-        .timer-display {
-            font-family: 'Teko', sans-serif;
-            font-size: 3.5rem;
-            color: var(--red-blood);
-            letter-spacing: 3px;
-            line-height: 1;
-            margin: 10px 0;
-        }
+    .module.boss .module-icon {
+      background: #9B6BFF;
+      color: #FFFFFF;
+      text-shadow: 0 0 10px white;
+    }
 
-        .btn-action {
-            width: 100%;
-            padding: 18px;
-            background: #ffffff;
-            color: #000000;
-            font-size: 1.1rem;
-            border-radius: 2px;
-            border: none;
-            font-weight: 900;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: 0.2s;
-        }
+    /* AÇÕES RÁPIDAS */
+    .quick-actions {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
 
-        .btn-action:hover {
-            background: #e0e0e0;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
-        }
+    .quick-btn {
+      flex: 1;
+      background: #2D2D50;
+      border: none;
+      border-radius: 30px;
+      padding: 14px 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: #EBEBFF;
+      font-weight: 800;
+      font-size: 14px;
+      box-shadow: 0 6px 0 #0E0E1A, inset 0 1px 2px rgba(255,255,255,0.1);
+      border: 1px solid #3E3E68;
+      transition: all 0.1s;
+      cursor: pointer;
+    }
 
-        .btn-complete {
-            background: var(--red-blood);
-            color: #fff;
-        }
+    .quick-btn i {
+      font-size: 24px;
+      color: #B6B6FF;
+    }
 
-        .btn-complete:hover {
-            background: #d60032;
-            box-shadow: 0 0 25px var(--red-glow);
-        }
+    .quick-btn:active {
+      transform: translateY(4px);
+      box-shadow: 0 2px 0 #0E0E1A;
+    }
 
-        .progress-bar-container {
-            width: 100%;
-            background: #000000;
-            height: 6px;
-            border-radius: 0;
-            overflow: hidden;
-            margin-bottom: 15px;
-            border: 1px solid var(--border);
-        }
+    .quick-btn.highlight {
+      background: #4F7DF3;
+      border-color: #8AA9FF;
+      color: white;
+    }
 
-        .progress-bar {
-            height: 100%;
-            background: var(--red-blood);
-            width: 0%;
-            transition: width 0.3s ease;
-        }
+    .quick-btn.highlight i {
+      color: white;
+    }
 
-        @media (max-width: 600px) {
-            .user-form {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    /* LIGA / XP */
+    .league-card {
+      background: #23233B;
+      border-radius: 30px;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 6px 0 #0E0E1A, inset 0 1px 2px rgba(255,255,255,0.05);
+      border: 1px solid #3A3A5E;
+      margin-bottom: 18px;
+    }
+
+    .league-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .league-name {
+      font-size: 18px;
+      font-weight: 900;
+      color: #CD7F32;
+      text-shadow: 0 0 10px #CD7F32;
+      letter-spacing: 0.5px;
+    }
+
+    .xp-bar-bg {
+      width: 130px;
+      height: 12px;
+      background: #0F0F1F;
+      border-radius: 20px;
+      margin-top: 5px;
+      overflow: hidden;
+      box-shadow: inset 0 2px 5px black;
+    }
+
+    .xp-fill {
+      height: 100%;
+      width: 42%;
+      background: linear-gradient(90deg, #FFB800, #FFD966);
+      border-radius: 20px;
+      box-shadow: 0 0 12px #FFB800;
+    }
+
+    .league-icon {
+      font-size: 32px;
+      background: #2D2D50;
+      width: 60px;
+      height: 60px;
+      border-radius: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 5px 0 #0E0E1A;
+    }
+
+    /* BOTÃO PRINCIPAL */
+    .start-btn {
+      background: #4F7DF3;
+      border: none;
+      width: 100%;
+      padding: 18px;
+      border-radius: 40px;
+      font-weight: 900;
+      font-size: 20px;
+      color: white;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 0 8px 0 #1F3D8A, 0 10px 20px rgba(79,125,243,0.4);
+      transition: all 0.1s;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      border: 1px solid #8AA9FF;
+    }
+
+    .start-btn:active {
+      transform: translateY(5px);
+      box-shadow: 0 3px 0 #1F3D8A;
+    }
+
+    .start-btn i {
+      font-size: 24px;
+    }
+
+    /* modal de bloqueio de ofensiva (simulado) */
+    .streak-freeze {
+      margin-top: 12px;
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #9F9FD0;
+      align-items: center;
+    }
+
+    .streak-freeze i {
+      color: #6EC8FF;
+    }
+
+    .streak-freeze span {
+      background: #2D2D50;
+      padding: 4px 12px;
+      border-radius: 20px;
+      box-shadow: inset 0 1px 3px black;
+      border: 1px solid #4A4A7A;
+    }
+
+    /* micro animações */
+    .pulse {
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 1; }
+      50% { opacity: 0.7; }
+      100% { opacity: 1; }
+    }
+
+    /* rodapé com som */
+    .sound-hint {
+      text-align: center;
+      margin-top: 14px;
+      font-size: 12px;
+      color: #5A5A8A;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+    }
+
+    .sound-hint i {
+      margin: 0 3px;
+    }
+  </style>
 </head>
 <body>
-
-    <header>
-        <div class="logo">CALISTHENIX<span>.RAW</span></div>
-        <div class="streak-badge">
-            💀 <span id="streak-count">0</span> DIAS
-        </div>
-    </header>
-
-    <div class="container">
-        <!-- Card Perfil -->
-        <div class="card">
-            <h2>Métricas Físicas</h2>
-            <div class="user-form">
-                <div class="input-group">
-                    <label for="height">Altura (cm)</label>
-                    <input type="number" id="height" placeholder="175">
-                </div>
-                <div class="input-group">
-                    <label for="weight">Peso (kg)</label>
-                    <input type="number" id="weight" placeholder="70">
-                </div>
-                <button class="btn" onclick="calculateMetrics()">Calcular</button>
-            </div>
-
-            <div class="stats-results" id="stats" style="display: none;">
-                <div class="stat-item">
-                    <span>IMC</span>
-                    <strong id="bmi-val">-</strong>
-                </div>
-                <div class="stat-item">
-                    <span>Gasto Calórico Estimado</span>
-                    <strong id="calories-val">- kcal</strong>
-                </div>
-            </div>
-        </div>
-
-        <!-- Configuração do Treino -->
-        <div class="card" id="setup-card">
-            <h2>Nível de Intensidade</h2>
-            <div class="option-grid">
-                <div class="opt-btn active" onclick="setLevel('iniciante', this)">Iniciante</div>
-                <div class="opt-btn" onclick="setLevel('intermediario', this)">Intermediário</div>
-                <div class="opt-btn" onclick="setLevel('avancado', this)">Avançado</div>
-            </div>
-
-            <h2>Grupo Muscular Target</h2>
-            <div class="option-grid">
-                <div class="opt-btn active" onclick="setFocus('braco', this)">Superior (Braço/Peito/Costas)</div>
-                <div class="opt-btn" onclick="setFocus('perna', this)">Inferior (Pernas)</div>
-                <div class="opt-btn" onclick="setFocus('core', this)">Core & Abdômen</div>
-            </div>
-
-            <button class="btn-action" style="margin-top: 15px;" onclick="startWorkout()">INICIAR TREINO ➔</button>
-        </div>
-
-        <!-- Execução do Treino -->
-        <div class="card" id="workout-card" style="display: none;">
-            <div class="progress-bar-container">
-                <div class="progress-bar" id="workout-progress"></div>
-            </div>
-            
-            <div class="workout-stage">
-                <span style="color: var(--text-dim); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 2px;" id="exercise-step-label">EXERCÍCIO 1 DE 4</span>
-                <div class="exercise-title" id="ex-title">Flexão de Braço</div>
-                
-                <div class="exercise-meta">
-                    <span class="meta-tag" id="ex-sets">3 Séries</span>
-                    <span class="meta-tag" id="ex-reps">10 Repetições</span>
-                </div>
-
-                <div class="timer-box">
-                    <span style="font-size: 0.7rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px;">Intervalo de Descanso</span>
-                    <div class="timer-display" id="timer-display">00:45</div>
-                    <button class="btn" style="padding: 8px 16px; font-size: 0.75rem;" onclick="startRestTimer()">INICIAR TIMING ⏱️</button>
-                </div>
-
-                <button class="btn-action" id="next-btn" onclick="nextExercise()">PRÓXIMO EXERCÍCIO ➔</button>
-                <button class="btn-action btn-complete" id="finish-btn" style="display: none;" onclick="finishWorkout()">FINALIZAR TREINO 💀</button>
-            </div>
-        </div>
+  <div class="app-container">
+    <!-- CABEÇALHO: OFENSIVA + MOEDAS -->
+    <div class="header">
+      <div class="streak-box">
+        <i class="fas fa-fire"></i>
+        <span class="streak-count" id="streakCount">12</span>
+        <span class="streak-label">dias</span>
+      </div>
+      <div class="currency-box">
+        <i class="fas fa-coins"></i>
+        <span class="currency-count" id="coinCount">320</span>
+      </div>
     </div>
 
-    <script>
-        const workoutDatabase = {
-            iniciante: {
-                braco: [
-                    { name: "Flexão com Joelhos Apoiados", sets: "3 Séries", reps: "8-10 reps", rest: 45 },
-                    { name: "Remada Invertida (Mesa/Barra)", sets: "3 Séries", reps: "8 reps", rest: 45 },
-                    { name: "Flexão Fechada de Joelho", sets: "3 Séries", reps: "6-8 reps", rest: 45 }
-                ],
-                perna: [
-                    { name: "Agachamento Livre", sets: "3 Séries", reps: "15 reps", rest: 45 },
-                    { name: "Elevação Pélvica", sets: "3 Séries", reps: "15 reps", rest: 45 },
-                    { name: "Panturrilha em Pé", sets: "3 Séries", reps: "20 reps", rest: 30 }
-                ],
-                core: [
-                    { name: "Prancha Frontal", sets: "3 Séries", reps: "30 seg", rest: 30 },
-                    { name: "Abdominal Infra no Chão", sets: "3 Séries", reps: "12 reps", rest: 30 },
-                    { name: "Perdigueiro Alternado", sets: "3 Séries", reps: "10 cada lado", rest: 30 }
-                ]
-            },
-            intermediario: {
-                braco: [
-                    { name: "Flexão de Braço Tradicional", sets: "4 Séries", reps: "12-15 reps", rest: 60 },
-                    { name: "Barra Fixa Pronada", sets: "4 Séries", reps: "6-8 reps", rest: 90 },
-                    { name: "Dips no Banco / Cadeira", sets: "3 Séries", reps: "12 reps", rest: 60 }
-                ],
-                perna: [
-                    { name: "Afundo Alternado", sets: "4 Séries", reps: "12 cada perna", rest: 60 },
-                    { name: "Agachamento Búlgaro", sets: "3 Séries", reps: "10 cada perna", rest: 60 },
-                    { name: "Agachamento Sumô Isométrico", sets: "3 Séries", reps: "45 seg", rest: 45 }
-                ],
-                core: [
-                    { name: "Abdominal Canivete", sets: "4 Séries", reps: "15 reps", rest: 45 },
-                    { name: "L-Sit no Chão", sets: "3 Séries", reps: "15 seg", rest: 45 },
-                    { name: "Prancha Lateral Dinâmica", sets: "3 Séries", reps: "12 cada lado", rest: 45 }
-                ]
-            },
-            avancado: {
-                braco: [
-                    { name: "Flexão Pike (Ombros)", sets: "4 Séries", reps: "12 reps", rest: 60 },
-                    { name: "Barra Fixa Estrita", sets: "4 Séries", reps: "10-12 reps", rest: 90 },
-                    { name: "Dips em Paralelas", sets: "4 Séries", reps: "12-15 reps", rest: 60 },
-                    { name: "Flexão Diamante", sets: "3 Séries", reps: "12 reps", rest: 60 }
-                ],
-                perna: [
-                    { name: "Pistol Squat (Unilateral)", sets: "4 Séries", reps: "6-8 cada perna", rest: 90 },
-                    { name: "Jump Squat Explosivo", sets: "4 Séries", reps: "15 reps", rest: 60 },
-                    { name: "Panturrilha Unilateral", sets: "4 Séries", reps: "15 cada perna", rest: 45 }
-                ],
-                core: [
-                    { name: "Dragon Flag", sets: "4 Séries", reps: "8-10 reps", rest: 60 },
-                    { name: "Elevação de Perna na Barra", sets: "4 Séries", reps: "10-12 reps", rest: 60 },
-                    { name: "Hollow Body Hold", sets: "4 Séries", reps: "45 seg", rest: 45 }
-                ]
+    <!-- MASCOTE INTERATIVO -->
+    <div class="mascot-area">
+      <div class="mascot-avatar" id="mascotEmoji">💪</div>
+      <div class="mascot-bubble" id="mascotMessage">
+        Vamos treinar? Sua ofensiva está em jogo! 🔥
+      </div>
+    </div>
+
+    <!-- TRILHA DE TREINO (SKILL TREE) -->
+    <div class="section-title">
+      <h2><i class="fas fa-map-signs" style="margin-right: 6px; color: #6B8CFF;"></i> Trilha</h2>
+      <span>3 módulos</span>
+    </div>
+
+    <div class="skill-tree">
+      <!-- MÓDULO 1: DESBLOQUEADO -->
+      <div class="module" id="module1">
+        <div class="module-icon">🏋️</div>
+        <div class="module-info">
+          <div class="module-name">Fundamentos da Força</div>
+          <div class="module-progress">
+            <div class="progress-bar-bg">
+              <div class="progress-fill" style="width: 100%;"></div>
+            </div>
+            <i class="fas fa-check-circle" style="color: #4F7DF3; font-size: 18px;"></i>
+          </div>
+        </div>
+        <div class="module-lock"></div>
+      </div>
+
+      <!-- MÓDULO 2: DESBLOQUEADO (EM PROGRESSO) -->
+      <div class="module" id="module2">
+        <div class="module-icon">🧘</div>
+        <div class="module-info">
+          <div class="module-name">Controle Core</div>
+          <div class="module-progress">
+            <div class="progress-bar-bg">
+              <div class="progress-fill" style="width: 45%;"></div>
+            </div>
+            <span style="font-size: 13px; font-weight: 800; color: #B6B6FF;">45%</span>
+          </div>
+        </div>
+        <div class="module-lock"></div>
+      </div>
+
+      <!-- MÓDULO 3: BOSS FIGHT (BLOQUEADO) -->
+      <div class="module boss locked" id="module3">
+        <div class="module-icon">👑</div>
+        <div class="module-info">
+          <div class="module-name">Domínio de Flexões</div>
+          <div class="module-progress">
+            <div class="progress-bar-bg">
+              <div class="progress-fill" style="width: 0%;"></div>
+            </div>
+            <i class="fas fa-lock" style="color: #9B6BFF; font-size: 18px;"></i>
+          </div>
+        </div>
+        <div class="module-lock">🔒</div>
+      </div>
+    </div>
+
+    <!-- MICRO-SESSÕES / TREINO RÁPIDO -->
+    <div class="quick-actions">
+      <button class="quick-btn" id="quickWorkoutBtn">
+        <i class="fas fa-bolt"></i>
+        Treino Rápido
+        <span style="font-size: 11px; font-weight: 600; color: #B6B6FF;">3-5 min</span>
+      </button>
+      <button class="quick-btn highlight" id="dailyWorkoutBtn">
+        <i class="fas fa-dumbbell"></i>
+        Treino Diário
+        <span style="font-size: 11px; font-weight: 600; color: #D9E2FF;">+30 XP</span>
+      </button>
+    </div>
+
+    <!-- LIGA / XP -->
+    <div class="league-card">
+      <div class="league-info">
+        <div class="league-name">LIGA BRONZE</div>
+        <div class="xp-bar-bg">
+          <div class="xp-fill" style="width: 42%;"></div>
+        </div>
+        <div style="font-size: 12px; color: #9F9FD0; margin-top: 4px; font-weight: 700;">420 / 1000 XP</div>
+      </div>
+      <div class="league-icon">
+        <i class="fas fa-medal" style="color: #CD7F32; font-size: 34px;"></i>
+      </div>
+    </div>
+
+    <!-- BOTÃO PRINCIPAL (COMEÇAR TREINO) -->
+    <button class="start-btn" id="mainStartBtn">
+      <i class="fas fa-play-circle"></i> COMEÇAR TREINO
+    </button>
+
+    <!-- BLOQUEIO DE OFENSIVA (opção com moedas) -->
+    <div class="streak-freeze">
+      <i class="fas fa-snowflake"></i>
+      <span id="freezeStreakBtn">Bloquear ofensiva · 50 moedas</span>
+    </div>
+
+    <!-- DICA DE SOM / FEEDBACK -->
+    <div class="sound-hint">
+      <i class="fas fa-volume-up"></i> Efeitos sonoros a cada repetição <i class="fas fa-music"></i>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      // ----- ESTADO SIMULADO -----
+      let coins = 320;
+      let streak = 12;
+      let xp = 420;
+      const xpMax = 1000;
+
+      // Elementos DOM
+      const coinEl = document.getElementById('coinCount');
+      const streakEl = document.getElementById('streakCount');
+      const mascotEmoji = document.getElementById('mascotEmoji');
+      const mascotMessage = document.getElementById('mascotMessage');
+      const quickWorkoutBtn = document.getElementById('quickWorkoutBtn');
+      const dailyWorkoutBtn = document.getElementById('dailyWorkoutBtn');
+      const mainStartBtn = document.getElementById('mainStartBtn');
+      const freezeStreakBtn = document.getElementById('freezeStreakBtn');
+      const module2 = document.getElementById('module2');
+      const module3 = document.getElementById('module3');
+      
+      // Atualiza elementos visuais
+      function updateUI() {
+        coinEl.textContent = coins;
+        streakEl.textContent = streak;
+        // Atualiza XP bar (simples, mas mantém a largura relativa)
+        const xpFill = document.querySelector('.xp-fill');
+        if (xpFill) {
+          const percent = Math.min(100, (xp / xpMax) * 100);
+          xpFill.style.width = percent + '%';
+        }
+        // Atualiza mensagem do mascote dependendo do streak
+        if (streak > 0) {
+          mascotMessage.textContent = `Sequência de ${streak} dias! Não quebre agora! 🔥`;
+        } else {
+          mascotMessage.textContent = `Vamos começar uma nova ofensiva? 💪`;
+        }
+      }
+
+      // Efeito sonoro simulado (Web Audio API)
+      function playSound(type = 'success') {
+        try {
+          const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+          const oscillator = audioCtx.createOscillator();
+          const gainNode = audioCtx.createGain();
+          oscillator.connect(gainNode);
+          gainNode.connect(audioCtx.destination);
+          
+          if (type === 'success') {
+            oscillator.type = 'sine';
+            oscillator.frequency.setValueAtTime(523.25, audioCtx.currentTime); // C5
+            oscillator.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.1); // E5
+            oscillator.frequency.setValueAtTime(783.99, audioCtx.currentTime + 0.2); // G5
+            gainNode.gain.setValueAtTime(0.2, audioCtx.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.4);
+            oscillator.start();
+            oscillator.stop(audioCtx.currentTime + 0.4);
+          } else if (type === 'coin') {
+            oscillator.type = 'square';
+            oscillator.frequency.setValueAtTime(987.77, audioCtx.currentTime); // B5
+            gainNode.gain.setValueAtTime(0.15, audioCtx.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.15);
+            oscillator.start();
+            oscillator.stop(audioCtx.currentTime + 0.15);
+          } else if (type === 'streak') {
+            oscillator.type = 'triangle';
+            oscillator.frequency.setValueAtTime(349.23, audioCtx.currentTime); // F4
+            oscillator.frequency.setValueAtTime(440, audioCtx.currentTime + 0.12);
+            gainNode.gain.setValueAtTime(0.18, audioCtx.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.3);
+            oscillator.start();
+            oscillator.stop(audioCtx.currentTime + 0.3);
+          }
+        } catch (e) {
+          // fallback silencioso
+        }
+      }
+
+      // Animação no mascote (feedback visual)
+      function mascotReact(action) {
+        if (action === 'celebrate') {
+          mascotEmoji.textContent = '🎉';
+          mascotEmoji.style.transform = 'scale(1.2)';
+          setTimeout(() => {
+            mascotEmoji.style.transform = 'scale(1)';
+            mascotEmoji.textContent = '💪';
+          }, 600);
+        } else if (action === 'coin') {
+          mascotEmoji.textContent = '🤑';
+          setTimeout(() => mascotEmoji.textContent = '💪', 500);
+        } else if (action === 'streak') {
+          mascotEmoji.textContent = '🔥';
+          setTimeout(() => mascotEmoji.textContent = '💪', 700);
+        } else if (action === 'lock') {
+          mascotEmoji.textContent = '🔒';
+          setTimeout(() => mascotEmoji.textContent = '💪', 600);
+        }
+      }
+
+      // Função para completar treino (simula ganho de XP, moedas e progresso)
+      function completeWorkout(source = 'main') {
+        // Ganho base
+        let xpGain = 30;
+        let coinGain = 15;
+        let msg = '';
+
+        if (source === 'quick') {
+          xpGain = 10;
+          coinGain = 5;
+          msg = 'Treino rápido concluído! +10 XP e +5 moedas';
+        } else if (source === 'daily') {
+          xpGain = 35;
+          coinGain = 20;
+          msg = 'Treino diário! +35 XP e +20 moedas 🔥';
+        } else {
+          msg = 'Treino concluído! +30 XP e +15 moedas';
+        }
+
+        // Atualiza XP (com overflow simples)
+        xp += xpGain;
+        if (xp >= xpMax) {
+          xp = xp - xpMax;
+          // Poderia subir de liga, mas apenas feedback
+          mascotMessage.textContent = '🏆 Parabéns! Você avançou de liga!';
+        }
+
+        // Moedas
+        coins += coinGain;
+        // Ofensiva: se treinou, aumenta streak (máximo 1 vez por dia simulado, mas aqui só incrementa)
+        streak += 1;
+
+        // Feedback sonoro
+        playSound('success');
+        setTimeout(() => playSound('coin'), 150);
+        setTimeout(() => playSound('streak'), 300);
+
+        // Reação do mascote
+        mascotReact('celebrate');
+        setTimeout(() => mascotReact('coin'), 400);
+        setTimeout(() => mascotReact('streak'), 800);
+
+        // Atualiza UI
+        updateUI();
+
+        // Mensagem personalizada
+        mascotMessage.textContent = msg;
+
+        // Efeito extra: atualizar barra de progresso do módulo 2 (apenas cosmético)
+        if (module2) {
+          const progressFill = module2.querySelector('.progress-fill');
+          let currentWidth = parseFloat(progressFill.style.width) || 45;
+          let newWidth = Math.min(100, currentWidth + 5);
+          progressFill.style.width = newWidth + '%';
+          const progressSpan = module2.querySelector('.module-progress span');
+          if (progressSpan) progressSpan.textContent = Math.floor(newWidth) + '%';
+          
+          // Se chegar a 100%, desbloquear módulo 3 (boss)
+          if (newWidth >= 100) {
+            module3.classList.remove('locked');
+            module3.querySelector('.module-lock').innerHTML = ''; // remove cadeado
+            module3.querySelector('.fa-lock')?.classList.remove('fa-lock');
+            // adiciona ícone de espada ou algo
+            const lockIcon = module3.querySelector('.module-progress i');
+            if (lockIcon) {
+              lockIcon.className = 'fas fa-bolt';
+              lockIcon.style.color = '#FFD966';
             }
-        };
-
-        let currentLevel = 'iniciante';
-        let currentFocus = 'braco';
-        let activeWorkout = [];
-        let currentExerciseIndex = 0;
-        let timerInterval = null;
-
-        window.onload = () => {
-            loadUserData();
-            checkStreak();
-        };
-
-        function setLevel(level, element) {
-            currentLevel = level;
-            const parent = element.parentElement;
-            parent.querySelectorAll('.opt-btn').forEach(btn => btn.classList.remove('active'));
-            element.classList.add('active');
+            mascotMessage.textContent = '👑 DESAFIO CHEFE DESBLOQUEADO! Prepare-se!';
+            playSound('streak');
+          }
         }
+      }
 
-        function setFocus(focus, element) {
-            currentFocus = focus;
-            const parent = element.parentElement;
-            parent.querySelectorAll('.opt-btn').forEach(btn => btn.classList.remove('active'));
-            element.classList.add('active');
+      // Event listeners
+      quickWorkoutBtn.addEventListener('click', () => {
+        completeWorkout('quick');
+        // vibração fake
+        if (navigator.vibrate) navigator.vibrate(30);
+      });
+
+      dailyWorkoutBtn.addEventListener('click', () => {
+        completeWorkout('daily');
+        if (navigator.vibrate) navigator.vibrate(50);
+      });
+
+      mainStartBtn.addEventListener('click', () => {
+        // Simula treino completo
+        completeWorkout('main');
+        if (navigator.vibrate) navigator.vibrate(80);
+      });
+
+      // Bloqueio de ofensiva (gasta moedas)
+      freezeStreakBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (coins >= 50) {
+          coins -= 50;
+          // Impede perda de streak (simulação)
+          updateUI();
+          mascotMessage.textContent = '❄️ Ofensiva bloqueada por 24h! Use com sabedoria.';
+          mascotReact('lock');
+          playSound('coin');
+          // Animação de moeda saindo
+          const coinBox = document.querySelector('.currency-box');
+          coinBox.style.transform = 'scale(1.1)';
+          setTimeout(() => coinBox.style.transform = 'scale(1)', 200);
+          if (navigator.vibrate) navigator.vibrate(20);
+        } else {
+          mascotMessage.textContent = 'Moedas insuficientes! Treine mais para ganhar. 😅';
+          mascotReact('lock');
+          playSound('lock');
         }
+      });
 
-        function startWorkout() {
-            activeWorkout = workoutDatabase[currentLevel][currentFocus];
-            currentExerciseIndex = 0;
+      // Simular clique nos módulos (feedback)
+      document.querySelectorAll('.module').forEach(mod => {
+        mod.addEventListener('click', (e) => {
+          if (mod.classList.contains('locked')) {
+            mascotMessage.textContent = 'Módulo bloqueado! Complete o anterior ou vença o chefe. 🔒';
+            mascotReact('lock');
+            playSound('lock');
+          } else {
+            mascotMessage.textContent = 'Bom treino! Foco na forma correta. 🎯';
+            playSound('success');
+          }
+        });
+      });
 
-            document.getElementById('setup-card').style.display = 'none';
-            document.getElementById('workout-card').style.display = 'block';
+      // Inicializa UI
+      updateUI();
 
-            renderCurrentExercise();
-        }
+      // Pequeno easter egg: clique no mascote
+      mascotEmoji.addEventListener('click', () => {
+        mascotMessage.textContent = 'Ei, não me aperte! Vamos treinar! 😄';
+        mascotReact('celebrate');
+        playSound('coin');
+      });
 
-        function renderCurrentExercise() {
-            clearInterval(timerInterval);
-            const ex = activeWorkout[currentExerciseIndex];
+      // Ajuste para mobile: evitar double tap zoom
+      document.querySelectorAll('button').forEach(btn => {
+        btn.addEventListener('touchstart', (e) => {
+          // nada, só previne
+        }, { passive: true });
+      });
 
-            document.getElementById('exercise-step-label').innerText = `EXERCÍCIO ${currentExerciseIndex + 1} DE ${activeWorkout.length}`;
-            document.getElementById('ex-title').innerText = ex.name;
-            document.getElementById('ex-sets').innerText = ex.sets;
-            document.getElementById('ex-reps').innerText = ex.reps;
-
-            const restSec = ex.rest || 45;
-            document.getElementById('timer-display').innerText = `00:${restSec < 10 ? '0' : ''}${restSec}`;
-
-            const progressPct = ((currentExerciseIndex) / activeWorkout.length) * 100;
-            document.getElementById('workout-progress').style.width = `${progressPct}%`;
-
-            if (currentExerciseIndex === activeWorkout.length - 1) {
-                document.getElementById('next-btn').style.display = 'none';
-                document.getElementById('finish-btn').style.display = 'block';
-            } else {
-                document.getElementById('next-btn').style.display = 'block';
-                document.getElementById('finish-btn').style.display = 'none';
-            }
-        }
-
-        function nextExercise() {
-            if (currentExerciseIndex < activeWorkout.length - 1) {
-                currentExerciseIndex++;
-                renderCurrentExercise();
-            }
-        }
-
-        function startRestTimer() {
-            clearInterval(timerInterval);
-            let restTime = activeWorkout[currentExerciseIndex].rest || 45;
-            const display = document.getElementById('timer-display');
-
-            timerInterval = setInterval(() => {
-                restTime--;
-                const min = Math.floor(restTime / 60);
-                const sec = restTime % 60;
-                display.innerText = `${min < 10 ? '0' : ''}${min}:${sec < 10 ? '0' : ''}${sec}`;
-
-                if (restTime <= 0) {
-                    clearInterval(timerInterval);
-                    display.innerText = "PRONTO! 💀";
-                }
-            }, 1000);
-        }
-
-        function finishWorkout() {
-            document.getElementById('workout-progress').style.width = `100%`;
-            completeWorkout();
-            
-            setTimeout(() => {
-                document.getElementById('workout-card').style.display = 'none';
-                document.getElementById('setup-card').style.display = 'block';
-            }, 1000);
-        }
-
-        function calculateMetrics() {
-            const height = parseFloat(document.getElementById('height').value);
-            const weight = parseFloat(document.getElementById('weight').value);
-
-            if (!height || !weight) return;
-
-            const heightInMeters = height / 100;
-            const bmi = (weight / (heightInMeters * heightInMeters)).toFixed(1);
-            const estimatedCalories = Math.round((10 * weight) + (6.25 * height) - (5 * 25) + 5 + 450);
-
-            document.getElementById('bmi-val').innerText = bmi;
-            document.getElementById('calories-val').innerText = `${estimatedCalories} kcal`;
-            document.getElementById('stats').style.display = 'grid';
-
-            localStorage.setItem('user_height', height);
-            localStorage.setItem('user_weight', weight);
-        }
-
-        function loadUserData() {
-            const h = localStorage.getItem('user_height');
-            const w = localStorage.getItem('user_weight');
-            if (h && w) {
-                document.getElementById('height').value = h;
-                document.getElementById('weight').value = w;
-                calculateMetrics();
-            }
-        }
-
-        function checkStreak() {
-            const streak = parseInt(localStorage.getItem('streak_count')) || 0;
-            document.getElementById('streak-count').innerText = streak;
-        }
-
-        function completeWorkout() {
-            const lastDate = localStorage.getItem('last_workout_date');
-            const today = new Date().toDateString();
-
-            if (lastDate === today) {
-                alert("Outro treino concluído hoje. Foco mantido! 💀");
-                return;
-            }
-
-            let streak = parseInt(localStorage.getItem('streak_count')) || 0;
-            const yesterday = new Date();
-            yesterday.setDate(yesterday.getDate() - 1);
-
-            if (lastDate === yesterday.toDateString()) {
-                streak += 1;
-            } else {
-                streak = 1;
-            }
-
-            localStorage.setItem('streak_count', streak);
-            localStorage.setItem('last_workout_date', today);
-            document.getElementById('streak-count').innerText = streak;
-
-            alert(`TREINO REGISTRADO! 💀 Sua ofensiva é de ${streak} dia(s)!`);
-        }
-    </script>
+      // Atualiza a barra de XP inicial
+      const xpFillInit = document.querySelector('.xp-fill');
+      if (xpFillInit) xpFillInit.style.width = '42%';
+    })();
+  </script>
 </body>
 </html>
