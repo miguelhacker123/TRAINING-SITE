@@ -3,33 +3,44 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BodyQuest — Treino em Casa Gamificado</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<title>BodyQuest — Treino em Casa</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
 
   :root {
-    --black: #0a0a0c;
-    --dark: #101015;
-    --surface: #17171d;
-    --surface-2: #1e1e26;
-    --border: #2a2a34;
+    --bg: #060608;
+    --bg-2: #0b0b0f;
+    --surface: #101014;
+    --surface-2: #16161c;
+    --surface-3: #1c1c24;
+    --border: #232329;
+    --border-2: #2e2e38;
     --text: #ffffff;
-    --text-dim: #8b8b96;
-    --text-dim-2: #5a5a66;
-    --blue-dark: #1a3a6b;
-    --blue: #2d5aa8;
-    --blue-light: #4a7dd4;
-    --blue-glow: #3d6bbf;
+    --text-2: #b8b8c0;
+    --text-3: #6c6c78;
+    --text-4: #45454f;
+    --blue-900: #0a1e3d;
+    --blue-800: #0f2c56;
+    --blue-700: #143a6e;
+    --blue-600: #1b4a8a;
+    --blue-500: #2560ab;
+    --blue-400: #3d7bc8;
+    --blue-300: #5e97dd;
+    --blue-glow: rgba(37, 96, 171, 0.5);
   }
 
+  html { scroll-behavior: smooth; }
+
   body {
-    background: var(--black);
+    background: var(--bg);
     color: var(--text);
     min-height: 100vh;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
+    font-feature-settings: 'cv11', 'ss01';
+    line-height: 1.5;
   }
 
   /* ===== NAVBAR ===== */
@@ -37,798 +48,1214 @@
     position: sticky;
     top: 0;
     z-index: 100;
-    background: rgba(10,10,12,0.9);
-    backdrop-filter: blur(20px);
+    background: rgba(6, 6, 8, 0.85);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
     border-bottom: 1px solid var(--border);
-    padding: 14px 24px;
   }
 
   .nav-inner {
-    max-width: 1200px;
+    max-width: 1280px;
     margin: 0 auto;
+    padding: 0 32px;
+    height: 68px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 20px;
+    gap: 32px;
   }
 
   .logo {
     display: flex;
     align-items: center;
-    gap: 10px;
-    font-size: 20px;
-    font-weight: 900;
+    gap: 12px;
+    font-size: 19px;
+    font-weight: 800;
     letter-spacing: -0.5px;
+    color: var(--text);
+    text-decoration: none;
   }
 
-  .logo-icon {
-    width: 36px;
-    height: 36px;
-    border-radius: 10px;
-    background: linear-gradient(135deg, var(--blue-dark), var(--blue));
+  .logo-mark {
+    width: 34px;
+    height: 34px;
+    border-radius: 9px;
+    background: linear-gradient(135deg, var(--blue-700), var(--blue-500));
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 18px;
-    box-shadow: 0 0 20px rgba(45,90,168,0.4);
+    font-size: 15px;
+    color: white;
+    box-shadow: 0 0 0 1px rgba(94, 151, 221, 0.2), 0 4px 16px var(--blue-glow);
+    position: relative;
   }
 
-  .logo span { color: var(--blue-light); }
+  .logo-mark::before {
+    content: '';
+    position: absolute;
+    inset: 1px;
+    border-radius: 8px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.15), transparent 50%);
+  }
+
+  .logo-name { font-weight: 800; }
+  .logo-name span { color: var(--blue-300); font-weight: 500; }
 
   .nav-links {
     display: flex;
-    gap: 28px;
+    gap: 4px;
+    align-items: center;
   }
 
   .nav-links a {
-    color: var(--text-dim);
+    color: var(--text-3);
     text-decoration: none;
-    font-size: 14px;
-    font-weight: 600;
-    transition: color 0.2s;
+    font-size: 13.5px;
+    font-weight: 500;
+    padding: 8px 14px;
+    border-radius: 8px;
+    transition: all 0.15s ease;
   }
 
-  .nav-links a:hover { color: var(--text); }
-  .nav-links a.active { color: var(--text); }
+  .nav-links a:hover { color: var(--text); background: var(--surface); }
+  .nav-links a.active { color: var(--text); background: var(--surface-2); }
 
-  .nav-actions {
+  .nav-right {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 10px;
   }
 
-  .coin-badge {
+  .coin-display {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
     background: var(--surface);
     border: 1px solid var(--border);
-    padding: 7px 14px;
+    padding: 7px 14px 7px 10px;
     border-radius: 10px;
     font-size: 13px;
-    font-weight: 700;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    transition: all 0.15s ease;
   }
 
-  .coin-badge i { color: var(--blue-light); font-size: 14px; }
+  .coin-display:hover { border-color: var(--border-2); background: var(--surface-2); }
 
-  .avatar-btn {
+  .coin-dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--blue-400), var(--blue-600));
+    box-shadow: 0 0 8px var(--blue-glow), inset 0 1px 0 rgba(255,255,255,0.3);
+    flex-shrink: 0;
+  }
+
+  .user-btn {
     width: 38px;
     height: 38px;
     border-radius: 10px;
-    background: linear-gradient(135deg, var(--blue-dark), var(--blue));
+    background: linear-gradient(135deg, var(--blue-700), var(--blue-500));
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    font-size: 16px;
-    transition: transform 0.2s;
+    font-size: 15px;
+    color: white;
+    transition: all 0.15s ease;
+    border: 1px solid rgba(94, 151, 221, 0.25);
+    box-shadow: 0 4px 14px rgba(37, 96, 171, 0.25);
   }
 
-  .avatar-btn:hover { transform: scale(1.05); }
+  .user-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(37, 96, 171, 0.4); }
 
-  @media (max-width: 768px) {
+  @media (max-width: 900px) {
     .nav-links { display: none; }
+    .nav-inner { padding: 0 20px; height: 64px; }
   }
 
   /* ===== CONTAINER ===== */
   .container {
-    max-width: 1200px;
+    max-width: 1280px;
     margin: 0 auto;
-    padding: 32px 24px 80px;
+    padding: 40px 32px 120px;
   }
 
-  /* ===== HERO / DASHBOARD TOP ===== */
+  @media (max-width: 640px) {
+    .container { padding: 24px 18px 100px; }
+  }
+
+  /* ===== SECTION HEAD ===== */
+  .section { margin-bottom: 56px; }
+
+  .section-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .section-head-left h2 {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.4px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text);
+  }
+
+  .section-head-left h2 i { color: var(--blue-400); font-size: 15px; }
+
+  .section-head-left .desc {
+    color: var(--text-3);
+    font-size: 13.5px;
+    margin-top: 6px;
+    font-weight: 400;
+  }
+
+  .section-head-right a {
+    color: var(--blue-300);
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.15s ease;
+  }
+
+  .section-head-right a:hover { color: var(--blue-400); gap: 8px; }
+
+  /* ===== HERO ===== */
   .hero {
     display: grid;
-    grid-template-columns: 1fr 340px;
-    gap: 24px;
-    margin-bottom: 32px;
+    grid-template-columns: 1fr 400px;
+    gap: 20px;
+    margin-bottom: 56px;
   }
 
-  @media (max-width: 900px) {
+  @media (max-width: 980px) {
     .hero { grid-template-columns: 1fr; }
   }
 
-  .welcome-card {
-    background: linear-gradient(135deg, var(--surface) 0%, var(--dark) 100%);
+  .hero-panel {
+    background: linear-gradient(155deg, var(--surface-2) 0%, var(--surface) 60%);
     border: 1px solid var(--border);
-    border-radius: 24px;
-    padding: 32px;
+    border-radius: 22px;
+    padding: 40px 36px;
     position: relative;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
-  .welcome-card::before {
+  .hero-panel::before {
     content: '';
     position: absolute;
-    top: -50%;
-    right: -20%;
+    top: -100px;
+    right: -100px;
     width: 400px;
     height: 400px;
-    background: radial-gradient(circle, rgba(45,90,168,0.15), transparent 70%);
+    background: radial-gradient(circle, rgba(37, 96, 171, 0.15), transparent 65%);
     pointer-events: none;
   }
 
-  .welcome-card .greeting {
-    font-size: 14px;
-    color: var(--text-dim);
+  .hero-panel::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--blue-700), transparent);
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(37, 96, 171, 0.12);
+    border: 1px solid rgba(37, 96, 171, 0.3);
+    color: var(--blue-300);
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 11.5px;
     font-weight: 600;
-    margin-bottom: 6px;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    width: fit-content;
+    margin-bottom: 20px;
     position: relative;
   }
 
-  .welcome-card h1 {
-    font-size: 32px;
-    font-weight: 900;
-    letter-spacing: -0.8px;
-    margin-bottom: 10px;
+  .hero-tag .pulse-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--blue-300);
+    box-shadow: 0 0 8px var(--blue-300);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.85); }
+  }
+
+  .hero-panel h1 {
+    font-size: 38px;
+    font-weight: 800;
+    letter-spacing: -1.2px;
+    line-height: 1.1;
+    margin-bottom: 14px;
     position: relative;
   }
 
-  .welcome-card p {
-    color: var(--text-dim);
+  .hero-panel h1 em {
+    font-style: normal;
+    background: linear-gradient(135deg, var(--blue-300), var(--blue-500));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-panel .hero-desc {
+    color: var(--text-2);
     font-size: 15px;
     line-height: 1.6;
-    margin-bottom: 24px;
-    max-width: 480px;
+    margin-bottom: 30px;
+    max-width: 520px;
     position: relative;
   }
+
+  .hero-panel .hero-desc strong { color: var(--text); font-weight: 600; }
 
   .hero-actions {
     display: flex;
-    gap: 12px;
+    gap: 10px;
     flex-wrap: wrap;
     position: relative;
   }
 
   .btn {
-    padding: 13px 26px;
-    border-radius: 12px;
-    font-size: 14px;
-    font-weight: 700;
+    padding: 12px 22px;
+    border-radius: 10px;
+    font-size: 13.5px;
+    font-weight: 600;
     border: none;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.18s cubic-bezier(0.4, 0, 0.2, 1);
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
     text-decoration: none;
     white-space: nowrap;
+    font-family: inherit;
+    letter-spacing: -0.1px;
   }
 
   .btn-primary {
-    background: var(--blue);
+    background: linear-gradient(180deg, var(--blue-500), var(--blue-700));
     color: white;
-    box-shadow: 0 6px 20px rgba(45,90,168,0.35);
+    box-shadow: 0 1px 0 rgba(255,255,255,0.15) inset, 0 6px 20px rgba(37, 96, 171, 0.4);
+    border: 1px solid var(--blue-500);
   }
-  .btn-primary:hover { background: var(--blue-light); transform: translateY(-2px); box-shadow: 0 10px 28px rgba(45,90,168,0.5); }
 
-  .btn-ghost {
+  .btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 1px 0 rgba(255,255,255,0.2) inset, 0 10px 28px rgba(37, 96, 171, 0.55);
+  }
+
+  .btn-primary:active { transform: translateY(0); }
+
+  .btn-secondary {
     background: var(--surface-2);
     color: var(--text);
-    border: 1px solid var(--border);
+    border: 1px solid var(--border-2);
+    box-shadow: 0 1px 0 rgba(255,255,255,0.04) inset;
   }
-  .btn-ghost:hover { background: var(--border); border-color: var(--text-dim-2); }
 
-  .btn-sm { padding: 9px 16px; font-size: 13px; }
+  .btn-secondary:hover { background: var(--surface-3); border-color: var(--text-4); }
 
-  /* ===== STATS CARDS ===== */
+  /* ===== STATS ===== */
   .stats-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
+    gap: 12px;
   }
 
   .stat-card {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 18px;
+    border-radius: 16px;
     padding: 20px;
     display: flex;
     flex-direction: column;
-    gap: 6px;
-    transition: all 0.2s;
+    gap: 4px;
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
   }
 
-  .stat-card:hover { border-color: var(--blue); transform: translateY(-2px); }
-
-  .stat-card .icon-wrap {
-    width: 40px;
-    height: 40px;
-    border-radius: 12px;
-    background: rgba(45,90,168,0.15);
-    border: 1px solid rgba(45,90,168,0.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-    color: var(--blue-light);
-    margin-bottom: 8px;
+  .stat-card:hover {
+    border-color: var(--border-2);
+    background: var(--surface-2);
+    transform: translateY(-2px);
   }
 
-  .stat-card .value {
-    font-size: 26px;
-    font-weight: 900;
-    letter-spacing: -0.5px;
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--blue-500), transparent);
+    opacity: 0;
+    transition: opacity 0.2s ease;
   }
 
-  .stat-card .label {
-    font-size: 12px;
-    color: var(--text-dim);
-    font-weight: 600;
-  }
+  .stat-card:hover::before { opacity: 1; }
 
-  /* ===== SECTION TITLES ===== */
-  .section {
-    margin-bottom: 40px;
-  }
-
-  .section-head {
+  .stat-head {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 18px;
-    flex-wrap: wrap;
-    gap: 10px;
+    margin-bottom: 8px;
   }
 
-  .section-head h2 {
-    font-size: 22px;
-    font-weight: 800;
-    letter-spacing: -0.4px;
+  .stat-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 9px;
+    background: rgba(37, 96, 171, 0.12);
+    border: 1px solid rgba(37, 96, 171, 0.2);
     display: flex;
     align-items: center;
-    gap: 10px;
-  }
-
-  .section-head h2 i { color: var(--blue-light); font-size: 18px; }
-
-  .section-head p {
-    color: var(--text-dim);
+    justify-content: center;
     font-size: 14px;
-    margin-top: 4px;
+    color: var(--blue-300);
   }
 
-  /* ===== TRILHA (SKILL TREE) ===== */
+  .stat-trend {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--blue-300);
+    background: rgba(37, 96, 171, 0.1);
+    padding: 3px 7px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+  }
+
+  .stat-value {
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: -0.8px;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.1;
+  }
+
+  .stat-value .unit {
+    font-size: 13px;
+    color: var(--text-3);
+    font-weight: 500;
+    margin-left: 3px;
+    letter-spacing: 0;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: var(--text-3);
+    font-weight: 500;
+  }
+
+  /* ===== TRILHA ===== */
   .trail {
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 10px;
   }
 
   .module {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 20px;
+    border-radius: 16px;
+    padding: 20px 24px;
     display: flex;
     align-items: center;
-    gap: 18px;
+    gap: 20px;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
   }
 
-  .module:hover { border-color: var(--blue); transform: translateX(4px); }
-
-  .module.done { border-color: rgba(45,90,168,0.5); }
-  .module.done::after {
+  .module::after {
     content: '';
     position: absolute;
     left: 0; top: 0; bottom: 0;
-    width: 4px;
-    background: var(--blue);
+    width: 3px;
+    background: var(--blue-500);
+    opacity: 0;
+    transition: opacity 0.2s;
   }
 
-  .module-icon {
-    width: 62px;
-    height: 62px;
-    border-radius: 18px;
+  .module:hover {
+    border-color: var(--border-2);
     background: var(--surface-2);
-    border: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 28px;
-    flex-shrink: 0;
+    transform: translateX(2px);
   }
 
-  .module.done .module-icon { background: rgba(45,90,168,0.2); border-color: var(--blue); }
+  .module:hover::after { opacity: 1; }
 
-  .module-info { flex: 1; }
+  .module.completed::after { opacity: 1; background: var(--blue-400); }
+  .module.completed { border-color: rgba(37, 96, 171, 0.3); }
 
-  .module-info h3 {
-    font-size: 17px;
-    font-weight: 800;
-    margin-bottom: 6px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  .module.boss {
+    background: linear-gradient(135deg, var(--surface-2) 0%, var(--surface) 100%);
+    border-color: rgba(37, 96, 171, 0.35);
   }
 
-  .module-info h3 .tag {
-    font-size: 10px;
-    font-weight: 800;
-    padding: 3px 8px;
-    border-radius: 6px;
-    letter-spacing: 0.5px;
+  .module.boss::after { background: var(--blue-300); opacity: 1; }
+
+  .module.locked {
+    opacity: 0.5;
+    cursor: not-allowed;
   }
 
-  .tag-done { background: rgba(45,90,168,0.25); color: var(--blue-light); }
-  .tag-current { background: rgba(255,255,255,0.1); color: var(--text); }
-  .tag-locked { background: rgba(255,255,255,0.05); color: var(--text-dim-2); }
-  .tag-boss { background: rgba(45,90,168,0.3); color: var(--blue-light); }
+  .module.locked:hover { transform: none; background: var(--surface); border-color: var(--border); }
+  .module.locked:hover::after { opacity: 0; }
 
-  .module-info p {
-    font-size: 13px;
-    color: var(--text-dim);
-    margin-bottom: 10px;
-  }
-
-  .progress-bar {
-    height: 8px;
-    background: var(--surface-2);
-    border-radius: 8px;
-    overflow: hidden;
-    max-width: 400px;
-  }
-
-  .progress-bar .fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--blue-dark), var(--blue-light));
-    border-radius: 8px;
-    transition: width 0.6s ease;
-  }
-
-  .module-progress-label {
-    font-size: 12px;
-    color: var(--text-dim);
-    font-weight: 700;
-    margin-top: 6px;
-  }
-
-  .module-action {
-    flex-shrink: 0;
+  .module-num {
     width: 44px;
     height: 44px;
     border-radius: 12px;
-    background: var(--surface-2);
-    border: 1px solid var(--border);
+    background: var(--surface-3);
+    border: 1px solid var(--border-2);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--text-dim);
-    font-size: 16px;
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--text-3);
+    flex-shrink: 0;
+    position: relative;
     transition: all 0.2s;
   }
 
-  .module:hover .module-action { background: var(--blue); color: white; border-color: var(--blue); }
-
-  .module.locked { opacity: 0.55; cursor: not-allowed; }
-  .module.locked:hover { transform: none; border-color: var(--border); }
-  .module.locked .module-action { color: var(--text-dim-2); }
-
-  .module.boss {
-    background: linear-gradient(135deg, var(--surface) 0%, var(--dark) 100%);
-    border-color: var(--blue-dark);
-    box-shadow: 0 0 30px rgba(26,58,107,0.3);
-  }
-
-  .module.boss .module-icon {
-    background: linear-gradient(135deg, var(--blue-dark), var(--blue));
-    border: none;
+  .module.completed .module-num {
+    background: linear-gradient(135deg, var(--blue-700), var(--blue-500));
+    border-color: var(--blue-500);
     color: white;
   }
 
-  /* ===== CARDS DE TREINO RÁPIDO ===== */
+  .module.boss .module-num {
+    background: linear-gradient(135deg, var(--blue-600), var(--blue-400));
+    border-color: var(--blue-400);
+    color: white;
+    box-shadow: 0 0 20px rgba(37, 96, 171, 0.4);
+  }
+
+  .module-body { flex: 1; min-width: 0; }
+
+  .module-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 4px;
+    flex-wrap: wrap;
+  }
+
+  .module-title h3 {
+    font-size: 15.5px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    color: var(--text);
+  }
+
+  .badge {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 5px;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+  }
+
+  .badge-done { background: rgba(37, 96, 171, 0.18); color: var(--blue-300); border: 1px solid rgba(37, 96, 171, 0.3); }
+  .badge-active { background: rgba(255, 255, 255, 0.06); color: var(--text-2); border: 1px solid var(--border-2); }
+  .badge-locked { background: rgba(255, 255, 255, 0.03); color: var(--text-4); border: 1px solid var(--border); }
+  .badge-boss { background: linear-gradient(135deg, var(--blue-700), var(--blue-500)); color: white; border: 1px solid var(--blue-400); }
+
+  .module-desc {
+    font-size: 13px;
+    color: var(--text-3);
+    margin-bottom: 12px;
+    line-height: 1.5;
+  }
+
+  .module-progress {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    max-width: 480px;
+  }
+
+  .progress-track {
+    flex: 1;
+    height: 6px;
+    background: var(--bg-2);
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid var(--border);
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--blue-600), var(--blue-400));
+    border-radius: 6px;
+    transition: width 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+  }
+
+  .progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 50%;
+    background: linear-gradient(180deg, rgba(255,255,255,0.25), transparent);
+    border-radius: 6px 6px 0 0;
+  }
+
+  .progress-pct {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-2);
+    font-variant-numeric: tabular-nums;
+    min-width: 36px;
+    text-align: right;
+  }
+
+  .module-cta {
+    width: 40px;
+    height: 40px;
+    border-radius: 11px;
+    background: var(--surface-3);
+    border: 1px solid var(--border-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-3);
+    font-size: 13px;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+  }
+
+  .module:hover .module-cta {
+    background: var(--blue-600);
+    border-color: var(--blue-500);
+    color: white;
+    box-shadow: 0 0 20px var(--blue-glow);
+  }
+
+  .module.locked .module-cta { color: var(--text-4); }
+  .module.locked:hover .module-cta { background: var(--surface-3); border-color: var(--border-2); color: var(--text-4); box-shadow: none; }
+
+  /* ===== QUICK WORKOUTS ===== */
   .quick-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 16px;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 14px;
   }
 
   .quick-card {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 20px;
+    border-radius: 16px;
     padding: 22px;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 14px;
+    position: relative;
+    overflow: hidden;
   }
 
-  .quick-card:hover { border-color: var(--blue); transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.4); }
+  .quick-card:hover {
+    border-color: var(--blue-600);
+    background: var(--surface-2);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(37, 96, 171, 0.15);
+  }
 
-  .quick-card .qc-head {
+  .quick-head {
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
 
-  .quick-card .qc-icon {
-    width: 46px;
-    height: 46px;
-    border-radius: 14px;
-    background: rgba(45,90,168,0.15);
-    border: 1px solid rgba(45,90,168,0.3);
+  .quick-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 11px;
+    background: rgba(37, 96, 171, 0.12);
+    border: 1px solid rgba(37, 96, 171, 0.25);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 20px;
-    color: var(--blue-light);
+    font-size: 16px;
+    color: var(--blue-300);
+    transition: all 0.2s;
   }
 
-  .quick-card .qc-time {
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--text-dim);
-    background: var(--surface-2);
-    padding: 5px 10px;
-    border-radius: 8px;
+  .quick-card:hover .quick-icon {
+    background: var(--blue-600);
+    border-color: var(--blue-500);
+    color: white;
+  }
+
+  .quick-time {
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--text-3);
+    background: var(--surface-3);
+    padding: 4px 9px;
+    border-radius: 6px;
     border: 1px solid var(--border);
+    font-variant-numeric: tabular-nums;
   }
 
   .quick-card h4 {
-    font-size: 16px;
-    font-weight: 800;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    color: var(--text);
   }
 
   .quick-card p {
-    font-size: 13px;
-    color: var(--text-dim);
+    font-size: 12.5px;
+    color: var(--text-3);
     line-height: 1.5;
+    flex: 1;
   }
 
-  .quick-card .qc-footer {
+  .quick-foot {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: auto;
-    padding-top: 10px;
+    padding-top: 12px;
     border-top: 1px solid var(--border);
   }
 
-  .quick-card .qc-reward {
+  .quick-reward {
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--blue-300);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .quick-arrow {
+    color: var(--text-4);
     font-size: 12px;
-    font-weight: 700;
-    color: var(--blue-light);
+    transition: transform 0.2s ease;
   }
 
-  .quick-card .qc-arrow {
-    color: var(--text-dim-2);
-    font-size: 14px;
-    transition: transform 0.2s;
-  }
+  .quick-card:hover .quick-arrow { transform: translateX(4px); color: var(--blue-300); }
 
-  .quick-card:hover .qc-arrow { transform: translateX(4px); color: var(--blue-light); }
-
-  /* ===== LIGAS ===== */
+  /* ===== LIGA ===== */
   .league-panel {
-    background: var(--surface);
+    background: linear-gradient(135deg, var(--surface-2) 0%, var(--surface) 100%);
     border: 1px solid var(--border);
-    border-radius: 24px;
-    padding: 28px;
+    border-radius: 22px;
+    padding: 36px;
     display: grid;
     grid-template-columns: auto 1fr;
-    gap: 32px;
+    gap: 40px;
     align-items: center;
+    position: relative;
+    overflow: hidden;
   }
 
-  @media (max-width: 700px) {
-    .league-panel { grid-template-columns: 1fr; text-align: center; justify-items: center; }
+  .league-panel::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(37, 96, 171, 0.1), transparent 65%);
+    pointer-events: none;
+  }
+
+  @media (max-width: 760px) {
+    .league-panel { grid-template-columns: 1fr; text-align: center; justify-items: center; padding: 28px; gap: 24px; }
   }
 
   .league-badge {
-    width: 110px;
-    height: 110px;
-    border-radius: 24px;
-    background: linear-gradient(135deg, var(--blue-dark), var(--blue));
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, var(--blue-500), var(--blue-800));
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 52px;
-    box-shadow: 0 0 40px rgba(45,90,168,0.5);
+    font-size: 48px;
+    color: white;
+    box-shadow:
+      0 0 0 1px rgba(94, 151, 221, 0.3),
+      0 0 0 8px rgba(37, 96, 171, 0.06),
+      0 0 60px rgba(37, 96, 171, 0.35),
+      inset 0 -8px 24px rgba(0,0,0,0.35);
+    position: relative;
+    flex-shrink: 0;
   }
 
-  .league-info h3 {
-    font-size: 22px;
-    font-weight: 900;
+  .league-badge::after {
+    content: '';
+    position: absolute;
+    top: 12%;
+    left: 20%;
+    width: 50%;
+    height: 40%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.35), transparent 70%);
+    filter: blur(6px);
+  }
+
+  .league-info { position: relative; }
+
+  .league-division {
+    font-size: 11.5px;
+    color: var(--text-3);
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
     margin-bottom: 6px;
   }
 
-  .league-info .subtitle {
-    color: var(--text-dim);
-    font-size: 14px;
-    margin-bottom: 16px;
+  .league-info h3 {
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: -0.8px;
+    margin-bottom: 6px;
   }
 
-  .league-progress {
+  .league-info .sub {
+    color: var(--text-3);
+    font-size: 13.5px;
+    margin-bottom: 20px;
+  }
+
+  .league-progress-row {
     display: flex;
     align-items: center;
     gap: 14px;
     margin-bottom: 10px;
   }
 
-  .league-progress .bar-bg {
+  .league-track {
     flex: 1;
-    height: 12px;
-    background: var(--surface-2);
+    height: 10px;
+    background: var(--bg-2);
     border-radius: 10px;
     overflow: hidden;
     border: 1px solid var(--border);
+    position: relative;
   }
 
-  .league-progress .bar-fill {
+  .league-fill {
     height: 100%;
-    background: linear-gradient(90deg, var(--blue-dark), var(--blue-light));
+    background: linear-gradient(90deg, var(--blue-700), var(--blue-400));
     border-radius: 10px;
-    transition: width 0.6s ease;
+    transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    box-shadow: 0 0 16px var(--blue-glow);
   }
 
-  .league-progress .xp-text {
+  .league-fill::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(255,255,255,0.3), transparent 55%);
+    border-radius: 10px;
+  }
+
+  .league-xp {
     font-size: 13px;
-    font-weight: 800;
+    font-weight: 700;
     color: var(--text);
+    font-variant-numeric: tabular-nums;
     white-space: nowrap;
   }
 
   .league-tip {
-    font-size: 12px;
-    color: var(--text-dim);
+    font-size: 12.5px;
+    color: var(--text-3);
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
+    margin-top: 4px;
   }
 
-  /* ===== MODAL DE TREINO ===== */
+  .league-tip i { color: var(--blue-300); font-size: 12px; }
+  .league-tip strong { color: var(--text-2); font-weight: 600; }
+
+  /* ===== ACHIEVEMENTS ===== */
+  .ach-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 14px;
+  }
+
+  .ach-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    transition: all 0.2s ease;
+    cursor: default;
+  }
+
+  .ach-card:hover { border-color: var(--border-2); background: var(--surface-2); }
+
+  .ach-card.unlocked { border-color: rgba(37, 96, 171, 0.3); }
+
+  .ach-medal {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: var(--surface-3);
+    border: 1px solid var(--border-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: var(--text-4);
+    flex-shrink: 0;
+  }
+
+  .ach-card.unlocked .ach-medal {
+    background: linear-gradient(135deg, var(--blue-700), var(--blue-500));
+    border-color: var(--blue-500);
+    color: white;
+    box-shadow: 0 0 24px rgba(37, 96, 171, 0.35);
+  }
+
+  .ach-body { flex: 1; min-width: 0; }
+
+  .ach-body h4 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 3px;
+    letter-spacing: -0.2px;
+  }
+
+  .ach-body p {
+    font-size: 12px;
+    color: var(--text-3);
+    line-height: 1.4;
+  }
+
+  .ach-status {
+    font-size: 10.5px;
+    font-weight: 700;
+    color: var(--text-4);
+    background: var(--surface-3);
+    padding: 3px 8px;
+    border-radius: 5px;
+    margin-top: 8px;
+    display: inline-block;
+    letter-spacing: 0.3px;
+  }
+
+  .ach-card.unlocked .ach-status {
+    color: var(--blue-300);
+    background: rgba(37, 96, 171, 0.15);
+  }
+
+  /* ===== MODAL ===== */
   .modal-overlay {
     position: fixed;
     inset: 0;
     background: rgba(0,0,0,0.85);
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     z-index: 1000;
     display: none;
     align-items: center;
     justify-content: center;
     padding: 20px;
+    opacity: 0;
+    transition: opacity 0.25s ease;
   }
 
-  .modal-overlay.active { display: flex; }
+  .modal-overlay.active { display: flex; opacity: 1; }
 
   .modal {
-    background: var(--dark);
-    border: 1px solid var(--border);
-    border-radius: 28px;
-    max-width: 480px;
+    background: var(--bg-2);
+    border: 1px solid var(--border-2);
+    border-radius: 22px;
+    max-width: 460px;
     width: 100%;
-    padding: 32px;
+    padding: 36px;
     position: relative;
-    animation: modalIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: modalIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     max-height: 90vh;
     overflow-y: auto;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.03);
   }
 
   @keyframes modalIn {
-    from { opacity: 0; transform: scale(0.9) translateY(20px); }
+    from { opacity: 0; transform: scale(0.94) translateY(24px); }
     to { opacity: 1; transform: scale(1) translateY(0); }
   }
 
   .modal-close {
     position: absolute;
-    top: 20px;
-    right: 20px;
-    width: 36px;
-    height: 36px;
+    top: 18px;
+    right: 18px;
+    width: 34px;
+    height: 34px;
     border-radius: 10px;
     background: var(--surface);
     border: 1px solid var(--border);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--text-dim);
+    color: var(--text-3);
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.15s;
+    font-size: 13px;
   }
 
-  .modal-close:hover { background: var(--surface-2); color: var(--text); }
+  .modal-close:hover { background: var(--surface-2); color: var(--text); border-color: var(--border-2); }
 
-  .modal-icon {
-    width: 80px;
-    height: 80px;
-    border-radius: 22px;
-    background: linear-gradient(135deg, var(--blue-dark), var(--blue));
+  .modal-icon-wrap {
+    width: 76px;
+    height: 76px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, var(--blue-700), var(--blue-500));
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 40px;
-    margin: 0 auto 20px;
-    box-shadow: 0 0 40px rgba(45,90,168,0.4);
+    font-size: 30px;
+    margin: 0 auto 22px;
+    color: white;
+    box-shadow: 0 0 40px rgba(37, 96, 171, 0.4), inset 0 -6px 16px rgba(0,0,0,0.25);
+    border: 1px solid rgba(94, 151, 221, 0.3);
   }
 
   .modal h2 {
-    font-size: 24px;
-    font-weight: 900;
+    font-size: 22px;
+    font-weight: 800;
     text-align: center;
     margin-bottom: 8px;
     letter-spacing: -0.5px;
   }
 
-  .modal .modal-sub {
+  .modal-sub {
     text-align: center;
-    color: var(--text-dim);
-    font-size: 14px;
-    margin-bottom: 24px;
+    color: var(--text-3);
+    font-size: 13.5px;
+    margin-bottom: 28px;
+    line-height: 1.5;
   }
 
-  .exercise-preview {
+  .timer-box {
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 18px;
-    padding: 20px;
+    padding: 28px 20px;
     margin-bottom: 16px;
-    text-align: center;
+    position: relative;
+    overflow: hidden;
   }
 
-  .exercise-preview .ex-name {
-    font-size: 15px;
+  .timer-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--blue-500), transparent);
+  }
+
+  .timer-time {
+    font-size: 58px;
     font-weight: 800;
-    margin-bottom: 4px;
-  }
-
-  .exercise-preview .ex-detail {
-    font-size: 13px;
-    color: var(--text-dim);
-  }
-
-  .timer-display {
     text-align: center;
-    padding: 24px 0;
-  }
-
-  .timer-display .time {
-    font-size: 64px;
-    font-weight: 900;
     letter-spacing: -2px;
-    background: linear-gradient(135deg, #fff 0%, var(--blue-light) 100%);
+    font-variant-numeric: tabular-nums;
+    background: linear-gradient(180deg, #fff 0%, var(--blue-300) 120%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     line-height: 1;
-    font-variant-numeric: tabular-nums;
+    margin-bottom: 8px;
   }
 
-  .timer-display .phase {
-    font-size: 12px;
-    color: var(--text-dim);
-    font-weight: 700;
+  .timer-phase {
+    text-align: center;
+    font-size: 11.5px;
+    color: var(--text-3);
+    font-weight: 600;
+    letter-spacing: 1.8px;
     text-transform: uppercase;
-    letter-spacing: 1.5px;
-    margin-top: 8px;
   }
 
-  .modal-actions {
+  .exercise-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 20px;
+    margin-bottom: 24px;
+  }
+
+  .exercise-name {
+    font-size: 14.5px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    color: var(--text);
     display: flex;
-    gap: 12px;
-    margin-top: 24px;
+    align-items: center;
+    gap: 8px;
   }
 
-  .modal-actions .btn { flex: 1; justify-content: center; }
+  .exercise-name::before {
+    content: '';
+    width: 4px;
+    height: 14px;
+    border-radius: 2px;
+    background: var(--blue-400);
+    box-shadow: 0 0 8px var(--blue-glow);
+  }
 
-  /* ===== CONQUISTAS / TOAST ===== */
+  .exercise-detail {
+    font-size: 12.5px;
+    color: var(--text-3);
+    line-height: 1.5;
+    padding-left: 12px;
+  }
+
+  .modal-actions { display: flex; gap: 10px; }
+  .modal-actions .btn { flex: 1; }
+
+  /* ===== TOAST ===== */
   .toast {
     position: fixed;
-    top: 90px;
+    top: 88px;
     left: 50%;
-    transform: translateX(-50%) translateY(-120px);
-    background: var(--dark);
-    border: 1px solid var(--blue);
-    border-radius: 16px;
-    padding: 16px 24px;
-    font-size: 14px;
-    font-weight: 700;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 30px rgba(45,90,168,0.3);
+    transform: translateX(-50%) translateY(-140px);
+    background: var(--bg-2);
+    border: 1px solid var(--blue-600);
+    border-radius: 14px;
+    padding: 14px 20px 14px 14px;
     z-index: 2000;
     display: flex;
     align-items: center;
     gap: 12px;
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     pointer-events: none;
     max-width: 90vw;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 40px rgba(37, 96, 171, 0.25);
   }
 
   .toast.show { transform: translateX(-50%) translateY(0); }
 
-  .toast .toast-icon {
+  .toast-icon {
     width: 36px;
     height: 36px;
     border-radius: 10px;
-    background: rgba(45,90,168,0.25);
+    background: linear-gradient(135deg, var(--blue-700), var(--blue-500));
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 18px;
-    color: var(--blue-light);
+    color: white;
+    font-size: 14px;
     flex-shrink: 0;
+    box-shadow: 0 0 20px var(--blue-glow);
   }
 
-  /* ===== RODAPÉ ===== */
+  .toast-content { display: flex; flex-direction: column; gap: 2px; }
+  .toast-title { font-size: 13.5px; font-weight: 700; color: var(--text); }
+  .toast-sub { font-size: 12px; color: var(--text-3); }
+
+  /* ===== FOOTER ===== */
   footer {
     border-top: 1px solid var(--border);
-    padding: 40px 24px;
+    padding: 36px 32px;
     margin-top: 60px;
   }
 
   .footer-inner {
-    max-width: 1200px;
+    max-width: 1280px;
     margin: 0 auto;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-
-  .footer-inner p {
-    color: var(--text-dim-2);
-    font-size: 13px;
-  }
-
-  .footer-links {
-    display: flex;
+    justify-content: space-between;
     gap: 24px;
+    flex-wrap: wrap;
   }
+
+  .footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--text-3);
+    font-weight: 500;
+  }
+
+  .footer-brand .logo-mark { width: 26px; height: 26px; font-size: 11px; border-radius: 7px; }
+
+  .footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
 
   .footer-links a {
-    color: var(--text-dim);
+    color: var(--text-3);
     text-decoration: none;
     font-size: 13px;
-    font-weight: 600;
-    transition: color 0.2s;
+    font-weight: 500;
+    transition: color 0.15s;
   }
 
   .footer-links a:hover { color: var(--text); }
 
-  /* ===== RESPONSIVO ===== */
-  @media (max-width: 600px) {
-    .container { padding: 20px 16px 60px; }
-    .welcome-card { padding: 24px; }
-    .welcome-card h1 { font-size: 24px; }
-    .module { padding: 16px; gap: 14px; }
-    .module-icon { width: 50px; height: 50px; font-size: 22px; }
-    .module-info h3 { font-size: 15px; }
-    .league-badge { width: 90px; height: 90px; font-size: 42px; }
-    .timer-display .time { font-size: 52px; }
-    .toast { font-size: 13px; padding: 14px 18px; }
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 640px) {
+    .hero-panel { padding: 28px 24px; }
+    .hero-panel h1 { font-size: 28px; }
+    .hero-panel .hero-desc { font-size: 14px; }
+    .stat-value { font-size: 22px; }
+    .module { padding: 16px 18px; gap: 14px; }
+    .module-num { width: 38px; height: 38px; font-size: 13px; }
+    .league-panel { padding: 24px; }
+    .league-badge { width: 90px; height: 90px; font-size: 36px; }
+    .league-info h3 { font-size: 22px; }
+    .timer-time { font-size: 48px; }
+    .modal { padding: 28px 22px; }
+    .section-head-left h2 { font-size: 17px; }
   }
 
-  /* Scrollbar */
-  ::-webkit-scrollbar { width: 8px; }
-  ::-webkit-scrollbar-track { background: var(--black); }
-  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
-  ::-webkit-scrollbar-thumb:hover { background: var(--text-dim-2); }
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border-2); border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--text-4); }
+
+  ::selection { background: var(--blue-600); color: white; }
 </style>
 </head>
 <body>
@@ -836,113 +1263,146 @@
 <!-- ===== NAVBAR ===== -->
 <nav class="navbar">
   <div class="nav-inner">
-    <div class="logo">
-      <div class="logo-icon">💪</div>
-      Body<span>Quest</span>
-    </div>
+    <a href="#" class="logo">
+      <div class="logo-mark"><i class="fas fa-dumbbell"></i></div>
+      <span class="logo-name">Body<span>Quest</span></span>
+    </a>
     <div class="nav-links">
-      <a href="#" class="active">Início</a>
+      <a href="#" class="active">Dashboard</a>
       <a href="#trilha">Trilha</a>
       <a href="#treinos">Treinos</a>
       <a href="#liga">Liga</a>
       <a href="#conquistas">Conquistas</a>
     </div>
-    <div class="nav-actions">
-      <div class="coin-badge">
-        <i class="fas fa-coins"></i>
+    <div class="nav-right">
+      <div class="coin-display">
+        <div class="coin-dot"></div>
         <span id="navCoins">320</span>
       </div>
-      <div class="avatar-btn">🦸</div>
+      <div class="user-btn"><i class="fas fa-user"></i></div>
     </div>
   </div>
 </nav>
 
 <div class="container">
 
-  <!-- ===== HERO / DASHBOARD ===== -->
+  <!-- ===== HERO ===== -->
   <section class="hero">
-    <div class="welcome-card">
-      <div class="greeting">Bem-vindo de volta, Atleta 👋</div>
-      <h1>Pronto para o treino de hoje?</h1>
-      <p>Sua ofensiva está em <strong id="streakText">12 dias</strong>. Não quebre agora — complete o treino diário e suba mais um nível.</p>
+    <div class="hero-panel">
+      <div class="hero-tag">
+        <span class="pulse-dot"></span>
+        Treino em casa · sem equipamentos
+      </div>
+      <h1>Construa seu corpo<br>com <em>disciplina e progresso</em>.</h1>
+      <p class="hero-desc">
+        Você está em uma ofensiva de <strong id="heroStreak">12 dias</strong>. Cada treino concluído rende XP, moedas e aproxima você da próxima divisão. Não quebre a sequência.
+      </p>
       <div class="hero-actions">
         <button class="btn btn-primary" onclick="openWorkout('daily')">
           <i class="fas fa-play"></i> Iniciar treino diário
         </button>
-        <button class="btn btn-ghost" onclick="openWorkout('quick')">
-          <i class="fas fa-bolt"></i> Treino rápido (3 min)
+        <button class="btn btn-secondary" onclick="openWorkout('quick')">
+          <i class="fas fa-bolt"></i> Treino rápido
         </button>
       </div>
     </div>
 
     <div class="stats-grid">
       <div class="stat-card">
-        <div class="icon-wrap"><i class="fas fa-fire"></i></div>
-        <div class="value" id="statStreak">12</div>
-        <div class="label">Dias de ofensiva</div>
+        <div class="stat-head">
+          <div class="stat-icon"><i class="fas fa-fire"></i></div>
+          <div class="stat-trend"><i class="fas fa-arrow-up"></i> +1</div>
+        </div>
+        <div class="stat-value" id="statStreak">12</div>
+        <div class="stat-label">Dias em sequência</div>
       </div>
       <div class="stat-card">
-        <div class="icon-wrap"><i class="fas fa-coins"></i></div>
-        <div class="value" id="statCoins">320</div>
-        <div class="label">Moedas</div>
+        <div class="stat-head">
+          <div class="stat-icon"><i class="fas fa-coins"></i></div>
+        </div>
+        <div class="stat-value" id="statCoins">320</div>
+        <div class="stat-label">Moedas disponíveis</div>
       </div>
       <div class="stat-card">
-        <div class="icon-wrap"><i class="fas fa-bolt"></i></div>
-        <div class="value" id="statXp">420</div>
-        <div class="label">XP da semana</div>
+        <div class="stat-head">
+          <div class="stat-icon"><i class="fas fa-bolt"></i></div>
+          <div class="stat-trend"><i class="fas fa-arrow-up"></i> +30</div>
+        </div>
+        <div class="stat-value" id="statXp">420</div>
+        <div class="stat-label">XP semanal</div>
       </div>
       <div class="stat-card">
-        <div class="icon-wrap"><i class="fas fa-dumbbell"></i></div>
-        <div class="value" id="statWorkouts">8</div>
-        <div class="label">Treinos concluídos</div>
+        <div class="stat-head">
+          <div class="stat-icon"><i class="fas fa-check-double"></i></div>
+        </div>
+        <div class="stat-value" id="statWorkouts">8</div>
+        <div class="stat-label">Treinos concluídos</div>
       </div>
     </div>
   </section>
 
-  <!-- ===== TRILHA DE TREINO ===== -->
+  <!-- ===== TRILHA ===== -->
   <section class="section" id="trilha">
     <div class="section-head">
-      <div>
-        <h2><i class="fas fa-map-signs"></i> Trilha de Treino</h2>
-        <p>Avança módulo por módulo. Complete para desbloquear o chefe.</p>
+      <div class="section-head-left">
+        <h2><i class="fas fa-route"></i> Trilha de Treino</h2>
+        <p class="desc">Avance módulo por módulo. Complete 100% para desbloquear o próximo desafio.</p>
+      </div>
+      <div class="section-head-right">
+        <a href="#">Ver progresso completo <i class="fas fa-arrow-right"></i></a>
       </div>
     </div>
 
     <div class="trail">
       <!-- Módulo 1 -->
-      <div class="module done" onclick="openWorkout('module', 1)">
-        <div class="module-icon">🏋️</div>
-        <div class="module-info">
-          <h3>Fundamentos da Força <span class="tag tag-done">CONCLUÍDO</span></h3>
-          <p>Agachamentos, flexões e pranchas básicas. 8 exercícios.</p>
-          <div class="progress-bar"><div class="fill" style="width:100%"></div></div>
-          <div class="module-progress-label">100% concluído</div>
+      <div class="module completed" onclick="openWorkout('module', 1)">
+        <div class="module-num">01</div>
+        <div class="module-body">
+          <div class="module-title">
+            <h3>Fundamentos da Força</h3>
+            <span class="badge badge-done">Concluído</span>
+          </div>
+          <p class="module-desc">Agachamentos, flexões e pranchas básicas. Base para todo o resto.</p>
+          <div class="module-progress">
+            <div class="progress-track"><div class="progress-fill" style="width:100%"></div></div>
+            <span class="progress-pct">100%</span>
+          </div>
         </div>
-        <div class="module-action"><i class="fas fa-redo"></i></div>
+        <div class="module-cta"><i class="fas fa-redo"></i></div>
       </div>
 
       <!-- Módulo 2 -->
       <div class="module" id="module2" onclick="openWorkout('module', 2)">
-        <div class="module-icon">🧘</div>
-        <div class="module-info">
-          <h3>Controle Core <span class="tag tag-current">EM ANDAMENTO</span></h3>
-          <p>Pranchas avançadas, hollow hold, elevação de pernas.</p>
-          <div class="progress-bar"><div class="fill" id="module2Fill" style="width:45%"></div></div>
-          <div class="module-progress-label" id="module2Label">45% concluído</div>
+        <div class="module-num">02</div>
+        <div class="module-body">
+          <div class="module-title">
+            <h3>Controle de Core</h3>
+            <span class="badge badge-active">Em progresso</span>
+          </div>
+          <p class="module-desc">Pranchas avançadas, hollow hold, elevação de pernas e anti-rotação.</p>
+          <div class="module-progress">
+            <div class="progress-track"><div class="progress-fill" id="module2Fill" style="width:45%"></div></div>
+            <span class="progress-pct" id="module2Label">45%</span>
+          </div>
         </div>
-        <div class="module-action"><i class="fas fa-play"></i></div>
+        <div class="module-cta"><i class="fas fa-play"></i></div>
       </div>
 
-      <!-- Módulo 3 - Boss -->
+      <!-- Módulo 3 — Boss -->
       <div class="module boss locked" id="module3" onclick="openWorkout('boss')">
-        <div class="module-icon">👑</div>
-        <div class="module-info">
-          <h3>Chefe: Domínio de Flexões <span class="tag tag-boss">BOSS FIGHT</span></h3>
-          <p>100 flexões contínuas. Recompensa: acesso ao módulo final.</p>
-          <div class="progress-bar"><div class="fill" id="module3Fill" style="width:0%"></div></div>
-          <div class="module-progress-label" id="module3Label">Bloqueado</div>
+        <div class="module-num"><i class="fas fa-crown"></i></div>
+        <div class="module-body">
+          <div class="module-title">
+            <h3>Chefe · Domínio de Flexões</h3>
+            <span class="badge badge-boss">Boss Fight</span>
+          </div>
+          <p class="module-desc">100 flexões contínuas sem pausa. Vença para acessar o módulo final.</p>
+          <div class="module-progress">
+            <div class="progress-track"><div class="progress-fill" id="module3Fill" style="width:0%"></div></div>
+            <span class="progress-pct" id="module3Label">Bloqueado</span>
+          </div>
         </div>
-        <div class="module-action"><i class="fas fa-lock"></i></div>
+        <div class="module-cta" id="module3Cta"><i class="fas fa-lock"></i></div>
       </div>
     </div>
   </section>
@@ -950,62 +1410,65 @@
   <!-- ===== TREINOS RÁPIDOS ===== -->
   <section class="section" id="treinos">
     <div class="section-head">
-      <div>
+      <div class="section-head-left">
         <h2><i class="fas fa-bolt"></i> Treinos Rápidos</h2>
-        <p>Pouco tempo? Sessões de 3 a 7 minutos para manter a ofensiva viva.</p>
+        <p class="desc">Sessões curtas de 3 a 7 minutos para manter a ofensiva nos dias cheios.</p>
+      </div>
+      <div class="section-head-right">
+        <a href="#">Ver todos <i class="fas fa-arrow-right"></i></a>
       </div>
     </div>
 
     <div class="quick-grid">
       <div class="quick-card" onclick="openWorkout('quick', 1)">
-        <div class="qc-head">
-          <div class="qc-icon"><i class="fas fa-fire"></i></div>
-          <div class="qc-time">3 min</div>
+        <div class="quick-head">
+          <div class="quick-icon"><i class="fas fa-sun"></i></div>
+          <div class="quick-time">3 min</div>
         </div>
-        <h4>Explosão Matinal</h4>
-        <p>Agachamentos e flexões para acordar o corpo.</p>
-        <div class="qc-footer">
-          <span class="qc-reward">+10 XP · +5 moedas</span>
-          <i class="fas fa-arrow-right qc-arrow"></i>
+        <h4>Ativação Matinal</h4>
+        <p>Agachamentos e flexões para acordar o corpo antes do dia começar.</p>
+        <div class="quick-foot">
+          <span class="quick-reward">+10 XP · +5 moedas</span>
+          <i class="fas fa-arrow-right quick-arrow"></i>
         </div>
       </div>
 
       <div class="quick-card" onclick="openWorkout('quick', 2)">
-        <div class="qc-head">
-          <div class="qc-icon"><i class="fas fa-clock"></i></div>
-          <div class="qc-time">5 min</div>
+        <div class="quick-head">
+          <div class="quick-icon"><i class="fas fa-hourglass-half"></i></div>
+          <div class="quick-time">5 min</div>
         </div>
         <h4>Pausa do Trabalho</h4>
-        <p>Alongamento + core para aliviar a tensão.</p>
-        <div class="qc-footer">
-          <span class="qc-reward">+15 XP · +8 moedas</span>
-          <i class="fas fa-arrow-right qc-arrow"></i>
+        <p>Alongamento e core para aliviar a tensão de horas sentado.</p>
+        <div class="quick-foot">
+          <span class="quick-reward">+15 XP · +8 moedas</span>
+          <i class="fas fa-arrow-right quick-arrow"></i>
         </div>
       </div>
 
       <div class="quick-card" onclick="openWorkout('quick', 3)">
-        <div class="qc-head">
-          <div class="qc-icon"><i class="fas fa-moon"></i></div>
-          <div class="qc-time">7 min</div>
+        <div class="quick-head">
+          <div class="quick-icon"><i class="fas fa-moon"></i></div>
+          <div class="quick-time">7 min</div>
         </div>
         <h4>Relaxamento Noturno</h4>
-        <p>Pranchas leves e respiração para dormir melhor.</p>
-        <div class="qc-footer">
-          <span class="qc-reward">+20 XP · +10 moedas</span>
-          <i class="fas fa-arrow-right qc-arrow"></i>
+        <p>Pranchas leves e respiração controlada para melhorar o sono.</p>
+        <div class="quick-foot">
+          <span class="quick-reward">+20 XP · +10 moedas</span>
+          <i class="fas fa-arrow-right quick-arrow"></i>
         </div>
       </div>
 
       <div class="quick-card" onclick="openWorkout('quick', 4)">
-        <div class="qc-head">
-          <div class="qc-icon"><i class="fas fa-bolt"></i></div>
-          <div class="qc-time">4 min</div>
+        <div class="quick-head">
+          <div class="quick-icon"><i class="fas fa-bolt"></i></div>
+          <div class="quick-time">4 min</div>
         </div>
-        <h4>Força Express</h4>
-        <p>Flexões e afundos para manter o hábito.</p>
-        <div class="qc-footer">
-          <span class="qc-reward">+12 XP · +6 moedas</span>
-          <i class="fas fa-arrow-right qc-arrow"></i>
+        <h4>Força Expressa</h4>
+        <p>Flexões e afundos para manter o hábito mesmo com pouco tempo.</p>
+        <div class="quick-foot">
+          <span class="quick-reward">+12 XP · +6 moedas</span>
+          <i class="fas fa-arrow-right quick-arrow"></i>
         </div>
       </div>
     </div>
@@ -1014,26 +1477,27 @@
   <!-- ===== LIGA ===== -->
   <section class="section" id="liga">
     <div class="section-head">
-      <div>
+      <div class="section-head-left">
         <h2><i class="fas fa-trophy"></i> Liga Semanal</h2>
-        <p>Ganhe XP treinando e suba de divisão até o topo.</p>
+        <p class="desc">Ganhe XP treinando e suba de divisão até o topo do ranking.</p>
       </div>
     </div>
 
     <div class="league-panel">
-      <div class="league-badge">🥉</div>
+      <div class="league-badge">
+        <i class="fas fa-medal"></i>
+      </div>
       <div class="league-info">
+        <div class="league-division">Divisão atual</div>
         <h3>Liga Bronze</h3>
-        <div class="subtitle">Divisão atual · Termina em 4 dias</div>
-        <div class="league-progress">
-          <div class="bar-bg">
-            <div class="bar-fill" id="leagueFill" style="width:42%"></div>
-          </div>
-          <div class="xp-text" id="leagueXp">420 / 1000 XP</div>
+        <p class="sub">Termina em 4 dias · 12 participantes</p>
+        <div class="league-progress-row">
+          <div class="league-track"><div class="league-fill" id="leagueFill" style="width:42%"></div></div>
+          <div class="league-xp" id="leagueXp">420 / 1000 XP</div>
         </div>
         <div class="league-tip">
           <i class="fas fa-info-circle"></i>
-          Faltam <strong id="xpNeeded">580 XP</strong> para a Liga Prata
+          Faltam <strong id="xpNeeded">580 XP</strong> para alcançar a Liga Prata
         </div>
       </div>
     </div>
@@ -1042,49 +1506,46 @@
   <!-- ===== CONQUISTAS ===== -->
   <section class="section" id="conquistas">
     <div class="section-head">
-      <div>
-        <h2><i class="fas fa-medal"></i> Conquistas</h2>
-        <p>Desbloqueie marcos treinando com consistência.</p>
+      <div class="section-head-left">
+        <h2><i class="fas fa-award"></i> Conquistas</h2>
+        <p class="desc">Marcos desbloqueados através de consistência e desempenho.</p>
       </div>
     </div>
 
-    <div class="quick-grid">
-      <div class="quick-card">
-        <div class="qc-head">
-          <div class="qc-icon"><i class="fas fa-fire"></i></div>
-          <div class="qc-time">OK</div>
-        </div>
-        <h4>Primeira Ofensiva</h4>
-        <p>Complete 7 dias seguidos de treino.</p>
-        <div class="qc-footer">
-          <span class="qc-reward">Conquistada</span>
-          <i class="fas fa-check qc-arrow" style="color:var(--blue-light)"></i>
+    <div class="ach-grid">
+      <div class="ach-card unlocked">
+        <div class="ach-medal"><i class="fas fa-fire"></i></div>
+        <div class="ach-body">
+          <h4>Primeira Ofensiva</h4>
+          <p>Complete 7 dias consecutivos</p>
+          <span class="ach-status">Desbloqueada</span>
         </div>
       </div>
 
-      <div class="quick-card">
-        <div class="qc-head">
-          <div class="qc-icon"><i class="fas fa-dumbbell"></i></div>
-          <div class="qc-time">8/10</div>
-        </div>
-        <h4>Rato de Academia</h4>
-        <p>Complete 10 treinos no total.</p>
-        <div class="qc-footer">
-          <span class="qc-reward">2 treinos restantes</span>
-          <i class="fas fa-arrow-right qc-arrow"></i>
+      <div class="ach-card">
+        <div class="ach-medal"><i class="fas fa-dumbbell"></i></div>
+        <div class="ach-body">
+          <h4>Rato de Academia</h4>
+          <p>Complete 10 treinos no total</p>
+          <span class="ach-status">8 / 10</span>
         </div>
       </div>
 
-      <div class="quick-card">
-        <div class="qc-head">
-          <div class="qc-icon"><i class="fas fa-crown"></i></div>
-          <div class="qc-time">0/1</div>
+      <div class="ach-card">
+        <div class="ach-medal"><i class="fas fa-crown"></i></div>
+        <div class="ach-body">
+          <h4>Matador de Chefes</h4>
+          <p>Vença seu primeiro Boss Fight</p>
+          <span class="ach-status">Bloqueada</span>
         </div>
-        <h4>Matador de Chefes</h4>
-        <p>Vença seu primeiro Boss Fight.</p>
-        <div class="qc-footer">
-          <span class="qc-reward">Bloqueada</span>
-          <i class="fas fa-lock qc-arrow"></i>
+      </div>
+
+      <div class="ach-card">
+        <div class="ach-medal"><i class="fas fa-gem"></i></div>
+        <div class="ach-body">
+          <h4>Disciplina Absoluta</h4>
+          <p>30 dias consecutivos de treino</p>
+          <span class="ach-status">12 / 30</span>
         </div>
       </div>
     </div>
@@ -1092,29 +1553,29 @@
 
 </div>
 
-<!-- ===== MODAL DE TREINO ===== -->
+<!-- ===== MODAL ===== -->
 <div class="modal-overlay" id="workoutModal">
   <div class="modal">
-    <div class="modal-close" onclick="closeWorkout()"><i class="fas fa-times"></i></div>
-    <div class="modal-icon" id="modalIcon">🏋️</div>
+    <div class="modal-close" onclick="closeWorkout()"><i class="fas fa-xmark"></i></div>
+    <div class="modal-icon-wrap" id="modalIcon"><i class="fas fa-dumbbell"></i></div>
     <h2 id="modalTitle">Treino Diário</h2>
-    <div class="modal-sub" id="modalSub">Prepare-se! Complete as séries abaixo.</div>
+    <div class="modal-sub" id="modalSub">Prepare-se. Complete as séries com boa forma.</div>
 
-    <div class="timer-display">
-      <div class="time" id="modalTimer">00:45</div>
-      <div class="phase" id="modalPhase">FLEXÕES · SÉRIE 1/4</div>
+    <div class="timer-box">
+      <div class="timer-time" id="modalTimer">00:45</div>
+      <div class="timer-phase" id="modalPhase">Série 1 de 4 · Flexões</div>
     </div>
 
-    <div class="exercise-preview">
-      <div class="ex-name" id="modalExercise">Flexão com pausa</div>
-      <div class="ex-detail" id="modalExerciseDetail">Mantenha o core firme e desça controlado</div>
+    <div class="exercise-box">
+      <div class="exercise-name" id="modalExercise">Flexão com pausa</div>
+      <div class="exercise-detail" id="modalExerciseDetail">Mantenha o core firme e desça controlado.</div>
     </div>
 
     <div class="modal-actions">
-      <button class="btn btn-ghost" onclick="closeWorkout()">
-        <i class="fas fa-times"></i> Sair
+      <button class="btn btn-secondary" onclick="closeWorkout()">
+        <i class="fas fa-xmark"></i> Sair
       </button>
-      <button class="btn btn-primary" id="modalStartBtn" onclick="completeWorkout()">
+      <button class="btn btn-primary" onclick="completeWorkout()">
         <i class="fas fa-check"></i> Concluir
       </button>
     </div>
@@ -1124,13 +1585,19 @@
 <!-- ===== TOAST ===== -->
 <div class="toast" id="toast">
   <div class="toast-icon" id="toastIcon"><i class="fas fa-check"></i></div>
-  <div id="toastMsg">Conquista desbloqueada!</div>
+  <div class="toast-content">
+    <div class="toast-title" id="toastTitle">Treino concluído</div>
+    <div class="toast-sub" id="toastSub">+30 XP · +15 moedas</div>
+  </div>
 </div>
 
-<!-- ===== RODAPÉ ===== -->
+<!-- ===== FOOTER ===== -->
 <footer>
   <div class="footer-inner">
-    <p>© 2025 BodyQuest · Treine em casa, sem equipamentos.</p>
+    <div class="footer-brand">
+      <div class="logo-mark"><i class="fas fa-dumbbell"></i></div>
+      <span>© 2025 BodyQuest — Treine em casa, sem equipamentos.</span>
+    </div>
     <div class="footer-links">
       <a href="#">Sobre</a>
       <a href="#">Privacidade</a>
@@ -1141,7 +1608,7 @@
 </footer>
 
 <script>
-  // ===== ESTADO DO USUÁRIO =====
+  // ===== ESTADO =====
   const state = {
     coins: 320,
     streak: 12,
@@ -1152,297 +1619,271 @@
     bossUnlocked: false
   };
 
-  // ===== ELEMENTOS =====
-  const el = {
-    navCoins: document.getElementById('navCoins'),
-    statCoins: document.getElementById('statCoins'),
-    statStreak: document.getElementById('statStreak'),
-    statXp: document.getElementById('statXp'),
-    statWorkouts: document.getElementById('statWorkouts'),
-    streakText: document.getElementById('streakText'),
-    leagueFill: document.getElementById('leagueFill'),
-    leagueXp: document.getElementById('leagueXp'),
-    xpNeeded: document.getElementById('xpNeeded'),
-    module2Fill: document.getElementById('module2Fill'),
-    module2Label: document.getElementById('module2Label'),
-    module3Fill: document.getElementById('module3Fill'),
-    module3Label: document.getElementById('module3Label'),
-    module3: document.getElementById('module3'),
-    modal: document.getElementById('workoutModal'),
-    modalTitle: document.getElementById('modalTitle'),
-    modalSub: document.getElementById('modalSub'),
-    modalIcon: document.getElementById('modalIcon'),
-    modalTimer: document.getElementById('modalTimer'),
-    modalPhase: document.getElementById('modalPhase'),
-    modalExercise: document.getElementById('modalExercise'),
-    modalExerciseDetail: document.getElementById('modalExerciseDetail'),
-    toast: document.getElementById('toast'),
-    toastMsg: document.getElementById('toastMsg'),
-    toastIcon: document.getElementById('toastIcon')
+  // ===== DOM =====
+  const $ = (id) => document.getElementById(id);
+  const ui = {
+    navCoins: $('navCoins'),
+    statCoins: $('statCoins'),
+    statStreak: $('statStreak'),
+    statXp: $('statXp'),
+    statWorkouts: $('statWorkouts'),
+    heroStreak: $('heroStreak'),
+    leagueFill: $('leagueFill'),
+    leagueXp: $('leagueXp'),
+    xpNeeded: $('xpNeeded'),
+    module2Fill: $('module2Fill'),
+    module2Label: $('module2Label'),
+    module3Fill: $('module3Fill'),
+    module3Label: $('module3Label'),
+    module3: $('module3'),
+    module3Cta: $('module3Cta'),
+    modal: $('workoutModal'),
+    modalTitle: $('modalTitle'),
+    modalSub: $('modalSub'),
+    modalIcon: $('modalIcon'),
+    modalTimer: $('modalTimer'),
+    modalPhase: $('modalPhase'),
+    modalExercise: $('modalExercise'),
+    modalExerciseDetail: $('modalExerciseDetail'),
+    toast: $('toast'),
+    toastTitle: $('toastTitle'),
+    toastSub: $('toastSub'),
+    toastIcon: $('toastIcon')
   };
 
-  // ===== ATUALIZAR UI =====
+  // ===== UPDATE UI =====
   function updateUI() {
-    el.navCoins.textContent = state.coins;
-    el.statCoins.textContent = state.coins;
-    el.statStreak.textContent = state.streak;
-    el.statXp.textContent = state.xp;
-    el.statWorkouts.textContent = state.workouts;
-    el.streakText.textContent = state.streak + ' dias';
+    ui.navCoins.textContent = state.coins;
+    ui.statCoins.textContent = state.coins;
+    ui.statStreak.textContent = state.streak;
+    ui.statXp.textContent = state.xp;
+    ui.statWorkouts.textContent = state.workouts;
+    ui.heroStreak.textContent = state.streak + ' dias';
 
-    // Liga
     const pct = Math.min(100, (state.xp / state.xpMax) * 100);
-    el.leagueFill.style.width = pct + '%';
-    el.leagueXp.textContent = `${state.xp} / ${state.xpMax} XP`;
-    const needed = Math.max(0, state.xpMax - state.xp);
-    el.xpNeeded.textContent = needed + ' XP';
+    ui.leagueFill.style.width = pct + '%';
+    ui.leagueXp.textContent = `${state.xp} / ${state.xpMax} XP`;
+    ui.xpNeeded.textContent = Math.max(0, state.xpMax - state.xp) + ' XP';
 
-    // Módulo 2
-    el.module2Fill.style.width = state.module2Progress + '%';
-    el.module2Label.textContent = state.module2Progress + '% concluído';
+    ui.module2Fill.style.width = state.module2Progress + '%';
+    ui.module2Label.textContent = state.module2Progress + '%';
 
-    // Módulo 3 (Boss)
     if (state.bossUnlocked) {
-      el.module3.classList.remove('locked');
-      el.module3Label.textContent = 'Desbloqueado · Pronto para o desafio';
-      el.module3.querySelector('.module-action').innerHTML = '<i class="fas fa-play"></i>';
+      ui.module3.classList.remove('locked');
+      ui.module3Label.textContent = 'Pronto';
+      ui.module3Cta.innerHTML = '<i class="fas fa-play"></i>';
     } else {
-      el.module3.classList.add('locked');
-      el.module3Label.textContent = 'Bloqueado · Complete o Core (100%)';
-      el.module3.querySelector('.module-action').innerHTML = '<i class="fas fa-lock"></i>';
+      ui.module3.classList.add('locked');
+      ui.module3Label.textContent = 'Bloqueado';
+      ui.module3Cta.innerHTML = '<i class="fas fa-lock"></i>';
     }
   }
 
   // ===== TOAST =====
-  let toastTimeout;
-  function showToast(msg, icon = 'check') {
-    const icons = {
-      check: '<i class="fas fa-check"></i>',
-      fire: '<i class="fas fa-fire"></i>',
-      coin: '<i class="fas fa-coins"></i>',
-      bolt: '<i class="fas fa-bolt"></i>',
-      lock: '<i class="fas fa-lock"></i>',
-      crown: '<i class="fas fa-crown"></i>',
-      trophy: '<i class="fas fa-trophy"></i>'
-    };
-    el.toastIcon.innerHTML = icons[icon] || icons.check;
-    el.toastMsg.textContent = msg;
-    el.toast.classList.add('show');
-    clearTimeout(toastTimeout);
-    toastTimeout = setTimeout(() => el.toast.classList.remove('show'), 2800);
+  let toastTimer;
+  const iconMap = {
+    check: '<i class="fas fa-check"></i>',
+    fire: '<i class="fas fa-fire"></i>',
+    coin: '<i class="fas fa-coins"></i>',
+    bolt: '<i class="fas fa-bolt"></i>',
+    lock: '<i class="fas fa-lock"></i>',
+    crown: '<i class="fas fa-crown"></i>',
+    trophy: '<i class="fas fa-trophy"></i>'
+  };
+
+  function showToast(title, sub = '', icon = 'check') {
+    ui.toastIcon.innerHTML = iconMap[icon] || iconMap.check;
+    ui.toastTitle.textContent = title;
+    ui.toastSub.textContent = sub;
+    ui.toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => ui.toast.classList.remove('show'), 3000);
   }
 
-  // ===== ÁUDIO (Web Audio API) =====
-  function playSound(type) {
+  // ===== ÁUDIO =====
+  let audioCtx;
+  function playTone(freqs, type = 'sine', duration = 0.15, volume = 0.12) {
     try {
-      const ctx = new (window.AudioContext || window.webkitAudioContext)();
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
       osc.connect(gain);
-      gain.connect(ctx.destination);
-
-      if (type === 'success') {
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(523, ctx.currentTime);
-        osc.frequency.setValueAtTime(659, ctx.currentTime + 0.08);
-        osc.frequency.setValueAtTime(784, ctx.currentTime + 0.16);
-        gain.gain.setValueAtTime(0.15, ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.35);
-        osc.start();
-        osc.stop(ctx.currentTime + 0.35);
-      } else if (type === 'coin') {
-        osc.type = 'square';
-        osc.frequency.setValueAtTime(988, ctx.currentTime);
-        gain.gain.setValueAtTime(0.1, ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.12);
-        osc.start();
-        osc.stop(ctx.currentTime + 0.12);
-      } else if (type === 'streak') {
-        osc.type = 'triangle';
-        osc.frequency.setValueAtTime(440, ctx.currentTime);
-        osc.frequency.setValueAtTime(554, ctx.currentTime + 0.1);
-        gain.gain.setValueAtTime(0.12, ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.25);
-        osc.start();
-        osc.stop(ctx.currentTime + 0.25);
-      } else if (type === 'lock') {
-        osc.type = 'sawtooth';
-        osc.frequency.setValueAtTime(220, ctx.currentTime);
-        gain.gain.setValueAtTime(0.08, ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.2);
-        osc.start();
-        osc.stop(ctx.currentTime + 0.2);
-      }
-    } catch (e) { /* silencioso */ }
+      gain.connect(audioCtx.destination);
+      osc.type = type;
+      freqs.forEach((f, i) => {
+        osc.frequency.setValueAtTime(f, audioCtx.currentTime + i * 0.08);
+      });
+      gain.gain.setValueAtTime(volume, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration + freqs.length * 0.08);
+      osc.start();
+      osc.stop(audioCtx.currentTime + duration + freqs.length * 0.08);
+    } catch (e) {}
   }
 
-  // ===== MODAL DE TREINO =====
-  let currentWorkout = null;
-  let timerInterval = null;
-  let timeLeft = 45;
+  const sounds = {
+    success: () => playTone([523, 659, 784], 'sine', 0.15),
+    coin: () => playTone([988, 1175], 'square', 0.08, 0.08),
+    streak: () => playTone([440, 554, 659], 'triangle', 0.12),
+    lock: () => playTone([220, 180], 'sawtooth', 0.1, 0.06)
+  };
 
+  // ===== TREINOS =====
   const workouts = {
     daily: {
       title: 'Treino Diário',
-      icon: '🏋️',
+      icon: 'fa-dumbbell',
       sub: 'Circuito completo para manter a ofensiva.',
       exercises: [
-        { name: 'Flexão com pausa', detail: 'Core firme, desça controlado' },
-        { name: 'Agachamento profundo', detail: 'Joelhos alinhados aos pés' },
-        { name: 'Prancha abdominal', detail: 'Mantenha o quadril firme' },
-        { name: 'Afundo alternado', detail: 'Amplitude máxima, tronco ereto' }
+        { name: 'Flexão com pausa', detail: 'Core firme, desça controlado até o peito.' },
+        { name: 'Agachamento profundo', detail: 'Joelhos alinhados com os pés, tronco ereto.' },
+        { name: 'Prancha abdominal', detail: 'Mantenha o quadril firme e respire.' },
+        { name: 'Afundo alternado', detail: 'Amplitude máxima, peso no meio do pé.' }
       ],
       xp: 30,
       coins: 15
     },
     quick: {
       title: 'Treino Rápido',
-      icon: '⚡',
+      icon: 'fa-bolt',
       sub: 'Sessão curta para não perder a ofensiva.',
       exercises: [
-        { name: 'Agachamento', detail: 'Ritmo constante, respire' },
-        { name: 'Flexão de joelhos', detail: 'Foco na descida controlada' }
+        { name: 'Agachamento livre', detail: 'Ritmo constante, respire profundamente.' },
+        { name: 'Flexão de joelhos', detail: 'Foco na descida controlada.' }
       ],
       xp: 10,
       coins: 5
     },
     module: {
-      title: 'Controle Core',
-      icon: '🧘',
+      title: 'Controle de Core',
+      icon: 'fa-route',
       sub: 'Módulo em andamento — complete para liberar o chefe.',
       exercises: [
-        { name: 'Hollow hold', detail: 'Lombar colada ao chão' },
-        { name: 'Elevação de pernas', detail: 'Sem balançar o tronco' },
-        { name: 'Prancha lateral', detail: 'Quadril elevado' },
-        { name: 'Superman', detail: 'Contraia glúteos no topo' }
+        { name: 'Hollow hold', detail: 'Lombar colada ao chão, respiração curta.' },
+        { name: 'Elevação de pernas', detail: 'Sem balançar o tronco.' },
+        { name: 'Prancha lateral', detail: 'Quadril elevado, corpo alinhado.' },
+        { name: 'Superman', detail: 'Contraia glúteos no topo do movimento.' }
       ],
       xp: 40,
       coins: 20
     },
     boss: {
-      title: '👑 Boss Fight',
-      icon: '👑',
-      sub: '100 flexões contínuas. Sem pausas. Você consegue?',
+      title: 'Boss Fight · Flexões',
+      icon: 'fa-crown',
+      sub: '100 flexões contínuas. Sem pausas. Respire fundo.',
       exercises: [
-        { name: 'Flexão padrão', detail: 'Ritmo constante · respire fundo' }
+        { name: 'Flexão padrão', detail: 'Ritmo constante, sem travar no topo.' }
       ],
       xp: 150,
       coins: 100
     }
   };
 
-  function openWorkout(type, id) {
-    // Se for boss e estiver bloqueado, avisa
+  // ===== MODAL =====
+  let currentWorkout = null;
+  let timerInterval = null;
+  let timeLeft = 45;
+
+  function openWorkout(type) {
     if (type === 'boss' && !state.bossUnlocked) {
-      playSound('lock');
-      showToast('Complete o módulo Core para desbloquear!', 'lock');
+      sounds.lock();
+      showToast('Desafio bloqueado', 'Complete o módulo Controle de Core primeiro.', 'lock');
       return;
     }
 
     currentWorkout = workouts[type];
     if (!currentWorkout) return;
 
-    el.modalTitle.textContent = currentWorkout.title;
-    el.modalSub.textContent = currentWorkout.sub;
-    el.modalIcon.textContent = currentWorkout.icon;
-    el.modalExercise.textContent = currentWorkout.exercises[0].name;
-    el.modalExerciseDetail.textContent = currentWorkout.exercises[0].detail;
-    el.modalPhase.textContent = 'SÉRIE 1/4';
+    ui.modalTitle.textContent = currentWorkout.title;
+    ui.modalSub.textContent = currentWorkout.sub;
+    ui.modalIcon.innerHTML = `<i class="fas ${currentWorkout.icon}"></i>`;
+    ui.modalExercise.textContent = currentWorkout.exercises[0].name;
+    ui.modalExerciseDetail.textContent = currentWorkout.exercises[0].detail;
+    ui.modalPhase.textContent = 'Série 1 de 4';
 
     timeLeft = type === 'quick' ? 30 : 45;
     updateTimerDisplay();
 
-    el.modal.classList.add('active');
+    ui.modal.classList.add('active');
     startTimer();
   }
 
   function closeWorkout() {
-    el.modal.classList.remove('active');
-    if (timerInterval) {
-      clearInterval(timerInterval);
-      timerInterval = null;
-    }
+    ui.modal.classList.remove('active');
+    if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
   }
 
   function updateTimerDisplay() {
     const m = String(Math.floor(timeLeft / 60)).padStart(2, '0');
     const s = String(timeLeft % 60).padStart(2, '0');
-    el.modalTimer.textContent = `${m}:${s}`;
+    ui.modalTimer.textContent = `${m}:${s}`;
   }
 
   function startTimer() {
     if (timerInterval) clearInterval(timerInterval);
     timerInterval = setInterval(() => {
       timeLeft--;
-      if (timeLeft < 0) {
-        // reinicia como se fosse próxima série
-        timeLeft = 45;
-      }
+      if (timeLeft < 0) timeLeft = 45;
       updateTimerDisplay();
     }, 1000);
   }
 
-  // ===== COMPLETAR TREINO =====
+  // ===== COMPLETAR =====
   function completeWorkout() {
     if (!currentWorkout) return;
 
-    // Atualiza estado
+    const isBoss = currentWorkout === workouts.boss;
+    const isModule = currentWorkout === workouts.module;
+
     state.xp += currentWorkout.xp;
     state.coins += currentWorkout.coins;
     state.streak += 1;
     state.workouts += 1;
 
-    // Se for módulo Core, aumenta progresso
-    if (currentWorkout === workouts.module) {
+    if (isModule) {
       state.module2Progress = Math.min(100, state.module2Progress + 15);
       if (state.module2Progress >= 100 && !state.bossUnlocked) {
         state.bossUnlocked = true;
         setTimeout(() => {
-          showToast('👑 Boss Fight desbloqueado!', 'crown');
-          playSound('streak');
-        }, 1200);
+          showToast('Boss Fight desbloqueado', 'Enfrente 100 flexões contínuas.', 'crown');
+          sounds.streak();
+        }, 1400);
       }
     }
 
-    // Se for boss, dá recompensa especial
-    if (currentWorkout === workouts.boss) {
-      showToast('👑 Você venceu o chefe! +150 XP', 'crown');
+    // Toast
+    if (isBoss) {
+      showToast('Chefe derrotado', '+150 XP · +100 moedas · módulo final liberado', 'crown');
     } else {
-      showToast(`+${currentWorkout.xp} XP · +${currentWorkout.coins} moedas`, 'check');
+      showToast('Treino concluído', `+${currentWorkout.xp} XP · +${currentWorkout.coins} moedas`, 'check');
     }
 
-    // Se XP estourou, sobe de liga (simulado)
+    // Level up
     if (state.xp >= state.xpMax) {
       state.xp = state.xp - state.xpMax;
-      setTimeout(() => {
-        showToast('🏆 Você subiu para a Liga Prata!', 'trophy');
-      }, 2500);
+      setTimeout(() => showToast('Nova divisão', 'Você subiu para a Liga Prata.', 'trophy'), 2800);
     }
 
     // Sons
-    playSound('success');
-    setTimeout(() => playSound('coin'), 200);
-    setTimeout(() => playSound('streak'), 400);
+    sounds.success();
+    setTimeout(() => sounds.coin(), 200);
+    setTimeout(() => sounds.streak(), 400);
 
-    // Fecha modal e atualiza
     closeWorkout();
     updateUI();
 
-    // Vibração
-    if (navigator.vibrate) navigator.vibrate([30, 40, 30]);
+    if (navigator.vibrate) navigator.vibrate([25, 40, 25]);
   }
 
-  // ===== FECHAR MODAL AO CLICAR FORA =====
-  el.modal.addEventListener('click', (e) => {
-    if (e.target === el.modal) closeWorkout();
+  // ===== FECHAR AO CLICAR FORA =====
+  ui.modal.addEventListener('click', (e) => {
+    if (e.target === ui.modal) closeWorkout();
   });
 
-  // ===== TECLA ESC =====
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeWorkout();
   });
 
-  // ===== INICIALIZA =====
+  // ===== INIT =====
   updateUI();
 </script>
 
